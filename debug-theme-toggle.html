@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThemeToggle Z-Index Debug</title>
+    <style>
+        /* Import the z-index system */
+        :root {
+            --z-theme-toggle: 80;
+        }
+        
+        .z-theme-toggle { 
+            z-index: var(--z-theme-toggle); 
+        }
+        
+        /* Test inline styles vs CSS classes */
+        .test-button {
+            width: 48px;
+            height: 48px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            position: relative;
+        }
+        
+        .parent-container {
+            position: relative;
+            background: #e0e0e0;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #999;
+        }
+        
+        .gsap-animated {
+            /* Simulate GSAP transform */
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        
+        .framer-motion {
+            /* Simulate Framer Motion styles */
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+        
+        /* Debug display */
+        .debug-info {
+            position: absolute;
+            top: -30px;
+            left: 0;
+            font-size: 10px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>ThemeToggle Z-Index Debug</h1>
+    
+    <div class="parent-container">
+        <h3>Normal Container</h3>
+        
+        <!-- Test 1: Only inline zIndex -->
+        <button class="test-button" style="zIndex: 80;">
+            <div class="debug-info">Inline 80</div>
+            T1
+        </button>
+        
+        <!-- Test 2: Only CSS class -->
+        <button class="test-button z-theme-toggle">
+            <div class="debug-info">CSS Class</div>
+            T2
+        </button>
+        
+        <!-- Test 3: Both inline and CSS class -->
+        <button class="test-button z-theme-toggle" style="zIndex: 80;">
+            <div class="debug-info">Both</div>
+            T3
+        </button>
+        
+        <!-- Test 4: Exact ThemeToggle reproduction -->
+        <button class="test-button z-theme-toggle" 
+                style="WebkitTapHighlightColor: transparent; touchAction: manipulation; pointerEvents: auto; zIndex: 80; position: relative;">
+            <div class="debug-info">Exact</div>
+            T4
+        </button>
+    </div>
+    
+    <div class="parent-container gsap-animated">
+        <h3>GSAP Animated Container</h3>
+        
+        <button class="test-button z-theme-toggle" style="zIndex: 80; position: relative;">
+            <div class="debug-info">GSAP</div>
+            T5
+        </button>
+    </div>
+    
+    <div class="parent-container framer-motion">
+        <h3>Framer Motion Container</h3>
+        
+        <button class="test-button z-theme-toggle" style="zIndex: 80; position: relative;">
+            <div class="debug-info">Framer</div>
+            T6
+        </button>
+    </div>
+
+    <script>
+        // Function to display computed z-index for all buttons
+        function debugZIndex() {
+            const buttons = document.querySelectorAll('.test-button');
+            buttons.forEach((button, index) => {
+                const computedStyle = window.getComputedStyle(button);
+                const zIndex = computedStyle.zIndex;
+                const position = computedStyle.position;
+                const transform = computedStyle.transform;
+                
+                console.log(`Button T${index + 1}:`, {
+                    zIndex,
+                    position,
+                    transform,
+                    element: button
+                });
+                
+                // Update debug info
+                const debugDiv = button.querySelector('.debug-info');
+                if (debugDiv) {
+                    debugDiv.textContent = `Z: ${zIndex}`;
+                }
+            });
+        }
+        
+        // Run debug on load
+        window.addEventListener('load', () => {
+            debugZIndex();
+            
+            // Also run every 100ms to catch any changes
+            setInterval(debugZIndex, 100);
+        });
+        
+        // Log initial state
+        console.log('CSS custom property value:', getComputedStyle(document.documentElement).getPropertyValue('--z-theme-toggle'));
+    </script>
+</body>
+</html>

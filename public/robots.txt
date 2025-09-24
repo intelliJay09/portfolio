@@ -1,0 +1,62 @@
+# Luxury Portfolio Site - Robots.txt
+# Optimized for premium SEO visibility
+
+User-agent: *
+Allow: /
+
+# Prioritize main pages for indexing
+Allow: /
+Allow: /about
+Allow: /portfolio
+Allow: /portfolio/*
+Allow: /contact
+
+# Allow access to critical assets
+Allow: /images/
+Allow: /fonts/
+
+# Block admin and temporary files
+Disallow: /api/
+Disallow: /_next/
+Disallow: /temp/
+Disallow: /*temp*
+Disallow: /*debug*
+Disallow: /*test*
+Disallow: /test/
+Disallow: /web-test/
+
+# Block image hotlinking protection files
+Disallow: /nul
+
+# Premium SEO: Specify sitemap locations
+Sitemap: https://jacquelineamoako.com/sitemap.xml
+Sitemap: https://jacquelineamoako.com/portfolio-sitemap.xml
+
+# Crawl-delay for luxury sites (not too aggressive)
+Crawl-delay: 1
+
+# Special instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot  
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block irrelevant bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

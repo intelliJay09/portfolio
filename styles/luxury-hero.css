@@ -1,0 +1,235 @@
+/* Luxury Hero Section Styles */
+.luxury-hero-section {
+  position: relative;
+  overflow: hidden;
+  background: #000000;
+}
+
+/* Video Performance Optimizations */
+.luxury-hero-section video {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Luxury Typography Enhancements */
+.luxury-hero-section h1 {
+  will-change: transform, opacity, letter-spacing;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Floating Portrait Enhanced Styling */
+.luxury-hero-section .floating-portrait {
+  position: relative;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-20px);
+  overflow: hidden;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Luxury Button Styling */
+.luxury-hero-section .luxury-arrow-button {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, background-color;
+}
+
+.luxury-hero-section .luxury-arrow-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Sophisticated Overlay System */
+.luxury-overlay-primary {
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.65) 0%, 
+    rgba(0, 0, 0, 0.35) 40%, 
+    rgba(0, 0, 0, 0.75) 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.luxury-overlay-radial {
+  background: radial-gradient(ellipse at center,
+    transparent 30%,
+    rgba(0, 0, 0, 0.4) 70%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+/* Enhanced Subtitle Styling */
+.luxury-hero-section .luxury-subtitle {
+  font-feature-settings: "kern" 1, "liga" 1, "smcp" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Theme-aware adjustments */
+[data-theme="light"] .luxury-hero-section {
+  background: #ffffff;
+}
+
+[data-theme="light"] .luxury-overlay-primary {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.85) 0%, 
+    rgba(255, 255, 255, 0.65) 40%, 
+    rgba(255, 255, 255, 0.90) 100%);
+}
+
+[data-theme="light"] .luxury-overlay-radial {
+  background: radial-gradient(ellipse at center,
+    transparent 30%,
+    rgba(255, 255, 255, 0.6) 70%);
+}
+
+[data-theme="light"] .luxury-hero-section h1 {
+  color: rgba(0, 0, 0, 0.95) !important;
+  text-shadow: 0 4px 24px rgba(255, 255, 255, 0.8) !important;
+}
+
+[data-theme="light"] .luxury-hero-section .luxury-subtitle {
+  color: rgba(0, 0, 0, 0.75) !important;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.8) !important;
+}
+
+[data-theme="light"] .luxury-hero-section .luxury-arrow-button {
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(255, 255, 255, 0.6),
+    inset 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .luxury-hero-section .luxury-arrow-button:hover {
+  background: rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.25);
+  box-shadow: 
+    0 12px 48px rgba(255, 255, 255, 0.8),
+    inset 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .floating-portrait {
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 
+    0 20px 60px rgba(255, 255, 255, 0.8),
+    0 8px 24px rgba(255, 255, 255, 0.4),
+    inset 0 1px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Mobile Responsive Enhancements */
+@media (max-width: 768px) {
+  .luxury-hero-section video {
+    object-position: center 30%;
+  }
+  
+  .luxury-overlay-primary {
+    background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.8) 100%);
+  }
+  
+  .luxury-hero-section h1 {
+    font-size: clamp(10vw, 15vw, 12rem) !important;
+    letter-spacing: 0.06em !important;
+  }
+  
+  .luxury-hero-section .luxury-subtitle {
+    font-size: clamp(1rem, 4vw, 1.8rem) !important;
+    letter-spacing: 0.12em !important;
+  }
+}
+
+/* Tablet Enhancements */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .floating-portrait {
+    width: clamp(300px, 40vw, 400px) !important;
+    height: clamp(75vh, 85vh, 90vh) !important;
+  }
+}
+
+/* High-res and Large Desktop */
+@media (min-width: 1440px) {
+  .luxury-hero-section h1 {
+    font-size: clamp(16vw, 20vw, 28rem) !important;
+  }
+  
+  .luxury-hero-section .luxury-subtitle {
+    font-size: clamp(1.8rem, 3vw, 3.2rem) !important;
+  }
+}
+
+/* Print Media Fallback */
+@media print {
+  .luxury-hero-section video {
+    display: none;
+  }
+  
+  .luxury-hero-section {
+    background: #f8f8f8 !important;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .luxury-hero-section video {
+    animation: none !important;
+  }
+  
+  .luxury-hero-section * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .luxury-overlay-primary {
+    background: rgba(0, 0, 0, 0.9) !important;
+  }
+  
+  .luxury-hero-section h1 {
+    text-shadow: none !important;
+    color: #ffffff !important;
+  }
+  
+  .luxury-hero-section .luxury-subtitle {
+    text-shadow: none !important;
+    color: #ffffff !important;
+  }
+}

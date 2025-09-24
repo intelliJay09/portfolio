@@ -1,0 +1,335 @@
+/* ==========================================
+   LUXURY EDITORIAL PORTFOLIO GRID
+   Clean, Sophisticated Magazine Layout
+   ========================================== */
+
+/* Main Grid Container */
+.luxury-editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* ==========================================
+   CARD SIZES - CLEAN PROPORTIONS
+   ========================================== */
+
+
+/* Large - Featured content */
+.luxury-large {
+  grid-column: span 8;
+  height: 380px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+/* Medium - Standard content */
+.luxury-medium {
+  grid-column: span 6;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+/* Small - Accent content */
+.luxury-small {
+  grid-column: span 4;
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+/* Tall - Vertical emphasis */
+.luxury-tall {
+  grid-column: span 4;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+/* ==========================================
+   IMAGE STYLES
+   ========================================== */
+
+.luxury-editorial-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.luxury-editorial-grid > *:hover img {
+  transform: scale(1.05);
+}
+
+/* Fallback for browsers without aspect-ratio support */
+@supports not (aspect-ratio: 1) {
+  @media (max-width: 768px) {
+    .luxury-large,
+    .luxury-medium,
+    .luxury-small,
+    .luxury-tall {
+      height: 280px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .luxury-large,
+    .luxury-medium,
+    .luxury-small,
+    .luxury-tall {
+      height: 260px;
+    }
+  }
+}
+
+/* ==========================================
+   CONTENT OVERLAY
+   ========================================== */
+
+.luxury-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 70%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  transition: opacity 0.4s ease;
+}
+
+.luxury-editorial-grid > *:hover .luxury-overlay {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.5) 60%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+/* ==========================================
+   TEXT CONTENT
+   ========================================== */
+
+.luxury-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  color: white;
+  z-index: 2;
+}
+
+.luxury-number {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  font-size: 0.875rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: white;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+.luxury-category {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.luxury-title {
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.luxury-description {
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.luxury-editorial-grid > *:hover .luxury-description {
+  opacity: 0.9;
+  transform: translateY(0);
+}
+
+.luxury-editorial-grid > *:hover .luxury-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Large cards get bigger titles */
+.luxury-large .luxury-title {
+  font-size: 2rem;
+}
+
+/* ==========================================
+   HOVER EFFECTS
+   ========================================== */
+
+.luxury-editorial-grid > * {
+  cursor: pointer;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+/* Tablet (1024px) */
+@media (max-width: 1024px) {
+  .luxury-editorial-grid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1.5rem;
+  }
+
+  .luxury-large {
+    grid-column: span 8;
+    height: 320px;
+  }
+
+  .luxury-medium {
+    grid-column: span 4;
+    height: 280px;
+  }
+
+  .luxury-small {
+    grid-column: span 4;
+    height: 240px;
+  }
+
+  .luxury-tall {
+    grid-column: span 4;
+    height: 320px;
+  }
+}
+
+/* Mobile (768px) - Single column layout for all cards */
+@media (max-width: 768px) {
+  .luxury-editorial-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+    padding: 0 1em;
+  }
+
+  /* All cards become single column with consistent 4:3 aspect ratio */
+  .luxury-large,
+  .luxury-medium,
+  .luxury-small,
+  .luxury-tall {
+    grid-column: span 1;
+    height: auto;
+    aspect-ratio: 4/3;
+    min-height: 280px;
+    width: 100%;
+  }
+
+  .luxury-content {
+    padding: 1.5em;
+  }
+
+  .luxury-number {
+    top: 1.5em;
+    left: 1.5em;
+    font-size: 0.8rem;
+  }
+
+  .luxury-title {
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+
+  .luxury-large .luxury-title {
+    font-size: 1.3rem;
+  }
+
+  .luxury-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+}
+
+/* Small Mobile (480px) - Single column with responsive aspect ratios */
+@media (max-width: 480px) {
+  .luxury-editorial-grid {
+    grid-template-columns: 1fr;
+    gap: 1em;
+    padding: 0 0.8em;
+  }
+
+  /* All cards become single column with appropriate aspect ratios */
+  .luxury-large {
+    grid-column: span 1;
+    height: auto;
+    aspect-ratio: 4/3;
+    min-height: 240px;
+  }
+
+  .luxury-medium {
+    grid-column: span 1;
+    height: auto;
+    aspect-ratio: 4/3;
+    min-height: 220px;
+  }
+
+  .luxury-small {
+    grid-column: span 1;
+    height: auto;
+    aspect-ratio: 4/3;
+    min-height: 200px;
+  }
+
+  .luxury-tall {
+    grid-column: span 1;
+    height: auto;
+    aspect-ratio: 4/3;
+    min-height: 220px;
+  }
+
+  .luxury-content {
+    padding: 1em;
+  }
+
+  .luxury-number {
+    top: 1em;
+    left: 1em;
+    font-size: 0.7rem;
+  }
+
+  .luxury-title {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .luxury-large .luxury-title {
+    font-size: 1.1rem;
+  }
+
+  .luxury-description {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+}

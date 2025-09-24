@@ -1,0 +1,76 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "clientName": "Gwen Addo",
+      "clientInfo": "Business Strategist",
+      "quote": "Jacqueliene has a remarkable ability to translate a personal brand into a compelling digital experience. The website she built for me is not only professional and polished but also strategically designed to convert visitors into clients. It has become the cornerstone of my business's online presence."
+    },
+    {
+      "id": 2,
+      "clientName": "Mimi",
+      "clientInfo": "CEO of Allure Bloom",
+      "quote": "Working with Jacqueliene was a dream. She took my vision for a premium lash brand and translated it into a stunning and cohesive brand identity. From the logo and flyers to the billboards and custom paper bags, every single piece is pure luxury. Our brand now looks as high-end as our products feel."
+    },
+    {
+      "id": 3,
+      "clientName": "Tyrone",
+      "clientInfo": "CEO of Command Space",
+      "quote": "As a digital agency, our own website has to be flawless—it's our ultimate business card. Jacqueliene understood this perfectly and built a company website for us that is sleek, functional, and clearly showcases our expertise. We couldn't be happier with how she represented our brand."
+    },
+    {
+      "id": 4,
+      "clientName": "Kobby",
+      "clientInfo": "Founder of Kloves Advisor",
+      "quote": "For a premium booking service like ours, trust and professionalism are everything. The logo and branding materials Jacqueliene designed for us immediately established that sense of quality and reliability. We constantly get compliments on our flyers, and her branding has given us the confident start we needed."
+    },
+    {
+      "id": 5,
+      "clientName": "Lady RP",
+      "clientInfo": "",
+      "quote": "Jacqueliene did more than just build a website; she created a digital home for my ministry. The process was handled with such care and understanding of my vision. The final site is not only beautiful and inspiring but also incredibly easy for my community to navigate and connect with."
+    },
+    {
+      "id": 6,
+      "clientName": "Dr. Emmanuel Kotia",
+      "clientInfo": "",
+      "quote": "I required a website that would serve as a dignified and comprehensive archive for my career and publications. The level of professionalism and attention to detail was exceptional. Jacqueliene delivered a platform that is impeccably organized, highly professional, and perfectly befitting of my service record."
+    },
+    {
+      "id": 7,
+      "clientName": "Dr. Remie",
+      "clientInfo": "Ghana Optometric Association",
+      "quote": "Handling the digital needs of a national professional body is a massive undertaking, and Jacqueliene exceeded all expectations. She flawlessly developed both our main GOA website and the dedicated site for our annual conference, dramatically improving our communication with members and streamlining our event registration process. The positive feedback from our optometrists has been overwhelming."
+    },
+    {
+      "id": 8,
+      "clientName": "Vanny",
+      "clientInfo": "CEO of Vwear",
+      "quote": "Finding a designer who just *gets* your brand's vibe is rare. Jacqueliene completely captured the essence of Vwear in the new brand identity. It's bold, trendy, and speaks directly to my customers. The new identity has given my brand so much more energy and personality."
+    },
+    {
+      "id": 9,
+      "clientName": "Leejay",
+      "clientInfo": "CEO of Leejay Looks",
+      "quote": "The promotional and seasonal flyers are always a huge hit! Jacqueliene knows exactly how to create designs that are not only beautiful but effective. Every time we release a new flyer, our bookings see a noticeable spike. She's my go-to for any design that needs to grab attention and bring in clients."
+    },
+    {
+      "id": 10,
+      "clientName": "Kwaatemaa",
+      "clientInfo": "CEO of TDA",
+      "quote": "Jacqueliene has been absolutely instrumental in building TDA's online presence. She started by designing a logo that perfectly captured our brand's soul. Her management of our social media, especially the dynamic videos she creates, has brought our fashion to life online and significantly grown our brand awareness and engagement."
+    },
+    {
+      "id": 11,
+      "clientName": "Curtis",
+      "clientInfo": "Eleven Eleven",
+      "quote": "We develop luxury experiences, and we needed a website that reflected that same standard of quality. Jacqueliene delivered precisely that. She built a digital platform for Eleven Eleven that is elegant, immersive, and perfectly communicates the exclusivity of our resort. It has been invaluable in attracting our target clientele."
+    },
+    {
+      "id": 12,
+      "clientName": "Boss J.",
+      "clientInfo": "Anabs Ghana",
+      "quote": "For a high-rise development like ours, projecting an image of prestige and reliability is paramount. Jacqueliene was tasked with building our digital presence, and her work has been foundational to our success. The quality of the website and branding she delivered instills immediate confidence in potential buyers and investors."
+    }
+  ]
+}

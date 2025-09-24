@@ -1,0 +1,117 @@
+
+> portfolio@1.0.0 build
+> next build
+
+   ▲ Next.js 15.5.2
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · webVitalsAttribution
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 20.9s
+   Linting and checking validity of types ...
+
+./app/about/page.tsx
+25:10  Warning: 'currentSlide' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+26:25  Warning: 'setIsAutoPlaying' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+291:39  Warning: '_index' is defined but never used.  @typescript-eslint/no-unused-vars
+324:35  Warning: '_index' is defined but never used.  @typescript-eslint/no-unused-vars
+535:33  Warning: '_index' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./app/api/contact/route.ts
+51:7  Warning: 'progressiveRateLimitStore' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+68:10  Warning: 'sanitizeHtml' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./app/api/contact/status/route.ts
+4:27  Warning: 'req' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./app/contact/error/page.tsx
+7:25  Warning: 'ArrowLeft' is defined but never used.  @typescript-eslint/no-unused-vars
+8:8  Warning: 'Link' is defined but never used.  @typescript-eslint/no-unused-vars
+12:9  Warning: 'containerRef' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./app/contact/page.tsx
+177:14  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./app/contact/success/page.tsx
+8:8  Warning: 'Link' is defined but never used.  @typescript-eslint/no-unused-vars
+12:9  Warning: 'containerRef' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./app/not-found.tsx
+4:10  Warning: 'motion' is defined but never used.  @typescript-eslint/no-unused-vars
+8:21  Warning: 'Home' is defined but never used.  @typescript-eslint/no-unused-vars
+18:10  Warning: 'isHovered' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+18:21  Warning: 'setIsHovered' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+19:10  Warning: 'mousePosition' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+21:9  Warning: 'handleMouseMove' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./app/portfolio/page.tsx
+4:8  Warning: 'Image' is defined but never used.  @typescript-eslint/no-unused-vars
+6:25  Warning: 'Eye' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./app/portfolio/[slug]/page.tsx
+8:21  Warning: 'ExternalLink' is defined but never used.  @typescript-eslint/no-unused-vars
+8:35  Warning: 'ChevronDown' is defined but never used.  @typescript-eslint/no-unused-vars
+8:83  Warning: 'Play' is defined but never used.  @typescript-eslint/no-unused-vars
+560:9  Warning: 'handleVideoPlay' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+669:36  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+719:41  Warning: 'sceneIndex' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./app/test/page.tsx
+3:20  Warning: 'useEffect' is defined but never used.  @typescript-eslint/no-unused-vars
+128:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+181:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./app/web-test/page.tsx
+3:20  Warning: 'useEffect' is defined but never used.  @typescript-eslint/no-unused-vars
+148:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+225:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/DesignPhilosophy.tsx
+265:86  Warning: '_event' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/Footer.tsx
+14:9  Warning: 'phoneButtonRef' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./components/ImageProtection.tsx
+128:13  Warning: 'consoleClearInterval' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./components/PortfolioFooter.tsx
+9:8  Warning: 'portfolioData' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/Preloader.tsx
+3:29  Warning: 'useState' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/TeachingTeaser.tsx
+141:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+161:19  Warning: 'sources' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./components/ui/GraphicDesignModal.tsx
+103:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/ui/RobustImage.tsx
+50:24  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/WebVitals.tsx
+34:13  Warning: 'performanceData' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./lib/advanced-seo-config.ts
+145:30  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./lib/local-seo-ghana.ts
+108:17  Warning: '_' is defined but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+Failed to compile.
+
+./app/portfolio/[slug]/page.tsx:1174:21
+Type error: Type '{}' is missing the following properties from type 'string[]': length, pop, push, concat, and 35 more.
+
+[0m [90m 1172 |[39m                   [90m// Priority order: specific content > portfolio data > project data > generic fallback[39m
+ [90m 1173 |[39m                   [36mif[39m (specificContent[33m?[39m[33m.[39mchallengePoints) {
+[31m[1m>[22m[39m[90m 1174 |[39m                     challengePoints [33m=[39m specificContent[33m.[39mchallengePoints[33m;[39m
+ [90m      |[39m                     [31m[1m^[22m[39m
+ [90m 1175 |[39m                   } [36melse[39m [36mif[39m ((projectData [36mas[39m [33mRecord[39m[33m<[39m[33mstring[39m[33m,[39m [33mRecord[39m[33m<[39m[33mstring[39m[33m,[39m string[][33m>>[39m)[33m?[39m[33m.[39mchallenge[33m?[39m[33m.[39mkeyPoints) {
+ [90m 1176 |[39m                     challengePoints [33m=[39m (projectData [36mas[39m [33mRecord[39m[33m<[39m[33mstring[39m[33m,[39m [33mRecord[39m[33m<[39m[33mstring[39m[33m,[39m string[][33m>>[39m)[33m.[39mchallenge[33m.[39mkeyPoints[33m;[39m
+ [90m 1177 |[39m                   } [36melse[39m [36mif[39m ((portfolioProject [36mas[39m [33mRecord[39m[33m<[39m[33mstring[39m[33m,[39m string[][33m>[39m)[33m?[39m[33m.[39mchallengePoints) {[0m
+Next.js build worker exited with code: 1 and signal: null

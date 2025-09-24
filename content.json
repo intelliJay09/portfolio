@@ -1,0 +1,375 @@
+{
+  "global": {
+    "name": "Jacqueline Amoako",
+    "email": "jacque.amoako@gmail.com",
+    "location": "Accra, Ghana",
+    "social": {
+      "linkedin": "https://linkedin.com/in/jacqueline-frempomah-amoako"
+    }
+  },
+  "preloader": {
+    "greetings": [
+      "Akwaaba",
+      "Hello", 
+      "Bonjour",
+      "Hola",
+      "你好"
+    ]
+  },
+  "homepage": {
+    "hero": {
+      "headline": "Luxury Digital Experiences That Elevate Your Brand.",
+      "subheadline": "I'm Jacqueline Amoako, a luxury web developer and creative technologist based in Accra, Ghana. I craft sophisticated, high-performing websites and bespoke e-commerce solutions that captivate discerning audiences and drive exceptional growth for premium brands and visionary entrepreneurs.",
+      "cta": "Explore Premium Work"
+    },
+    "introduction": {
+      "title": "Sophisticated Technology Meets Luxury Design",
+      "body": "Discerning brands deserve more than standard solutions; they require a meticulously crafted digital presence that reflects their premium positioning. I blend cutting-edge frontend artistry, robust architectural foundations, performance excellence, and sophisticated visual design to create bespoke digital experiences that not only captivate elite audiences but also dominate search rankings, maximize conversions, and scale seamlessly with your luxury brand's growth.",
+      "cta": "Request Bespoke Solution"
+    },
+    "services_overview": {
+      "title": "Luxury Technology Expertise",
+      "intro": "A refined mastery spanning the complete spectrum of premium web development, from sophisticated visual artistry to enterprise-grade backend architecture.",
+      "services": [
+        {
+          "title": "Luxury Frontend Craftsmanship",
+          "description": "React, Next.js, HTML, CSS, JavaScript, WordPress, Shopify & WooCommerce. Creating sophisticated, responsive user experiences that captivate elite audiences and drive premium conversions.",
+          "experience": "5+ Years"
+        },
+        {
+          "title": "Enterprise Backend Architecture", 
+          "description": "Node.js, MySQL, Supabase, database optimization & scalable server architecture. Building robust, secure systems that power sophisticated digital operations for discerning brands.",
+          "experience": "4+ Years"
+        },
+        {
+          "title": "Premium SEO & Performance Excellence",
+          "description": "Advanced search optimization, Core Web Vitals mastery & performance engineering. Ensuring your luxury brand dominates search rankings and delivers lightning-fast experiences.",
+          "experience": "4+ Years"
+        },
+        {
+          "title": "Sophisticated API Integration",
+          "description": "RESTful APIs, premium third-party integrations & microservices architecture. Seamlessly connecting sophisticated systems to create powerful, interconnected luxury solutions.",
+          "experience": "3+ Years"
+        },
+        {
+          "title": "Luxury Brand Design",
+          "description": "Premium brand identity, sophisticated logos, luxury marketing materials & visual design excellence. Crafting compelling visuals that communicate your luxury brand story with elegance and distinction.",
+          "experience": "3+ Years"
+        }
+      ],
+      "cta": "Discover Luxury Services"
+    },
+    "featured_projects": {
+      "title": "Exceptional Results for Discerning Clients",
+      "intro": "I've had the privilege of partnering with visionary brands to transform their digital presence. Each project represents a masterful fusion of sophisticated design and cutting-edge technology.",
+      "cta": "View Complete Portfolio"
+    }
+  },
+  "about": {
+    "hero": {
+      "headline": "More Than Just Code: A Passion for Empowering Your Digital Journey.",
+      "body": "My name is Jacqueline F. Amoako, and I am a web developer with a deep-seated passion for creating digital solutions that empower businesses to thrive online. My journey into web development was driven by a desire to blend creativity with technology to build stunning, functional, and results-driven websites. I hold a BSC in Information Technology from Ghana Technology University College and a Diploma in Software Engineering from IPMC Ghana. My career is built on a foundation of continuous learning and staying ahead of industry trends to provide my clients with the best possible outcomes."
+    },
+    "mission": {
+      "title": "My Mission: Digitalization for Empowerment",
+      "intro": "A significant highlight of my career has been my role as the sole female web developer in the \"Digitalize for Jobs (D4J)\" program, a transformative initiative by GIZ and GEA. Through this project, I:",
+      "points": [
+        "Developed dynamic websites and social media pages for women-led small businesses, dramatically increasing their online presence.",
+        "Delivered impactful training sessions across the Ho, Bono, and Eastern regions, equipping women entrepreneurs with the skills to manage their websites and leverage social media for business growth."
+      ],
+      "conclusion": "This experience solidified my commitment to using my skills not just to build websites, but to foster independence and success in others."
+    },
+    "skills": [
+      "Fullstack Development: Proficient in HTML, CSS, JavaScript, and backend technologies.",
+      "WordPress Customization: Skilled in tailoring WordPress to meet specific client needs.",
+      "Database Optimization: Highly skilled in enhancing database performance for seamless user experiences.",
+      "SEO Strategies: Experienced in implementing effective SEO techniques to boost online visibility.",
+      "E-Commerce Solutions: Expert in creating e-commerce platforms that drive conversions."
+    ]
+  },
+  "services": {
+    "headline": "Solutions Tailored to Your Success",
+    "intro": "I provide a range of web development services designed to deliver a significant return on your investment.",
+    "list": [
+      {
+        "title": "Custom Web Development",
+        "description": "I create bespoke websites from the ground up, ensuring a unique and interactive platform that caters to your specific business goals. My development process is collaborative, focusing on creating a visually appealing and user-friendly experience that engages your audience from the first click.",
+        "features": [
+          "A fully customized, responsive website.",
+          "Dynamic and captivating web interfaces built with HTML, CSS, and JavaScript.",
+          "A platform that is easy to manage and update."
+        ]
+      },
+      {
+        "title": "E-Commerce & Online Stores",
+        "description": "I specialize in building robust e-commerce platforms that not only showcase your products beautifully but are also optimized for conversions. From secure payment gateways to intuitive product management, I create online shopping experiences that your customers will love.",
+        "features": [
+          "A fully functional and secure online store.",
+          "An optimized user journey to reduce cart abandonment.",
+          "Easy-to-manage inventory and sales reporting."
+        ]
+      },
+      {
+        "title": "SEO & Digital Strategy",
+        "description": "A beautiful website is only effective if it can be found. I implement a strategic combination of tools and techniques to optimize your website for high search engine rankings, significantly enhancing your online visibility and driving organic search traffic.",
+        "features": [
+          "Improved rankings on Google and other search engines.",
+          "Increased organic traffic from your target audience.",
+          "A long-term strategy for sustained online growth."
+        ]
+      },
+      {
+        "title": "Website Maintenance & Support",
+        "description": "I offer comprehensive maintenance packages to ensure your website remains seamless, up-to-date, and secure. From daily backups to content updates, I handle the technical details so you can focus on running your business.",
+        "features": [
+          "Regular updates and security checks.",
+          "Content and image updates.",
+          "Peace of mind knowing your website is in expert hands."
+        ]
+      }
+    ]
+  },
+  "portfolio": {
+    "headline": "Digital Experiences & Brand Transformations",
+    "intro": "Complete creative technology solutions—from visual identity to web architecture. Each project represents a fusion of aesthetic excellence and technical innovation.",
+    "projects": [
+      {
+        "slug": "lovel-ai",
+        "title": "Lovel.ai",
+        "short_description": "AI-powered relationship insights and compatibility matching platform",
+        "category": "Web Apps"
+      },
+      {
+        "slug": "anabs",
+        "title": "Anabs",
+        "short_description": "Luxury high-rise residential development showcase",
+        "category": "Websites"
+      },
+      {
+        "slug": "eleven-eleven-ghana", 
+        "title": "Eleven Eleven Ghana",
+        "short_description": "Luxury beachfront resort with immersive booking experience",
+        "category": "Websites"
+      },
+      {
+        "slug": "gwen-addo",
+        "title": "Gwen Addo",
+        "short_description": "Business strategist consultancy with integrated booking system",
+        "category": "Websites"
+      },
+      {
+        "slug": "optimum-property-solutions",
+        "title": "Optimum Property Solutions", 
+        "short_description": "International real estate portal with advanced search capabilities",
+        "category": "Websites"
+      },
+      {
+        "slug": "emmanuel-kotia",
+        "title": "Dr. Emmanuel Kotia",
+        "short_description": "Academic portfolio and digital publication repository",
+        "category": "Websites"
+      },
+      {
+        "slug": "imagebloom-by-saida",
+        "title": "Image Bloom by Saida",
+        "short_description": "Makeup artist e-commerce platform with portfolio showcase",
+        "category": "Websites"
+      },
+      {
+        "slug": "rosemond-prempeh",
+        "title": "Rosemond Prempeh Ministries",
+        "short_description": "Inspirational ministry platform with community engagement",
+        "category": "Websites"
+      },
+      {
+        "slug": "kline-designs",
+        "title": "K_Line Designs LTD",
+        "short_description": "Design and engineering firm showcasing innovative architectural solutions",
+        "category": "Websites"
+      },
+      {
+        "slug": "royal-itech",
+        "title": "Royal iTech",
+        "short_description": "Cybersecurity firm with trust-focused corporate presence",
+        "category": "Websites"
+      },
+      {
+        "slug": "girl-code-africa",
+        "title": "GirlCode Africa",
+        "short_description": "Empowering women in tech across Africa with React platform",
+        "category": "Websites"
+      },
+      {
+        "slug": "goa-conference",
+        "title": "GOA Conference",
+        "short_description": "Professional event microsite with registration system",
+        "category": "Websites"
+      },
+      {
+        "slug": "eden-heights",
+        "title": "Eden Heights",
+        "short_description": "Luxury apartment complex with virtual tour integration",
+        "category": "Websites"
+      },
+      {
+        "slug": "landmark-homes",
+        "title": "Landmark Homes", 
+        "short_description": "Exclusive luxury development showcase platform",
+        "category": "Websites"
+      },
+      {
+        "slug": "ghana-optometric-association",
+        "title": "Ghana Optometric Association",
+        "short_description": "Professional association portal with member management",
+        "category": "Websites"
+      },
+      {
+        "slug": "twist-nightclub",
+        "title": "Twist Night Club",
+        "short_description": "Dynamic entertainment venue with events calendar",
+        "category": "Websites"
+      },
+      {
+        "slug": "command-space",
+        "title": "Command-Space",
+        "short_description": "Digital marketing agency corporate website",
+        "category": "Websites"
+      },
+      {
+        "slug": "qualivex-solutions",
+        "title": "Qualivex Solutions",
+        "short_description": "Business solutions corporate presence",
+        "category": "Websites"
+      },
+      {
+        "slug": "vwear-coming-soon",
+        "title": "VWear Coming Soon",
+        "short_description": "Fashion brand teaser and coming soon promotional design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "allure-bloom-pricelist",
+        "title": "Allure Bloom Pricelist",
+        "short_description": "Piercing & waxing services pricing design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "allure-bloom-training-flyer",
+        "title": "Allure Bloom Training Flyer",
+        "short_description": "Training program promotional flyer design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "braids-and-beyond-2",
+        "title": "Braids and Beyond Portfolio",
+        "short_description": "Extended portfolio design for hair styling business",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "vwear-logo-black",
+        "title": "VWear Logo Black",
+        "short_description": "Professional black version logo design for VWear fashion brand",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "ab-beauty-supply",
+        "title": "AB Beauty Supply",
+        "short_description": "Custom paper bag packaging design for beauty retail brand",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "allure-bloom-brand",
+        "title": "Allure Bloom Brand Identity",
+        "short_description": "Complete brand identity with promotional materials and training certificates",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "leejay-looks-brand",
+        "title": "Leejay Looks Brand Materials",
+        "short_description": "Marketing flyers and opening hours design for beauty salon",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "mavis-nails-logo",
+        "title": "Mavis Nails GH Logo",
+        "short_description": "Professional logo design for nail salon business",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "tda-luxe-logo",
+        "title": "TDA Luxe Set Logo",
+        "short_description": "Elegant logo design for luxury brand",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "kloves-advisor-hotels",
+        "title": "Kloves Advisor Hotels",
+        "short_description": "Promotional flyer design for hospitality business",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "braids-and-beyond",
+        "title": "Braids and Beyond",
+        "short_description": "Brand design and visual identity for hair styling business",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "accra-price-list",
+        "title": "Accra Price List Flyer",
+        "short_description": "Professional pricing flyer design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "allure-bloom-loyalty-card",
+        "title": "Allure Bloom Loyalty Card",
+        "short_description": "Customer loyalty card design for beauty salon",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "allure-bloom-certificate",
+        "title": "Allure Bloom Certificate",
+        "short_description": "Professional training certificate design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "gift-voucher",
+        "title": "Gift Voucher Design",
+        "short_description": "Elegant gift voucher template design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "leejay-looks-intensive",
+        "title": "Leejay Looks Intensive Training",
+        "short_description": "2 weeks intensive program promotional flyer",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "leejay-looks-hours",
+        "title": "Leejay Looks Opening Hours",
+        "short_description": "Business hours display design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "spa-on-the-go",
+        "title": "Spa on the Go Packages",
+        "short_description": "Mobile spa service packages design",
+        "category": "Graphic Design"
+      }
+    ]
+  },
+  "contact": {
+    "headline": "Let's Build Something Great Together.",
+    "intro": "Have a project in mind, or just want to learn more about how I can help your business grow? I'd love to hear from you.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "How can I help you?",
+      "cta": "Secure Your Slot"
+    },
+    "outro": {
+      "title": "What to Expect:",
+      "body": "I am committed to providing exceptional service and communication. I will respond to your inquiry within 24-48 hours."
+    }
+  }
+}
