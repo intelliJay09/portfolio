@@ -1,0 +1,51 @@
+🧈 BUTTERY SMOOTH NAVIGATION - FIXED TRIGGER SYSTEM
+
+Desktop Example (1080p screen = 75% trigger at 810px):
+Buffer Zone: 18% = 194px
+
+SCROLL DOWN (increasing scroll values):
+┌─────────────────────────────────────────────────────────────┐
+│ 0px                                             1080px      │
+│ ┌──────┐                               ┌──────┐             │
+│ │ Both │                               │ Both │             │
+│ │ Show │            GAP               │ Hide │             │
+│ └──────┘                               └──────┘             │
+│                                                             │
+│         762px          810px                                │
+│           ▼              ▼                                 │
+│    Hide Default    Show Hamburger                          │
+│    Nav (75%-6.25%) (75% trigger)                          │
+└─────────────────────────────────────────────────────────────┘
+
+SCROLL UP (decreasing scroll values):
+┌─────────────────────────────────────────────────────────────┐
+│ 0px                                             1080px      │
+│ ┌──────┐                               ┌──────┐             │
+│ │ Both │                               │ Both │             │
+│ │ Show │            GAP               │ Hide │             │
+│ └──────┘                               └──────┘             │
+│                                                             │
+│         732px          791px                                │
+│           ▼              ▼                                 │
+│    Show Default    Hide Hamburger                          │
+│    Nav (75%-10%)   (75%-1.8%)                             │
+└─────────────────────────────────────────────────────────────┘
+
+KEY INSIGHT: 
+- Show Default (732px) happens BEFORE Hide Hamburger (791px) ✅ FIXED!
+- This creates a smooth gap with no overlapping visibility
+- Buffer zones prevent snappy transitions
+
+MOBILE EXAMPLE (1080p screen = 25% trigger at 270px):
+Buffer Zone: 18% = 194px
+
+SCROLL DOWN: Hide Default (221px) → Show Hamburger (270px)
+SCROLL UP:   Show Default (192px) ← Hide Hamburger (251px)
+
+✅ FIXED ISSUES:
+1. Hamburger now hides when scrolling up past 791px (desktop) ✅
+2. Default nav shows when scrolling up past 732px (desktop) ✅  
+3. Proper gap prevents overlapping elements ✅
+4. Mathematical logic corrected - no more impossible conditions ✅
+5. React Hook dependencies fixed - no more stale closures ✅
+6. Buttery smooth transitions with GSAP easing ✅

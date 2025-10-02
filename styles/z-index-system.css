@@ -1,0 +1,156 @@
+/**
+ * Z-Index Design System
+ * 
+ * Establishes clear visual hierarchy and prevents stacking conflicts
+ * Each component has its own dedicated z-index range
+ * 
+ * Architecture Decision:
+ * - Base content layers: 10-19 (main sections)
+ * - Interactive layers: 20-39 (testimonials, modals)
+ * - Navigation layers: 40-49 (nav, menus)
+ * - System layers: 50+ (footer, overlays)
+ */
+
+:root {
+  /* Base Content Layers (10-19) */
+  --z-hero: 10;
+  --z-featured-projects: 11;
+  --z-design-philosophy: 12;
+  --z-teaching-teaser: 13;
+  --z-services-overview: 14;
+  --z-introduction: 15;
+  
+  /* Interactive Content Layers (20-39) */
+  --z-floating-testimonials: 30;
+  --z-modals: 35;
+  --z-preloader: 60;
+  
+  /* Navigation Layers (40-49) */
+  --z-navigation: 70;
+  --z-mobile-menu: 65;
+  --z-theme-toggle: 80;
+  
+  /* System Layers (50+) */
+  --z-footer: 51;
+  --z-debug-overlay: 100;
+}
+
+/* Component-Specific Z-Index Classes */
+.z-hero { z-index: var(--z-hero); }
+.z-featured-projects { z-index: var(--z-featured-projects); }
+.z-design-philosophy { z-index: var(--z-design-philosophy); }
+.z-teaching-teaser { z-index: var(--z-teaching-teaser); }
+.z-services-overview { z-index: var(--z-services-overview); }
+.z-introduction { z-index: var(--z-introduction); }
+
+.z-floating-testimonials { z-index: var(--z-floating-testimonials); }
+.z-modals { z-index: var(--z-modals); }
+.z-preloader { z-index: var(--z-preloader); }
+
+.z-navigation { z-index: var(--z-navigation); }
+.z-mobile-menu { z-index: var(--z-mobile-menu); }
+.z-theme-toggle { z-index: var(--z-theme-toggle); }
+
+.z-footer { z-index: var(--z-footer); }
+.z-debug-overlay { z-index: var(--z-debug-overlay); }
+
+/* Legacy Z-Index Mappings (for migration) */
+.z-10 { z-index: var(--z-hero); }
+.z-20 { z-index: var(--z-design-philosophy); }
+.z-30 { z-index: var(--z-floating-testimonials); }
+.z-40 { z-index: var(--z-navigation); }
+.z-50 { z-index: var(--z-footer); }
+
+/**
+ * Debug Utilities
+ * Add these classes to visually debug z-index layering
+ * Usage: Add 'debug-z-index' class to any element during development
+ */
+@media (max-width: 768px) {
+  .debug-z-index::before {
+    content: "Z: " attr(class);
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    font-size: 10px;
+    padding: 2px 4px;
+    font-family: monospace;
+    pointer-events: none;
+    z-index: 999;
+  }
+}
+
+/**
+ * Stacking Context Management
+ * 
+ * These rules ensure predictable stacking behavior
+ * by creating proper stacking contexts where needed
+ */
+
+/* Main layout sections should create stacking contexts only when needed */
+section[class*="z-"]:not(.no-stacking-context) {
+  position: relative;
+  /* isolation: isolate; - Removed to prevent child z-index conflicts */
+}
+
+/* Prevent unintended stacking contexts */
+.no-stacking-context {
+  isolation: auto;
+}
+
+/* Force stacking context when needed */
+.force-stacking-context {
+  isolation: isolate;
+}
+
+/**
+ * Animation-Safe Z-Index Classes
+ * 
+ * Use these for elements that need to maintain z-index during animations
+ * Prevents flickering and ensures smooth layering during transforms
+ */
+.z-animation-safe {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+
+/**
+ * Component Documentation:
+ * 
+ * HERO SECTION (z-10):
+ * - Base layer for main hero content
+ * - Should not overlap with other sections
+ * 
+ * FEATURED PROJECTS (z-11):
+ * - Slightly above hero to handle any subtle overlays
+ * - Contains project cards and CTA buttons
+ * 
+ * DESIGN PHILOSOPHY (z-12):
+ * - Above featured projects for floating animations
+ * - Interactive typography elements need proper layering
+ * 
+ * TEACHING TEASER (z-13):
+ * - Standard content section layering
+ * 
+ * FLOATING TESTIMONIALS (z-30):
+ * - Interactive overlay content
+ * - Needs to appear above all main content sections
+ * - Should not conflict with navigation
+ * 
+ * NAVIGATION (z-40):
+ * - Always visible navigation elements
+ * - Above content but below system elements
+ * 
+ * THEME TOGGLE (z-80):
+ * - Highest priority interactive element
+ * - Must remain clickable regardless of parent animations
+ * - Protected from GSAP transform and pointer-events conflicts
+ * 
+ * FOOTER (z-51):
+ * - Highest content layer
+ * - Contains reveal animations that need top priority
+ */
