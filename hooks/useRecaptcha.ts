@@ -12,9 +12,15 @@ declare global {
 export function useRecaptcha() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isReady, setIsReady] = useState(false)
-  const siteKey = '6LdXkIUUAAAAAEfWttpDPZ1zOmLBpKoImbvGO-zn'
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
 
   useEffect(() => {
+    // Check if siteKey is configured
+    if (!siteKey) {
+      console.warn('reCAPTCHA site key not configured')
+      return
+    }
+
     // Check if already loaded
     if (window.grecaptcha && window.grecaptcha.execute) {
       setIsLoaded(true)
@@ -40,11 +46,16 @@ export function useRecaptcha() {
       script.defer = true
       document.head.appendChild(script)
     }
-  }, [])
+  }, [siteKey])
 
   const executeRecaptcha = useCallback(async (action: string = 'submit'): Promise<string | null> => {
     if (!isReady || !window.grecaptcha) {
       console.warn('reCAPTCHA not ready')
+      return null
+    }
+
+    if (!siteKey) {
+      console.warn('reCAPTCHA site key not configured')
       return null
     }
 
@@ -55,7 +66,7 @@ export function useRecaptcha() {
       console.error('Error executing reCAPTCHA:', error)
       return null
     }
-  }, [isReady])
+  }, [isReady, siteKey])
 
   return {
     isLoaded,
