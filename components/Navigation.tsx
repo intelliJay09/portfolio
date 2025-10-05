@@ -27,7 +27,7 @@ const socialLinks = [
   { href: 'https://linkedin.com/in/jacqueline-frempomah-amoako', label: 'LinkedIn', icon: Linkedin },
   { href: 'https://www.instagram.com/intellijay09/', label: 'Instagram', icon: Instagram },
   { href: 'https://x.com/intelliJay09', label: 'Twitter', icon: Twitter },
-  { href: 'mailto:jacque.amoako@gmail.com', label: 'Email', icon: Mail },
+  { href: 'mailto:hello@jacquelineamoako.com', label: 'Email', icon: Mail },
 ]
 
 // Smooth scroll configuration with buffer zones for buttery transitions

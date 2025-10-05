@@ -38,23 +38,23 @@ const featuredProjects = [
 
 export default function FeaturedProjects() {
   return (
-    <section className="bg-black pt-12 pb-20 md:pt-40 md:pb-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 md:max-w-5xl lg:max-w-6xl">
+    <section className="bg-black pt-16 pb-24 sm:pt-20 sm:pb-28 md:pt-32 md:pb-32 lg:pt-40">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         {/* Section Header */}
-        <div className="mb-12 md:mb-20 text-center">
-          <motion.h2 
+        <div className="mb-16 sm:mb-20 md:mb-24 lg:mb-28 text-center">
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-white font-light text-4xl md:text-5xl lg:text-6xl tracking-tight"
+            className="text-white font-light text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight"
           >
             Featured Projects
           </motion.h2>
         </div>
 
         {/* Projects Stack */}
-        <div className="space-y-54 md:space-y-42">
+        <div className="space-y-24 sm:space-y-32 md:space-y-40 lg:space-y-48">
           {featuredProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -115,54 +115,54 @@ export default function FeaturedProjects() {
                   initial={{ opacity: 0, y: 20, scale: 0.95 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ 
+                  transition={{
                     duration: 0.7,
                     delay: (index * 0.15) + 0.2,
                     ease: [0.165, 0.84, 0.44, 1]
                   }}
                   className={`absolute ${
-                    index === 0 ? 'bottom-[-130px] left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-[-38px] md:left-12 md:top-auto' :
-                    index === 1 ? 'bottom-[-130px] left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-[-38px] md:right-12 md:left-auto md:top-auto' :
-                    'bottom-[-130px] left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-[-38px] md:left-12 md:right-auto md:top-auto'
-                  } w-full max-w-[360px] md:max-w-md`}
+                    index === 0 ? 'bottom-[-110px] left-4 right-4 sm:left-1/2 sm:-translate-x-1/2 md:translate-x-0 md:bottom-[-38px] md:left-12 md:right-auto md:top-auto' :
+                    index === 1 ? 'bottom-[-110px] left-4 right-4 sm:left-1/2 sm:-translate-x-1/2 md:translate-x-0 md:bottom-[-38px] md:right-12 md:left-auto md:top-auto' :
+                    'bottom-[-110px] left-4 right-4 sm:left-1/2 sm:-translate-x-1/2 md:translate-x-0 md:bottom-[-38px] md:left-12 md:right-auto md:top-auto'
+                  } w-auto sm:w-full sm:max-w-[90%] md:max-w-md`}
                 >
-                  <div 
-                    className="backdrop-blur-xl bg-white/10 border border-white/25 rounded-xl p-6 md:px-10 md:py-16 shadow-2xl group-hover:backdrop-blur-2xl group-hover:bg-white/15 group-hover:border-white/35 transition-all duration-[900ms]"
-                    style={{ 
+                  <div
+                    className="backdrop-blur-xl bg-white/10 border border-white/25 rounded-xl p-5 sm:p-6 md:px-10 md:py-16 shadow-2xl group-hover:backdrop-blur-2xl group-hover:bg-white/15 group-hover:border-white/35 transition-all duration-[900ms]"
+                    style={{
                       transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                     }}
                   >
                     {/* Project Title */}
-                    <h3 
-                      className="text-white text-2xl md:text-3xl font-light tracking-wide mb-2 group-hover:text-white/90 transition-colors duration-[900ms]"
-                      style={{ 
+                    <h3
+                      className="text-white text-xl sm:text-2xl md:text-3xl font-light tracking-wide mb-2 group-hover:text-white/90 transition-colors duration-[900ms]"
+                      style={{
                         transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                       }}
                     >
                       {project.title}
                     </h3>
-                    
+
                     {/* Category */}
-                    <p className="text-white/85 text-sm tracking-wider uppercase mb-3 font-light">
+                    <p className="text-white/85 text-xs sm:text-sm tracking-wider uppercase mb-2 sm:mb-3 font-light">
                       {project.category}
                     </p>
-                    
+
                     {/* Description */}
-                    <p className="text-white/80 text-base leading-relaxed mb-6 font-light">
+                    <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 font-light">
                       {project.description}
                     </p>
                     
                     {/* View Project CTA */}
-                    <div 
+                    <div
                       className="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors duration-[900ms]"
-                      style={{ 
+                      style={{
                         transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                       }}
                     >
-                      <span className="text-sm font-light tracking-wide">View Project</span>
-                      <ArrowUpRight 
-                        className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-[900ms]"
-                        style={{ 
+                      <span className="text-xs sm:text-sm font-light tracking-wide">View Project</span>
+                      <ArrowUpRight
+                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-[900ms]"
+                        style={{
                           transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                         }}
                       />
@@ -179,12 +179,12 @@ export default function FeaturedProjects() {
         </div>
 
         {/* View All Projects CTA */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-48 md:mt-40 text-center"
+          className="mt-32 sm:mt-40 md:mt-44 lg:mt-48 text-center"
         >
           <TransparentCTA href="/portfolio">
             View All Projects

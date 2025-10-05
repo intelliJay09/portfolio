@@ -18,7 +18,7 @@ verification: {
 ```typescript
 // Add after line 443
 telephone: "+233 XX XXX XXXX", // Add your actual phone number
-email: "jacque.amoako@gmail.com",
+email: "hello@jacquelineamoako.com",
 address: {
   "@type": "PostalAddress",
   streetAddress: "Your Street Address", // Add actual address
@@ -204,7 +204,7 @@ export default function GoogleBusinessInfo() {
         Accra, Greater Accra Region<br />
         Ghana<br />
         <a href="tel:+233XXXXXXXX">+233 XX XXX XXXX</a><br />
-        <a href="mailto:jacque.amoako@gmail.com">jacque.amoako@gmail.com</a>
+        <a href="mailto:hello@jacquelineamoako.com">hello@jacquelineamoako.com</a>
       </address>
       <div className="business-hours">
         <h4>Business Hours</h4>

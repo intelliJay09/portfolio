@@ -184,7 +184,7 @@ class EmailQueue {
   private async sendNotificationEmail(data: ContactFormData): Promise<void> {
     const mailOptions = {
       from: `"${process.env.EMAIL_FROM_NAME || 'Portfolio Contact'}" <${process.env.EMAIL_FROM || process.env.SMTP_USER}>`,
-      to: process.env.EMAIL_TO || 'jacque.amoako@gmail.com',
+      to: process.env.EMAIL_TO || 'hello@jacquelineamoako.com',
       replyTo: data.email,
       subject: `${process.env.EMAIL_SUBJECT_PREFIX || '[Portfolio Contact]'} ${data.subject}`,
       text: `Name: ${data.name}\nEmail: ${data.email}\nOrganization: ${data.organization}\nService: ${data.service}\nSubject: ${data.subject}\n\nMessage:\n${data.message}`,
@@ -546,7 +546,7 @@ class EmailQueue {
                               Feel free to reach out directly if you have any questions:
                             </p>
                             <p style="margin: 0 0 15px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 18px; line-height: 1.4; color: #000000;" class="dark-mode-text">
-                              <a href="mailto:jacque.amoako@gmail.com" style="color: #000000; text-decoration: none; letter-spacing: 0.01em;" class="dark-mode-text">jacque.amoako@gmail.com</a>
+                              <a href="mailto:hello@jacquelineamoako.com" style="color: #000000; text-decoration: none; letter-spacing: 0.01em;" class="dark-mode-text">hello@jacquelineamoako.com</a>
                             </p>
                             <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 300; font-size: 20px; line-height: 1.4; color: #999999;" class="dark-mode-text-secondary">
                               Portfolio: <a href="https://jacquelineamoako.com" style="color: #666666; text-decoration: none; letter-spacing: 0.01em;" class="dark-mode-text-secondary">jacquelineamoako.com</a>

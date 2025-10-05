@@ -264,7 +264,7 @@ export function generateProfessionalServiceSchema(): ProfessionalServiceSchema {
       url: "https://jacquelineamoako.com",
       image: "https://jacquelineamoako.com/images/jackie-studio.png",
       jobTitle: "Luxury Web Developer & Creative Technologist",
-      email: "jacque.amoako@gmail.com",
+      email: "hello@jacquelineamoako.com",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Accra",
@@ -442,7 +442,7 @@ export function generateLocalBusinessSchema() {
     description: "Premier web development and creative technology services in Accra, Ghana. Specializing in luxury websites and e-commerce solutions.",
     url: "https://jacquelineamoako.com",
     telephone: "+233-XX-XXX-XXXX",
-    email: "jacque.amoako@gmail.com",
+    email: "hello@jacquelineamoako.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "",

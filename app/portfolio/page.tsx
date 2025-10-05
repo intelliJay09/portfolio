@@ -9,10 +9,10 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Navigation from '../../components/Navigation'
 import Footer from '../../components/Footer'
-import PagePreloader from '../../components/PagePreloader'
 import GraphicDesignModal from '../../components/ui/GraphicDesignModal'
 import ErrorBoundary from '../../components/ui/ErrorBoundary'
 import RobustImage from '../../components/ui/RobustImage'
+import PagePreloader from '../../components/PagePreloader'
 import { getProjectImage, getLuxuryGridClass, getStaggerDelay } from '../../utils/imageMapping'
 
 // Import content data
@@ -35,16 +35,22 @@ export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState<FilterType>('All')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
-  
+  const [preloaderComplete, setPreloaderComplete] = useState(false)
+
   // Refs for animations with proper typing
   const heroRef = useRef<HTMLElement>(null)
   const filterRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
   const projectRefs = useRef<(HTMLDivElement | null)[]>([])
-  
+  const pageContentRef = useRef<HTMLDivElement>(null)
+
   // Cleanup function for GSAP contexts
   const gsapContextRef = useRef<gsap.Context | null>(null)
+
+  // Preloader completion handler
+  const handlePreloaderComplete = () => {
+    setPreloaderComplete(true)
+  }
 
   // Filter projects based on active filter
   const filteredProjects = useMemo(() => {
@@ -63,33 +69,25 @@ export default function PortfolioPage() {
     if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger)
     }
-    
-    // Simulate loading
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1200)
-
-    return () => clearTimeout(timer)
   }, [])
 
-
   useEffect(() => {
-    if (!isLoading) {
-      // Clean up previous animations
-      if (gsapContextRef.current) {
-        gsapContextRef.current.revert()
-      }
-      // Initialize GSAP animations
-      gsapContextRef.current = initializeAnimations()
+    if (!preloaderComplete) return
+
+    // Clean up previous animations
+    if (gsapContextRef.current) {
+      gsapContextRef.current.revert()
     }
-    
+    // Initialize GSAP animations
+    gsapContextRef.current = initializeAnimations()
+
     // Cleanup on unmount
     return () => {
       if (gsapContextRef.current) {
         gsapContextRef.current.revert()
       }
     }
-  }, [isLoading, filteredProjects, viewMode])
+  }, [filteredProjects, viewMode, preloaderComplete])
 
   const initializeAnimations = (): gsap.Context => {
     return gsap.context(() => {
@@ -177,21 +175,32 @@ export default function PortfolioPage() {
     return String(index + 1).padStart(2, '0')
   }
 
-  if (isLoading) {
-    return <PagePreloader pageName="Portfolio" onComplete={() => setIsLoading(false)} />
-  }
-
   return (
     <>
+      {!preloaderComplete && (
+        <PagePreloader
+          pageName="Portfolio"
+          onComplete={handlePreloaderComplete}
+          pageContentRef={pageContentRef}
+        />
+      )}
+
       <Navigation />
-      
-      <main className="min-h-screen bg-background-primary">
+
+      <div
+        ref={pageContentRef}
+        style={{
+          opacity: 1,
+          willChange: 'filter, transform, opacity'
+        }}
+      >
+        <main className="min-h-screen bg-background-primary">
         {/* Hero Section */}
-        <section 
+        <section
           ref={heroRef}
-          className="hero-section pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 lg:px-10"
+          className="hero-section pt-24 pb-16 sm:pt-28 sm:pb-18 md:pt-32 md:pb-20 lg:pt-40 lg:pb-32 px-4 sm:px-6 md:px-8 lg:px-10"
         >
-          <div className="max-w-7xl mx-auto">
+          <div className="w-full max-w-7xl mx-auto">
             {/* Hero Headline */}
             <div className="mb-16 lg:mb-24">
               <h1 
@@ -214,11 +223,11 @@ export default function PortfolioPage() {
         </section>
 
         {/* Filter and View Controls */}
-        <section 
+        <section
           ref={filterRef}
-          className="px-6 lg:px-10 mb-16 lg:mb-24"
+          className="px-4 sm:px-6 md:px-8 lg:px-10 mb-12 sm:mb-16 md:mb-20 lg:mb-24"
         >
-          <div className="max-w-7xl mx-auto">
+          <div className="w-full max-w-7xl mx-auto">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
               
               {/* Filter Pills */}
@@ -337,11 +346,11 @@ export default function PortfolioPage() {
             </div>
           }
         >
-          <section 
+          <section
             ref={gridRef}
-            className="px-6 lg:px-10 pt-[120px] pb-32 bg-[#1a1a1a] dark:bg-[#000000]"
+            className="px-4 sm:px-6 md:px-8 lg:px-10 pt-24 sm:pt-32 md:pt-40 lg:pt-[120px] pb-24 sm:pb-28 md:pb-32 bg-[#1a1a1a] dark:bg-[#000000]"
           >
-            <div className="max-w-7xl mx-auto">
+            <div className="w-full max-w-7xl mx-auto">
               <AnimatePresence mode="wait">
                 {viewMode === 'grid' ? (
                 <motion.div
@@ -509,7 +518,10 @@ export default function PortfolioPage() {
           </div>
         </section>
       </ErrorBoundary>
-      </main>
+        </main>
+
+        <Footer />
+      </div>
 
       {/* Graphic Design Modal */}
       {selectedProject && (
@@ -523,8 +535,6 @@ export default function PortfolioPage() {
           imageSrc={getProjectImage(selectedProject.slug, selectedProject.category)}
         />
       )}
-
-      <Footer />
     </>
   )
 }

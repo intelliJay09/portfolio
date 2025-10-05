@@ -19,14 +19,18 @@ export default function PagePreloader({ pageName, onComplete, pageContentRef }: 
     if (!containerRef.current) return
 
     const tl = gsap.timeline()
-    
+
     // Set initial state for page content (blurred and scaled, visible behind preloader)
-    if (pageContentRef && pageContentRef.current) {
-      gsap.set(pageContentRef.current, {
-        opacity: 1,
-        filter: 'blur(15px)',
-        scale: 0.985
-      })
+    if (pageContentRef?.current) {
+      try {
+        gsap.set(pageContentRef.current, {
+          opacity: 1,
+          filter: 'blur(15px)',
+          scale: 0.985
+        })
+      } catch (error) {
+        console.warn('PagePreloader: Failed to set initial blur state', error)
+      }
     }
 
     // Pure Elegance: Simultaneous fade in with perfect timing
@@ -59,13 +63,17 @@ export default function PagePreloader({ pageName, onComplete, pageContentRef }: 
     }, "exit")
     
     // Smooth reveal of page content - gradual focus transition
-    if (pageContentRef && pageContentRef.current) {
-      tl.to(pageContentRef.current, {
-        filter: 'blur(0px)',
-        scale: 1,
-        duration: 1.2,
-        ease: 'power2.out',
-      }, "exit-=0.15")
+    if (pageContentRef?.current) {
+      try {
+        tl.to(pageContentRef.current, {
+          filter: 'blur(0px)',
+          scale: 1,
+          duration: 1.2,
+          ease: 'power2.out',
+        }, "exit-=0.15")
+      } catch (error) {
+        console.warn('PagePreloader: Failed to animate blur removal', error)
+      }
     }
 
     return () => {

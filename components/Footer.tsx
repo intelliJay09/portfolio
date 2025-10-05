@@ -244,7 +244,7 @@ export default function Footer() {
           }
         }
       `}</style>
-      <div className="container">
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-7xl mx-auto">
         {/* Main Content */}
         <div className="flex-1 flex flex-col justify-center py-24">
           <div className="flex items-start mb-12 relative">

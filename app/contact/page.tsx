@@ -14,7 +14,6 @@ import { useRouter } from 'next/navigation'
 export default function ContactPage() {
   const router = useRouter()
   const { executeRecaptcha, isReady } = useRecaptcha()
-  const [preloaderComplete, setPreloaderComplete] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,23 +25,25 @@ export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [focusedField, setFocusedField] = useState<string | null>(null)
   const [isFormActive, setIsFormActive] = useState(false)
-  
+  const [preloaderComplete, setPreloaderComplete] = useState(false)
+
   // Refs for animations
   const cardRef = useRef<HTMLDivElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
   const headlineRef = useRef<HTMLHeadingElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const floatingAnimationRef = useRef<GSAPTween | null>(null)
+  const pageContentRef = useRef<HTMLDivElement>(null)
 
+  // Preloader completion handler
   const handlePreloaderComplete = () => {
     setPreloaderComplete(true)
   }
 
-
   // Initial animations
   useEffect(() => {
     if (!preloaderComplete) return
-    
+
     const tl = gsap.timeline({ delay: 0.2 })
     
     // Card scales in with gentle fade
@@ -203,15 +204,22 @@ export default function ContactPage() {
   return (
     <>
       {!preloaderComplete && (
-        <PagePreloader 
-          pageName="Contact" 
-          onComplete={handlePreloaderComplete} 
+        <PagePreloader
+          pageName="Contact"
+          onComplete={handlePreloaderComplete}
+          pageContentRef={pageContentRef}
         />
       )}
-      
+
       <Navigation />
-      
-      <div style={{ opacity: preloaderComplete ? 1 : 0 }}>
+
+      <div
+        ref={pageContentRef}
+        style={{
+          opacity: 1,
+          willChange: 'filter, transform, opacity'
+        }}
+      >
         <main className="relative flex items-center justify-center overflow-hidden">
           
           {/* Animated Gradient Background */}
@@ -225,8 +233,8 @@ export default function ContactPage() {
           </div>
           
           {/* Floating Island Container */}
-          <section className="relative z-10 w-full px-4 pt-40 pb-20 lg:pt-48">
-            <div className="container max-w-2xl mx-auto">
+          <section className="relative z-10 w-full px-4 sm:px-6 md:px-8 pt-28 pb-16 sm:pt-32 sm:pb-18 md:pt-40 md:pb-20 lg:pt-48 lg:pb-24">
+            <div className="w-full max-w-2xl mx-auto">
               
               {/* Main Floating Card */}
               <div 
@@ -609,7 +617,7 @@ export default function ContactPage() {
               
             </div>
           </section>
-          
+
         </main>
         <Footer />
       </div>

@@ -669,17 +669,16 @@ export default function AboutPage() {
       // Gallery title emerges with dramatic presence
       if (galleryTitle) {
         galleryTl.fromTo(galleryTitle,
-          { opacity: 0, y: 60, scale: 0.95 },
+          { opacity: 0, y: 40 },
           {
             opacity: 1,
             y: 0,
-            scale: 1,
-            duration: 1.2,
+            duration: 0.5,
             ease: 'power3.out'
           }
         )
       }
-      
+
       // Divider line draws across with precision
       if (galleryDivider) {
         galleryTl.fromTo(galleryDivider,
@@ -687,103 +686,41 @@ export default function AboutPage() {
           {
             opacity: 1,
             scaleX: 1,
-            duration: 1,
+            duration: 0.4,
             ease: 'power2.out',
             transformOrigin: 'center center'
           },
-          '-=0.6'
+          '-=0.3'
         )
       }
-      
+
       // Subtitle materializes with elegant timing
       if (gallerySubtitle) {
         galleryTl.fromTo(gallerySubtitle,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power2.out'
-          },
-          '-=0.4'
-        )
-      }
-      
-      // Gallery panels emerge in sophisticated sequence
-      if (galleryPanels.length > 0) {
-        galleryTl.fromTo(galleryPanels,
-          { opacity: 0, y: 80, scale: 0.95, rotateY: -5 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            rotateY: 0,
-            duration: 1.2,
-            stagger: 0.2,
-            ease: 'power3.out',
-            clearProps: 'transform'
-          },
-          '-=0.2'
-        )
-      }
-      
-      // Placard elements reveal in museum-style
-      if (placardTitles.length > 0) {
-        galleryTl.fromTo(placardTitles,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: 'power2.out'
-          },
-          '-=0.8'
-        )
-      }
-      
-      if (placardLines.length > 0) {
-        galleryTl.fromTo(placardLines,
-          { opacity: 0, scaleX: 0 },
-          {
-            opacity: 1,
-            scaleX: 1,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'power2.out',
-            transformOrigin: 'left center'
-          },
-          '-=0.6'
-        )
-      }
-      
-      if (placardDescriptions.length > 0) {
-        galleryTl.fromTo(placardDescriptions,
           { opacity: 0, y: 20 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.6,
-            stagger: 0.1,
+            duration: 0.4,
             ease: 'power2.out'
           },
-          '-=0.4'
+          '-=0.2'
         )
       }
-      
-      // Tool items reveal with museum precision
-      if (toolItems.length > 0) {
-        galleryTl.fromTo(toolItems,
-          { opacity: 0, x: -30, scale: 0.98 },
+
+      // Gallery panels emerge - animate entire cards only
+      if (galleryPanels.length > 0) {
+        galleryTl.fromTo(galleryPanels,
+          { opacity: 0, y: 40 },
           {
             opacity: 1,
-            x: 0,
-            scale: 1,
-            duration: 0.6,
-            stagger: 0.05,
-            ease: 'power2.out'
+            y: 0,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'power2.out',
+            clearProps: 'transform'
           },
-          '-=0.4'
+          '-=0.2'
         )
       }
       
@@ -1042,8 +979,8 @@ export default function AboutPage() {
           <div className="hero-gradient-accent opacity-50" style={{ right: '-300px', top: '20%' }}></div>
           
           
-          <div className="container relative z-20">
-            <div ref={heroRef} className="max-w-7xl mx-auto">
+          <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative z-20">
+            <div ref={heroRef} className="w-full max-w-7xl mx-auto">
               {/* Main Content Grid - Mobile-first with portrait on top */}
               <div className="grid lg:grid-cols-12 gap-6 md:gap-8 items-center min-h-screen py-12 md:py-16 lg:py-20">
                 
@@ -1165,8 +1102,8 @@ export default function AboutPage() {
           <div className="editorial-bg-accent opacity-30" style={{ right: '-200px', top: '20%' }}></div>
           <div className="editorial-bg-grain"></div>
           
-          <div className="container relative z-20">
-            <div ref={missionRef} className="max-w-7xl mx-auto py-8 md:py-16 lg:py-24 px-4 lg:px-0">
+          <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative z-20">
+            <div ref={missionRef} className="w-full max-w-7xl mx-auto py-8 md:py-16 lg:py-24">
               
               {/* Editorial Header */}
               <div className="editorial-header mb-12 md:mb-16 lg:mb-20 text-center">
@@ -1307,8 +1244,8 @@ export default function AboutPage() {
 
         {/* Skills & Expertise - Interactive Timeline Journey */}
         <section className="pt-2 md:pt-12 lg:pt-16 pb-8 md:pb-12 lg:pb-24 bg-background-primary relative overflow-hidden">
-          <div className="container px-4 lg:px-0">
-            <div className="max-w-7xl mx-auto">
+          <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+            <div className="w-full max-w-7xl mx-auto">
               <div className="text-center mb-16 md:mb-24 lg:mb-32">
                 <h2 className="font-satoshi font-light text-primary mb-6 px-4 lg:px-0" style={{
                   fontSize: 'clamp(2rem, 5vw, 3.5rem)',
@@ -1560,7 +1497,7 @@ export default function AboutPage() {
 
 
         {/* Girlcode Africa Teaching - Side-by-Side Showcase */}
-        <section id="teaching" className="pt-24 md:pt-32 lg:pt-16 pb-32 md:pb-40 lg:pb-56 relative overflow-hidden bg-gradient-to-br from-background-primary via-background-secondary to-background-tertiary" style={{ marginTop: 'clamp(0px, 0px, -20em)' }}>
+        <section id="teaching" className="pt-24 md:pt-32 lg:pt-16 pb-2 md:pb-3 lg:pb-4 relative overflow-hidden bg-gradient-to-br from-background-primary via-background-secondary to-background-tertiary" style={{ marginTop: 'clamp(0px, 0px, -20em)' }}>
           {/* Subtle Background Elements */}
           <div className="absolute top-20 right-32 w-[300px] h-[300px] rounded-full opacity-5" 
                style={{
@@ -1575,8 +1512,8 @@ export default function AboutPage() {
                  animation: 'float 20s ease-in-out infinite reverse'
                }}></div>
           
-          <div className="container px-4 lg:px-0 relative z-20">
-            <div className="max-w-7xl mx-auto">
+          <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative z-20">
+            <div className="w-full max-w-7xl mx-auto">
               
               {/* Section Header */}
               <div className="text-center mb-16 md:mb-20 lg:mb-24">
@@ -1721,13 +1658,13 @@ export default function AboutPage() {
                     </div>
                     
                     <div className="space-y-4">
-                      <div className="p-4 rounded-lg bg-background-secondary/30 transition-all duration-300 ease-out hover:bg-background-secondary/50 hover:scale-[1.02] hover:-translate-y-1 cursor-pointer group hover:shadow-lg">
-                        <p className="text-text-primary text-sm font-medium mb-1 group-hover:text-accent transition-colors duration-300">&quot;From zero to building my first website in 8 weeks!&quot;</p>
-                        <p className="text-text-secondary text-xs group-hover:text-text-primary transition-colors duration-300">- Jasmine K.</p>
+                      <div className="p-4 rounded-lg bg-background-secondary/30 transition-all duration-500 ease-in-out hover:bg-background-secondary/50 cursor-pointer group hover:shadow-lg">
+                        <p className="text-text-primary text-sm font-medium mb-1 group-hover:text-accent transition-colors duration-500">&quot;From zero to building my first website in 8 weeks!&quot;</p>
+                        <p className="text-text-secondary text-xs group-hover:text-text-primary transition-colors duration-500">- Jasmine K.</p>
                       </div>
-                      <div className="p-4 rounded-lg bg-background-secondary/30 transition-all duration-300 ease-out hover:bg-background-secondary/50 hover:scale-[1.02] hover:-translate-y-1 cursor-pointer group hover:shadow-lg">
-                        <p className="text-text-primary text-sm font-medium mb-1 group-hover:text-accent transition-colors duration-300">&quot;Jackie&apos;s teaching style made complex concepts so clear.&quot;</p>
-                        <p className="text-text-secondary text-xs group-hover:text-text-primary transition-colors duration-300">- Adelaide D.</p>
+                      <div className="p-4 rounded-lg bg-background-secondary/30 transition-all duration-500 ease-in-out hover:bg-background-secondary/50 cursor-pointer group hover:shadow-lg">
+                        <p className="text-text-primary text-sm font-medium mb-1 group-hover:text-accent transition-colors duration-500">&quot;Jackie&apos;s teaching style made complex concepts so clear.&quot;</p>
+                        <p className="text-text-secondary text-xs group-hover:text-text-primary transition-colors duration-500">- Adelaide D.</p>
                       </div>
                     </div>
                     </div>
@@ -1816,22 +1753,21 @@ export default function AboutPage() {
 
 
         {/* Tools of the Trade - Gallery Exhibition */}
-        <section 
-          className="gallery-tools relative overflow-hidden"
+        <section
+          className="gallery-tools relative overflow-hidden bg-gradient-to-b from-background-primary via-background-secondary to-background-primary"
           style={{
-            background: 'linear-gradient(180deg, #0A0A0B 0%, #111112 50%, #0A0A0B 100%)',
-            paddingTop: 'clamp(8rem, 15vw, 12rem)',
-            paddingBottom: 'clamp(12rem, 20vw, 18rem)',
+            paddingTop: 'clamp(1rem, 2vw, 1.5rem)',
+            paddingBottom: 'clamp(1.5rem, 3vw, 2.5rem)',
             willChange: 'transform',
             transform: 'translateZ(0)'
           }}
         >
           
           {/* Gallery Ambient Lighting */}
-          <div 
+          <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: 'radial-gradient(ellipse 80% 60% at 50% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%)',
+              background: 'radial-gradient(ellipse 80% 60% at 50% 20%, rgb(var(--color-text-primary) / 0.03) 0%, transparent 50%)',
               mixBlendMode: 'overlay'
             }}
           ></div>
@@ -1841,36 +1777,31 @@ export default function AboutPage() {
               
               {/* Gallery Title - Museum Style */}
               <div className="text-center mb-24">
-                <h2 
-                  className="gallery-title font-satoshi" 
+                <h2
+                  className="gallery-title font-satoshi text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight tracking-tight text-text-primary"
                   style={{
-                    fontSize: 'clamp(3.5rem, 9vw, 7rem)',
-                    fontWeight: '200',
-                    lineHeight: '1.1',
-                    letterSpacing: '0.02em',
-                    color: 'rgb(var(--color-text-primary))',
-                    marginBottom: '3rem'
+                    letterSpacing: '-0.03em'
                   }}
                 >
                   Tools of the Trade
                 </h2>
-                <div 
+                <div
                   className="gallery-divider mx-auto"
                   style={{
                     width: '120px',
                     height: '1px',
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%)',
+                    background: 'linear-gradient(90deg, transparent 0%, rgb(var(--color-text-primary) / 0.3) 50%, transparent 100%)',
                     marginBottom: '2rem'
                   }}
                 ></div>
-                <p 
-                  className="gallery-subtitle font-inter max-w-xl mx-auto" 
+                <p
+                  className="gallery-subtitle font-inter max-w-xl mx-auto"
                   style={{
-                    fontSize: '1rem',
+                    fontSize: '1.25rem',
                     fontWeight: '300',
                     lineHeight: '1.8',
                     letterSpacing: '0.01em',
-                    color: 'rgba(255, 255, 255, 0.6)'
+                    color: 'rgb(var(--color-text-primary) / 0.6)'
                   }}
                 >
                   The technologies and creative tools behind every sophisticated digital experience
@@ -1882,11 +1813,11 @@ export default function AboutPage() {
                 
                 {/* Development Tools Panel */}
                 <div className="gallery-panel group">
-                  <div 
+                  <div
                     className="panel-frame relative"
                     style={{
-                      background: 'rgba(255, 255, 255, 0.02)',
-                      border: '1px solid rgba(255, 255, 255, 0.05)',
+                      background: 'rgb(var(--color-text-primary) / 0.02)',
+                      border: '1px solid rgb(var(--color-text-primary) / 0.3)',
                       borderRadius: '2px',
                       padding: 'clamp(2.5rem, 4vw, 4rem)',
                       backdropFilter: 'blur(40px)',
@@ -1898,10 +1829,10 @@ export default function AboutPage() {
                     }}
                   >
                     {/* Spotlight Effect */}
-                    <div 
+                    <div
                       className="spotlight absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none"
                       style={{
-                        background: 'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 60%)',
+                        background: 'radial-gradient(circle at 50% 30%, rgb(var(--color-text-primary) / 0.08) 0%, transparent 60%)',
                         borderRadius: '2px',
                         transition: 'opacity 0.8s ease-out'
                       }}
@@ -1923,22 +1854,22 @@ export default function AboutPage() {
                       >
                         Development
                       </h3>
-                      <div 
+                      <div
                         className="placard-line"
                         style={{
                           width: '40px',
                           height: '1px',
-                          background: 'rgba(255, 255, 255, 0.3)',
+                          background: 'rgb(var(--color-text-primary) / 0.3)',
                           marginBottom: '1.5rem'
                         }}
                       ></div>
-                      <p 
+                      <p
                         className="placard-description font-inter"
                         style={{
                           fontSize: '0.875rem',
                           fontWeight: '300',
                           lineHeight: '1.6',
-                          color: 'rgba(255, 255, 255, 0.5)',
+                          color: 'rgb(var(--color-text-primary) / 0.5)',
                           letterSpacing: '0.01em'
                         }}
                       >
@@ -1954,36 +1885,36 @@ export default function AboutPage() {
                         { name: 'Node.js', spec: 'Backend Systems' },
                         { name: 'MySQL & Supabase', spec: 'Database Design' }
                       ].map((tool, index) => (
-                        <div 
+                        <div
                           key={tool.name}
                           className="tool-item group/item"
                           style={{
                             paddingBottom: '1.5rem',
-                            borderBottom: '1px solid rgba(255, 255, 255, 0.03)',
+                            borderBottom: '1px solid rgb(var(--color-text-primary) / 0.03)',
                             transition: 'all 0.4s ease-out'
                           }}
                         >
                           <div className="mb-2">
-                            <h4 
-                              className="tool-name font-satoshi group-hover/item:text-white transition-colors duration-300"
+                            <h4
+                              className="tool-name font-satoshi group-hover/item:text-text-primary transition-colors duration-300"
                               style={{
                                 fontSize: '1rem',
                                 fontWeight: '400',
                                 lineHeight: '1.3',
-                                color: 'rgba(255, 255, 255, 0.9)',
+                                color: 'rgb(var(--color-text-primary) / 0.9)',
                                 letterSpacing: '0.01em'
                               }}
                             >
                               {tool.name}
                             </h4>
                           </div>
-                          <p 
+                          <p
                             className="tool-spec font-inter"
                             style={{
                               fontSize: '0.8rem',
                               fontWeight: '300',
                               lineHeight: '1.4',
-                              color: 'rgba(255, 255, 255, 0.4)',
+                              color: 'rgb(var(--color-text-primary) / 0.4)',
                               letterSpacing: '0.01em'
                             }}
                           >
@@ -1997,11 +1928,11 @@ export default function AboutPage() {
 
                 {/* Design Tools Panel */}
                 <div className="gallery-panel group">
-                  <div 
+                  <div
                     className="panel-frame relative"
                     style={{
-                      background: 'rgba(255, 255, 255, 0.02)',
-                      border: '1px solid rgba(255, 255, 255, 0.05)',
+                      background: 'rgb(var(--color-text-primary) / 0.02)',
+                      border: '1px solid rgb(var(--color-text-primary) / 0.3)',
                       borderRadius: '2px',
                       padding: 'clamp(2.5rem, 4vw, 4rem)',
                       backdropFilter: 'blur(40px)',
@@ -2013,10 +1944,10 @@ export default function AboutPage() {
                     }}
                   >
                     {/* Spotlight Effect */}
-                    <div 
+                    <div
                       className="spotlight absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none"
                       style={{
-                        background: 'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 60%)',
+                        background: 'radial-gradient(circle at 50% 30%, rgb(var(--color-text-primary) / 0.08) 0%, transparent 60%)',
                         borderRadius: '2px',
                         transition: 'opacity 0.8s ease-out'
                       }}
@@ -2038,22 +1969,22 @@ export default function AboutPage() {
                       >
                         Design
                       </h3>
-                      <div 
+                      <div
                         className="placard-line"
                         style={{
                           width: '40px',
                           height: '1px',
-                          background: 'rgba(255, 255, 255, 0.3)',
+                          background: 'rgb(var(--color-text-primary) / 0.3)',
                           marginBottom: '1.5rem'
                         }}
                       ></div>
-                      <p 
+                      <p
                         className="placard-description font-inter"
                         style={{
                           fontSize: '0.875rem',
                           fontWeight: '300',
                           lineHeight: '1.6',
-                          color: 'rgba(255, 255, 255, 0.5)',
+                          color: 'rgb(var(--color-text-primary) / 0.5)',
                           letterSpacing: '0.01em'
                         }}
                       >
@@ -2069,36 +2000,36 @@ export default function AboutPage() {
                         { name: 'Sketch', spec: 'Prototyping' },
                         { name: 'After Effects', spec: 'Motion Design' }
                       ].map((tool, index) => (
-                        <div 
+                        <div
                           key={tool.name}
                           className="tool-item group/item"
                           style={{
                             paddingBottom: '1.5rem',
-                            borderBottom: '1px solid rgba(255, 255, 255, 0.03)',
+                            borderBottom: '1px solid rgb(var(--color-text-primary) / 0.03)',
                             transition: 'all 0.4s ease-out'
                           }}
                         >
                           <div className="mb-2">
-                            <h4 
-                              className="tool-name font-satoshi group-hover/item:text-white transition-colors duration-300"
+                            <h4
+                              className="tool-name font-satoshi group-hover/item:text-text-primary transition-colors duration-300"
                               style={{
                                 fontSize: '1rem',
                                 fontWeight: '400',
                                 lineHeight: '1.3',
-                                color: 'rgba(255, 255, 255, 0.9)',
+                                color: 'rgb(var(--color-text-primary) / 0.9)',
                                 letterSpacing: '0.01em'
                               }}
                             >
                               {tool.name}
                             </h4>
                           </div>
-                          <p 
+                          <p
                             className="tool-spec font-inter"
                             style={{
                               fontSize: '0.8rem',
                               fontWeight: '300',
                               lineHeight: '1.4',
-                              color: 'rgba(255, 255, 255, 0.4)',
+                              color: 'rgb(var(--color-text-primary) / 0.4)',
                               letterSpacing: '0.01em'
                             }}
                           >
@@ -2112,11 +2043,11 @@ export default function AboutPage() {
 
                 {/* Performance & SEO Panel */}
                 <div className="gallery-panel group">
-                  <div 
+                  <div
                     className="panel-frame relative"
                     style={{
-                      background: 'rgba(255, 255, 255, 0.02)',
-                      border: '1px solid rgba(255, 255, 255, 0.05)',
+                      background: 'rgb(var(--color-text-primary) / 0.02)',
+                      border: '1px solid rgb(var(--color-text-primary) / 0.3)',
                       borderRadius: '2px',
                       padding: 'clamp(2.5rem, 4vw, 4rem)',
                       backdropFilter: 'blur(40px)',
@@ -2128,10 +2059,10 @@ export default function AboutPage() {
                     }}
                   >
                     {/* Spotlight Effect */}
-                    <div 
+                    <div
                       className="spotlight absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none"
                       style={{
-                        background: 'radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 60%)',
+                        background: 'radial-gradient(circle at 50% 30%, rgb(var(--color-text-primary) / 0.08) 0%, transparent 60%)',
                         borderRadius: '2px',
                         transition: 'opacity 0.8s ease-out'
                       }}
@@ -2153,22 +2084,22 @@ export default function AboutPage() {
                       >
                         Optimization
                       </h3>
-                      <div 
+                      <div
                         className="placard-line"
                         style={{
                           width: '40px',
                           height: '1px',
-                          background: 'rgba(255, 255, 255, 0.3)',
+                          background: 'rgb(var(--color-text-primary) / 0.3)',
                           marginBottom: '1.5rem'
                         }}
                       ></div>
-                      <p 
+                      <p
                         className="placard-description font-inter"
                         style={{
                           fontSize: '0.875rem',
                           fontWeight: '300',
                           lineHeight: '1.6',
-                          color: 'rgba(255, 255, 255, 0.5)',
+                          color: 'rgb(var(--color-text-primary) / 0.5)',
                           letterSpacing: '0.01em'
                         }}
                       >
@@ -2184,36 +2115,36 @@ export default function AboutPage() {
                         { name: 'WordPress & Shopify', spec: 'CMS Solutions' },
                         { name: 'Analytics & Insights', spec: 'Data Analysis' }
                       ].map((tool, index) => (
-                        <div 
+                        <div
                           key={tool.name}
                           className="tool-item group/item"
                           style={{
                             paddingBottom: '1.5rem',
-                            borderBottom: '1px solid rgba(255, 255, 255, 0.03)',
+                            borderBottom: '1px solid rgb(var(--color-text-primary) / 0.03)',
                             transition: 'all 0.4s ease-out'
                           }}
                         >
                           <div className="mb-2">
-                            <h4 
-                              className="tool-name font-satoshi group-hover/item:text-white transition-colors duration-300"
+                            <h4
+                              className="tool-name font-satoshi group-hover/item:text-text-primary transition-colors duration-300"
                               style={{
                                 fontSize: '1rem',
                                 fontWeight: '400',
                                 lineHeight: '1.3',
-                                color: 'rgba(255, 255, 255, 0.9)',
+                                color: 'rgb(var(--color-text-primary) / 0.9)',
                                 letterSpacing: '0.01em'
                               }}
                             >
                               {tool.name}
                             </h4>
                           </div>
-                          <p 
+                          <p
                             className="tool-spec font-inter"
                             style={{
                               fontSize: '0.8rem',
                               fontWeight: '300',
                               lineHeight: '1.4',
-                              color: 'rgba(255, 255, 255, 0.4)',
+                              color: 'rgb(var(--color-text-primary) / 0.4)',
                               letterSpacing: '0.01em'
                             }}
                           >

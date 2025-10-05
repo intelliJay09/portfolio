@@ -105,13 +105,13 @@ export default function Hero() {
 
   return (
     <section className="hero-section min-h-screen flex items-center justify-center relative overflow-hidden bg-background-secondary">
-      <div className="container relative px-4 h-full" style={{ maxWidth: '1440px', paddingLeft: '2rem', paddingRight: '2rem' }}>
-        <div className="flex items-center justify-center relative h-full">
+      <div className="relative w-full h-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+        <div className="flex items-center justify-center relative h-full max-w-7xl mx-auto">
           
           {/* Jacqueline Text - Centered in Hero */}
           <h1
             ref={textRef}
-            className="absolute text-[18vw] sm:text-[17vw] md:text-[20vw] lg:text-[18vw] xl:text-[18vw] font-satoshi font-black text-text-primary/90 select-none cursor-pointer z-0 text-center lg:text-left"
+            className="absolute text-[15vw] sm:text-[14vw] md:text-[16vw] lg:text-[15vw] xl:text-[14vw] font-satoshi font-black text-text-primary/90 select-none cursor-pointer z-0 text-center lg:text-left w-full"
             style={{
               lineHeight: '1.1',
               letterSpacing: '0.02em',
@@ -123,30 +123,30 @@ export default function Hero() {
           </h1>
           
           {/* Arrow and Text Container */}
-          <div className="absolute top-1/2 left-4 md:left-auto md:right-16 lg:right-24 z-30 transform translate-y-36 md:translate-y-44 lg:translate-y-44">
+          <div className="absolute top-1/2 left-4 sm:left-6 md:left-auto md:right-16 lg:right-24 z-30 transform translate-y-28 sm:translate-y-36 md:translate-y-44 lg:translate-y-44">
             {/* Arrow Element */}
-            <div 
+            <div
               ref={arrowRef}
-              className="mb-5 md:mb-5 flex justify-start md:justify-start"
+              className="mb-4 sm:mb-5 flex justify-start md:justify-start"
             >
-              <div className="bg-text-primary/10 backdrop-blur-sm rounded-full p-4 md:p-6 hover:bg-text-primary/20 transition-all duration-300 cursor-pointer group">
-                <ArrowDownRight 
-                  size={24} 
-                  className="text-text-primary group-hover:text-text-secondary transition-colors duration-300 md:hidden" 
+              <div className="bg-text-primary/10 backdrop-blur-sm rounded-full p-3 sm:p-4 md:p-6 hover:bg-text-primary/20 transition-all duration-300 cursor-pointer group">
+                <ArrowDownRight
+                  size={20}
+                  className="text-text-primary group-hover:text-text-secondary transition-colors duration-300 sm:w-6 sm:h-6 md:hidden"
                 />
-                <ArrowDownLeft 
-                  size={24} 
-                  className="text-text-primary group-hover:text-text-secondary transition-colors duration-300 hidden md:block" 
+                <ArrowDownLeft
+                  size={24}
+                  className="text-text-primary group-hover:text-text-secondary transition-colors duration-300 hidden md:block"
                 />
               </div>
             </div>
 
             {/* Full-Stack Developer Text */}
-            <div 
+            <div
               ref={titleRef}
             >
               <div className="text-left md:text-left">
-                <p className="text-text-primary font-satoshi font-normal text-lg md:text-xl lg:text-2xl leading-tight tracking-wide">
+                <p className="text-text-primary font-satoshi font-normal text-base sm:text-lg md:text-xl lg:text-2xl leading-tight tracking-wide">
                   Full-Stack Developer
                 </p>
               </div>
@@ -154,9 +154,9 @@ export default function Hero() {
           </div>
           
           {/* Hero Image */}
-          <div 
+          <div
             ref={imageRef}
-            className="relative z-20 w-[300px] h-[80vh] md:w-[400px] md:h-[100vh] lg:w-[500px] lg:h-[100vh] mb-8 pt-24 md:pt-32 next-image-protected"
+            className="relative z-20 w-[280px] h-[75vh] sm:w-[320px] sm:h-[80vh] md:w-[400px] md:h-[90vh] lg:w-[480px] lg:h-[100vh] xl:w-[500px] mb-8 pt-20 sm:pt-24 md:pt-28 lg:pt-32 next-image-protected"
           >
             <Image
               src={theme === 'dark' ? "/images/jackie-studio-bnw.png" : "/images/jackie-studio.png"}

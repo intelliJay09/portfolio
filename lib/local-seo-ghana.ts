@@ -39,7 +39,7 @@ export const localBusinessInfo: LocalBusinessInfo = {
   },
   phone: '+233 XX XXX XXXX', // Add your business phone
   alternatePhone: '+233 XX XXX XXXX', // WhatsApp business number
-  email: 'jacque.amoako@gmail.com',
+  email: 'hello@jacquelineamoako.com',
   hours: {
     Monday: { open: '09:00', close: '18:00' },
     Tuesday: { open: '09:00', close: '18:00' },

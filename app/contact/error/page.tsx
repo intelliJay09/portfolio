@@ -240,10 +240,10 @@ export default function ContactErrorPage() {
                           <div className="flex items-center gap-3">
                             <Mail className="w-4 h-4 text-text-primary/60" />
                             <a 
-                              href="mailto:jacque.amoako@gmail.com"
+                              href="mailto:hello@jacquelineamoako.com"
                               className="text-sm text-text-secondary hover:text-text-primary transition-colors"
                             >
-                              jacque.amoako@gmail.com
+                              hello@jacquelineamoako.com
                             </a>
                           </div>
                           <div className="text-xs text-text-secondary/70 leading-relaxed">

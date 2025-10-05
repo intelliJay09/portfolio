@@ -255,8 +255,8 @@ export default function ThemeTogglePortal({ navigationState }: ThemeTogglePortal
     return null
   }
 
-  // Hide theme toggle on mobile when sticky header (hamburger) is triggered
-  if (navigationState.isMobile && navigationState.showHamburger) {
+  // Hide theme toggle when menu is open or on mobile when sticky header (hamburger) is triggered
+  if (navigationState.isMenuOpen || (navigationState.isMobile && navigationState.showHamburger)) {
     return null
   }
 
