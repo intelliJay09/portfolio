@@ -372,9 +372,9 @@ export default function DesignPhilosophy() {
 
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="relative min-h-screen overflow-visible bg-background-primary z-design-philosophy"
+      className="relative min-h-screen overflow-hidden bg-background-primary z-design-philosophy"
       style={{ 
         paddingTop: breakpoint === 'mobile' ? '3rem' : `${GOLDEN_RATIO * 6}rem`,
         paddingBottom: breakpoint === 'mobile' ? '100px' : `${GOLDEN_RATIO * 6 + 11.25}rem` // Mobile: 100px, Desktop: Added 180px (11.25rem) total bottom padding
@@ -386,18 +386,18 @@ export default function DesignPhilosophy() {
         <div className="absolute inset-0 bg-gradient-to-br from-background-primary via-background-secondary to-background-primary opacity-60"></div>
         
         {/* Dynamic Gradient Orbs - Mathematically Positioned */}
-        <div 
-          className="absolute w-[800px] h-[800px] rounded-full bg-gradient-radial from-text-primary/[0.04] via-text-primary/[0.02] to-transparent blur-3xl"
-          style={{ 
-            top: `${20 * GOLDEN_RATIO}%`, 
+        <div
+          className="absolute w-[50vw] max-w-[800px] h-[50vw] max-h-[800px] rounded-full bg-gradient-radial from-text-primary/[0.04] via-text-primary/[0.02] to-transparent blur-3xl"
+          style={{
+            top: `${20 * GOLDEN_RATIO}%`,
             right: `${15 * GOLDEN_RATIO}%`,
             animation: 'pulse 8s ease-in-out infinite alternate'
           }}
         ></div>
-        <div 
-          className="absolute w-[600px] h-[600px] rounded-full bg-gradient-radial from-text-secondary/[0.03] to-transparent blur-3xl"
-          style={{ 
-            bottom: `${25 * GOLDEN_RATIO}%`, 
+        <div
+          className="absolute w-[40vw] max-w-[600px] h-[40vw] max-h-[600px] rounded-full bg-gradient-radial from-text-secondary/[0.03] to-transparent blur-3xl"
+          style={{
+            bottom: `${25 * GOLDEN_RATIO}%`,
             left: `${18 * GOLDEN_RATIO}%`,
             animation: 'pulse 10s ease-in-out infinite alternate-reverse'
           }}

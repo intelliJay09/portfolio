@@ -156,7 +156,7 @@ export default function Hero() {
           {/* Hero Image */}
           <div
             ref={imageRef}
-            className="relative z-20 w-[280px] h-[75vh] sm:w-[320px] sm:h-[80vh] md:w-[400px] md:h-[90vh] lg:w-[480px] lg:h-[100vh] xl:w-[500px] mb-8 pt-20 sm:pt-24 md:pt-28 lg:pt-32 next-image-protected"
+            className="relative z-20 w-[75vw] max-w-[280px] h-[75vh] sm:w-[320px] sm:h-[80vh] md:w-[400px] md:h-[90vh] lg:w-[480px] lg:h-[100vh] xl:w-[500px] mb-8 pt-20 sm:pt-24 md:pt-28 lg:pt-32 next-image-protected"
           >
             <Image
               src={theme === 'dark' ? "/images/jackie-studio-bnw.png" : "/images/jackie-studio.png"}

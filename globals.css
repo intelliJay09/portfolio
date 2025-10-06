@@ -131,14 +131,16 @@
   
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
-  
+
   body {
     font-size: clamp(1rem, 1.5vw, 1.125rem);
     line-height: 1.8;
     background-color: rgb(var(--color-background-primary));
     color: rgb(var(--color-text-primary));
     font-family: var(--font-inter), sans-serif;
+    overflow-x: hidden;
   }
   
   h1 {
