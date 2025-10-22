@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
+import { debugLogger } from '../utils/debugLogger'
 
 export const useHamburgerAnimations = (
   showHamburger: boolean, 
@@ -17,26 +18,32 @@ export const useHamburgerAnimations = (
 
   // Initialize elements to correct states on mount
   useEffect(() => {
+    debugLogger.log('NAV ANIMATIONS', '🎬 Initializing GSAP states', '🎬')
+
     // Desktop hamburger starts hidden - only set opacity/y, let Framer Motion handle scale
     if (hamburgerRef.current) {
       gsap.set(hamburgerRef.current, {
         opacity: 0,
         y: -8,
-        pointerEvents: 'none'
+        pointerEvents: 'none',
+        zIndex: -1
         // Removed scale to avoid conflicts with Framer Motion hover
       })
+      debugLogger.log('NAV ANIMATIONS', 'Desktop hamburger initialized', '🍔')
     }
-    
+
     // Mobile menu button starts hidden - only set opacity/y, let Framer Motion handle scale
     if (mobileMenuRef.current) {
       gsap.set(mobileMenuRef.current, {
         opacity: 0,
         y: -8,
-        pointerEvents: 'none'
+        pointerEvents: 'none',
+        zIndex: -1
         // Removed scale to avoid conflicts with Framer Motion hover
       })
+      debugLogger.log('NAV ANIMATIONS', 'Mobile menu initialized', '📱')
     }
-    
+
     // Default navigation starts visible
     if (defaultNavRef.current) {
       gsap.set(defaultNavRef.current, {
@@ -45,6 +52,7 @@ export const useHamburgerAnimations = (
         y: 0,
         pointerEvents: 'auto'
       })
+      debugLogger.log('NAV ANIMATIONS', 'Default nav initialized', '🧭')
     }
   }, [])
 
@@ -57,11 +65,12 @@ export const useHamburgerAnimations = (
     if (showHamburger || isMenuOpen) {
       // Buttery entrance animation with anticipation - AVOIDING scale/transform conflicts
       const tl = gsap.timeline()
-      
+
       tl.to(targetRef.current, {
         opacity: 1,
         y: 0,
         pointerEvents: 'auto',
+        zIndex: 10,
         duration: 0.4,
         ease: 'power2.out',
         // CRITICAL: Only overwrite opacity and y, preserve scale for Framer Motion
@@ -77,6 +86,7 @@ export const useHamburgerAnimations = (
         opacity: 0,
         y: -8,
         pointerEvents: 'none',
+        zIndex: -1,
         duration: 0.5,
         ease: 'power2.inOut',
         // CRITICAL: Don't overwrite scale, let Framer Motion handle hover animations

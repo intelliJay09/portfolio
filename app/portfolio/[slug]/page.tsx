@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowLeft, ExternalLink, ChevronDown, Calendar, Users, TrendingUp, Star, Play, type LucideIcon } from 'lucide-react'
+import { ArrowLeft, Calendar, Users, TrendingUp, Star, type LucideIcon } from 'lucide-react'
 import Navigation from '../../../components/Navigation'
 import Footer from '../../../components/Footer'
 import PortfolioFooter from '../../../components/PortfolioFooter'
@@ -557,24 +557,6 @@ export default function CaseStudyPage() {
     setPreloaderComplete(true)
   }
 
-  const handleVideoPlay = (videoId: string) => {
-    const videoElement = document.getElementById(videoId) as HTMLVideoElement
-    if (videoElement) {
-      if (playingVideo === videoId) {
-        videoElement.pause()
-        setPlayingVideo(null)
-      } else {
-        // Pause any other playing video
-        if (playingVideo) {
-          const currentVideo = document.getElementById(playingVideo) as HTMLVideoElement
-          if (currentVideo) currentVideo.pause()
-        }
-        videoElement.play()
-        setPlayingVideo(videoId)
-      }
-    }
-  }
-
   const getButtonStyles = () => {
     if (theme === 'dark') {
       return {
@@ -669,7 +651,7 @@ export default function CaseStudyPage() {
       // Content sections animation
       if (contentRef.current) {
         const sections = contentRef.current.querySelectorAll('.animate-section')
-        sections.forEach((section, index) => {
+        sections.forEach((section) => {
           const elements = section.querySelectorAll('.animate-element')
           
           // Special handling for video showcase section
@@ -718,8 +700,8 @@ export default function CaseStudyPage() {
           else if (false && section.classList.contains('story-section')) {
             // Story Scene Animations - Cinematic Progression
             const storyScenes = section.querySelectorAll('.story-scene')
-            
-            storyScenes.forEach((scene, sceneIndex) => {
+
+            storyScenes.forEach((scene) => {
               // Scene 1: Question Animation Only
               if (scene.classList.contains('scene-1')) {
                 const question = scene.querySelector('.story-question')
@@ -1038,8 +1020,8 @@ export default function CaseStudyPage() {
             }
           }
         `}</style>
-        <Navigation />
-        
+        <Navigation preloaderComplete={preloaderComplete} />
+
         {/* Hero Section - Project Overview */}
         <section ref={heroRef} className="relative min-h-screen flex items-center justify-start bg-background-primary pt-32 md:pt-24 pb-16 md:pb-0">
           <div className="max-w-[90vw] mx-auto px-6 w-full">
@@ -1687,8 +1669,8 @@ export default function CaseStudyPage() {
                     <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/0 group-hover:from-accent/8 group-hover:to-accent/4 z-10 rounded-xl portfolio-overlay"></div>
                     <div className="absolute inset-0 bg-gradient-to-tl from-text-primary/0 via-transparent to-text-primary/0 group-hover:from-text-primary/3 group-hover:to-text-primary/6 z-10 rounded-xl portfolio-overlay"></div>
                     
-                    <Image 
-                      src="/images/portfolio-cta.jpg" 
+                    <Image
+                      src="/images/about-hero.jpg"
                       alt="Let's work together"
                       width={400}
                       height={300}

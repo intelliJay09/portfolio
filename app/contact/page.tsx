@@ -13,7 +13,8 @@ import { useRouter } from 'next/navigation'
 
 export default function ContactPage() {
   const router = useRouter()
-  const { executeRecaptcha, isReady } = useRecaptcha()
+  const [preloaderComplete, setPreloaderComplete] = useState(false)
+  const { executeRecaptcha, isReady } = useRecaptcha(preloaderComplete)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,7 +26,6 @@ export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [focusedField, setFocusedField] = useState<string | null>(null)
   const [isFormActive, setIsFormActive] = useState(false)
-  const [preloaderComplete, setPreloaderComplete] = useState(false)
 
   // Refs for animations
   const cardRef = useRef<HTMLDivElement>(null)
@@ -40,12 +40,21 @@ export default function ContactPage() {
     setPreloaderComplete(true)
   }
 
+  // Ensure blur is removed when preloader completes
+  useEffect(() => {
+    if (preloaderComplete && pageContentRef.current) {
+      // Force remove any lingering filters
+      pageContentRef.current.style.filter = 'none'
+      pageContentRef.current.style.transform = 'none'
+    }
+  }, [preloaderComplete])
+
   // Initial animations
   useEffect(() => {
     if (!preloaderComplete) return
 
     const tl = gsap.timeline({ delay: 0.2 })
-    
+
     // Card scales in with gentle fade
     if (cardRef.current) {
       tl.fromTo(
@@ -56,10 +65,10 @@ export default function ContactPage() {
           opacity: 1,
           y: 0,
           duration: 1.2,
-          ease: 'power3.out',
+          ease: 'power3.out'
         }
       )
-      
+
       // Add continuous gentle floating animation
       floatingAnimationRef.current = gsap.to(cardRef.current, {
         y: -10,
@@ -70,7 +79,7 @@ export default function ContactPage() {
         delay: 1.5
       })
     }
-    
+
     // Form fields stagger in
     if (formRef.current) {
       const fields = formRef.current.querySelectorAll('.form-field')
@@ -190,7 +199,7 @@ export default function ContactPage() {
         // Redirect to error page
         router.push('/contact/error')
       }
-    } catch (error) {
+    } catch (_error) {
       // Redirect to error page on network errors
       router.push('/contact/error')
     } finally {
@@ -211,16 +220,17 @@ export default function ContactPage() {
         />
       )}
 
-      <Navigation />
+      <Navigation preloaderComplete={preloaderComplete} />
 
       <div
         ref={pageContentRef}
         style={{
-          opacity: 1,
+          opacity: preloaderComplete ? 1 : 0,
+          transition: 'opacity 0.3s ease-out',
           willChange: 'filter, transform, opacity'
         }}
       >
-        <main className="relative flex items-center justify-center overflow-hidden">
+          <main className="relative flex items-center justify-center overflow-hidden">
           
           {/* Animated Gradient Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-background-primary via-background-secondary to-background-primary">

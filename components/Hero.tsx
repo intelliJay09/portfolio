@@ -111,7 +111,7 @@ export default function Hero() {
           {/* Jacqueline Text - Centered in Hero */}
           <h1
             ref={textRef}
-            className="absolute text-[15vw] sm:text-[14vw] md:text-[16vw] lg:text-[15vw] xl:text-[14vw] font-satoshi font-black text-text-primary/90 select-none cursor-pointer z-0 text-center lg:text-left w-full"
+            className="absolute text-[15vw] sm:text-[14vw] md:text-[16vw] lg:text-[15vw] xl:text-[16vw] font-satoshi font-black text-text-primary/90 select-none cursor-pointer z-0 text-center w-full"
             style={{
               lineHeight: '1.1',
               letterSpacing: '0.02em',
@@ -156,15 +156,15 @@ export default function Hero() {
           {/* Hero Image */}
           <div
             ref={imageRef}
-            className="relative z-20 w-[75vw] max-w-[280px] h-[75vh] sm:w-[320px] sm:h-[80vh] md:w-[400px] md:h-[90vh] lg:w-[480px] lg:h-[100vh] xl:w-[500px] mb-8 pt-20 sm:pt-24 md:pt-28 lg:pt-32 next-image-protected"
+            className="relative z-20 w-[55vh] max-w-[420px] h-[75vh] sm:w-[60vh] sm:max-w-[480px] sm:h-[80vh] md:w-[65vh] md:max-w-[550px] md:h-[85vh] lg:w-[65vh] lg:max-w-[600px] lg:h-[90vh] xl:w-[60vh] xl:max-w-[600px] next-image-protected"
           >
             <Image
               src={theme === 'dark' ? "/images/jackie-studio-bnw.png" : "/images/jackie-studio.png"}
               alt="Jacqueline Amoako"
               fill
-              className="object-cover object-top"
+              className="object-cover object-center"
               priority
-              sizes="(max-width: 640px) 300px, (max-width: 768px) 400px, (max-width: 1024px) 500px, 500px"
+              sizes="(max-width: 640px) 420px, (max-width: 768px) 480px, (max-width: 1024px) 550px, 600px"
               quality={90}
               draggable={false}
               unoptimized={false}

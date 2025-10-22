@@ -1,36 +1,17 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
-import { ArrowLeft, Home, Search } from 'lucide-react'
-import Link from 'next/link'
+import { ArrowLeft, Search } from 'lucide-react'
 import GlassCTA from '../components/ui/GlassCTA'
 import TransparentCTA from '../components/ui/TransparentCTA'
 
 export default function NotFound() {
-  const constellationRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const particlesRef = useRef<HTMLDivElement[]>([])
   const floatingElementsRef = useRef<HTMLDivElement[]>([])
-  const [isHovered, setIsHovered] = useState(false)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
-  const handleMouseMove = (event: React.MouseEvent) => {
-    const rect = event.currentTarget.getBoundingClientRect()
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-    const mouseX = event.clientX - rect.left
-    const mouseY = event.clientY - rect.top
-    
-    // Calculate offset from center with reduced sensitivity
-    const offsetX = (mouseX - centerX) * 0.15
-    const offsetY = (mouseY - centerY) * 0.1
-    
-    setMousePosition({ x: offsetX, y: offsetY })
-  }
 
   useEffect(() => {
     // Wait for DOM to be ready
@@ -166,8 +147,7 @@ export default function NotFound() {
           <div className="container mx-auto px-6 py-20 text-center max-w-6xl">
             
             {/* Digital Constellation */}
-            <div 
-              ref={constellationRef}
+            <div
               className="relative w-full h-80 mb-1 flex items-center justify-center"
               style={{ minHeight: '320px' }}
             >

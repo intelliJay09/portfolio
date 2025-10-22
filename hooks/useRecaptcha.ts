@@ -9,12 +9,17 @@ declare global {
   }
 }
 
-export function useRecaptcha() {
+export function useRecaptcha(enabled: boolean = true) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isReady, setIsReady] = useState(false)
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
 
   useEffect(() => {
+    // Only initialize if enabled
+    if (!enabled) {
+      return
+    }
+
     // Check if siteKey is configured
     if (!siteKey) {
       console.warn('reCAPTCHA site key not configured')
@@ -46,7 +51,7 @@ export function useRecaptcha() {
       script.defer = true
       document.head.appendChild(script)
     }
-  }, [siteKey])
+  }, [enabled, siteKey])
 
   const executeRecaptcha = useCallback(async (action: string = 'submit'): Promise<string | null> => {
     if (!isReady || !window.grecaptcha) {

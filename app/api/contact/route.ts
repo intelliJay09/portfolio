@@ -88,7 +88,7 @@ const spamPatterns = [
 ]
 
 // Rate limiting with progressive penalties
-const progressiveRateLimitStore = new Map<string, { count: number; resetTime: number; penaltyLevel: number }>()
+// const progressiveRateLimitStore = new Map<string, { count: number; resetTime: number; penaltyLevel: number }>()
 
 function checkSpamContent(text: string): boolean {
   return spamPatterns.some(pattern => pattern.test(text))
@@ -105,15 +105,15 @@ function sanitizeInput(text: string): string {
 }
 
 // Sanitize input to prevent XSS
-function sanitizeHtml(text: string): string {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
-    .replace(/\//g, '&#x2F;')
-}
+// function sanitizeHtml(text: string): string {
+//   return text
+//     .replace(/&/g, '&amp;')
+//     .replace(/</g, '&lt;')
+//     .replace(/>/g, '&gt;')
+//     .replace(/"/g, '&quot;')
+//     .replace(/'/g, '&#x27;')
+//     .replace(/\//g, '&#x2F;')
+// }
 
 // Store for request context (used by logging functions)
 let request: NextRequest

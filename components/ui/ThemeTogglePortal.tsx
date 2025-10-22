@@ -12,6 +12,7 @@ interface ThemeTogglePortalProps {
     isMobile: boolean
     showHamburger: boolean
     hideDefault: boolean
+    preloaderComplete: boolean
   }
 }
 
@@ -20,11 +21,73 @@ export default function ThemeTogglePortal({ navigationState }: ThemeTogglePortal
   const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const positionRef = useRef<{ left: number; top: number }>({ left: 0, top: 0 })
+  const lastDetectedPositionRef = useRef<{ left: number; top: number }>({ left: 0, top: 0 })
+  const [iconColor, setIconColor] = useState<'white' | 'black'>('white')
 
   // Initialize portal root
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setPortalRoot(document.body)
+    }
+  }, [])
+
+  // Detect background luminance at a specific position
+  const detectBackgroundLuminance = useCallback((x: number, y: number): number => {
+    try {
+      // Temporarily hide the toggle button to check what's BEHIND it
+      if (buttonRef.current) {
+        buttonRef.current.style.visibility = 'hidden'
+      }
+
+      // Get elements at the position (now without the button blocking)
+      const elements: Element[] = []
+      let currentElement = document.elementFromPoint(x, y)
+
+      // Restore button visibility immediately
+      if (buttonRef.current) {
+        buttonRef.current.style.visibility = 'visible'
+      }
+
+      // Walk up the DOM tree to find the first element with a visible background
+      while (currentElement && elements.length < 10) {
+        elements.push(currentElement)
+        currentElement = currentElement.parentElement
+      }
+
+      // Check each element for a visible background color
+      for (const element of elements) {
+        const styles = window.getComputedStyle(element)
+        const bgColor = styles.backgroundColor
+
+        // Skip transparent backgrounds
+        if (bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') {
+          continue
+        }
+
+        // Parse RGB values
+        const rgb = bgColor.match(/\d+/g)
+        if (!rgb || rgb.length < 3) continue
+
+        const r = parseInt(rgb[0])
+        const g = parseInt(rgb[1])
+        const b = parseInt(rgb[2])
+        const a = rgb[3] ? parseFloat(rgb[3]) : 1
+
+        // Skip very transparent backgrounds
+        if (a < 0.5) continue
+
+        // Calculate relative luminance (perceived brightness)
+        // Formula: (0.299 * R + 0.587 * G + 0.114 * B) / 255
+        const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+
+        return luminance
+      }
+
+      // Default to dark background if no background found
+      return 0
+    } catch (error) {
+      console.warn('Background detection error:', error)
+      return 0.5 // Default to middle luminance on error
     }
   }, [])
 
@@ -129,7 +192,20 @@ export default function ThemeTogglePortal({ navigationState }: ThemeTogglePortal
       }
     }
 
+    // Prevent redundant animations if position hasn't actually changed
+    const currentPosition = positionRef.current
+    const positionChanged =
+      Math.abs(targetPosition.left - currentPosition.left) > 1 ||
+      Math.abs(targetPosition.top - currentPosition.top) > 1
+
+    // Always update the ref to track current target position
     positionRef.current = targetPosition
+
+    if (!positionChanged) {
+      // Position hasn't changed significantly, skip animation
+      // Don't run detection here - let scroll/theme handlers handle it
+      return
+    }
 
     // Smooth position animation using CSS properties for fixed elements
     gsap.to(buttonRef.current, {
@@ -137,14 +213,37 @@ export default function ThemeTogglePortal({ navigationState }: ThemeTogglePortal
       top: targetPosition.top,
       duration: 0.4,
       ease: 'power2.out',
-      force3D: true
+      force3D: true,
+      onComplete: () => {
+        // Only detect if button moved >10px from last detected position
+        const lastPos = lastDetectedPositionRef.current
+        const distanceMoved = Math.sqrt(
+          Math.pow(targetPosition.left - lastPos.left, 2) +
+          Math.pow(targetPosition.top - lastPos.top, 2)
+        )
+
+        if (distanceMoved > 10) {
+          // Detect background luminance after positioning completes
+          const luminance = detectBackgroundLuminance(
+            targetPosition.left + 24, // Center of button (48px width / 2)
+            targetPosition.top + 24    // Center of button (48px height / 2)
+          )
+
+          // Update last detected position
+          lastDetectedPositionRef.current = { ...targetPosition }
+
+          // If background is dark (luminance < 0.5), use white icon
+          // If background is light (luminance >= 0.5), use black icon
+          setIconColor(luminance < 0.5 ? 'white' : 'black')
+        }
+      }
     })
 
-  }, [navigationState])
+  }, [detectBackgroundLuminance, navigationState])
 
   // Initial position setup with enhanced timing and element detection
   useEffect(() => {
-    if (!mounted) return
+    if (!mounted || !navigationState.preloaderComplete) return
     
     // Check if navigation elements are ready, retry if not
     const checkAndPosition = () => {
@@ -169,14 +268,14 @@ export default function ThemeTogglePortal({ navigationState }: ThemeTogglePortal
 
   // Update position when navigation state changes
   useEffect(() => {
-    if (!mounted) return
+    if (!mounted || !navigationState.preloaderComplete) return
     updatePosition()
-  }, [mounted, updatePosition])
+  }, [mounted, navigationState.preloaderComplete, navigationState.isMenuOpen, navigationState.isMobile, navigationState.showHamburger, navigationState.hideDefault, updatePosition])
 
   // Handle window resize and orientation change
   useEffect(() => {
-    if (!mounted) return
-    
+    if (!mounted || !navigationState.preloaderComplete) return
+
     let resizeTimeout: NodeJS.Timeout
     const handleResize = () => {
       // Debounce resize events
@@ -185,21 +284,90 @@ export default function ThemeTogglePortal({ navigationState }: ThemeTogglePortal
         updatePosition()
       }, 150)
     }
-    
+
     const handleOrientationChange = () => {
       // Handle mobile orientation changes
       setTimeout(() => updatePosition(), 200)
     }
-    
+
     window.addEventListener('resize', handleResize)
     window.addEventListener('orientationchange', handleOrientationChange)
-    
+
     return () => {
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('orientationchange', handleOrientationChange)
       clearTimeout(resizeTimeout)
     }
   }, [mounted, updatePosition])
+
+  // Update icon color on scroll to adapt to background changes
+  useEffect(() => {
+    if (!buttonRef.current || !mounted || !navigationState.preloaderComplete) return
+
+    let scrollTimeout: NodeJS.Timeout
+
+    const handleScroll = () => {
+      if (!buttonRef.current) return
+
+      // Debounce scroll detection to prevent conflicts with GSAP positioning
+      clearTimeout(scrollTimeout)
+      scrollTimeout = setTimeout(() => {
+        if (!buttonRef.current) return
+
+        const rect = buttonRef.current.getBoundingClientRect()
+
+        // Button is fixed position - doesn't move during scroll
+        // Always detect because content scrolls behind the fixed button
+        const luminance = detectBackgroundLuminance(
+          rect.left + 24,
+          rect.top + 24
+        )
+
+        setIconColor(luminance < 0.5 ? 'white' : 'black')
+      }, 200) // Wait 200ms after scroll stops
+    }
+
+    // Use passive listener for better scroll performance
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      clearTimeout(scrollTimeout)
+    }
+  }, [mounted, navigationState.preloaderComplete, detectBackgroundLuminance])
+
+  // Update icon color when theme changes
+  useEffect(() => {
+    if (!buttonRef.current || !mounted || !navigationState.preloaderComplete) return
+
+    // Small delay to let theme transition complete
+    const timer = setTimeout(() => {
+      if (!buttonRef.current) return
+
+      const rect = buttonRef.current.getBoundingClientRect()
+
+      // Only detect if button moved >10px from last detected position
+      const lastPos = lastDetectedPositionRef.current
+      const distanceMoved = Math.sqrt(
+        Math.pow(rect.left - lastPos.left, 2) +
+        Math.pow(rect.top - lastPos.top, 2)
+      )
+
+      if (distanceMoved > 10) {
+        const luminance = detectBackgroundLuminance(
+          rect.left + 24,
+          rect.top + 24
+        )
+
+        // Update last detected position
+        lastDetectedPositionRef.current = { left: rect.left, top: rect.top }
+
+        setIconColor(luminance < 0.5 ? 'white' : 'black')
+      }
+    }, 100)
+
+    return () => clearTimeout(timer)
+  }, [theme, mounted, navigationState.preloaderComplete, detectBackgroundLuminance])
 
   const handleClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault()
@@ -250,12 +418,12 @@ export default function ThemeTogglePortal({ navigationState }: ThemeTogglePortal
     }
   }, [])
 
-  // Don't render until mounted and portal root is available
-  if (!mounted || !portalRoot) {
+  // Primary hide: Remove from DOM if preloader not complete, not mounted, or portal root unavailable
+  if (!mounted || !portalRoot || !navigationState.preloaderComplete) {
     return null
   }
 
-  // Hide theme toggle when menu is open or on mobile when sticky header (hamburger) is triggered
+  // Secondary hide: Remove from DOM if menu open or mobile hamburger showing
   if (navigationState.isMenuOpen || (navigationState.isMobile && navigationState.showHamburger)) {
     return null
   }
@@ -271,8 +439,12 @@ export default function ThemeTogglePortal({ navigationState }: ThemeTogglePortal
       data-theme-toggle-portal="true"
       className="fixed w-12 h-12 flex items-center justify-center transition-colors duration-300 focus:outline-none cursor-pointer"
       style={{
-        // Maximum z-index to ensure it's always on top
-        zIndex: 9999,
+        // Z-index above navigation (Navigation: 70) to ensure clickability
+        zIndex: 75,
+        // CSS-based visibility control (defense in depth)
+        opacity: navigationState.preloaderComplete ? 1 : 0,
+        visibility: navigationState.preloaderComplete ? 'visible' : 'hidden',
+        pointerEvents: navigationState.preloaderComplete ? 'auto' : 'none',
         // Hardware acceleration
         transform: 'translateZ(0)',
         backfaceVisibility: 'hidden',
@@ -282,8 +454,6 @@ export default function ThemeTogglePortal({ navigationState }: ThemeTogglePortal
         // Touch optimization
         WebkitTapHighlightColor: 'transparent',
         touchAction: 'manipulation',
-        // Pointer events always enabled
-        pointerEvents: 'auto',
         // Initial position (will be updated by GSAP)
         left: positionRef.current.left || window.innerWidth - 80,
         top: positionRef.current.top || 24,
@@ -293,9 +463,9 @@ export default function ThemeTogglePortal({ navigationState }: ThemeTogglePortal
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
       {theme === 'light' ? (
-        <Moon size={16} className="text-primary" />
+        <Moon size={16} className={iconColor === 'white' ? 'text-white' : 'text-black'} />
       ) : (
-        <Sun size={16} className="text-primary" />
+        <Sun size={16} className={iconColor === 'white' ? 'text-white' : 'text-black'} />
       )}
     </button>
   )

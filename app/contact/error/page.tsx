@@ -4,12 +4,10 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import Navigation from '../../../components/Navigation'
 import Footer from '../../../components/Footer'
-import { AlertTriangle, ArrowLeft, RefreshCw, Mail, Search, HelpCircle, X } from 'lucide-react'
-import Link from 'next/link'
+import { AlertTriangle, RefreshCw, Mail, Search, HelpCircle, X } from 'lucide-react'
 import GlassCTA from '../../../components/ui/GlassCTA'
 
 export default function ContactErrorPage() {
-  const containerRef = useRef<HTMLDivElement>(null)
   const timelineRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const errorOrbRef = useRef<HTMLDivElement>(null)

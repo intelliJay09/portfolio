@@ -4428,11 +4428,9 @@ video {
   transform: scale(1.05) translateZ(0);
 }
 
-/* Google reCAPTCHA v3 Badge Styling */
+/* Google reCAPTCHA v3 Badge Styling - Hidden per Google's official guidelines */
 .grecaptcha-badge {
-  /* Temporarily showing badge to debug */
-  visibility: visible !important;
-  z-index: 9999 !important;
+  visibility: hidden !important;
 }
 
 /* Add custom reCAPTCHA notice to maintain compliance */

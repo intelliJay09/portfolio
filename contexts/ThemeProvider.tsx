@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { type Theme, validateThemeWithLogging, THEME_COOKIE_CONFIG, createThemeCookieString } from '../lib/theme-security'
+import { debugLogger } from '../utils/debugLogger'
 
 interface ThemeContextType {
   theme: Theme
@@ -41,17 +42,21 @@ function applyThemeToDOM(theme: Theme, enableTransitions = true) {
   if (typeof document === 'undefined') return
 
   try {
+    debugLogger.log('THEME', `🎨 Applying theme: ${theme}`, '🎨')
+
     // Enable instant theme switching for color/background properties only
     document.documentElement.setAttribute('data-theme-switching', 'true')
-    
+    debugLogger.log('THEME', '⚡ data-theme-switching set', '⚡')
+
     // INSTANT: Apply theme immediately - no delays or transition classes
     document.documentElement.setAttribute('data-theme', theme)
     document.documentElement.style.colorScheme = theme
+    debugLogger.log('THEME', 'Theme attribute applied', '✓')
 
     // Batch DOM queries and apply theme colors instantly
     const metaThemeColor = document.querySelector('meta[name="theme-color"]')
     const appleStatusBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]')
-    
+
     const themeColor = theme === 'dark' ? '#000000' : '#ffffff'
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', themeColor)
@@ -63,6 +68,7 @@ function applyThemeToDOM(theme: Theme, enableTransitions = true) {
     // Remove theme switching flag after theme application to restore smooth animations
     setTimeout(() => {
       document.documentElement.removeAttribute('data-theme-switching')
+      debugLogger.log('THEME', '✅ data-theme-switching removed (after 50ms)', '✅')
     }, 50)
 
     // Dispatch event for components that need theme change notification
@@ -99,9 +105,11 @@ function useThemeManager(
 
   useEffect(() => {
     try {
+      debugLogger.log('THEME', '🚀 ThemeProvider mounted', '🚀')
       // Priority 1: Use server-detected theme if available (prevents hydration mismatch)
       // Priority 2: Read from DOM (set by SSR + blocking script)
       const initialTheme = serverTheme || getCurrentThemeFromDOM()
+      debugLogger.log('THEME', `Initial theme detected: ${initialTheme}`, '🔍')
       setThemeState(initialTheme)
       setMounted(true)
       setIsLoading(false)

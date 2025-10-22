@@ -2,48 +2,47 @@
 
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import { debugLogger } from '../utils/debugLogger'
 
 interface PagePreloaderProps {
   pageName: string
   onComplete: () => void
+  onRevealComplete?: () => void
   pageContentRef?: React.RefObject<HTMLDivElement | null>
 }
 
-export default function PagePreloader({ pageName, onComplete, pageContentRef }: PagePreloaderProps) {
+export default function PagePreloader({ pageName, onComplete, onRevealComplete, pageContentRef }: PagePreloaderProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLHeadingElement>(null)
   const dotRef = useRef<HTMLDivElement>(null)
   const [isComplete, setIsComplete] = useState(false)
 
   useEffect(() => {
-    if (!containerRef.current) return
+    debugLogger.log('PRELOADER', `useEffect fired, onRevealComplete is ${onRevealComplete ? 'defined' : 'undefined'}`, '🔧')
+
+    if (!containerRef.current) {
+      debugLogger.log('PRELOADER', 'containerRef.current is null, returning', '⚠️')
+      return
+    }
 
     const tl = gsap.timeline()
 
-    // Set initial state for page content (blurred and scaled, visible behind preloader)
-    if (pageContentRef?.current) {
-      try {
-        gsap.set(pageContentRef.current, {
-          opacity: 1,
-          filter: 'blur(15px)',
-          scale: 0.985
-        })
-      } catch (error) {
-        console.warn('PagePreloader: Failed to set initial blur state', error)
-      }
-    }
+    debugLogger.log('PRELOADER', 'Timeline started', '⏱️')
 
     // Pure Elegance: Simultaneous fade in with perfect timing
     if (dotRef.current && textRef.current) {
       tl.fromTo(
         [dotRef.current, textRef.current],
-        { 
+        {
           opacity: 0
         },
         {
           opacity: 1,
           duration: 0.6,
-          ease: 'power3.out'
+          ease: 'power3.out',
+          onStart: () => {
+            debugLogger.log('PRELOADER', 'Fade in started', '💫')
+          }
         }
       )
     }
@@ -56,30 +55,77 @@ export default function PagePreloader({ pageName, onComplete, pageContentRef }: 
       y: '-100vh',
       duration: 0.8,
       ease: 'power3.inOut',
+      onStart: () => {
+        debugLogger.log('PRELOADER', '⬆️ Exit animation started', '⬆️')
+      },
       onComplete: () => {
+        debugLogger.log('PRELOADER', '✅ Exit complete, calling onComplete()', '✅')
         setIsComplete(true)
         onComplete()
       }
     }, "exit")
-    
-    // Smooth reveal of page content - gradual focus transition
-    if (pageContentRef?.current) {
-      try {
-        tl.to(pageContentRef.current, {
-          filter: 'blur(0px)',
-          scale: 1,
-          duration: 1.2,
-          ease: 'power2.out',
-        }, "exit-=0.15")
-      } catch (error) {
-        console.warn('PagePreloader: Failed to animate blur removal', error)
-      }
-    }
 
     return () => {
       tl.kill()
     }
   }, [onComplete, pageContentRef])
+
+  // Independent blur animation effect - runs separately from preloader timeline
+  useEffect(() => {
+    if (!pageContentRef?.current) {
+      debugLogger.log('PRELOADER', '⚠️ Blur effect: pageContentRef is null!', '⚠️')
+      return
+    }
+
+    debugLogger.log('PRELOADER', 'Setting up independent blur animation', '📦')
+
+    // Set initial blur state
+    gsap.set(pageContentRef.current, {
+      filter: 'blur(15px)',
+      scale: 0.985
+    })
+
+    // Wait for preloader exit to start (after fade in + hold = 1100ms), then animate blur removal
+    const blurTimeline = gsap.timeline({
+      delay: 1.1 // Match the preloader fade + hold timing
+    })
+
+    blurTimeline.to(pageContentRef.current, {
+      filter: 'blur(0px)',
+      scale: 1,
+      duration: 1.2,
+      ease: 'power2.out',
+      onStart: () => {
+        debugLogger.log('PRELOADER', '🌫️ Blur removal started', '🌫️')
+      },
+      onUpdate: function() {
+        const progress = this.progress()
+        if (Math.abs(progress - 0.25) < 0.01) {
+          debugLogger.log('PRELOADER', 'Blur at 25%', '▓')
+        } else if (Math.abs(progress - 0.5) < 0.01) {
+          debugLogger.log('PRELOADER', 'Blur at 50%', '▓▓')
+        } else if (Math.abs(progress - 0.75) < 0.01) {
+          debugLogger.log('PRELOADER', 'Blur at 75%', '▓▓▓')
+        } else if (progress > 0.99) {
+          debugLogger.log('PRELOADER', 'Blur at 100%', '▓▓▓▓')
+        }
+      },
+      onComplete: () => {
+        debugLogger.log('PRELOADER', '✨ Blur removal complete', '✨')
+        // Fire onRevealComplete callback when blur animation finishes
+        if (onRevealComplete) {
+          debugLogger.log('PRELOADER', '🎉 Calling onRevealComplete()', '🎉')
+          onRevealComplete()
+        } else {
+          debugLogger.log('PRELOADER', '⚠️ onRevealComplete is not defined!', '⚠️')
+        }
+      }
+    })
+
+    return () => {
+      blurTimeline.kill()
+    }
+  }, [pageContentRef, onRevealComplete])
 
   if (isComplete) return null
 

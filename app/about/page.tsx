@@ -19,36 +19,45 @@ export default function AboutPage() {
   const heroRef = useRef<HTMLDivElement>(null)
   const missionRef = useRef<HTMLDivElement>(null)
   const skillsRef = useRef<HTMLDivElement>(null)
-  const trustRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
   const [projectsCount, setProjectsCount] = useState(0)
   const [yearsCount, setYearsCount] = useState(0)
   const countersRef = useRef<HTMLDivElement>(null)
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  
+  const [, setIsAutoPlaying] = useState(true)
+
   // GSAP Manager for Gallery Animations
-  const galleryGSAP = useGSAPManager({ componentId: 'gallery-tools' })
-  
+  useGSAPManager({ componentId: 'gallery-tools' })
+
   // Define carousel slides (if this is for a specific carousel)
   const carouselSlides = [1, 2, 3] // placeholder - adjust based on actual carousel content
-  
+
 
 
   const handlePreloaderComplete = () => {
     setPreloaderComplete(true)
   }
 
-
-
   useEffect(() => {
     // Register GSAP plugin on client side only
     if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger)
     }
-    
+  }, [])
+
+  // Ensure blur is removed when preloader completes
+  useEffect(() => {
+    if (preloaderComplete && pageContentRef.current) {
+      // Force remove any lingering filters
+      pageContentRef.current.style.filter = 'none'
+      pageContentRef.current.style.transform = 'none'
+      // Force set opacity with !important to override any CSS conflicts
+      pageContentRef.current.style.setProperty('opacity', '1', 'important')
+    }
+  }, [preloaderComplete])
+
+  useEffect(() => {
     if (!preloaderComplete) return
-    
+
     const heroTl = gsap.timeline()
     
     // Editorial Hero Animations
@@ -293,7 +302,7 @@ export default function AboutPage() {
       }
 
       // Cinematic frames animation
-      cinematicFrames.forEach((frame, _index) => {
+      cinematicFrames.forEach((frame) => {
         gsap.fromTo(frame,
           { y: 80, opacity: 0, rotateY: 15 },
           {
@@ -326,7 +335,7 @@ export default function AboutPage() {
       })
 
       // Story blocks animation
-      storyBlocks.forEach((block, _index) => {
+      storyBlocks.forEach((block) => {
         const storyNumber = block.querySelector('.story-number')
         const storyTitle = block.querySelector('.story-title')
         const storyText = block.querySelector('.story-text')
@@ -537,7 +546,7 @@ export default function AboutPage() {
       )
 
       // Add hover interactions for skill nodes
-      skillNodes.forEach((node, _index) => {
+      skillNodes.forEach((node) => {
         const circle = node.querySelector('.skill-node-circle')
         const content = node.querySelector('.skill-node-content')
         
@@ -652,10 +661,6 @@ export default function AboutPage() {
       const galleryDivider = galleryRef.current.querySelector('.gallery-divider')
       const gallerySubtitle = galleryRef.current.querySelector('.gallery-subtitle')
       const galleryPanels = galleryRef.current.querySelectorAll('.gallery-panel')
-      const placardTitles = galleryRef.current.querySelectorAll('.placard-title')
-      const placardLines = galleryRef.current.querySelectorAll('.placard-line')
-      const placardDescriptions = galleryRef.current.querySelectorAll('.placard-description')
-      const toolItems = galleryRef.current.querySelectorAll('.tool-item')
       
       // Gallery entrance timeline - sophisticated sequencing
       const galleryTl = gsap.timeline({
@@ -947,27 +952,26 @@ export default function AboutPage() {
     return () => clearInterval(interval)
   }, [isAutoPlaying, carouselSlides.length])
 
-  if (!preloaderComplete) {
-    return (
-      <PagePreloader 
-        pageName="About" 
-        onComplete={handlePreloaderComplete}
-        pageContentRef={pageContentRef}
-      />
-    )
-  }
-
   return (
     <>
-      <Navigation />
-      <div 
+      {!preloaderComplete && (
+        <PagePreloader
+          pageName="About"
+          onComplete={handlePreloaderComplete}
+          pageContentRef={pageContentRef}
+        />
+      )}
+
+      <Navigation preloaderComplete={preloaderComplete} />
+      <div
         ref={pageContentRef}
-        style={{ 
-          opacity: 1,
+        style={{
+          opacity: preloaderComplete ? 1 : 0,
+          transition: 'opacity 0.3s ease-out',
           willChange: 'filter, transform, opacity'
         }}
       >
-        <main className="min-h-screen pt-24">
+          <main className="min-h-screen pt-24">
         {/* Editorial Elegance Hero Section */}
         <section className="editorial-hero hero-section bg-background-primary">
           {/* Background Elements */}
@@ -1884,7 +1888,7 @@ export default function AboutPage() {
                         { name: 'TypeScript', spec: 'Type Safety' },
                         { name: 'Node.js', spec: 'Backend Systems' },
                         { name: 'MySQL & Supabase', spec: 'Database Design' }
-                      ].map((tool, index) => (
+                      ].map((tool) => (
                         <div
                           key={tool.name}
                           className="tool-item group/item"
@@ -1999,7 +2003,7 @@ export default function AboutPage() {
                         { name: 'Adobe Creative Suite', spec: 'Visual Identity' },
                         { name: 'Sketch', spec: 'Prototyping' },
                         { name: 'After Effects', spec: 'Motion Design' }
-                      ].map((tool, index) => (
+                      ].map((tool) => (
                         <div
                           key={tool.name}
                           className="tool-item group/item"
@@ -2114,7 +2118,7 @@ export default function AboutPage() {
                         { name: 'Technical SEO', spec: 'Search Optimization' },
                         { name: 'WordPress & Shopify', spec: 'CMS Solutions' },
                         { name: 'Analytics & Insights', spec: 'Data Analysis' }
-                      ].map((tool, index) => (
+                      ].map((tool) => (
                         <div
                           key={tool.name}
                           className="tool-item group/item"

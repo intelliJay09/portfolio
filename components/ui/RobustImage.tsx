@@ -25,33 +25,18 @@ export default function RobustImage({
   ...props
 }: RobustImageProps) {
   const [currentSrc, setCurrentSrc] = useState(src)
-  const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
 
   // Reset state when src changes
   useEffect(() => {
     setCurrentSrc(src)
-    setIsLoading(true)
     setHasError(false)
   }, [src])
-
-  // Fallback timeout to ensure loading state is reset
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (isLoading) {
-        console.log('RobustImage: Fallback timeout - forcing loading state to false for:', src)
-        setIsLoading(false)
-      }
-    }, 5000) // 5 second fallback
-
-    return () => clearTimeout(timeout)
-  }, [isLoading, src])
 
   const handleError = (error: React.SyntheticEvent<HTMLImageElement, Event>) => {
     console.warn(`RobustImage: Image failed to load: ${currentSrc}`)
     onImageError?.(new Error(`Image failed to load: ${currentSrc}`))
     setHasError(true)
-    setIsLoading(false)
 
     // Try fallback image if provided
     const nextFallback = fallbackSrc || getFallbackImage(category)
@@ -59,13 +44,11 @@ export default function RobustImage({
       console.log('RobustImage: Trying fallback image:', nextFallback)
       setCurrentSrc(nextFallback)
       setHasError(false)
-      setIsLoading(true)
     }
   }
 
   const handleLoad = () => {
     console.log('RobustImage: onLoad fired for:', src)
-    setIsLoading(false)
     setHasError(false)
   }
 
@@ -87,26 +70,13 @@ export default function RobustImage({
   }
 
   return (
-    <>
-      {/* Loading placeholder */}
-      {isLoading && (
-        <div 
-          className={`absolute inset-0 flex items-center justify-center animate-pulse ${className}`}
-        >
-          <div className="text-text-tertiary">
-            <div className="w-8 h-8 border-2 border-text-tertiary border-t-transparent rounded-full animate-spin"></div>
-          </div>
-        </div>
-      )}
-      
-      <Image
-        src={currentSrc}
-        alt={alt}
-        className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
-        onLoad={handleLoad}
-        onError={handleError}
-        {...props}
-      />
-    </>
+    <Image
+      src={currentSrc}
+      alt={alt}
+      className={className}
+      onLoad={handleLoad}
+      onError={handleError}
+      {...props}
+    />
   )
 }

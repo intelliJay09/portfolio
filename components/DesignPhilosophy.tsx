@@ -375,9 +375,9 @@ export default function DesignPhilosophy() {
     <section
       ref={sectionRef}
       className="relative min-h-screen overflow-hidden bg-background-primary z-design-philosophy"
-      style={{ 
-        paddingTop: breakpoint === 'mobile' ? '3rem' : `${GOLDEN_RATIO * 6}rem`,
-        paddingBottom: breakpoint === 'mobile' ? '100px' : `${GOLDEN_RATIO * 6 + 11.25}rem` // Mobile: 100px, Desktop: Added 180px (11.25rem) total bottom padding
+      style={{
+        paddingTop: breakpoint === 'mobile' ? '16px' : '104px',
+        paddingBottom: breakpoint === 'mobile' ? '50px' : `${GOLDEN_RATIO * 6 + 11.25}rem`
       }}
     >
       {/* Sophisticated Multi-Layered Background System */}

@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import ThemeTogglePortal from './ui/ThemeTogglePortal'
 import { useScrollTrigger } from '../hooks/useScrollTrigger'
 import { useHamburgerAnimations } from '../hooks/useHamburgerAnimations'
+import { debugLogger } from '../utils/debugLogger'
 
 // Navigation items
 const defaultNavItems = [
@@ -42,22 +43,25 @@ interface NavigationProps {
   preloaderComplete?: boolean
 }
 
-export default function Navigation({ preloaderComplete = true }: NavigationProps) {
+export default function Navigation({ preloaderComplete = false }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
 
+  // Log preloaderComplete changes
+  useEffect(() => {
+    debugLogger.log('NAVIGATION', `preloaderComplete changed to: ${preloaderComplete}`, '🔄')
+  }, [preloaderComplete])
 
 
-  
   // Get scroll state from custom hook with buffer zones
   const { isMobile, showHamburger, hideDefault, scrollDirection } = useScrollTrigger(SCROLL_CONFIG)
-  
-  
+
+
   // Get animation refs from custom hook with enhanced parameters
   const { hamburgerRef, defaultNavRef, mobileMenuRef, logoRef } = useHamburgerAnimations(
-    showHamburger, 
-    isMobile, 
-    hideDefault, 
+    showHamburger,
+    isMobile,
+    hideDefault,
     scrollDirection,
     isMenuOpen
   )
@@ -73,7 +77,8 @@ export default function Navigation({ preloaderComplete = true }: NavigationProps
     isMenuOpen,
     isMobile,
     showHamburger,
-    hideDefault
+    hideDefault,
+    preloaderComplete
   }
 
   return (

@@ -1,9 +1,8 @@
 'use client'
 
 import { useState, useEffect, useRef, useMemo } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
-import { Grid3X3, List, Eye } from 'lucide-react'
+import { Grid3X3, List } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -13,7 +12,7 @@ import GraphicDesignModal from '../../components/ui/GraphicDesignModal'
 import ErrorBoundary from '../../components/ui/ErrorBoundary'
 import RobustImage from '../../components/ui/RobustImage'
 import PagePreloader from '../../components/PagePreloader'
-import { getProjectImage, getLuxuryGridClass, getStaggerDelay } from '../../utils/imageMapping'
+import { getProjectImage, getLuxuryGridClass } from '../../utils/imageMapping'
 
 // Import content data
 import contentData from '../../content.json'
@@ -71,30 +70,21 @@ export default function PortfolioPage() {
     }
   }, [])
 
+  // Ensure blur is removed when preloader completes
   useEffect(() => {
-    if (!preloaderComplete) return
-
-    // Clean up previous animations
-    if (gsapContextRef.current) {
-      gsapContextRef.current.revert()
+    if (preloaderComplete && pageContentRef.current) {
+      // Force remove any lingering filters
+      pageContentRef.current.style.filter = 'none'
+      pageContentRef.current.style.transform = 'none'
     }
-    // Initialize GSAP animations
-    gsapContextRef.current = initializeAnimations()
-
-    // Cleanup on unmount
-    return () => {
-      if (gsapContextRef.current) {
-        gsapContextRef.current.revert()
-      }
-    }
-  }, [filteredProjects, viewMode, preloaderComplete])
+  }, [preloaderComplete])
 
   const initializeAnimations = (): gsap.Context => {
     return gsap.context(() => {
       // Hero section entrance
       if (heroRef.current) {
         gsap.fromTo(heroRef.current.querySelectorAll('.animate-hero'),
-          { 
+          {
             y: 80,
             opacity: 0,
             scale: 0.95
@@ -129,37 +119,71 @@ export default function PortfolioPage() {
         )
       }
 
-      // Project cards entrance with sophisticated stagger
-      projectRefs.current.forEach((ref, index) => {
-        if (ref) {
-          gsap.fromTo(ref,
-            {
-              y: 120,
-              opacity: 0,
-              scale: 0.9,
-              rotationY: 15
-            },
-            {
-              y: 0,
-              opacity: 1,
-              scale: 1,
-              rotationY: 0,
-              duration: 1.0,
-              ease: 'power3.out',
-              delay: 1.0 + getStaggerDelay(index),
-              scrollTrigger: {
-                trigger: ref,
-                start: "top bottom-=100",
-                once: true,
-                toggleActions: "play none none none"
-              }
+      // Project cards entrance with IntersectionObserver
+      const observerOptions = {
+        root: null,
+        rootMargin: '-100px',
+        threshold: 0.1
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement
+            const index = projectRefs.current.indexOf(element as HTMLDivElement)
+
+            if (element && index !== -1) {
+              gsap.fromTo(element,
+                {
+                  y: 60,
+                  opacity: 0,
+                  scale: 0.95
+                },
+                {
+                  y: 0,
+                  opacity: 1,
+                  scale: 1,
+                  duration: 0.6,
+                  ease: 'power2.out',
+                  delay: index * 0.05
+                }
+              )
+              observer.unobserve(element)
             }
-          )
-        }
+          }
+        })
+      }, observerOptions)
+
+      projectRefs.current.forEach((ref) => {
+        if (ref) observer.observe(ref)
       })
 
+      return () => {
+        projectRefs.current.forEach((ref) => {
+          if (ref) observer.unobserve(ref)
+        })
+      }
     })
   }
+
+  useEffect(() => {
+    if (!preloaderComplete) return
+
+    // Clean up previous animations
+    if (gsapContextRef.current) {
+      gsapContextRef.current.revert()
+    }
+
+    // Initialize GSAP animations
+    gsapContextRef.current = initializeAnimations()
+
+    // Cleanup on unmount
+    return () => {
+      if (gsapContextRef.current) {
+        gsapContextRef.current.revert()
+      }
+    }
+  }, [preloaderComplete])
 
   const handleProjectClick = (project: Project) => {
     if (project.category === 'Graphic Design') {
@@ -185,12 +209,13 @@ export default function PortfolioPage() {
         />
       )}
 
-      <Navigation />
+      <Navigation preloaderComplete={preloaderComplete} />
 
       <div
         ref={pageContentRef}
         style={{
-          opacity: 1,
+          opacity: preloaderComplete ? 1 : 0,
+          transition: 'opacity 0.3s ease-out',
           willChange: 'filter, transform, opacity'
         }}
       >
@@ -384,8 +409,9 @@ export default function PortfolioPage() {
                           fill
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 66vw, (max-width: 1200px) 50vw, 40vw"
-                          priority={index < 6}
-                          quality={90}
+                          priority={index < 3}
+                          loading={index < 3 ? "eager" : "lazy"}
+                          quality={85}
                           showPlaceholder={false}
                           placeholderText={`${project.category} project`}
                         />
@@ -479,7 +505,8 @@ export default function PortfolioPage() {
                                 fill
                                 className="object-cover cursor-pointer transition-all duration-1000 ease-out group-hover:brightness-110"
                                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 30vw, 25vw"
-                                quality={90}
+                                loading="lazy"
+                                quality={85}
                                 showPlaceholder={false}
                                 placeholderText={`${project.category} project`}
                               />
@@ -493,7 +520,8 @@ export default function PortfolioPage() {
                                     fill
                                     className="object-cover cursor-pointer transition-all duration-1000 ease-out group-hover:brightness-110"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 30vw, 25vw"
-                                    quality={90}
+                                    loading="lazy"
+                                    quality={85}
                                     showPlaceholder={false}
                                     placeholderText={`${project.category} project`}
                                   />

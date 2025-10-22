@@ -5,11 +5,9 @@ import gsap from 'gsap'
 import Navigation from '../../../components/Navigation'
 import Footer from '../../../components/Footer'
 import { Check, ArrowLeft, Mail, Clock, MessageCircle, Sparkles } from 'lucide-react'
-import Link from 'next/link'
 import GlassCTA from '../../../components/ui/GlassCTA'
 
 export default function ContactSuccessPage() {
-  const containerRef = useRef<HTMLDivElement>(null)
   const timelineRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const successOrbRef = useRef<HTMLDivElement>(null)
