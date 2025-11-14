@@ -199,7 +199,7 @@ export default function ContactPage() {
         // Redirect to error page
         router.push('/contact/error')
       }
-    } catch (_error) {
+    } catch {
       // Redirect to error page on network errors
       router.push('/contact/error')
     } finally {

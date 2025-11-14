@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import PagePreloader from '../../components/PagePreloader';
 
@@ -145,9 +146,11 @@ export default function WebTestPage() {
                 className="relative"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-3xl blur-3xl"></div>
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=700&fit=crop&crop=center"
                   alt="Developer"
+                  width={600}
+                  height={700}
                   className="relative z-10 rounded-3xl w-full max-w-md mx-auto"
                 />
               </motion.div>
@@ -222,10 +225,11 @@ export default function WebTestPage() {
                 className="group cursor-pointer"
               >
                 <div className="relative overflow-hidden rounded-3xl mb-8 aspect-[4/3]">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                   <div className="absolute top-6 right-6">

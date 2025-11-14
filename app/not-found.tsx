@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import Link from 'next/link'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 import { ArrowLeft, Search } from 'lucide-react'

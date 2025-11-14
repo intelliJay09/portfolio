@@ -262,9 +262,9 @@ export default function ThemeTogglePortal({ navigationState }: ThemeTogglePortal
     
     // Initial delay to ensure navigation elements are rendered
     const initialSetup = setTimeout(checkAndPosition, 150) // Increased from 100ms
-    
+
     return () => clearTimeout(initialSetup)
-  }, [mounted, updatePosition])
+  }, [mounted, updatePosition, navigationState.preloaderComplete])
 
   // Update position when navigation state changes
   useEffect(() => {
@@ -298,7 +298,7 @@ export default function ThemeTogglePortal({ navigationState }: ThemeTogglePortal
       window.removeEventListener('orientationchange', handleOrientationChange)
       clearTimeout(resizeTimeout)
     }
-  }, [mounted, updatePosition])
+  }, [mounted, updatePosition, navigationState.preloaderComplete])
 
   // Update icon color on scroll to adapt to background changes
   useEffect(() => {

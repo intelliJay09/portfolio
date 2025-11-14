@@ -33,7 +33,7 @@ export default function RobustImage({
     setHasError(false)
   }, [src])
 
-  const handleError = (error: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  const handleError = () => {
     console.warn(`RobustImage: Image failed to load: ${currentSrc}`)
     onImageError?.(new Error(`Image failed to load: ${currentSrc}`))
     setHasError(true)

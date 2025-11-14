@@ -68,7 +68,7 @@ export default function PagePreloader({ pageName, onComplete, onRevealComplete, 
     return () => {
       tl.kill()
     }
-  }, [onComplete, pageContentRef])
+  }, [onComplete, pageContentRef, onRevealComplete])
 
   // Independent blur animation effect - runs separately from preloader timeline
   useEffect(() => {

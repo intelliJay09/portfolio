@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
-import portfolioData from '../portfolio.json'
 import content from '../content.json'
 
 interface PortfolioFooterProps {

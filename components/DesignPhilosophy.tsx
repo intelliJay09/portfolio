@@ -262,7 +262,7 @@ export default function DesignPhilosophy() {
   }, [breakpoint, prefersReducedMotion, isVisible, createScrollTrigger, createTween, createFromToTween, cleanup])
 
   // Touch-friendly interaction system with mobile optimization
-  const handleTypographyInteraction = useCallback((index: number, isActive: boolean, _event?: React.MouseEvent | React.TouchEvent) => {
+  const handleTypographyInteraction = useCallback((index: number, isActive: boolean) => {
     // Safety checks to prevent errors
     if (!typographyRefs.current || index < 0 || index >= typographyRefs.current.length) {
       return
@@ -469,10 +469,10 @@ export default function DesignPhilosophy() {
                   : 'cursor-pointer'
               }`}
               // Touch-friendly event handlers with proper touch target size (minimum 44px)
-              onMouseEnter={!isTouchDevice ? (e) => handleTypographyInteraction(index, true, e) : undefined}
-              onMouseLeave={!isTouchDevice ? (e) => handleTypographyInteraction(index, false, e) : undefined}
-              onTouchStart={isTouchDevice ? (e) => handleTypographyInteraction(index, true, e) : undefined}
-              onTouchEnd={isTouchDevice ? (e) => handleTypographyInteraction(index, false, e) : undefined}
+              onMouseEnter={!isTouchDevice ? () => handleTypographyInteraction(index, true) : undefined}
+              onMouseLeave={!isTouchDevice ? () => handleTypographyInteraction(index, false) : undefined}
+              onTouchStart={isTouchDevice ? () => handleTypographyInteraction(index, true) : undefined}
+              onTouchEnd={isTouchDevice ? () => handleTypographyInteraction(index, false) : undefined}
               onMouseMove={!isTouchDevice && !prefersReducedMotion ? (e) => handleMouseMove(e, index) : undefined}
               style={{
                 transformStyle: 'preserve-3d',

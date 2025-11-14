@@ -31,22 +31,20 @@ export function WebVitalsReporter() {
       }
 
       // Performance monitoring for luxury site standards
-      const performanceData = {
-        name: metric.name,
-        id: metric.id,
-        value: metric.value,
-        delta: metric.delta,
-        rating: getVitalsRating(metric.name, metric.value),
-        timestamp: Date.now(),
-        url: window.location.href,
-        userAgent: navigator.userAgent,
-      }
-
       // Send to your analytics endpoint
       // fetch('/api/analytics/web-vitals', {
       //   method: 'POST',
       //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(performanceData),
+      //   body: JSON.stringify({
+      //     name: metric.name,
+      //     id: metric.id,
+      //     value: metric.value,
+      //     delta: metric.delta,
+      //     rating: getVitalsRating(metric.name, metric.value),
+      //     timestamp: Date.now(),
+      //     url: window.location.href,
+      //     userAgent: navigator.userAgent,
+      //   }),
       // }).catch(console.error)
     }
   })
@@ -58,43 +56,6 @@ export function WebVitalsReporter() {
  * Get performance rating based on Core Web Vitals thresholds
  * Luxury sites should aim for "good" ratings across all metrics
  */
-function getVitalsRating(name: string, value: number): 'good' | 'needs-improvement' | 'poor' {
-  switch (name) {
-    case 'LCP':
-      if (value <= 2500) return 'good'
-      if (value <= 4000) return 'needs-improvement'
-      return 'poor'
-    
-    case 'FID':
-      if (value <= 100) return 'good'
-      if (value <= 300) return 'needs-improvement'
-      return 'poor'
-    
-    case 'INP':
-      if (value <= 200) return 'good'
-      if (value <= 500) return 'needs-improvement'
-      return 'poor'
-    
-    case 'CLS':
-      if (value <= 0.1) return 'good'
-      if (value <= 0.25) return 'needs-improvement'
-      return 'poor'
-    
-    case 'FCP':
-      if (value <= 1800) return 'good'
-      if (value <= 3000) return 'needs-improvement'
-      return 'poor'
-    
-    case 'TTFB':
-      if (value <= 800) return 'good'
-      if (value <= 1800) return 'needs-improvement'
-      return 'poor'
-    
-    default:
-      return 'good'
-  }
-}
-
 // Extend Window interface for TypeScript
 declare global {
   interface Window {

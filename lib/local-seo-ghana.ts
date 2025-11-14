@@ -105,7 +105,7 @@ export function generateLocalBusinessSchema() {
       longitude: localBusinessInfo.geo.longitude
     },
     openingHoursSpecification: Object.entries(localBusinessInfo.hours)
-      .filter(([_, hours]) => hours !== 'Closed')
+      .filter(([, hours]) => hours !== 'Closed')
       .map(([day, hours]) => ({
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: day,

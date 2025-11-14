@@ -10,7 +10,6 @@ import content from '../content.json'
 export default function Footer() {
   const [localTime, setLocalTime] = useState<string>('')
   const emailButtonRef = useRef<HTMLAnchorElement>(null)
-  const phoneButtonRef = useRef<HTMLAnchorElement>(null)
   const touchButtonRef = useRef<HTMLAnchorElement>(null)
   const availabilityInfoRef = useRef<HTMLDivElement>(null)
   

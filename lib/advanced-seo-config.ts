@@ -142,7 +142,7 @@ export function generateBreadcrumbs(path: string) {
   ]
   
   let currentPath = ''
-  segments.forEach((segment, index) => {
+  segments.forEach((segment) => {
     currentPath += `/${segment}`
     const name = segment
       .split('-')

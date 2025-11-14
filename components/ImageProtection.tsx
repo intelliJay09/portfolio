@@ -123,9 +123,10 @@ export default function ImageProtection() {
     const devToolsInterval = setInterval(detectDevTools, 1000)
 
     // Disable developer tools console methods (partially effective)
+    let consoleClearInterval: NodeJS.Timeout | null = null
     if (typeof window !== 'undefined') {
       // Clear console periodically
-      const consoleClearInterval = setInterval(() => {
+      consoleClearInterval = setInterval(() => {
         if (devtools.open) {
           console.clear()
         }
@@ -144,7 +145,7 @@ export default function ImageProtection() {
     return () => {
       // Remove ImageProtection marker
       document.body.removeAttribute('data-image-protection')
-      
+
       document.removeEventListener('contextmenu', disableContextMenu)
       document.removeEventListener('dragstart', disableDrag)
       document.removeEventListener('selectstart', disableSelection)
@@ -154,6 +155,7 @@ export default function ImageProtection() {
       document.removeEventListener('touchend', disableTouchEvents)
       document.removeEventListener('touchmove', disableTouchEvents)
       clearInterval(devToolsInterval)
+      if (consoleClearInterval) clearInterval(consoleClearInterval)
     }
   }, [])
 

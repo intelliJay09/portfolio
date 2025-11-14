@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import PagePreloader from '../../components/PagePreloader';
 
@@ -125,10 +126,11 @@ export default function TestPage() {
             transition={{ duration: 1.5, ease: "easeOut" }}
             className="relative h-[80vh] rounded-3xl overflow-hidden"
           >
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1600&h=1000&fit=crop&crop=center"
               alt="Featured Watch"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             <div className="absolute bottom-16 left-16">
@@ -178,10 +180,11 @@ export default function TestPage() {
                 className="group cursor-pointer"
               >
                 <div className="relative overflow-hidden rounded-2xl mb-8 aspect-square">
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                 </div>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import { X } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import gsap from 'gsap'
@@ -100,16 +101,21 @@ export default function GraphicDesignModal({ isOpen, onClose, project, imageSrc 
             exit={{ scale: 0.95, opacity: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
           >
-            <img
+            <Image
               ref={imageRef}
               src={imageSrc}
               alt={project.title}
+              width={1920}
+              height={1080}
               className="max-w-full max-h-full object-contain rounded-lg"
               style={{
                 maxWidth: '90vw',
                 maxHeight: '90vh',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+                width: 'auto',
+                height: 'auto'
               }}
+              unoptimized
             />
           </motion.div>
         </motion.div>

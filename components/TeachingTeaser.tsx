@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { motion } from 'framer-motion'
@@ -138,10 +139,11 @@ export default function TeachingTeaser() {
       {/* Video Background - Simplified Robust Implementation */}
       <div className="absolute inset-0 w-full h-full bg-black">
         {/* Poster Image - Always Show as Fallback */}
-        <img 
-          src="/images/girlcode-teaching-1.jpg" 
-          alt="Teaching and mentorship background" 
-          className="absolute inset-0 w-full h-full object-cover"
+        <Image
+          src="/images/girlcode-teaching-1.jpg"
+          alt="Teaching and mentorship background"
+          fill
+          className="object-cover"
           onError={() => console.error('Poster image failed to load')}
           onLoad={() => console.log('Poster image loaded successfully')}
         />
@@ -158,7 +160,6 @@ export default function TeachingTeaser() {
           controls={false}
           onError={(e) => {
             // Try fallback video if primary fails
-            const sources = e.currentTarget.querySelectorAll('source')
             const currentSrc = e.currentTarget.currentSrc || e.currentTarget.src
             if (currentSrc.includes('mentorship-background.mp4')) {
               e.currentTarget.load()

@@ -23,15 +23,9 @@ export default function AboutPage() {
   const [projectsCount, setProjectsCount] = useState(0)
   const [yearsCount, setYearsCount] = useState(0)
   const countersRef = useRef<HTMLDivElement>(null)
-  const [, setIsAutoPlaying] = useState(true)
 
   // GSAP Manager for Gallery Animations
   useGSAPManager({ componentId: 'gallery-tools' })
-
-  // Define carousel slides (if this is for a specific carousel)
-  const carouselSlides = [1, 2, 3] // placeholder - adjust based on actual carousel content
-
-
 
   const handlePreloaderComplete = () => {
     setPreloaderComplete(true)
@@ -942,16 +936,6 @@ export default function AboutPage() {
   }, [preloaderComplete])
 
   // Carousel autoplay effect
-  useEffect(() => {
-    if (!isAutoPlaying) return
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % carouselSlides.length)
-    }, 4000) // 4 seconds
-
-    return () => clearInterval(interval)
-  }, [isAutoPlaying, carouselSlides.length])
-
   return (
     <>
       {!preloaderComplete && (

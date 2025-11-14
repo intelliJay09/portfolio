@@ -540,7 +540,6 @@ export default function CaseStudyPage() {
   const params = useParams()
   const slug = params.slug as string
   const [preloaderComplete, setPreloaderComplete] = useState(false)
-  const [playingVideo, setPlayingVideo] = useState<string | null>(null)
   const heroRef = useRef<HTMLDivElement>(null)
   const heroImageRef = useRef<HTMLDivElement>(null)
   const scrollIndicatorRef = useRef<HTMLDivElement>(null)
