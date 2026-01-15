@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { trackButtonClick } from '../../lib/analytics'
 
 interface TransparentCTAProps {
   href: string
@@ -9,11 +10,21 @@ interface TransparentCTAProps {
   className?: string
   target?: string
   rel?: string
+  trackingName?: string
 }
 
-export default function TransparentCTA({ href, children, className = '', target, rel }: TransparentCTAProps) {
+export default function TransparentCTA({ href, children, className = '', target, rel, trackingName }: TransparentCTAProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  const handleClick = () => {
+    if (trackingName) {
+      trackButtonClick(trackingName, {
+        button_type: 'TransparentCTA',
+        destination: href,
+      })
+    }
+  }
 
   const handleMouseMove = (event: React.MouseEvent) => {
     const rect = event.currentTarget.getBoundingClientRect()
@@ -64,6 +75,7 @@ export default function TransparentCTA({ href, children, className = '', target,
           WebkitTapHighlightColor: 'transparent',
           touchAction: 'manipulation'
         }}
+        onClick={handleClick}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => {
           setIsHovered(false)

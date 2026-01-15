@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { trackButtonClick } from '../../lib/analytics'
 
 interface GlassCTAProps {
   href: string
@@ -11,11 +12,22 @@ interface GlassCTAProps {
   target?: string
   rel?: string
   variant?: 'light' | 'dark' | 'white' | 'auto'
+  trackingName?: string
 }
 
-export default function GlassCTA({ href, children, className = '', target, rel, variant = 'auto' }: GlassCTAProps) {
+export default function GlassCTA({ href, children, className = '', target, rel, variant = 'auto', trackingName }: GlassCTAProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  const handleClick = () => {
+    if (trackingName) {
+      trackButtonClick(trackingName, {
+        button_type: 'GlassCTA',
+        destination: href,
+        variant: variant,
+      })
+    }
+  }
 
   const handleMouseMove = (event: React.MouseEvent) => {
     const rect = event.currentTarget.getBoundingClientRect()
@@ -132,6 +144,7 @@ export default function GlassCTA({ href, children, className = '', target, rel, 
           WebkitTapHighlightColor: 'transparent',
           touchAction: 'manipulation'
         }}
+        onClick={handleClick}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => {
           setIsHovered(false)

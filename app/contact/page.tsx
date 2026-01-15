@@ -10,6 +10,7 @@ import { Send, Mail, MapPin } from 'lucide-react'
 import content from '../../content.json'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { trackFormSubmit, trackContactMethod } from '../../lib/analytics'
 
 export default function ContactPage() {
   const router = useRouter()
@@ -180,6 +181,12 @@ export default function ContactPage() {
       })
 
       if (response.ok) {
+        // Track successful form submission
+        trackFormSubmit('Contact Form', {
+          service: formData.service,
+          has_organization: !!formData.organization,
+        })
+
         // Success animation before redirect
         if (cardRef.current) {
           gsap.to(cardRef.current, {
@@ -584,13 +591,14 @@ export default function ContactPage() {
               <div className="mt-8 text-center">
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-lg text-text-secondary"
                      style={{ fontSize: '18px' }}>
-                  <a 
+                  <a
                     href={`mailto:${content.global.email}`}
                     className="group flex items-center gap-3 hover:text-text-primary transition-all duration-500 hover:scale-105 cursor-pointer"
                     style={{
                       transform: 'translateY(0px)',
                       transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
+                    onClick={() => trackContactMethod('email', content.global.email)}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateY(-2px) scale(1.05)'
                       e.currentTarget.style.boxShadow = '0 8px 25px -8px rgba(0, 0, 0, 0.12)'

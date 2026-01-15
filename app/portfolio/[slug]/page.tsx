@@ -15,6 +15,7 @@ import portfolioData from '../../../portfolio.json'
 import content from '../../../content.json'
 import testimonialData from '../../../testimonials.json'
 import { useTheme } from '../../../contexts/ThemeProvider'
+import { trackProjectView } from '../../../lib/analytics'
 
 // Project data mapping
 const getProjectData = (slug: string) => {
@@ -578,7 +579,16 @@ export default function CaseStudyPage() {
 
   useEffect(() => {
     if (!preloaderComplete) return
-    
+
+    // Track project view
+    if (portfolioProject?.title && portfolioProject?.category) {
+      trackProjectView(portfolioProject.title, portfolioProject.category, {
+        project_slug: slug,
+        client: portfolioProject.client,
+        year: getProjectYear(slug, portfolioProject, projectData),
+      })
+    }
+
     const initAnimations = async () => {
       try {
         const [gsapModule, scrollTriggerModule] = await Promise.all([

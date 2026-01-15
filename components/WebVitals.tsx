@@ -56,19 +56,3 @@ export function WebVitalsReporter() {
  * Get performance rating based on Core Web Vitals thresholds
  * Luxury sites should aim for "good" ratings across all metrics
  */
-// Extend Window interface for TypeScript
-declare global {
-  interface Window {
-    gtag?: (
-      command: 'event',
-      action: string,
-      parameters?: {
-        event_category?: string
-        event_label?: string
-        value?: number
-        non_interaction?: boolean
-        custom_map?: Record<string, string>
-      }
-    ) => void
-  }
-}

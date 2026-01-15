@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { trackButtonClick } from '../../lib/analytics'
 
 interface LightTransparentCTAProps {
   href: string
@@ -10,11 +11,21 @@ interface LightTransparentCTAProps {
   className?: string
   target?: string
   rel?: string
+  trackingName?: string
 }
 
-export default function LightTransparentCTA({ href, children, className = '', target, rel }: LightTransparentCTAProps) {
+export default function LightTransparentCTA({ href, children, className = '', target, rel, trackingName }: LightTransparentCTAProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  const handleClick = () => {
+    if (trackingName) {
+      trackButtonClick(trackingName, {
+        button_type: 'LightTransparentCTA',
+        destination: href,
+      })
+    }
+  }
 
   const handleMouseMove = (event: React.MouseEvent) => {
     const rect = event.currentTarget.getBoundingClientRect()
@@ -82,6 +93,7 @@ export default function LightTransparentCTA({ href, children, className = '', ta
         rel={rel}
         className={`${baseClasses} ${className}`}
         style={getStyles()}
+        onClick={handleClick}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => {
           setIsHovered(false)
