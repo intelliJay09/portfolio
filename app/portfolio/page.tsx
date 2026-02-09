@@ -20,13 +20,15 @@ import contentData from '../../content.json'
 const portfolioData = contentData.portfolio
 
 type ViewMode = 'grid' | 'list'
-type FilterType = 'All' | 'Websites' | 'Web Apps' | 'Graphic Design'
+type FilterType = 'All' | 'Premium Brand Authority' | 'Premium Lead Generation' | 'Revenue-Optimized Commerce' | 'Brand Identity'
 
 interface Project {
   slug: string
   title: string
   short_description: string
   category: string
+  strategicCategory?: string
+  strategicFilter?: string
 }
 
 export default function PortfolioPage() {
@@ -54,14 +56,32 @@ export default function PortfolioPage() {
   // Filter projects based on active filter
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return portfolioData.projects
-    return portfolioData.projects.filter(project => project.category === activeFilter)
+
+    // Brand Identity filters by category "Brand Identity"
+    if (activeFilter === 'Brand Identity') {
+      return portfolioData.projects.filter(project => project.category === 'Brand Identity')
+    }
+
+    // Strategic filters use strategicFilter field
+    return portfolioData.projects.filter(project =>
+      (project as Record<string, string>).strategicFilter === activeFilter
+    )
   }, [activeFilter])
 
   // Project count
   const projectCount = filteredProjects.length
-  const websiteCount = portfolioData.projects.filter(p => p.category === 'Websites').length
-  const webAppCount = portfolioData.projects.filter(p => p.category === 'Web Apps').length
-  const graphicCount = portfolioData.projects.filter(p => p.category === 'Graphic Design').length
+  const authorityCount = portfolioData.projects.filter(p =>
+    (p as Record<string, string>).strategicFilter === 'Premium Brand Authority'
+  ).length
+  const leadGenCount = portfolioData.projects.filter(p =>
+    (p as Record<string, string>).strategicFilter === 'Premium Lead Generation'
+  ).length
+  const commerceCount = portfolioData.projects.filter(p =>
+    (p as Record<string, string>).strategicFilter === 'Revenue-Optimized Commerce'
+  ).length
+  const brandIdentityCount = portfolioData.projects.filter(p =>
+    p.category === 'Brand Identity'
+  ).length
 
   useEffect(() => {
     // Register GSAP plugin on client side only
@@ -186,7 +206,7 @@ export default function PortfolioPage() {
   }, [preloaderComplete])
 
   const handleProjectClick = (project: Project) => {
-    if (project.category === 'Graphic Design') {
+    if (project.category === 'Brand Identity') {
       setSelectedProject(project)
       setIsModalOpen(true)
     } else {
@@ -257,35 +277,41 @@ export default function PortfolioPage() {
               
               {/* Filter Pills */}
               <div className="flex flex-wrap gap-3">
-                {(['All', 'Websites', 'Web Apps', 'Graphic Design'] as FilterType[]).map((filter) => (
+                {(['All', 'Premium Brand Authority', 'Premium Lead Generation', 'Revenue-Optimized Commerce', 'Brand Identity'] as FilterType[]).map((filter) => (
                   <button
                     key={filter}
                     onClick={() => setActiveFilter(filter)}
-                    className={`animate-filter px-6 py-3 rounded-full transition-all duration-500 font-satoshi font-medium text-sm tracking-wide relative overflow-hidden group ${
+                    className={`animate-filter px-6 py-3 rounded-full transition-all duration-600 font-satoshi font-medium text-sm tracking-wide relative overflow-hidden group ${
                       activeFilter === filter
                         ? 'bg-[#2a2a2a] text-white scale-105 dark:bg-[#2a2a2a] dark:text-white dark:shadow-lg dark:shadow-black/20'
                         : 'bg-background-secondary text-text-secondary hover:bg-[#d5d5d5] hover:text-text-primary dark:hover:bg-[#3a3a3a] dark:hover:text-white'
                     }`}
-                    style={{ 
+                    style={{
                       letterSpacing: '0.05em',
-                      transform: activeFilter === filter ? 'translateY(-1px)' : 'translateY(0)'
+                      transform: activeFilter === filter ? 'translateY(-1px)' : 'translateY(0)',
+                      transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                     }}
                   >
                     {/* Dark theme gradient overlay for active state only */}
                     {activeFilter === filter && (
                       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 dark:opacity-100 transition-opacity duration-500" />
                     )}
-                    
+
                     {/* Button content */}
                     <span className="relative z-10">
                       {filter}
                       {filter !== 'All' && (
-                        <span className="ml-2 opacity-60 transition-opacity duration-300 group-hover:opacity-90">
-                          ({filter === 'Websites' ? websiteCount : filter === 'Web Apps' ? webAppCount : graphicCount})
+                        <span className="ml-2 opacity-60 transition-opacity duration-500 group-hover:opacity-90">
+                          ({
+                            filter === 'Premium Brand Authority' ? authorityCount :
+                            filter === 'Premium Lead Generation' ? leadGenCount :
+                            filter === 'Revenue-Optimized Commerce' ? commerceCount :
+                            filter === 'Brand Identity' ? brandIdentityCount : 0
+                          })
                         </span>
                       )}
                       {filter === 'All' && (
-                        <span className="ml-2 opacity-60 transition-opacity duration-300 group-hover:opacity-90">
+                        <span className="ml-2 opacity-60 transition-opacity duration-500 group-hover:opacity-90">
                           ({portfolioData.projects.length})
                         </span>
                       )}
@@ -306,19 +332,20 @@ export default function PortfolioPage() {
                 <div className="animate-filter flex items-center bg-background-secondary rounded-full p-1">
                   <button
                     onClick={() => setViewMode('grid')}
-                    className={`p-3 rounded-full transition-all duration-400 ease-out relative overflow-hidden group ${
-                      viewMode === 'grid' 
-                        ? 'bg-text-primary text-background-primary dark:shadow-md dark:shadow-black/20' 
+                    className={`p-3 rounded-full transition-all duration-600 ease-out relative overflow-hidden group ${
+                      viewMode === 'grid'
+                        ? 'bg-text-primary text-background-primary dark:shadow-md dark:shadow-black/20'
                         : 'text-text-tertiary hover:bg-[#d5d5d5] hover:text-text-primary dark:hover:bg-[#3a3a3a] dark:hover:text-white'
                     }`}
                     style={{
-                      transform: viewMode === 'grid' ? 'translateY(-1px)' : 'translateY(0)'
+                      transform: viewMode === 'grid' ? 'translateY(-1px)' : 'translateY(0)',
+                      transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                     }}
                     title="Grid View"
                   >
                     {/* Dark theme gradient overlay for active state only */}
                     {viewMode === 'grid' && (
-                      <div className="absolute inset-0 rounded-full bg-gradient-radial from-white/15 to-transparent opacity-0 dark:opacity-100 transition-opacity duration-400" />
+                      <div className="absolute inset-0 rounded-full bg-gradient-radial from-white/15 to-transparent opacity-0 dark:opacity-100 transition-opacity duration-600" />
                     )}
                     
                     <Grid3X3 
@@ -329,19 +356,20 @@ export default function PortfolioPage() {
                   </button>
                   <button
                     onClick={() => setViewMode('list')}
-                    className={`p-3 rounded-full transition-all duration-400 ease-out relative overflow-hidden group ${
-                      viewMode === 'list' 
-                        ? 'bg-text-primary text-background-primary dark:shadow-md dark:shadow-black/20' 
+                    className={`p-3 rounded-full transition-all duration-600 ease-out relative overflow-hidden group ${
+                      viewMode === 'list'
+                        ? 'bg-text-primary text-background-primary dark:shadow-md dark:shadow-black/20'
                         : 'text-text-tertiary hover:bg-[#d5d5d5] hover:text-text-primary dark:hover:bg-[#3a3a3a] dark:hover:text-white'
                     }`}
                     style={{
-                      transform: viewMode === 'list' ? 'translateY(-1px)' : 'translateY(0)'
+                      transform: viewMode === 'list' ? 'translateY(-1px)' : 'translateY(0)',
+                      transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                     }}
                     title="List View"
                   >
                     {/* Dark theme gradient overlay for active state only */}
                     {viewMode === 'list' && (
-                      <div className="absolute inset-0 rounded-full bg-gradient-radial from-white/15 to-transparent opacity-0 dark:opacity-100 transition-opacity duration-400" />
+                      <div className="absolute inset-0 rounded-full bg-gradient-radial from-white/15 to-transparent opacity-0 dark:opacity-100 transition-opacity duration-600" />
                     )}
                     
                     <List 
@@ -456,26 +484,35 @@ export default function PortfolioPage() {
                             {getProjectNumber(index)}
                           </div>
                           <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
-                            {project.category === 'Websites' ? 'Website' : 
-                             project.category === 'Web Apps' ? 'Web App' : 
-                             project.category}
+                            {(project as Record<string, string>).strategicCategory ||
+                             (project.category === 'Websites' ? 'Website' :
+                              project.category === 'Web Apps' ? 'Web App' :
+                              project.category)}
                           </div>
                         </div>
 
                         {/* Project Info */}
                         <div className="lg:col-span-8">
-                          {project.category === 'Graphic Design' ? (
-                            <h3 
-                              className="text-2xl lg:text-3xl font-satoshi font-medium text-text-primary mb-3 group-hover:text-text-secondary transition-colors duration-300 cursor-pointer"
-                              style={{ letterSpacing: '0.01em', lineHeight: '1.3' }}
+                          {project.category === 'Brand Identity' ? (
+                            <h3
+                              className="text-2xl lg:text-3xl font-satoshi font-medium text-text-primary mb-3 group-hover:text-text-secondary transition-colors duration-600 cursor-pointer"
+                              style={{
+                                letterSpacing: '0.01em',
+                                lineHeight: '1.3',
+                                transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                              }}
                             >
                               {project.title}
                             </h3>
                           ) : (
                             <Link href={`/portfolio/${project.slug}`}>
-                              <h3 
-                                className="text-2xl lg:text-3xl font-satoshi font-medium text-text-primary mb-3 group-hover:text-text-secondary transition-all duration-500 cursor-pointer hover:translate-x-2 hover:text-accent"
-                                style={{ letterSpacing: '0.01em', lineHeight: '1.3' }}
+                              <h3
+                                className="text-2xl lg:text-3xl font-satoshi font-medium text-text-primary mb-3 group-hover:text-text-secondary transition-all duration-600 cursor-pointer hover:translate-x-2 hover:text-accent"
+                                style={{
+                                  letterSpacing: '0.01em',
+                                  lineHeight: '1.3',
+                                  transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                                }}
                               >
                                 {project.title}
                                 {project.category === 'Web Apps' && (
@@ -497,7 +534,7 @@ export default function PortfolioPage() {
                         {/* Project Image */}
                         <div className="lg:col-span-3">
                           <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
-                            {project.category === 'Graphic Design' ? (
+                            {project.category === 'Brand Identity' ? (
                               <RobustImage
                                 src={getProjectImage(project.slug, project.category)}
                                 alt={project.title}
@@ -551,7 +588,7 @@ export default function PortfolioPage() {
         <Footer />
       </div>
 
-      {/* Graphic Design Modal */}
+      {/* Brand Identity Modal */}
       {selectedProject && (
         <GraphicDesignModal
           isOpen={isModalOpen}

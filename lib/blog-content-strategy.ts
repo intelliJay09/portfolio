@@ -298,11 +298,11 @@ export const keywordClusters = {
 export function generateBlogMetadata(post: BlogPost) {
   return {
     title: `${post.title} | Jacqueline Amoako`,
-    description: `Expert insights on ${post.targetKeywords[0]}. Learn from Ghana's leading luxury web developer about ${post.category.toLowerCase()} strategies.`,
+    description: `Expert insights on ${post.targetKeywords[0]}. Learn from Ghana's leading digital growth strategist about ${post.category.toLowerCase()} strategies.`,
     keywords: post.targetKeywords,
     openGraph: {
       title: post.title,
-      description: `Discover expert insights on ${post.targetKeywords[0]} from Jacqueline Amoako, luxury web developer.`,
+      description: `Discover expert insights on ${post.targetKeywords[0]} from Jacqueline Amoako, digital growth strategist.`,
       type: 'article',
       article: {
         publishedTime: new Date().toISOString(),

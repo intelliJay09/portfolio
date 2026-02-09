@@ -141,13 +141,13 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Full-Stack Developer Text */}
+            {/* Digital Growth Strategist Text */}
             <div
               ref={titleRef}
             >
               <div className="text-left md:text-left">
                 <p className="text-text-primary font-satoshi font-normal text-base sm:text-lg md:text-xl lg:text-2xl leading-tight tracking-wide">
-                  Full-Stack Developer
+                  Digital Growth Strategist
                 </p>
               </div>
             </div>

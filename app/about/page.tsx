@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { motion } from 'framer-motion'
 import { Code2, Palette, Search, Monitor, Settings } from 'lucide-react'
 import Navigation from '../../components/Navigation'
 import Footer from '../../components/Footer'
@@ -22,6 +23,7 @@ export default function AboutPage() {
   const galleryRef = useRef<HTMLDivElement>(null)
   const [projectsCount, setProjectsCount] = useState(0)
   const [yearsCount, setYearsCount] = useState(0)
+  const [openAccordion, setOpenAccordion] = useState<number | null>(null)
   const countersRef = useRef<HTMLDivElement>(null)
 
   // GSAP Manager for Gallery Animations
@@ -993,7 +995,7 @@ export default function AboutPage() {
                   {/* Bio in Glass Panel */}
                   <div className="hero-glass-panel opacity-0" style={{ transform: 'translateX(-60px) scale(0.95)' }}>
                     <p className="text-text-secondary leading-relaxed font-inter text-center lg:text-left px-2 lg:px-0" style={{ fontSize: 'clamp(calc(0.875rem + 2px), 2vw, calc(1rem + 2px))' }}>
-                      Fullstack developer blending creativity with technology to build exceptional digital experiences.
+                      Digital Growth Strategist architecting revenue-generating ecosystems for premium brands worldwide.
                     </p>
                   </div>
                   
@@ -1004,11 +1006,11 @@ export default function AboutPage() {
                         data-counter="projects" 
                         className="counter-number text-2xl md:text-3xl font-satoshi font-extralight text-primary mb-1 relative overflow-hidden"
                       >
-                        <span className="counter-value relative inline-block transition-all duration-500 group-hover:text-text-primary">
+                        <span className="counter-value relative inline-block transition-all duration-600 group-hover:text-text-primary">
                           {projectsCount}{projectsCount >= 50 ? '+' : ''}
                         </span>
                       </div>
-                      <div className="text-xs text-text-tertiary font-satoshi tracking-widest uppercase transition-all duration-300 group-hover:text-text-secondary">
+                      <div className="text-xs text-text-tertiary font-satoshi tracking-widest uppercase transition-all duration-500 group-hover:text-text-secondary">
                         Projects
                       </div>
                     </div>
@@ -1018,11 +1020,11 @@ export default function AboutPage() {
                         data-counter="years" 
                         className="counter-number text-2xl md:text-3xl font-satoshi font-extralight text-primary mb-1 relative overflow-hidden"
                       >
-                        <span className="counter-value relative inline-block transition-all duration-500 group-hover:text-text-primary">
+                        <span className="counter-value relative inline-block transition-all duration-600 group-hover:text-text-primary">
                           {yearsCount}{yearsCount >= 5 ? '+' : ''}
                         </span>
                       </div>
-                      <div className="text-xs text-text-tertiary font-satoshi tracking-widest uppercase transition-all duration-300 group-hover:text-text-secondary">
+                      <div className="text-xs text-text-tertiary font-satoshi tracking-widest uppercase transition-all duration-500 group-hover:text-text-secondary">
                         Years
                       </div>
                     </div>
@@ -1105,7 +1107,7 @@ export default function AboutPage() {
                   <span className="editorial-headline-accent block md:inline">Through Technology</span>
                 </h2>
                 <p className="editorial-lead text-center max-w-3xl mx-auto text-sm md:text-base lg:text-lg px-6 md:px-4 lg:px-0 leading-relaxed">
-                  A significant highlight of my career has been my role as the sole female web developer in the 
+                  A significant highlight of my career has been my role as the sole female technologist in the
                   &quot;Digitalize for Jobs (D4J)&quot; program, a transformative initiative by German Agency for International Cooperation (GIZ) and Ghana Enterprise Agency (GEA).
                 </p>
               </div>
@@ -1231,19 +1233,19 @@ export default function AboutPage() {
         </section>
 
         {/* Skills & Expertise - Interactive Timeline Journey */}
-        <section className="pt-2 md:pt-12 lg:pt-16 pb-8 md:pb-12 lg:pb-24 bg-background-primary relative overflow-hidden">
+        <section className="pt-8 md:pt-12 lg:pt-16 pb-12 md:pb-16 lg:pb-24 bg-background-primary relative overflow-hidden">
           <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
             <div className="w-full max-w-7xl mx-auto">
-              <div className="text-center mb-16 md:mb-24 lg:mb-32">
+              <div className="text-center mb-12 md:mb-20 lg:mb-32">
                 <h2 className="font-satoshi font-light text-primary mb-6 px-4 lg:px-0" style={{
                   fontSize: 'clamp(2rem, 5vw, 3.5rem)',
                   lineHeight: '1.2',
                   letterSpacing: '-0.02em'
                 }}>
-                  My Expertise Journey
+                  Strategic Capabilities
                 </h2>
                 <p className="text-base md:text-lg text-text-secondary max-w-3xl mx-auto font-light px-4 md:px-0">
-                  A progressive evolution of skills and technologies that drive exceptional digital solutions
+                  The intersection of business strategy, technical mastery, and growth systems that drive measurable revenue impact
                 </p>
               </div>
               
@@ -1285,10 +1287,10 @@ export default function AboutPage() {
                       <Palette className="w-6 h-6" />
                     </div>
                     <div className="skill-node-label">
-                      <h3 className="skill-node-title">Graphic Design</h3>
+                      <h3 className="skill-node-title">Brand Identity</h3>
                     </div>
                     <div className="skill-node-content skill-node-expanded">
-                      <p className="skill-node-description">Brand identity, logos, flyers, marketing materials & visual design</p>
+                      <p className="skill-node-description">Strategic visual systems that establish premium positioning and market differentiation</p>
                       <div className="skill-node-details">
                         <span className="skill-years">3+ Years Experience</span>
                       </div>
@@ -1305,7 +1307,7 @@ export default function AboutPage() {
                       <h3 className="skill-node-title">Frontend Development</h3>
                     </div>
                     <div className="skill-node-content skill-node-expanded">
-                      <p className="skill-node-description">React, Next.js, Tailwind CSS, TypeScript & modern JavaScript</p>
+                      <p className="skill-node-description">Conversion-optimized interfaces engineered for premium user experiences</p>
                       <div className="skill-node-details">
                         <span className="skill-years">4+ Years Experience</span>
                       </div>
@@ -1339,7 +1341,7 @@ export default function AboutPage() {
                       <h3 className="skill-node-title">Backend Development</h3>
                     </div>
                     <div className="skill-node-content skill-node-expanded">
-                      <p className="skill-node-description">Node.js, MySQL, Supabase, database design & server architecture</p>
+                      <p className="skill-node-description">Scalable data architecture and robust systems that power business growth</p>
                       <div className="skill-node-details">
                         <span className="skill-years">4+ Years Experience</span>
                       </div>
@@ -1353,10 +1355,10 @@ export default function AboutPage() {
                       <Settings className="w-6 h-6" />
                     </div>
                     <div className="skill-node-label">
-                      <h3 className="skill-node-title">APIs & Integration</h3>
+                      <h3 className="skill-node-title">APIs & Automation</h3>
                     </div>
                     <div className="skill-node-content skill-node-expanded">
-                      <p className="skill-node-description">RESTful APIs, third-party integrations & microservices</p>
+                      <p className="skill-node-description">Business process automation and intelligent system orchestration</p>
                       <div className="skill-node-details">
                         <span className="skill-years">3+ Years Experience</span>
                       </div>
@@ -1369,21 +1371,21 @@ export default function AboutPage() {
               <div className="mobile-timeline-container lg:hidden relative max-w-2xl mx-auto px-4">
                 {/* Timeline Items */}
                 <div className="relative">
-                  {/* Timeline Item 1: Graphic Design */}
-                  <div className="mobile-skill-card relative flex items-start gap-6 mb-16">
+                  {/* Timeline Item 1: Brand Identity */}
+                  <div className="mobile-skill-card relative flex items-start gap-4 sm:gap-6 mb-12 sm:mb-16">
                     {/* Icon with connecting line */}
                     <div className="flex-shrink-0 relative">
-                      <div className="w-12 h-12 mobile-timeline-icon rounded-full flex items-center justify-center z-30">
-                        <Palette className="w-5 h-5 mobile-timeline-icon-svg" />
+                      <div className="w-14 h-14 mobile-timeline-icon rounded-full flex items-center justify-center z-30">
+                        <Palette className="w-6 h-6 mobile-timeline-icon-svg" />
                       </div>
                       {/* Connecting line from bottom of this icon to top of next icon */}
-                      <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-px h-60 bg-gray-400 z-10"></div>
+                      <div className="absolute top-14 left-1/2 transform -translate-x-1/2 w-px h-48 sm:h-56 bg-gray-400 z-10"></div>
                     </div>
                     {/* Content Card */}
-                    <div className="flex-1 bg-background-secondary rounded-2xl p-6 border border-border-light hover:shadow-lg transition-all duration-300 mobile-skill-content mt-1">
-                      <h3 className="text-lg font-satoshi font-medium text-primary mb-3">Graphic Design</h3>
-                      <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                        Brand identity, logos, flyers, marketing materials & visual design
+                    <div className="flex-1 bg-background-secondary rounded-2xl p-5 sm:p-6 border border-border-light hover:shadow-lg transition-all duration-600 mobile-skill-content mt-1" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">Brand Identity</h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">
+                        Strategic visual systems that establish premium positioning and market differentiation
                       </p>
                       <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
                         3+ Years Experience
@@ -1392,19 +1394,19 @@ export default function AboutPage() {
                   </div>
 
                   {/* Timeline Item 2: SEO & Performance */}
-                  <div className="mobile-skill-card relative flex items-start gap-6 mb-16">
+                  <div className="mobile-skill-card relative flex items-start gap-4 sm:gap-6 mb-12 sm:mb-16">
                     {/* Icon with connecting line */}
                     <div className="flex-shrink-0 relative">
-                      <div className="w-12 h-12 mobile-timeline-icon rounded-full flex items-center justify-center z-30">
-                        <Search className="w-5 h-5 mobile-timeline-icon-svg" />
+                      <div className="w-14 h-14 mobile-timeline-icon rounded-full flex items-center justify-center z-30">
+                        <Search className="w-6 h-6 mobile-timeline-icon-svg" />
                       </div>
                       {/* Connecting line from bottom of this icon to top of next icon */}
-                      <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-px h-60 bg-gray-400 z-10"></div>
+                      <div className="absolute top-14 left-1/2 transform -translate-x-1/2 w-px h-48 sm:h-56 bg-gray-400 z-10"></div>
                     </div>
                     {/* Content Card */}
-                    <div className="flex-1 bg-background-secondary rounded-2xl p-6 border border-border-light hover:shadow-lg transition-all duration-300 mobile-skill-content mt-1">
-                      <h3 className="text-lg font-satoshi font-medium text-primary mb-3">SEO & Performance</h3>
-                      <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                    <div className="flex-1 bg-background-secondary rounded-2xl p-5 sm:p-6 border border-border-light hover:shadow-lg transition-all duration-600 mobile-skill-content mt-1" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">SEO & Performance</h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">
                         Search optimization, Core Web Vitals & performance tuning
                       </p>
                       <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
@@ -1414,20 +1416,20 @@ export default function AboutPage() {
                   </div>
 
                   {/* Timeline Item 3: Backend Development */}
-                  <div className="mobile-skill-card relative flex items-start gap-6 mb-16">
+                  <div className="mobile-skill-card relative flex items-start gap-4 sm:gap-6 mb-12 sm:mb-16">
                     {/* Icon with connecting line */}
                     <div className="flex-shrink-0 relative">
-                      <div className="w-12 h-12 mobile-timeline-icon rounded-full flex items-center justify-center z-30">
-                        <Monitor className="w-5 h-5 mobile-timeline-icon-svg" />
+                      <div className="w-14 h-14 mobile-timeline-icon rounded-full flex items-center justify-center z-30">
+                        <Monitor className="w-6 h-6 mobile-timeline-icon-svg" />
                       </div>
                       {/* Connecting line from bottom of this icon to top of next icon */}
-                      <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-px h-60 bg-gray-400 z-10"></div>
+                      <div className="absolute top-14 left-1/2 transform -translate-x-1/2 w-px h-48 sm:h-56 bg-gray-400 z-10"></div>
                     </div>
                     {/* Content Card */}
-                    <div className="flex-1 bg-background-secondary rounded-2xl p-6 border border-border-light hover:shadow-lg transition-all duration-300 mobile-skill-content mt-1">
-                      <h3 className="text-lg font-satoshi font-medium text-primary mb-3">Backend Development</h3>
-                      <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                        Node.js, MySQL, Supabase, database design & server architecture
+                    <div className="flex-1 bg-background-secondary rounded-2xl p-5 sm:p-6 border border-border-light hover:shadow-lg transition-all duration-600 mobile-skill-content mt-1" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">Backend Development</h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">
+                        Scalable data architecture and robust systems that power business growth
                       </p>
                       <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
                         4+ Years Experience
@@ -1436,20 +1438,20 @@ export default function AboutPage() {
                   </div>
 
                   {/* Timeline Item 4: Frontend Development */}
-                  <div className="mobile-skill-card relative flex items-start gap-6 mb-16">
+                  <div className="mobile-skill-card relative flex items-start gap-4 sm:gap-6 mb-12 sm:mb-16">
                     {/* Icon with connecting line */}
                     <div className="flex-shrink-0 relative">
-                      <div className="w-12 h-12 mobile-timeline-icon rounded-full flex items-center justify-center z-30">
-                        <Code2 className="w-5 h-5 mobile-timeline-icon-svg" />
+                      <div className="w-14 h-14 mobile-timeline-icon rounded-full flex items-center justify-center z-30">
+                        <Code2 className="w-6 h-6 mobile-timeline-icon-svg" />
                       </div>
-                      {/* Connecting line from bottom of this icon to top of final icon (shorter gap) */}
-                      <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-px h-50 bg-gray-400 z-10"></div>
+                      {/* Connecting line from bottom of this icon through the final icon */}
+                      <div className="absolute top-14 left-1/2 transform -translate-x-1/2 w-px h-56 sm:h-64 bg-gray-400 z-10"></div>
                     </div>
                     {/* Content Card */}
-                    <div className="flex-1 bg-background-secondary rounded-2xl p-6 border border-border-light hover:shadow-lg transition-all duration-300 mobile-skill-content mt-1">
-                      <h3 className="text-lg font-satoshi font-medium text-primary mb-3">Frontend Development</h3>
-                      <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                        React, Next.js, HTML, CSS, JavaScript, WordPress, Shopify & WooCommerce
+                    <div className="flex-1 bg-background-secondary rounded-2xl p-5 sm:p-6 border border-border-light hover:shadow-lg transition-all duration-600 mobile-skill-content mt-1" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">Frontend Development</h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">
+                        Conversion-optimized interfaces engineered for premium user experiences
                       </p>
                       <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
                         5+ Years Experience
@@ -1457,20 +1459,19 @@ export default function AboutPage() {
                     </div>
                   </div>
 
-                  {/* Timeline Item 5: APIs & Integration (Final Item - No Connecting Line) */}
-                  <div className="mobile-skill-card relative flex items-start gap-6">
+                  {/* Timeline Item 5: APIs & Automation (Final Item - No Connecting Line) */}
+                  <div className="mobile-skill-card relative flex items-start gap-4 sm:gap-6">
                     {/* Icon without connecting line */}
                     <div className="flex-shrink-0 relative">
-                      <div className="w-12 h-12 mobile-timeline-icon rounded-full flex items-center justify-center z-30">
-                        <Settings className="w-5 h-5 mobile-timeline-icon-svg" />
+                      <div className="w-14 h-14 mobile-timeline-icon rounded-full flex items-center justify-center z-30">
+                        <Settings className="w-6 h-6 mobile-timeline-icon-svg" />
                       </div>
-                      {/* No connecting line for final item */}
                     </div>
                     {/* Content Card */}
-                    <div className="flex-1 bg-background-secondary rounded-2xl p-6 border border-border-light hover:shadow-lg transition-all duration-300 mobile-skill-content mt-1">
-                      <h3 className="text-lg font-satoshi font-medium text-primary mb-3">APIs & Integration</h3>
-                      <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                        RESTful APIs, third-party integrations & microservices
+                    <div className="flex-1 bg-background-secondary rounded-2xl p-5 sm:p-6 border border-border-light hover:shadow-lg transition-all duration-600 mobile-skill-content mt-1" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">APIs & Automation</h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">
+                        Business process automation and intelligent system orchestration
                       </p>
                       <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
                         3+ Years Experience
@@ -1485,7 +1486,7 @@ export default function AboutPage() {
 
 
         {/* Girlcode Africa Teaching - Side-by-Side Showcase */}
-        <section id="teaching" className="pt-24 md:pt-32 lg:pt-16 pb-2 md:pb-3 lg:pb-4 relative overflow-hidden bg-gradient-to-br from-background-primary via-background-secondary to-background-tertiary" style={{ marginTop: 'clamp(0px, 0px, -20em)' }}>
+        <section id="teaching" className="pt-16 md:pt-24 lg:pt-16 pb-2 md:pb-3 lg:pb-4 relative overflow-hidden bg-gradient-to-br from-background-primary via-background-secondary to-background-tertiary" style={{ marginTop: 'clamp(0px, 0px, -20em)' }}>
           {/* Subtle Background Elements */}
           <div className="absolute top-20 right-32 w-[300px] h-[300px] rounded-full opacity-5" 
                style={{
@@ -1504,8 +1505,8 @@ export default function AboutPage() {
             <div className="w-full max-w-7xl mx-auto">
               
               {/* Section Header */}
-              <div className="text-center mb-16 md:mb-20 lg:mb-24">
-                <div className="inline-flex items-center gap-4 px-8 py-4 rounded-full mb-8" 
+              <div className="text-center mb-12 md:mb-16 lg:mb-24">
+                <div className="inline-flex items-center gap-3 sm:gap-4 px-6 py-3 sm:px-8 sm:py-4 rounded-full mb-6 sm:mb-8" 
                      style={{
                        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%)',
                        backdropFilter: 'blur(25px)',
@@ -1514,97 +1515,94 @@ export default function AboutPage() {
                      }}>
                   <div className="relative">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent to-accent-hover opacity-20 blur-md"></div>
-                    <div className="relative w-10 h-10 rounded-full bg-gradient-to-r from-accent to-accent-hover flex items-center justify-center">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-text-on-dark-primary">
+                    <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-accent to-accent-hover flex items-center justify-center">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-text-on-dark-primary sm:w-[18px] sm:h-[18px]">
                         <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                         <path d="M6 12v5c3 3 9 3 12 0v-5"/>
                       </svg>
                     </div>
                   </div>
-                  <span className="text-text-primary font-normal tracking-wider text-lg">Teaching & Mentorship</span>
+                  <span className="text-text-primary font-normal tracking-wider text-sm sm:text-base lg:text-lg">Teaching & Mentorship</span>
                 </div>
-                
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight tracking-tight text-text-primary"
+
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4 sm:mb-6 leading-tight tracking-tight text-text-primary px-4"
                     style={{
                       letterSpacing: '-0.03em'
                     }}>
-                  Nurturing Tomorrow&apos;s Developers
+                  Empowering Future STEM Leaders
                 </h2>
-                <p className="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto leading-relaxed font-light">
-                  Empowering girls in technology through hands-on web development training at Girlcode Africa
+                <p className="text-lg sm:text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto leading-relaxed font-light px-4">
+                  Empowering girls and young women in technology through hands-on STEM education at GirlCode Africa
                 </p>
               </div>
 
               {/* Main Content - Side by Side Layout */}
-              <div className="relative" style={{ minHeight: '900px' }}>
-                
+              <div className="relative" style={{ minHeight: 'auto' }}>
+
                 {/* Golden Ratio Layout Container - 61.8% / 38.2% proportions */}
-                <div className="relative flex flex-col lg:flex-row gap-8 lg:gap-12">
-                
+                <div className="relative flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12">
+
                   {/* Primary Content Zone - Golden Ratio Major (61.8%) */}
-                  <div className="relative lg:w-[61.8%] flex flex-col" 
-                       style={{ 
-                         transform: 'translateX(-2px)', // Subtle asymmetrical offset
-                         zIndex: 20 
+                  <div className="relative lg:w-[61.8%] flex flex-col"
+                       style={{
+                         transform: 'translateX(0)', // Remove transform on mobile
+                         zIndex: 20
                        }}>
                     {/* Hero Video - Fibonacci Positioning */}
-                    <div className="relative" style={{ marginBottom: '55px' }}> {/* 55 = Fibonacci number */}
+                    <div className="relative mb-6 sm:mb-8 lg:mb-[55px]">
                       {/* Enhanced Ambient Glow - Mathematical Precision */}
-                      <div className="absolute rounded-3xl opacity-40" 
+                      <div className="absolute rounded-3xl opacity-30 lg:opacity-40"
                            style={{
-                             left: '-34px', // 34 = Fibonacci number
-                             right: '-34px',
-                             top: '-34px',
-                             bottom: '-34px',
+                             left: '-20px',
+                             right: '-20px',
+                             top: '-20px',
+                             bottom: '-20px',
                              background: 'radial-gradient(ellipse at center, rgba(var(--color-accent), 0.25) 0%, rgba(var(--color-accent-hover), 0.15) 40%, transparent 70%)',
-                             filter: 'blur(30px)'
+                             filter: 'blur(20px)'
                            }}></div>
-                    
+
                       {/* Dramatic Contact Shadow - Golden Ratio Positioning */}
-                      <div className="absolute rounded-2xl opacity-60"
+                      <div className="absolute rounded-2xl opacity-40 lg:opacity-60"
                            style={{
-                             left: '-13px', // 13 = Fibonacci number
-                             right: '-13px', 
-                             top: '-13px',
-                             bottom: '-13px',
+                             left: '-10px',
+                             right: '-10px',
+                             top: '-10px',
+                             bottom: '-10px',
                              background: 'radial-gradient(ellipse at center bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 40%, transparent 80%)',
-                             filter: 'blur(25px)',
-                             transform: 'translateY(12px) scaleY(0.4)'
+                             filter: 'blur(15px)',
+                             transform: 'translateY(8px) scaleY(0.4)'
                            }}></div>
                     
                     <video
-                      className="w-full aspect-[4/3] md:aspect-video rounded-2xl object-cover relative transition-all duration-300 ease-out hover:scale-[1.02] cursor-pointer"
+                      className="w-full aspect-[4/3] md:aspect-video rounded-xl sm:rounded-2xl object-cover relative transition-all duration-600 ease-out hover:scale-[1.02] cursor-pointer"
                       controls
                       preload="metadata"
                       style={{
                         boxShadow: `
-                          0 80px 160px -20px rgba(0, 0, 0, 0.4),
-                          0 40px 80px -12px rgba(0, 0, 0, 0.3),
-                          0 20px 40px -8px rgba(0, 0, 0, 0.25),
-                          0 10px 20px -4px rgba(0, 0, 0, 0.15),
-                          0 4px 12px -2px rgba(0, 0, 0, 0.1)
+                          0 40px 80px -20px rgba(0, 0, 0, 0.3),
+                          0 20px 40px -12px rgba(0, 0, 0, 0.25),
+                          0 10px 20px -8px rgba(0, 0, 0, 0.2),
+                          0 4px 8px -4px rgba(0, 0, 0, 0.1)
                         `,
-                        transform: 'translateY(-8px) translateX(3px)', // Subtle asymmetrical positioning
+                        transform: 'translateY(0)',
                         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-12px) translateX(3px) scale(1.02)'
+                        e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)'
                         e.currentTarget.style.boxShadow = `
-                          0 100px 200px -20px rgba(0, 0, 0, 0.5),
-                          0 50px 100px -12px rgba(0, 0, 0, 0.4),
-                          0 25px 50px -8px rgba(0, 0, 0, 0.35),
-                          0 12px 25px -4px rgba(0, 0, 0, 0.25),
-                          0 6px 15px -2px rgba(0, 0, 0, 0.2)
+                          0 60px 120px -20px rgba(0, 0, 0, 0.4),
+                          0 30px 60px -12px rgba(0, 0, 0, 0.3),
+                          0 15px 30px -8px rgba(0, 0, 0, 0.25),
+                          0 6px 12px -4px rgba(0, 0, 0, 0.15)
                         `
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-8px) translateX(3px) scale(1)'
+                        e.currentTarget.style.transform = 'translateY(0) scale(1)'
                         e.currentTarget.style.boxShadow = `
-                          0 80px 160px -20px rgba(0, 0, 0, 0.4),
-                          0 40px 80px -12px rgba(0, 0, 0, 0.3),
-                          0 20px 40px -8px rgba(0, 0, 0, 0.25),
-                          0 10px 20px -4px rgba(0, 0, 0, 0.15),
-                          0 4px 12px -2px rgba(0, 0, 0, 0.1)
+                          0 40px 80px -20px rgba(0, 0, 0, 0.3),
+                          0 20px 40px -12px rgba(0, 0, 0, 0.25),
+                          0 10px 20px -8px rgba(0, 0, 0, 0.2),
+                          0 4px 8px -4px rgba(0, 0, 0, 0.1)
                         `
                       }}
                       id="teaching-video"
@@ -1614,7 +1612,7 @@ export default function AboutPage() {
                     </video>
                     
                     {/* Custom Video Info Overlay */}
-                    <div className="absolute top-2 right-2 px-4 py-2 rounded-full text-sm font-medium"
+                    <div className="absolute top-2 right-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium"
                          style={{
                            background: 'rgba(0, 0, 0, 0.6)',
                            backdropFilter: 'blur(10px)',
@@ -1625,110 +1623,104 @@ export default function AboutPage() {
                   </div>
                   
                     {/* Student Success Card - Sophisticated Positioning */}
-                    <div className="teaching-card opacity-0 transform translate-y-8 backdrop-blur-xl bg-white/8 border border-white/20 rounded-2xl p-8 transition-all duration-700 cursor-pointer group hover:bg-white/12 hover:border-white/30 shadow-2xl"
+                    <div className="teaching-card opacity-0 transform translate-y-8 backdrop-blur-xl bg-white/8 border border-white/20 rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 transition-all duration-700 cursor-pointer group hover:bg-white/12 hover:border-white/30 shadow-2xl"
                          style={{
                            boxShadow: '0 32px 100px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.12), inset 0 1px 0 rgba(255,255,255,0.08)',
                            willChange: 'transform, background-color, border-color',
-                           transform: 'translateX(5px)', // Subtle asymmetrical offset
+                           transform: 'translateX(0)',
                            zIndex: 15
                          }}
                          data-card="success">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-r from-accent to-accent-hover flex items-center justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-background-primary dark:text-text-primary">
+                    <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-accent to-accent-hover flex items-center justify-center flex-shrink-0">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-background-primary dark:text-text-primary sm:w-6 sm:h-6">
                           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                         </svg>
                       </div>
-                      <div>
-                        <h3 className="text-xl font-semibold text-text-primary">Real Transformations</h3>
-                        <p className="text-text-secondary text-sm">Student success stories</p>
+                      <div className="min-w-0">
+                        <h3 className="text-lg sm:text-xl font-semibold text-text-primary">Real Transformations</h3>
+                        <p className="text-text-secondary text-xs sm:text-sm">Student success stories</p>
                       </div>
                     </div>
                     
-                    <div className="space-y-4">
-                      <div className="p-4 rounded-lg bg-background-secondary/30 transition-all duration-500 ease-in-out hover:bg-background-secondary/50 cursor-pointer group hover:shadow-lg">
-                        <p className="text-text-primary text-sm font-medium mb-1 group-hover:text-accent transition-colors duration-500">&quot;From zero to building my first website in 8 weeks!&quot;</p>
-                        <p className="text-text-secondary text-xs group-hover:text-text-primary transition-colors duration-500">- Jasmine K.</p>
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="p-3 sm:p-4 rounded-lg bg-background-secondary/30 transition-all duration-600 ease-in-out hover:bg-background-secondary/50 cursor-pointer group hover:shadow-lg" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+                        <p className="text-text-primary text-xs sm:text-sm font-medium mb-1 group-hover:text-accent transition-colors duration-600" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>&quot;From zero to building my first website in 8 weeks!&quot;</p>
+                        <p className="text-text-secondary text-[10px] sm:text-xs group-hover:text-text-primary transition-colors duration-600" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>- Jasmine K.</p>
                       </div>
-                      <div className="p-4 rounded-lg bg-background-secondary/30 transition-all duration-500 ease-in-out hover:bg-background-secondary/50 cursor-pointer group hover:shadow-lg">
-                        <p className="text-text-primary text-sm font-medium mb-1 group-hover:text-accent transition-colors duration-500">&quot;Jackie&apos;s teaching style made complex concepts so clear.&quot;</p>
-                        <p className="text-text-secondary text-xs group-hover:text-text-primary transition-colors duration-500">- Adelaide D.</p>
+                      <div className="p-3 sm:p-4 rounded-lg bg-background-secondary/30 transition-all duration-600 ease-in-out hover:bg-background-secondary/50 cursor-pointer group hover:shadow-lg" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+                        <p className="text-text-primary text-xs sm:text-sm font-medium mb-1 group-hover:text-accent transition-colors duration-600" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>&quot;Jackie&apos;s teaching style made complex concepts so clear.&quot;</p>
+                        <p className="text-text-secondary text-[10px] sm:text-xs group-hover:text-text-primary transition-colors duration-600" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>- Adelaide D.</p>
                       </div>
                     </div>
                     </div>
                   </div>
                   
                   {/* Secondary Content Zone - Golden Ratio Minor (38.2%) */}
-                  <div className="relative lg:w-[38.2%] flex flex-col" 
-                       style={{ 
-                         transform: 'translateX(8px)', // Counter-asymmetrical offset 
+                  <div className="relative lg:w-[38.2%] flex flex-col lg:pl-[34px] lg:-mt-[21px] lg:translate-x-[8px]"
+                       style={{
                          zIndex: 10,
-                         paddingLeft: '34px', // 34 = Fibonacci spacing
-                         marginTop: '-21px' // Align with elevated primary content
                        }}>
                   
                     {/* Impact Statistics Card - Elevated Position */}
-                    <div className="teaching-card opacity-0 transform translate-y-8 backdrop-blur-xl bg-white/8 border border-white/20 rounded-2xl p-8 transition-all duration-700 cursor-pointer group hover:bg-white/12 hover:border-white/30 shadow-2xl"
+                    <div className="teaching-card opacity-0 transform translate-y-8 backdrop-blur-xl bg-white/8 border border-white/20 rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 transition-all duration-700 cursor-pointer group hover:bg-white/12 hover:border-white/30 shadow-2xl mb-6 sm:mb-8 lg:mb-[55px] lg:-translate-y-[42px]"
                          style={{
                            boxShadow: '0 32px 100px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.12), inset 0 1px 0 rgba(255,255,255,0.08)',
                            willChange: 'transform, background-color, border-color',
-                           transform: 'translateY(-42px)', // Increased elevation for relative positioning
-                           marginBottom: '55px' // 55 = Fibonacci spacing
                          }}
                          data-card="stats">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-r from-accent to-accent-hover flex items-center justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-background-primary dark:text-text-primary">
+                    <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-accent to-accent-hover flex items-center justify-center flex-shrink-0">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-background-primary dark:text-text-primary sm:w-6 sm:h-6">
                           <circle cx="9" cy="7" r="4"/>
                           <path d="m22 21-3-3m0 0a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/>
                         </svg>
                       </div>
-                      <div>
-                        <h3 className="text-xl font-semibold text-text-primary">Impact Metrics</h3>
-                        <p className="text-text-secondary text-sm">Transforming lives through code</p>
+                      <div className="min-w-0">
+                        <h3 className="text-lg sm:text-xl font-semibold text-text-primary">Impact Metrics</h3>
+                        <p className="text-text-secondary text-xs sm:text-sm">Transforming lives through code</p>
                       </div>
                     </div>
                     
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center p-3 rounded-xl transition-all duration-300 hover:bg-background-secondary/40 hover:scale-[1.02] cursor-pointer group">
-                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-300">Girls Taught</span>
-                        <span className="text-2xl font-bold text-text-primary counter transition-all duration-300 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="200">0</span>
+                    <div className="space-y-1.5 sm:space-y-2">
+                      <div className="flex justify-between items-center p-2.5 sm:p-3 rounded-xl transition-all duration-500 hover:bg-background-secondary/40 hover:scale-[1.02] cursor-pointer group" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-500 text-xs sm:text-sm">Girls Taught</span>
+                        <span className="text-xl sm:text-2xl font-bold text-text-primary counter transition-all duration-500 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="200">0</span>
                       </div>
-                      <div className="flex justify-between items-center p-3 rounded-xl transition-all duration-300 hover:bg-background-secondary/40 hover:scale-[1.02] cursor-pointer group">
-                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-300">Cohorts Completed</span>
-                        <span className="text-2xl font-bold text-text-primary counter transition-all duration-300 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="15">0</span>
+                      <div className="flex justify-between items-center p-2.5 sm:p-3 rounded-xl transition-all duration-500 hover:bg-background-secondary/40 hover:scale-[1.02] cursor-pointer group" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-500 text-xs sm:text-sm">Cohorts Completed</span>
+                        <span className="text-xl sm:text-2xl font-bold text-text-primary counter transition-all duration-500 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="15">0</span>
                       </div>
-                      <div className="flex justify-between items-center p-3 rounded-xl transition-all duration-300 hover:bg-background-secondary/40 hover:scale-[1.02] cursor-pointer group">
-                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-300">Years Teaching</span>
-                        <span className="text-2xl font-bold text-text-primary counter transition-all duration-300 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="3">0</span>
+                      <div className="flex justify-between items-center p-2.5 sm:p-3 rounded-xl transition-all duration-500 hover:bg-background-secondary/40 hover:scale-[1.02] cursor-pointer group" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-500 text-xs sm:text-sm">Years Teaching</span>
+                        <span className="text-xl sm:text-2xl font-bold text-text-primary counter transition-all duration-500 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="3">0</span>
                       </div>
-                      <div className="flex justify-between items-center p-3 rounded-xl transition-all duration-300 hover:bg-background-secondary/40 hover:scale-[1.02] cursor-pointer group">
-                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-300">Success Rate</span>
+                      <div className="flex justify-between items-center p-2.5 sm:p-3 rounded-xl transition-all duration-500 hover:bg-background-secondary/40 hover:scale-[1.02] cursor-pointer group" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-500 text-xs sm:text-sm">Success Rate</span>
                         <div>
-                          <span className="text-2xl font-bold text-text-primary counter transition-all duration-300 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="95">0</span><span className="text-text-primary group-hover:text-accent transition-colors duration-300">%</span>
+                          <span className="text-xl sm:text-2xl font-bold text-text-primary counter transition-all duration-500 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="95">0</span><span className="text-text-primary group-hover:text-accent transition-colors duration-500">%</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
                     {/* Teaching Philosophy Card - Floating Position */}
-                    <div className="teaching-card opacity-0 transform translate-y-8 backdrop-blur-xl bg-white/8 border border-white/20 rounded-2xl p-8 transition-all duration-700 flex flex-col justify-center text-center cursor-pointer group hover:bg-white/12 hover:border-white/30 shadow-2xl"
+                    <div className="teaching-card opacity-0 transform translate-y-8 backdrop-blur-xl bg-white/8 border border-white/20 rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 transition-all duration-700 flex flex-col justify-center text-center cursor-pointer group hover:bg-white/12 hover:border-white/30 shadow-2xl lg:translate-x-[-13px] lg:translate-y-[13px]"
                          style={{
                            boxShadow: '0 32px 100px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.12), inset 0 1px 0 rgba(255,255,255,0.08)',
                            willChange: 'transform, background-color, border-color',
-                           transform: 'translateX(-13px) translateY(13px)' // 13 = Fibonacci asymmetrical positioning
                          }}
                          data-card="philosophy">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-accent to-accent-hover mx-auto mb-6 flex items-center justify-center">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-background-primary dark:text-text-primary">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-accent to-accent-hover mx-auto mb-5 sm:mb-6 flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-background-primary dark:text-text-primary sm:w-6 sm:h-6">
                         <path d="M9 12l2 2 4-4"/>
                         <circle cx="12" cy="12" r="9"/>
                       </svg>
                     </div>
-                    <blockquote className="text-text-primary text-lg font-light italic leading-relaxed mb-4">
+                    <blockquote className="text-text-primary text-base sm:text-lg font-light italic leading-relaxed mb-3 sm:mb-4">
                       &quot;Every line of code is a step towards independence. I believe in empowering girls to not just learn technology, but to lead with it.&quot;
                     </blockquote>
-                    <div className="text-text-secondary text-sm font-medium">Teaching Philosophy</div>
+                    <div className="text-text-secondary text-xs sm:text-sm font-medium">Teaching Philosophy</div>
                     </div>
                   </div>
                 </div>
@@ -1740,411 +1732,444 @@ export default function AboutPage() {
         </section>
 
 
-        {/* Tools of the Trade - Gallery Exhibition */}
-        <section
-          className="gallery-tools relative overflow-hidden bg-gradient-to-b from-background-primary via-background-secondary to-background-primary"
-          style={{
-            paddingTop: 'clamp(1rem, 2vw, 1.5rem)',
-            paddingBottom: 'clamp(1.5rem, 3vw, 2.5rem)',
-            willChange: 'transform',
-            transform: 'translateZ(0)'
-          }}
-        >
-          
-          {/* Gallery Ambient Lighting */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse 80% 60% at 50% 20%, rgb(var(--color-text-primary) / 0.03) 0%, transparent 50%)',
-              mixBlendMode: 'overlay'
-            }}
-          ></div>
-          
-          <div className="max-w-[1800px] mx-auto px-8">
-            <div ref={galleryRef}>
-              
-              {/* Gallery Title - Museum Style */}
-              <div className="text-center mb-24">
-                <h2
-                  className="gallery-title font-satoshi text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight tracking-tight text-text-primary"
-                  style={{
-                    letterSpacing: '-0.03em'
+
+        {/* Why Partner With Me - Compact Manifesto Grid */}
+        <section className="pt-20 md:pt-28 lg:pt-32 pb-12 md:pb-16 lg:pb-20 bg-background-primary relative overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
+            {/* Header row: label + title inline for density */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="mb-10 md:mb-16 lg:mb-20 text-center"
+            >
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <div className="w-8 h-px bg-text-primary/30"></div>
+                <span className="text-xs font-satoshi tracking-[0.2em] uppercase text-text-tertiary">
+                  Strategic Partnership
+                </span>
+                <div className="w-8 h-px bg-text-primary/30"></div>
+              </div>
+              <h2
+                className="font-satoshi text-text-primary"
+                style={{
+                  fontSize: 'clamp(2.25rem, 5vw, 3.5rem)',
+                  fontWeight: 300,
+                  lineHeight: 1.15,
+                  letterSpacing: '-0.02em'
+                }}
+              >
+                {content.about.whyPartnerWithMe.title}
+              </h2>
+            </motion.div>
+
+            {/* 2x2 Manifesto Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-text-primary/[0.06] rounded-2xl overflow-hidden">
+              {content.about.whyPartnerWithMe.differentiators.map((diff, index) => (
+                <motion.div
+                  key={diff.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{
+                    duration: 0.7,
+                    delay: index * 0.1,
+                    ease: [0.25, 0.46, 0.45, 0.94]
                   }}
+                  className="group relative bg-background-primary"
                 >
-                  Tools of the Trade
-                </h2>
-                <div
-                  className="gallery-divider mx-auto"
-                  style={{
-                    width: '120px',
-                    height: '1px',
-                    background: 'linear-gradient(90deg, transparent 0%, rgb(var(--color-text-primary) / 0.3) 50%, transparent 100%)',
-                    marginBottom: '2rem'
+                  <div
+                    className="relative p-5 md:p-9 lg:p-10 h-full transition-all group-hover:-translate-y-0.5"
+                    style={{
+                      transitionDuration: '600ms',
+                      transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                    }}
+                  >
+                    <div className="flex items-start justify-between gap-3 md:gap-4 mb-4 md:mb-5">
+                      <h3
+                        className="font-satoshi text-text-primary tracking-tight flex-1 transition-all group-hover:tracking-wide"
+                        style={{
+                          fontSize: 'clamp(1.125rem, 2vw, 1.375rem)',
+                          fontWeight: 600,
+                          lineHeight: 1.3,
+                          transitionDuration: '600ms',
+                          transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                        }}
+                      >
+                        {diff.title}
+                      </h3>
+                      <span
+                        className="manifesto-number font-satoshi flex-shrink-0 select-none pointer-events-none"
+                        style={{
+                          fontSize: 'clamp(1.875rem, 5vw, 3.5rem)',
+                          fontWeight: 300,
+                          lineHeight: 0.85,
+                          letterSpacing: '-0.04em',
+                        }}
+                      >
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+
+                    <p
+                      className="font-satoshi font-normal text-text-secondary transition-colors group-hover:text-text-primary"
+                      style={{
+                        fontSize: 'clamp(0.875rem, 1.2vw, 0.9375rem)',
+                        lineHeight: 1.7,
+                        transitionDuration: '600ms',
+                        transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                      }}
+                    >
+                      {diff.description}
+                    </p>
+
+                    {/* Hover: inner glow from bottom-left corner */}
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none rounded-none transition-opacity"
+                      style={{
+                        background: 'radial-gradient(ellipse at 0% 100%, rgb(var(--color-text-primary) / 0.05) 0%, transparent 60%)',
+                        transitionDuration: '600ms',
+                        transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Who I Work Best With - Asymmetric Editorial Cards */}
+        <section className="pt-12 md:pt-16 lg:pt-20 pb-20 md:pb-24 lg:pb-28 bg-background-secondary relative overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
+
+            {/* Header - Centered */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="mb-12 md:mb-28 lg:mb-32 text-center"
+            >
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <div className="w-8 h-px bg-text-primary/20"></div>
+                <span className="text-xs font-satoshi tracking-[0.2em] uppercase text-text-tertiary">
+                  Partnership Criteria
+                </span>
+                <div className="w-8 h-px bg-text-primary/20"></div>
+              </div>
+              <h2
+                className="font-satoshi text-text-primary mb-8"
+                style={{
+                  fontSize: 'clamp(2.5rem, 5.5vw, 4.5rem)',
+                  fontWeight: 300,
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.025em'
+                }}
+              >
+                {content.about.idealClient.title}
+              </h2>
+              <p
+                className="font-satoshi text-text-secondary max-w-2xl mx-auto"
+                style={{
+                  fontSize: 'clamp(1.125rem, 2vw, 1.375rem)',
+                  fontWeight: 300,
+                  lineHeight: 1.6,
+                  letterSpacing: '0.01em'
+                }}
+              >
+                {content.about.idealClient.intro}
+              </p>
+            </motion.div>
+
+            {/* Staggered Editorial Cards */}
+            <div className="space-y-6 md:space-y-12 lg:space-y-16">
+              {content.about.idealClient.criteria.map((item, index) => (
+                <motion.article
+                  key={item.characteristic}
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    duration: 0.9,
+                    delay: index * 0.15,
+                    ease: [0.25, 0.46, 0.45, 0.94]
                   }}
-                ></div>
+                  className={`group relative ${index % 2 === 0 ? 'md:ml-0 md:mr-auto md:max-w-4xl' : 'md:ml-auto md:mr-0 md:max-w-4xl lg:max-w-5xl'}`}
+                >
+                  {/* Floating Card */}
+                  <div
+                    className="relative overflow-hidden bg-background-primary px-6 py-8 md:px-12 md:py-14 lg:px-16 lg:py-16 transition-all"
+                    style={{
+                      transitionDuration: '600ms',
+                      transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      boxShadow: '0 4px 24px rgba(0, 0, 0, 0.12)'
+                    }}
+                  >
+                    {/* Oversized Index Number - Decorative Watermark */}
+                    <div
+                      className="absolute top-2 right-4 md:top-3 md:right-12 lg:top-2 lg:right-16 font-satoshi text-text-primary transition-all select-none pointer-events-none"
+                      style={{
+                        fontSize: 'clamp(3.5rem, 12vw, 9rem)',
+                        fontWeight: 200,
+                        lineHeight: 0.8,
+                        letterSpacing: '-0.05em',
+                        opacity: 0.04,
+                        transitionDuration: '600ms',
+                        transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                      }}
+                    >
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
+
+                    {/* Content */}
+                    <div className="relative">
+                      <h3
+                        className="font-satoshi text-text-primary mb-4 md:mb-6 transition-all group-hover:translate-x-2"
+                        style={{
+                          fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
+                          fontWeight: 400,
+                          lineHeight: 1.25,
+                          letterSpacing: '-0.015em',
+                          transitionDuration: '600ms',
+                          transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                        }}
+                      >
+                        {item.characteristic}
+                      </h3>
+                      <p
+                        className="font-satoshi transition-all group-hover:translate-x-2"
+                        style={{
+                          fontSize: 'clamp(0.9375rem, 1.5vw, 1.0625rem)',
+                          fontWeight: 400,
+                          lineHeight: 1.75,
+                          letterSpacing: '0.005em',
+                          color: 'rgb(var(--color-text-secondary) / 0.9)',
+                          transitionDuration: '600ms',
+                          transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                        }}
+                      >
+                        {item.description}
+                      </p>
+                    </div>
+
+                    {/* Accent Line - Expands on Hover */}
+                    <div
+                      className="absolute bottom-0 left-0 h-px bg-text-primary w-0 group-hover:w-full transition-all"
+                      style={{
+                        transitionDuration: '600ms',
+                        transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                      }}
+                    />
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+
+            {/* Not Ideal For - Elegant Closing Statement */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="mt-12 md:mt-20 lg:mt-24 max-w-4xl mx-auto"
+            >
+              {/* Divider with title */}
+              <div className="flex items-center gap-4 mb-8 md:mb-12">
+                <div className="flex-1 h-px bg-text-primary/10" />
+                <span
+                  className="font-satoshi text-text-tertiary tracking-[0.15em] uppercase"
+                  style={{ fontSize: '0.75rem', fontWeight: 500 }}
+                >
+                  {content.about.idealClient.notIdealFor.title}
+                </span>
+                <div className="flex-1 h-px bg-text-primary/10" />
+              </div>
+
+              {/* Criteria with subtle bullets */}
+              <div className="space-y-3 md:space-y-5">
+                {content.about.idealClient.notIdealFor.criteria.map((criterion, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.1,
+                      ease: [0.25, 0.46, 0.45, 0.94]
+                    }}
+                    className="flex items-start gap-3 md:gap-4 group"
+                  >
+                    <div
+                      className="flex-shrink-0 w-1.5 h-1.5 mt-2 md:mt-2.5 rounded-full transition-all"
+                      style={{
+                        backgroundColor: 'rgb(var(--color-text-tertiary) / 0.3)',
+                        transitionDuration: '600ms',
+                        transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                      }}
+                    />
+                    <p
+                      className="font-satoshi transition-colors group-hover:text-text-secondary"
+                      style={{
+                        fontSize: 'clamp(0.9375rem, 1.5vw, 1.0625rem)',
+                        fontWeight: 400,
+                        lineHeight: 1.7,
+                        color: 'rgb(var(--color-text-tertiary) / 0.75)',
+                        transitionDuration: '600ms',
+                        transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                      }}
+                    >
+                      {criterion}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+          </div>
+        </section>
+
+        {/* Unique Approach - Horizontal Accordion Strips */}
+        <section className="py-20 md:py-28 lg:py-32 bg-background-primary relative overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
+
+            {/* Header with philosophy as typographic art */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="mb-12 md:mb-20 lg:mb-24 text-center"
+            >
+              <div className="flex items-center justify-center gap-4 mb-8">
+                <div className="w-8 h-px bg-text-primary/30"></div>
+                <span className="text-xs font-satoshi tracking-[0.2em] uppercase text-text-tertiary">
+                  Methodology
+                </span>
+                <div className="w-8 h-px bg-text-primary/30"></div>
+              </div>
+              <h2
+                className="font-satoshi text-text-primary mb-12 md:mb-16"
+                style={{
+                  fontSize: 'clamp(2.5rem, 5.5vw, 4rem)',
+                  fontWeight: 300,
+                  lineHeight: 1.15,
+                  letterSpacing: '-0.02em'
+                }}
+              >
+                {content.about.uniqueApproach.title}
+              </h2>
+
+              {/* Philosophy as oversized typographic statement */}
+              <div className="relative max-w-5xl mx-auto">
                 <p
-                  className="gallery-subtitle font-inter max-w-xl mx-auto"
+                  className="font-satoshi text-text-secondary"
                   style={{
-                    fontSize: '1.25rem',
-                    fontWeight: '300',
-                    lineHeight: '1.8',
-                    letterSpacing: '0.01em',
-                    color: 'rgb(var(--color-text-primary) / 0.6)'
+                    fontSize: 'clamp(1.25rem, 3.5vw, 2.5rem)',
+                    fontWeight: 300,
+                    lineHeight: 1.5,
+                    letterSpacing: '0.02em'
                   }}
                 >
-                  The technologies and creative tools behind every sophisticated digital experience
+                  {content.about.uniqueApproach.philosophy}
                 </p>
+                {/* Subtle decorative line below philosophy */}
+                <div className="mt-8 md:mt-16 w-24 h-px bg-text-primary/15 mx-auto" />
               </div>
+            </motion.div>
 
-              {/* Gallery Exhibition Grid */}
-              <div className="gallery-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
-                
-                {/* Development Tools Panel */}
-                <div className="gallery-panel group">
+            {/* Accordion strips */}
+            <div className="space-y-0">
+              {content.about.uniqueApproach.principles.map((item, index) => {
+                const isOpen = openAccordion === index;
+                return (
+                <motion.div
+                  key={item.principle}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-20px" }}
+                  transition={{
+                    duration: 0.7,
+                    delay: index * 0.1,
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                  }}
+                  className="group relative"
+                >
+                  {/* Top hairline */}
                   <div
-                    className="panel-frame relative"
-                    style={{
-                      background: 'rgb(var(--color-text-primary) / 0.02)',
-                      border: '1px solid rgb(var(--color-text-primary) / 0.3)',
-                      borderRadius: '2px',
-                      padding: 'clamp(2.5rem, 4vw, 4rem)',
-                      backdropFilter: 'blur(40px)',
-                      WebkitBackdropFilter: 'blur(40px)',
-                      transition: 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      minHeight: '480px',
-                      willChange: 'transform, opacity',
-                      transform: 'translateZ(0)'
-                    }}
-                  >
-                    {/* Spotlight Effect */}
-                    <div
-                      className="spotlight absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none"
-                      style={{
-                        background: 'radial-gradient(circle at 50% 30%, rgb(var(--color-text-primary) / 0.08) 0%, transparent 60%)',
-                        borderRadius: '2px',
-                        transition: 'opacity 0.8s ease-out'
-                      }}
-                    ></div>
-                    
-                    {/* Gallery Placard Header */}
-                    <div className="mb-8">
-                      <h3 
-                        className="placard-title font-cormorant"
-                        style={{
-                          fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)',
-                          fontWeight: '300',
-                          lineHeight: '1.2',
-                          letterSpacing: '0.01em',
-                          color: 'rgb(var(--color-text-primary))',
-                          fontFamily: 'serif',
-                          marginBottom: '1rem'
-                        }}
-                      >
-                        Development
-                      </h3>
-                      <div
-                        className="placard-line"
-                        style={{
-                          width: '40px',
-                          height: '1px',
-                          background: 'rgb(var(--color-text-primary) / 0.3)',
-                          marginBottom: '1.5rem'
-                        }}
-                      ></div>
-                      <p
-                        className="placard-description font-inter"
-                        style={{
-                          fontSize: '0.875rem',
-                          fontWeight: '300',
-                          lineHeight: '1.6',
-                          color: 'rgb(var(--color-text-primary) / 0.5)',
-                          letterSpacing: '0.01em'
-                        }}
-                      >
-                        Enterprise-grade frameworks and architectures
-                      </p>
-                    </div>
+                    className="h-px w-full bg-text-primary/8 group-hover:bg-text-primary/15 transition-colors duration-600"
+                    style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
+                  />
 
-                    {/* Tool Exhibition List */}
-                    <div className="tools-exhibition space-y-6">
-                      {[
-                        { name: 'React & Next.js', spec: 'Frontend Architecture' },
-                        { name: 'TypeScript', spec: 'Type Safety' },
-                        { name: 'Node.js', spec: 'Backend Systems' },
-                        { name: 'MySQL & Supabase', spec: 'Database Design' }
-                      ].map((tool) => (
-                        <div
-                          key={tool.name}
-                          className="tool-item group/item"
+                  {/* Strip content */}
+                  <div
+                    className="relative py-6 md:py-10 lg:py-12 px-0 md:px-4 lg:px-8 rounded-none transition-all duration-600 group-hover:bg-background-secondary/40 lg:group-hover:px-12"
+                    style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
+                  >
+                    {/* Strip header row - tappable on mobile */}
+                    <button
+                      type="button"
+                      className="flex items-center justify-between gap-4 md:gap-8 w-full text-left cursor-pointer lg:cursor-default"
+                      onClick={() => setOpenAccordion(isOpen ? null : index)}
+                    >
+                      <h3
+                        className="font-satoshi text-text-primary flex-1 transition-colors duration-600 group-hover:text-accent"
+                        style={{
+                          fontSize: 'clamp(1.25rem, 3vw, 2rem)',
+                          fontWeight: 400,
+                          letterSpacing: '-0.01em',
+                          lineHeight: 1.3,
+                          transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                        }}
+                      >
+                        {item.principle}
+                      </h3>
+
+                      {/* Index + expand indicator */}
+                      <div className="flex items-center gap-3 md:gap-6 flex-shrink-0">
+                        <span
+                          className="font-satoshi text-text-tertiary hidden md:block transition-colors duration-600 group-hover:text-text-secondary"
                           style={{
-                            paddingBottom: '1.5rem',
-                            borderBottom: '1px solid rgb(var(--color-text-primary) / 0.03)',
-                            transition: 'all 0.4s ease-out'
+                            fontSize: '0.75rem',
+                            fontWeight: 400,
+                            letterSpacing: '0.15em',
+                            transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                           }}
                         >
-                          <div className="mb-2">
-                            <h4
-                              className="tool-name font-satoshi group-hover/item:text-text-primary transition-colors duration-300"
-                              style={{
-                                fontSize: '1rem',
-                                fontWeight: '400',
-                                lineHeight: '1.3',
-                                color: 'rgb(var(--color-text-primary) / 0.9)',
-                                letterSpacing: '0.01em'
-                              }}
-                            >
-                              {tool.name}
-                            </h4>
-                          </div>
-                          <p
-                            className="tool-spec font-inter"
-                            style={{
-                              fontSize: '0.8rem',
-                              fontWeight: '300',
-                              lineHeight: '1.4',
-                              color: 'rgb(var(--color-text-primary) / 0.4)',
-                              letterSpacing: '0.01em'
-                            }}
-                          >
-                            {tool.spec}
-                          </p>
+                          {String(index + 1).padStart(2, '0')} / {String(content.about.uniqueApproach.principles.length).padStart(2, '0')}
+                        </span>
+                        {/* Expand indicator */}
+                        <div
+                          className={`w-11 h-11 flex items-center justify-center transition-transform duration-600 lg:group-hover:rotate-45 ${isOpen ? 'rotate-45' : ''}`}
+                          style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
+                        >
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-text-tertiary group-hover:text-text-primary transition-colors duration-600" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
+                            <path d="M7 0v14M0 7h14" stroke="currentColor" strokeWidth="1" />
+                          </svg>
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                      </div>
+                    </button>
 
-                {/* Design Tools Panel */}
-                <div className="gallery-panel group">
-                  <div
-                    className="panel-frame relative"
-                    style={{
-                      background: 'rgb(var(--color-text-primary) / 0.02)',
-                      border: '1px solid rgb(var(--color-text-primary) / 0.3)',
-                      borderRadius: '2px',
-                      padding: 'clamp(2.5rem, 4vw, 4rem)',
-                      backdropFilter: 'blur(40px)',
-                      WebkitBackdropFilter: 'blur(40px)',
-                      transition: 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      minHeight: '480px',
-                      willChange: 'transform, opacity',
-                      transform: 'translateZ(0)'
-                    }}
-                  >
-                    {/* Spotlight Effect */}
+                    {/* Expandable explanation - tap to toggle on mobile, hover on desktop */}
                     <div
-                      className="spotlight absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none"
-                      style={{
-                        background: 'radial-gradient(circle at 50% 30%, rgb(var(--color-text-primary) / 0.08) 0%, transparent 60%)',
-                        borderRadius: '2px',
-                        transition: 'opacity 0.8s ease-out'
-                      }}
-                    ></div>
-                    
-                    {/* Gallery Placard Header */}
-                    <div className="mb-8">
-                      <h3 
-                        className="placard-title font-cormorant"
-                        style={{
-                          fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)',
-                          fontWeight: '300',
-                          lineHeight: '1.2',
-                          letterSpacing: '0.01em',
-                          color: 'rgb(var(--color-text-primary))',
-                          fontFamily: 'serif',
-                          marginBottom: '1rem'
-                        }}
-                      >
-                        Design
-                      </h3>
-                      <div
-                        className="placard-line"
-                        style={{
-                          width: '40px',
-                          height: '1px',
-                          background: 'rgb(var(--color-text-primary) / 0.3)',
-                          marginBottom: '1.5rem'
-                        }}
-                      ></div>
-                      <p
-                        className="placard-description font-inter"
-                        style={{
-                          fontSize: '0.875rem',
-                          fontWeight: '300',
-                          lineHeight: '1.6',
-                          color: 'rgb(var(--color-text-primary) / 0.5)',
-                          letterSpacing: '0.01em'
-                        }}
-                      >
-                        Professional visual identity and interface design
+                      className={`overflow-hidden transition-all duration-600 lg:max-h-0 lg:opacity-0 lg:group-hover:max-h-60 lg:group-hover:opacity-100 ${isOpen ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'}`}
+                      style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
+                    >
+                      <p className="pt-5 md:pt-8 text-base md:text-lg text-text-secondary font-satoshi font-normal leading-[1.8] max-w-3xl">
+                        {item.explanation}
                       </p>
                     </div>
-
-                    {/* Tool Exhibition List */}
-                    <div className="tools-exhibition space-y-6">
-                      {[
-                        { name: 'Figma', spec: 'Interface Design' },
-                        { name: 'Adobe Creative Suite', spec: 'Visual Identity' },
-                        { name: 'Sketch', spec: 'Prototyping' },
-                        { name: 'After Effects', spec: 'Motion Design' }
-                      ].map((tool) => (
-                        <div
-                          key={tool.name}
-                          className="tool-item group/item"
-                          style={{
-                            paddingBottom: '1.5rem',
-                            borderBottom: '1px solid rgb(var(--color-text-primary) / 0.03)',
-                            transition: 'all 0.4s ease-out'
-                          }}
-                        >
-                          <div className="mb-2">
-                            <h4
-                              className="tool-name font-satoshi group-hover/item:text-text-primary transition-colors duration-300"
-                              style={{
-                                fontSize: '1rem',
-                                fontWeight: '400',
-                                lineHeight: '1.3',
-                                color: 'rgb(var(--color-text-primary) / 0.9)',
-                                letterSpacing: '0.01em'
-                              }}
-                            >
-                              {tool.name}
-                            </h4>
-                          </div>
-                          <p
-                            className="tool-spec font-inter"
-                            style={{
-                              fontSize: '0.8rem',
-                              fontWeight: '300',
-                              lineHeight: '1.4',
-                              color: 'rgb(var(--color-text-primary) / 0.4)',
-                              letterSpacing: '0.01em'
-                            }}
-                          >
-                            {tool.spec}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
                   </div>
-                </div>
 
-                {/* Performance & SEO Panel */}
-                <div className="gallery-panel group">
-                  <div
-                    className="panel-frame relative"
-                    style={{
-                      background: 'rgb(var(--color-text-primary) / 0.02)',
-                      border: '1px solid rgb(var(--color-text-primary) / 0.3)',
-                      borderRadius: '2px',
-                      padding: 'clamp(2.5rem, 4vw, 4rem)',
-                      backdropFilter: 'blur(40px)',
-                      WebkitBackdropFilter: 'blur(40px)',
-                      transition: 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      minHeight: '480px',
-                      willChange: 'transform, opacity',
-                      transform: 'translateZ(0)'
-                    }}
-                  >
-                    {/* Spotlight Effect */}
-                    <div
-                      className="spotlight absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none"
-                      style={{
-                        background: 'radial-gradient(circle at 50% 30%, rgb(var(--color-text-primary) / 0.08) 0%, transparent 60%)',
-                        borderRadius: '2px',
-                        transition: 'opacity 0.8s ease-out'
-                      }}
-                    ></div>
-                    
-                    {/* Gallery Placard Header */}
-                    <div className="mb-8">
-                      <h3 
-                        className="placard-title font-cormorant"
-                        style={{
-                          fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)',
-                          fontWeight: '300',
-                          lineHeight: '1.2',
-                          letterSpacing: '0.01em',
-                          color: 'rgb(var(--color-text-primary))',
-                          fontFamily: 'serif',
-                          marginBottom: '1rem'
-                        }}
-                      >
-                        Optimization
-                      </h3>
-                      <div
-                        className="placard-line"
-                        style={{
-                          width: '40px',
-                          height: '1px',
-                          background: 'rgb(var(--color-text-primary) / 0.3)',
-                          marginBottom: '1.5rem'
-                        }}
-                      ></div>
-                      <p
-                        className="placard-description font-inter"
-                        style={{
-                          fontSize: '0.875rem',
-                          fontWeight: '300',
-                          lineHeight: '1.6',
-                          color: 'rgb(var(--color-text-primary) / 0.5)',
-                          letterSpacing: '0.01em'
-                        }}
-                      >
-                        Performance engineering and search optimization
-                      </p>
-                    </div>
-
-                    {/* Tool Exhibition List */}
-                    <div className="tools-exhibition space-y-6">
-                      {[
-                        { name: 'Core Web Vitals', spec: 'Performance Metrics' },
-                        { name: 'Technical SEO', spec: 'Search Optimization' },
-                        { name: 'WordPress & Shopify', spec: 'CMS Solutions' },
-                        { name: 'Analytics & Insights', spec: 'Data Analysis' }
-                      ].map((tool) => (
-                        <div
-                          key={tool.name}
-                          className="tool-item group/item"
-                          style={{
-                            paddingBottom: '1.5rem',
-                            borderBottom: '1px solid rgb(var(--color-text-primary) / 0.03)',
-                            transition: 'all 0.4s ease-out'
-                          }}
-                        >
-                          <div className="mb-2">
-                            <h4
-                              className="tool-name font-satoshi group-hover/item:text-text-primary transition-colors duration-300"
-                              style={{
-                                fontSize: '1rem',
-                                fontWeight: '400',
-                                lineHeight: '1.3',
-                                color: 'rgb(var(--color-text-primary) / 0.9)',
-                                letterSpacing: '0.01em'
-                              }}
-                            >
-                              {tool.name}
-                            </h4>
-                          </div>
-                          <p
-                            className="tool-spec font-inter"
-                            style={{
-                              fontSize: '0.8rem',
-                              fontWeight: '300',
-                              lineHeight: '1.4',
-                              color: 'rgb(var(--color-text-primary) / 0.4)',
-                              letterSpacing: '0.01em'
-                            }}
-                          >
-                            {tool.spec}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-              </div>
+                  {/* Bottom hairline for last item */}
+                  {index === content.about.uniqueApproach.principles.length - 1 && (
+                    <div className="h-px w-full bg-text-primary/8" />
+                  )}
+                </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>

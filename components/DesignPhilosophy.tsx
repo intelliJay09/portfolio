@@ -9,16 +9,16 @@ import useResponsiveBreakpoint from '../hooks/useResponsiveBreakpoint'
 // Golden ratio for mathematical precision in spacing
 const GOLDEN_RATIO = 1.618
 
-// Sophisticated design principles for typography cinema
+// Strategic philosophy principles for growth-focused positioning
 const philosophyElements = [
   {
-    id: "user-vision",
-    primaryText: "User-First",
-    secondaryText: "Vision",
-    morphText: ["Purpose", "Story", "Intuitive", "Beautiful"],
-    description: "Every pixel serves a purpose. Every interaction tells a story. Design that doesn't just look beautiful—it feels intuitive.",
+    id: "challenge-thinking",
+    primaryText: "Challenge",
+    secondaryText: "Thinking",
+    morphText: ["Question", "Refine", "Transform", "Elevate"],
+    description: "Your vision is the starting point, not the blueprint. I challenge assumptions, refine strategies, and engineer solutions that push beyond what you thought possible.",
     // Responsive positioning for different breakpoints
-    position: { 
+    position: {
       desktop: { x: 15, y: 20 },
       tablet: { x: 10, y: 15 },
       mobile: { x: 5, y: 10 }
@@ -31,12 +31,12 @@ const philosophyElements = [
     delay: 0
   },
   {
-    id: "performance",
-    primaryText: "Performance",
-    secondaryText: "Driven",
-    morphText: ["Speed", "Luxury", "Elegance", "Lightning"],
-    description: "Speed is luxury. Elegance without performance is hollow. Building experiences that flow like silk and load like lightning.",
-    position: { 
+    id: "growth-systems",
+    primaryText: "Engineer",
+    secondaryText: "Systems",
+    morphText: ["Architect", "Build", "Optimize", "Scale"],
+    description: "Not websites. Not campaigns. Complete growth ecosystems—acquisition funnels, conversion engines, authority platforms—designed to scale from $100K to $10M.",
+    position: {
       desktop: { x: 65, y: 35 },
       tablet: { x: 60, y: 35 },
       mobile: { x: 5, y: 35 }
@@ -49,12 +49,12 @@ const philosophyElements = [
     delay: 0.3
   },
   {
-    id: "aesthetic",
-    primaryText: "Aesthetically",
-    secondaryText: "Conscious",
-    morphText: ["Beauty", "Restraint", "Simplicity", "Harmony"],
-    description: "Beauty in restraint. Power in simplicity. Creating visual harmony that speaks before words are ever needed.",
-    position: { 
+    id: "premium-value",
+    primaryText: "Command",
+    secondaryText: "Value",
+    morphText: ["Premium", "Authority", "Positioning", "Excellence"],
+    description: "Luxury brands refuse to compete on price. I build digital presence that attracts high-value clients and justifies premium positioning.",
+    position: {
       desktop: { x: 25, y: 65 },
       tablet: { x: 15, y: 60 },
       mobile: { x: 5, y: 60 }
@@ -67,12 +67,12 @@ const philosophyElements = [
     delay: 0.6
   },
   {
-    id: "technical",
-    primaryText: "Technically",
-    secondaryText: "Excellent",
-    morphText: ["Poetry", "Architecture", "Craftsmanship", "Foundations"],
-    description: "Clean code is poetry. Scalable architecture is art. Building foundations that last, with craftsmanship that inspires.",
-    position: { 
+    id: "compounding-results",
+    primaryText: "Deliver",
+    secondaryText: "Results",
+    morphText: ["Growth", "Impact", "Outcomes", "Revenue"],
+    description: "340% traffic growth. 28% conversion increases. Success measured in business metrics that compound month over month, not vanity numbers.",
+    position: {
       desktop: { x: 70, y: 80 },
       tablet: { x: 55, y: 80 },
       mobile: { x: 5, y: 85 }
@@ -419,7 +419,7 @@ export default function DesignPhilosophy() {
 
       {/* Section Header with Silver Metallic Effect */}
       <div className="relative z-20 text-center mb-8 px-4 py-12">
-        <h2 
+        <h2
           className="font-satoshi font-light relative text-text-primary [html[data-theme='dark']_&]:text-transparent [html[data-theme='dark']_&]:bg-gradient-to-r [html[data-theme='dark']_&]:from-neutral-400 [html[data-theme='dark']_&]:via-neutral-300 [html[data-theme='dark']_&]:to-neutral-400 [html[data-theme='dark']_&]:bg-clip-text"
           style={{
             fontSize: 'clamp(2.5rem, 6vw, 4rem)',
@@ -428,7 +428,7 @@ export default function DesignPhilosophy() {
             fontWeight: '300'
           }}
         >
-          Design Philosophy
+          Strategic Philosophy
         </h2>
       </div>
 

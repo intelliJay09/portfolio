@@ -11,8 +11,8 @@ const iconMap = {
   'Frontend Development': Code2,
   'Backend Development': Database,
   'SEO & Performance': Search,
-  'APIs & Integration': Settings,
-  'Graphic Design': Palette,
+  'APIs & Automation': Settings,
+  'Brand Identity': Palette,
 }
 
 export default function ServicesOverview() {

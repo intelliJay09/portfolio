@@ -219,8 +219,8 @@ export default function TeachingTeaser() {
 
                 {/* Description - Exhibition Context */}
                 <p className="text-xl md:text-2xl text-white/90 max-w-2xl leading-[1.5] font-light mb-8 lg:mb-16 mx-auto lg:mx-0">
-                  Empowering young girls to build the future of technology 
-                  through hands-on coding mentorship.
+                  Empowering young girls to build the future of technology
+                  through AI and venture mentorship.
                 </p>
 
                 {/* Mobile Statistics - Above Button */}

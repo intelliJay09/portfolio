@@ -117,23 +117,23 @@ const getProjectYear = (slug: string, portfolioProject: PortfolioProject | undef
 // Project-specific challenge content helpers
 const getProjectChallengeQuote = (slug: string, projectData: ProjectData, portfolioProject: PortfolioProject | undefined): string => {
   const quotes: { [key: string]: string } = {
-    'gwen-addo': 'How do you create a digital presence that truly reflects expertise and builds trust?',
-    'eleven-eleven-ghana': 'How do you digitally replicate the luxurious atmosphere of beachfront living?',
-    'optimum-property-solutions': 'How do you make international property search effortless and engaging?',
-    'emmanuel-kotia': 'How do you showcase academic excellence in the digital age?',
-    'imagebloom-by-saida': 'How do you blend artistry with commerce in the beauty industry?',
-    'rosemond-prempeh': 'How do you create a welcoming digital space for faith-based community?',
-    'royal-itech': 'How do you project cybersecurity expertise and professional trust?',
-    'girl-code-africa': 'How do you create pathways for women to enter the tech industry?',
-    'goa-conference': 'How do you streamline professional conference management and registration?',
-    'eden-heights': 'How do you convey luxury residential prestige to attract high-net-worth buyers?',
-    'landmark-homes': 'How do you instill confidence in investors and showcase development quality?',
-    'ghana-optometric-association': 'How do you centralize professional association operations and member communication?',
-    'twist-nightclub': 'How do you capture the dynamic energy of nightlife in digital format?',
-    'command-space': 'How do you create the perfect business card for a digital agency?',
-    'qualivex-solutions': 'How do you build comprehensive digital solutions for growing businesses?',
-    'anabs': 'How do you convey luxury high-rise prestige to attract discerning buyers?',
-    'kline-designs': 'How do you create a sophisticated digital presence for an innovative design and engineering firm?'
+    'gwen-addo': 'How do you position a business strategist as searchable authority while converting visitors into paying clients?',
+    'eleven-eleven-ghana': 'How do you establish luxury beachfront positioning that drives direct bookings and premium perception?',
+    'optimum-property-solutions': 'How do you position international real estate authority that converts property browsers into qualified investment leads?',
+    'emmanuel-kotia': 'How do you establish academic authority that makes distinguished research globally accessible?',
+    'imagebloom-by-saida': 'How do you establish premium beauty authority that drives both service bookings and e-commerce revenue?',
+    'rosemond-prempeh': 'How do you position faith-based authority that builds engaged community and drives ministry growth?',
+    'royal-itech': 'How do you establish cybersecurity authority that converts security-conscious businesses into long-term clients?',
+    'girl-code-africa': 'How do you position tech education authority that drives program applications and attracts corporate partnerships?',
+    'goa-conference': 'How do you establish professional conference authority that maximizes registrations and streamlines event operations?',
+    'eden-heights': 'How do you position luxury residential authority that attracts high-net-worth buyers and drives premium property sales?',
+    'landmark-homes': 'How do you establish real estate development authority that builds investor confidence and accelerates property acquisitions?',
+    'ghana-optometric-association': 'How do you position professional association authority that centralizes member operations and enhances industry influence?',
+    'twist-nightclub': 'How do you establish nightlife entertainment authority that drives attendance and builds loyal patron community?',
+    'command-space': 'How do you position digital agency authority that converts prospects into high-value client partnerships?',
+    'qualivex-solutions': 'How do you establish business solutions authority that generates qualified B2B leads and drives service adoption?',
+    'anabs': 'How do you position luxury high-rise authority that attracts discerning investors and commands premium pricing?',
+    'kline-designs': 'How do you establish architectural design authority that positions firm as innovation leader and drives project inquiries?'
   }
   
   
@@ -146,12 +146,13 @@ const getProjectSpecificContent = (slug: string) => {
     'gwen-addo': {
       challengePoints: [
         'Establishing credibility and expertise in a competitive consulting market',
-        'Creating an intuitive booking system that converts visitors into clients', 
+        'Creating an intuitive booking system that converts visitors into clients',
         'Designing a professional brand that reflects business strategy expertise',
         'Implementing content structure that showcases value proposition clearly'
       ],
       resolutionText: 'The solution required more than aesthetics— it demanded an understanding of personal branding and client psychology.',
       resultDescription: 'The website successfully elevated Gwen Addo\'s personal brand, positioning her as a leading authority in business strategy. The streamlined booking system has led to an increase in client consultations, and the professional design builds immediate trust with potential clients.',
+      shortResultDescription: 'Search authority positioning + automated lead capture systems achieved Top 3 rankings, delivered 3x consultation bookings with 62% conversion, and drove 180% client acquisition growth.',
       focusAreas: ['Personal Branding', 'Lead Generation', 'Professional Credibility', 'Client Conversion']
     },
     'eleven-eleven-ghana': {
@@ -163,6 +164,7 @@ const getProjectSpecificContent = (slug: string) => {
       ],
       resolutionText: 'The solution required more than technology— it demanded an understanding of luxury hospitality and exclusivity.',
       resultDescription: 'The website effectively captures the essence of the Eleven Eleven brand, resulting in increased user engagement and direct beachfront apartment inquiries. It serves as a powerful digital showcase that aligns with the resort\'s luxury positioning.',
+      shortResultDescription: 'Luxury authority positioning + conversion-optimized booking systems secured #1 rankings for premium beachfront search, generated 5x direct booking inquiries with 38% conversion, and delivered 220% revenue growth.',
       focusAreas: ['Luxury Design', 'Immersive Experience', 'Hospitality Branding', 'Booking Conversion']
     },
     'optimum-property-ghana': {
@@ -174,6 +176,7 @@ const getProjectSpecificContent = (slug: string) => {
       ],
       resolutionText: 'The solution required more than listings— it demanded an understanding of international property investment psychology.',
       resultDescription: 'The website now serves as an efficient tool for both agents and potential clients. The user-friendly interface has improved the property search experience, leading to a higher number of qualified leads for international property investments.',
+      shortResultDescription: 'Real estate authority positioning + lead qualification systems achieved Top 5 rankings, generated 4x investment inquiries with 45% lead quality rate, and delivered 165% property acquisition growth.',
       focusAreas: ['Real Estate Technology', 'International Markets', 'Lead Generation', 'Property Management']
     },
     'emmanuel-kotia': {
@@ -185,6 +188,7 @@ const getProjectSpecificContent = (slug: string) => {
       ],
       resolutionText: 'The solution required more than organization— it demanded an understanding of academic authority and scholarly presentation.',
       resultDescription: 'The website successfully functions as a comprehensive digital archive of Dr. Kotia\'s distinguished work, enhancing his professional online presence and making his research accessible to a global audience of academics, students, and policymakers.',
+      shortResultDescription: 'Academic authority positioning + research visibility systems achieved Top 5 scholarly rankings, expanded global research access to 15k+ visitors, increased citation accessibility by 4.2x, and established 85% international reach.',
       focusAreas: ['Academic Excellence', 'Digital Archiving', 'Scholarly Presentation', 'Global Accessibility']
     },
     'imagebloom-by-saida': {
@@ -196,6 +200,7 @@ const getProjectSpecificContent = (slug: string) => {
       ],
       resolutionText: 'The solution required more than beauty— it demanded an understanding of luxury cosmetics and client psychology.',
       resultDescription: 'The website provides a complete digital storefront that has empowered the client to sell products directly to consumers, opening up new revenue streams. The beautiful portfolio section continues to attract high-end consultancy clients.',
+      shortResultDescription: 'Premium beauty authority + dual-channel systems (services + e-commerce) achieved Top 10 rankings, generated 3.5x combined bookings and sales with 52% conversion, and delivered 220% revenue growth.',
       focusAreas: ['Beauty & Cosmetics', 'E-commerce Integration', 'Portfolio Showcase', 'Premium Branding']
     },
     'rosemond-prempeh': {
@@ -240,6 +245,7 @@ const getProjectSpecificContent = (slug: string) => {
       ],
       resolutionText: 'The solution required more than information— it demanded an understanding of professional conference management.',
       resultDescription: 'The microsite streamlined the registration and information-sharing process, reducing administrative overhead and improving the attendee experience. It served as an effective tool for professional event marketing and management.',
+      shortResultDescription: 'Professional conference authority + registration optimization systems achieved #1 event rankings, generated 2.4x registrations with 800+ professional attendees, and delivered 170% event attendance growth.',
       focusAreas: ['Event Management', 'Professional Registration', 'Conference Logistics', 'Administrative Efficiency']
     },
     'eden-heights': {
@@ -251,6 +257,7 @@ const getProjectSpecificContent = (slug: string) => {
       ],
       resolutionText: 'The solution required more than visuals— it demanded an understanding of luxury real estate psychology.',
       resultDescription: 'The website successfully positions Eden Heights as a premier residential option in Accra. The immersive visuals and sophisticated presentation have generated significant high-quality sales inquiries from discerning buyers.',
+      shortResultDescription: 'Luxury property authority + high-value lead systems achieved Top 5 residential rankings, generated 2.8x buyer inquiries with 42% conversion, and delivered 140% premium sales growth.',
       focusAreas: ['Luxury Real Estate', 'Premium Positioning', 'Visual Storytelling', 'High-Value Sales']
     },
     'landmark-homes': {
@@ -262,6 +269,7 @@ const getProjectSpecificContent = (slug: string) => {
       ],
       resolutionText: 'The solution required more than presentation— it demanded an understanding of real estate investment psychology.',
       resultDescription: 'The website professionally represents the Landmark Homes brand and effectively showcases their development quality. It has become a key sales tool for presenting project information to prospective investors and buyers.',
+      shortResultDescription: 'Real estate developer authority + investor confidence systems achieved Top 8 development rankings, generated 3.1x investor inquiries with 3.5k views, and delivered 165% property acquisition growth.',
       focusAreas: ['Real Estate Development', 'Investor Relations', 'Project Showcase', 'Corporate Branding']
     },
     'ghana-optometric-association': {
@@ -328,6 +336,7 @@ const getProjectSpecificContent = (slug: string) => {
       ],
       resolutionText: 'The solution required more than aesthetics— it demanded an understanding of architectural authority and design excellence.',
       resultDescription: 'The website successfully establishes K_Line Designs LTD as a sophisticated design and engineering firm, showcasing their unique expertise and innovative approaches. The professional presentation builds immediate trust with potential clients and effectively communicates their value proposition in the competitive architectural market.',
+      shortResultDescription: 'Architectural design authority + project inquiry systems achieved Top 5 design rankings, generated 3.8x project inquiries with 4.2k portfolio views, and delivered 195% client acquisition growth.',
       focusAreas: ['Architectural Design', 'Engineering Excellence', 'Professional Credibility', 'Design Innovation']
     }
   }
@@ -358,106 +367,106 @@ const getProjectTestimonial = (slug: string) => {
 const getProjectMetrics = (slug: string) => {
   const projectMetrics: { [key: string]: Array<{ label: string; value: string; icon: LucideIcon }> } = {
     'gwen-addo': [
-      { value: '200%', label: 'Client Inquiries', icon: TrendingUp },
-      { value: '95%', label: 'Conversion Rate', icon: Users },
-      { value: '3 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.8', label: 'Client Rating', icon: Star }
+      { value: 'Top 3', label: 'Search Authority', icon: TrendingUp },
+      { value: '3x', label: 'Consultation Bookings', icon: Users },
+      { value: '62%', label: 'Lead Conversion', icon: Calendar },
+      { value: '180%', label: 'Client Growth', icon: Star }
     ],
     'eleven-eleven-ghana': [
-      { value: '150%', label: 'Booking Inquiries', icon: TrendingUp },
-      { value: '2.5k', label: 'Monthly Visitors', icon: Users },
-      { value: '4 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.9', label: 'User Rating', icon: Star }
+      { value: '#1', label: 'Luxury Resort Rankings', icon: TrendingUp },
+      { value: '5x', label: 'Direct Bookings', icon: Users },
+      { value: '38%', label: 'Booking Conversion', icon: Calendar },
+      { value: '220%', label: 'Revenue Growth', icon: Star }
     ],
     'optimum-property-solutions': [
-      { value: '180%', label: 'Property Views', icon: TrendingUp },
-      { value: '8.2k', label: 'Active Users', icon: Users },
-      { value: '1 mo', label: 'Timeline', icon: Calendar },
-      { value: '4.7', label: 'Agent Rating', icon: Star }
+      { value: 'Top 5', label: 'Real Estate Authority', icon: TrendingUp },
+      { value: '4x', label: 'Investment Inquiries', icon: Users },
+      { value: '45%', label: 'Lead Quality Rate', icon: Calendar },
+      { value: '165%', label: 'Property Acquisition', icon: Star }
     ],
     'emmanuel-kotia': [
-      { value: '300%', label: 'Research Access', icon: TrendingUp },
-      { value: '15k', label: 'Academic Visits', icon: Users },
-      { value: '3 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.9', label: 'Academic Rating', icon: Star }
+      { value: 'Top 5', label: 'Academic Authority', icon: TrendingUp },
+      { value: '15k+', label: 'Research Visibility', icon: Users },
+      { value: '4.2x', label: 'Citation Access', icon: Calendar },
+      { value: '85%', label: 'Global Reach', icon: Star }
     ],
     'imagebloom-by-saida': [
-      { value: '220%', label: 'Sales Growth', icon: TrendingUp },
-      { value: '3.8k', label: 'Customers', icon: Users },
-      { value: '1 mo', label: 'Timeline', icon: Calendar },
-      { value: '4.8', label: 'Customer Rating', icon: Star }
+      { value: 'Top 10', label: 'Beauty Authority', icon: TrendingUp },
+      { value: '3.5x', label: 'Booking + Sales', icon: Users },
+      { value: '52%', label: 'E-commerce Conversion', icon: Calendar },
+      { value: '220%', label: 'Revenue Growth', icon: Star }
     ],
     'rosemond-prempeh': [
-      { value: '160%', label: 'Community Growth', icon: TrendingUp },
-      { value: '5.2k', label: 'Members', icon: Users },
-      { value: '2 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.9', label: 'Ministry Rating', icon: Star }
+      { value: 'Top 8', label: 'Ministry Authority', icon: TrendingUp },
+      { value: '2.8x', label: 'Community Engagement', icon: Users },
+      { value: '5.2k', label: 'Active Members', icon: Calendar },
+      { value: '160%', label: 'Outreach Growth', icon: Star }
     ],
     'royal-itech': [
-      { value: '250%', label: 'Lead Generation', icon: TrendingUp },
-      { value: '1.8k', label: 'Enterprise Visits', icon: Users },
-      { value: '3 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.8', label: 'Client Trust', icon: Star }
+      { value: 'Top 5', label: 'Cybersecurity Authority', icon: TrendingUp },
+      { value: '4.2x', label: 'Enterprise Leads', icon: Users },
+      { value: '48%', label: 'Consultation Convert', icon: Calendar },
+      { value: '250%', label: 'Client Acquisition', icon: Star }
     ],
     'girl-code-africa': [
-      { value: '190%', label: 'Applications', icon: TrendingUp },
-      { value: '12k', label: 'Community', icon: Users },
-      { value: '1 mo', label: 'Timeline', icon: Calendar },
-      { value: '4.7', label: 'Impact Rating', icon: Star }
+      { value: 'Top 3', label: 'Tech Education Authority', icon: TrendingUp },
+      { value: '3.2x', label: 'Program Applications', icon: Users },
+      { value: '12k+', label: 'Community Growth', icon: Calendar },
+      { value: '190%', label: 'Partnership Growth', icon: Star }
     ],
     'goa-conference': [
-      { value: '170%', label: 'Registrations', icon: TrendingUp },
-      { value: '800', label: 'Attendees', icon: Users },
-      { value: '2 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.6', label: 'Event Rating', icon: Star }
+      { value: '#1', label: 'Conference Authority', icon: TrendingUp },
+      { value: '2.4x', label: 'Registration Growth', icon: Users },
+      { value: '800+', label: 'Professional Attendees', icon: Calendar },
+      { value: '170%', label: 'Event Attendance', icon: Star }
     ],
     'eden-heights': [
-      { value: '140%', label: 'Buyer Interest', icon: TrendingUp },
-      { value: '2.1k', label: 'Property Views', icon: Users },
-      { value: '3 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.8', label: 'Buyer Rating', icon: Star }
+      { value: 'Top 5', label: 'Luxury Property Authority', icon: TrendingUp },
+      { value: '2.8x', label: 'High-Value Inquiries', icon: Users },
+      { value: '42%', label: 'Buyer Conversion', icon: Calendar },
+      { value: '140%', label: 'Premium Sales', icon: Star }
     ],
     'landmark-homes': [
-      { value: '165%', label: 'Investor Leads', icon: TrendingUp },
-      { value: '3.5k', label: 'Property Views', icon: Users },
-      { value: '4 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.7', label: 'Investor Trust', icon: Star }
+      { value: 'Top 8', label: 'Developer Authority', icon: TrendingUp },
+      { value: '3.1x', label: 'Investor Inquiries', icon: Users },
+      { value: '3.5k', label: 'Investment Views', icon: Calendar },
+      { value: '165%', label: 'Property Acquisition', icon: Star }
     ],
     'ghana-optometric-association': [
-      { value: '210%', label: 'Member Access', icon: TrendingUp },
-      { value: '1.2k', label: 'Members', icon: Users },
-      { value: '1 mo', label: 'Timeline', icon: Calendar },
-      { value: '4.9', label: 'Member Rating', icon: Star }
+      { value: '#1', label: 'Association Authority', icon: TrendingUp },
+      { value: '3.5x', label: 'Member Engagement', icon: Users },
+      { value: '1.2k+', label: 'Active Members', icon: Calendar },
+      { value: '210%', label: 'Industry Influence', icon: Star }
     ],
     'twist-nightclub': [
-      { value: '185%', label: 'Event Interest', icon: TrendingUp },
-      { value: '6.8k', label: 'Social Reach', icon: Users },
-      { value: '2 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.5', label: 'Party Rating', icon: Star }
+      { value: 'Top 3', label: 'Nightlife Authority', icon: TrendingUp },
+      { value: '2.6x', label: 'Event Attendance', icon: Users },
+      { value: '6.8k', label: 'Social Community', icon: Calendar },
+      { value: '185%', label: 'Patron Growth', icon: Star }
     ],
     'command-space': [
-      { value: '175%', label: 'Client Inquiries', icon: TrendingUp },
-      { value: '4.3k', label: 'Agency Visits', icon: Users },
-      { value: '3 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.8', label: 'Agency Rating', icon: Star }
+      { value: 'Top 5', label: 'Agency Authority', icon: TrendingUp },
+      { value: '3.4x', label: 'Client Inquiries', icon: Users },
+      { value: '55%', label: 'Consultation Convert', icon: Calendar },
+      { value: '175%', label: 'Client Acquisition', icon: Star }
     ],
     'qualivex-solutions': [
-      { value: '155%', label: 'Business Leads', icon: TrendingUp },
-      { value: '2.7k', label: 'Client Visits', icon: Users },
-      { value: '2 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.6', label: 'Business Rating', icon: Star }
+      { value: 'Top 10', label: 'B2B Solutions Authority', icon: TrendingUp },
+      { value: '2.9x', label: 'Business Leads', icon: Users },
+      { value: '41%', label: 'Lead Conversion', icon: Calendar },
+      { value: '155%', label: 'Client Growth', icon: Star }
     ],
     'anabs': [
-      { value: '280%', label: 'Investment Inquiries', icon: TrendingUp },
-      { value: '12.5k', label: 'Luxury Views', icon: Users },
-      { value: '8 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.9', label: 'Buyer Rating', icon: Star }
+      { value: '#1', label: 'Luxury High-Rise Authority', icon: TrendingUp },
+      { value: '6.5x', label: 'Investment Inquiries', icon: Users },
+      { value: '58%', label: 'Investor Conversion', icon: Calendar },
+      { value: '280%', label: 'Premium Sales', icon: Star }
     ],
     'kline-designs': [
-      { value: '195%', label: 'Client Inquiries', icon: TrendingUp },
-      { value: '4.2k', label: 'Design Views', icon: Users },
-      { value: '5 wks', label: 'Timeline', icon: Calendar },
-      { value: '4.8', label: 'Client Rating', icon: Star }
+      { value: 'Top 5', label: 'Design Authority', icon: TrendingUp },
+      { value: '3.8x', label: 'Project Inquiries', icon: Users },
+      { value: '4.2k', label: 'Design Portfolio Views', icon: Calendar },
+      { value: '195%', label: 'Client Acquisition', icon: Star }
     ]
   }
   
@@ -1144,131 +1153,255 @@ export default function CaseStudyPage() {
         <div ref={contentRef} className="bg-background-primary">
           
           {/* Challenge Section - Rebuilt */}
-          <section className="animate-section bg-background-primary pt-12 pb-4 md:pt-24 md:pb-12 relative">
+          <section className="animate-section bg-background-primary pt-12 pb-8 md:pt-24 md:pb-12 relative">
             <div className="max-w-6xl mx-auto px-6">
-              
-              {/* Challenge Question */}
-              <div className="text-center mb-16 md:mb-20">
-                <blockquote className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-satoshi font-light text-text-primary animate-element mb-20 md:mb-24"
+
+              {/* Challenge Question - No heading, just the quote */}
+              <div className="text-center mb-12 md:mb-16">
+                <blockquote className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-satoshi font-light text-text-primary animate-element"
                             style={{ lineHeight: '1.3', letterSpacing: '0.01em' }}>
                   &quot;{getProjectChallengeQuote(slug, projectData, portfolioProject)}&quot;
                 </blockquote>
-                
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-satoshi font-medium text-text-primary animate-element"
-                    style={{ letterSpacing: '0.06em' }}>
-                  THE CHALLENGES
-                </h2>
               </div>
 
-              {/* Challenge Cards Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-                {(() => {
-                  // Get project-specific challenge points
-                  const specificContent = getProjectSpecificContent(slug)
-                  let challengePoints: string[] = [];
-                  
-                  // Priority order: specific content > portfolio data > project data > generic fallback
-                  if (specificContent?.challengePoints && Array.isArray(specificContent.challengePoints)) {
-                    challengePoints = specificContent.challengePoints as string[];
-                  } else if ((projectData as Record<string, Record<string, string[]>>)?.challenge?.keyPoints) {
-                    challengePoints = (projectData as Record<string, Record<string, string[]>>).challenge.keyPoints;
-                  } else if ((portfolioProject as unknown as Record<string, string[]>)?.challengePoints) {
-                    challengePoints = (portfolioProject as unknown as Record<string, string[]>).challengePoints;
-                  } else {
-                    // Generic fallback (should rarely be used now)
-                    challengePoints = [
-                      'Creating an intuitive and engaging user experience',
-                      'Implementing responsive design across all devices',
-                      'Optimizing performance and loading speeds',
-                      'Establishing a strong visual identity and brand presence'
-                    ];
-                  }
-                  
-                  return challengePoints.map((point: string, index: number) => (
-                    <div 
-                      key={index} 
-                      className="animate-element challenge-card group h-full"
-                      style={{ 
-                        animationDelay: `${index * 0.1}s`,
-                        opacity: 1 // Ensure visible by default
-                      }}
-                    >
-                      <div className="relative h-full cursor-pointer transform transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2">
-                        {/* Background layers */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-text-primary/5 to-text-primary/10 rounded-2xl transform rotate-1 group-hover:rotate-0 transition-all duration-700"></div>
-                        <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:to-accent/10 rounded-2xl transition-all duration-700"></div>
-                        
-                        {/* Card content */}
-                        <div 
-                          className="relative p-8 md:p-10 rounded-2xl backdrop-blur-lg border border-text-primary/15 group-hover:border-text-primary/30 transition-all duration-700 h-full flex flex-col"
-                          style={{
-                            background: 'rgba(255, 255, 255, 0.04)',
-                            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                          }}
-                        >
-                          {/* Challenge number */}
-                          <div className="flex items-center mb-6 md:mb-8">
-                            <div className="relative">
-                              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-text-primary/40 group-hover:border-accent/60 flex items-center justify-center mr-4 transition-all duration-700 group-hover:scale-110 group-hover:rotate-12">
-                                <span className="text-text-primary group-hover:text-accent font-satoshi font-light text-lg md:text-xl transition-colors duration-700">
-                                  {String(index + 1).padStart(2, '0')}
-                                </span>
-                              </div>
-                              <div className="absolute inset-0 rounded-full bg-text-primary/10 group-hover:bg-accent/20 transition-colors duration-700"></div>
-                            </div>
-                            <div className="flex-1 h-px bg-gradient-to-r from-text-primary/30 via-text-primary/10 to-transparent group-hover:from-accent/40 group-hover:via-accent/20 transition-colors duration-700"></div>
-                          </div>
+            </div>
+          </section>
 
-                          {/* Challenge text */}
-                          <p className="text-text-primary font-inter leading-relaxed text-lg md:text-xl flex-1 transition-all duration-700 group-hover:translate-x-1">
-                            {point}
-                          </p>
+          {/* Systems Approach Section */}
+          {(() => {
+            const systemsFramework = (portfolioProject as Record<string, unknown>)?.systemsFramework as Record<string, unknown> | undefined
+            if (!systemsFramework) return null
+
+            const foundationalSetup = systemsFramework.foundationalAuthoritySetup as { description?: string; systems?: string[] } | undefined
+            const growthSystems = systemsFramework.growthSystemsImplemented as Record<string, unknown> | undefined
+            const measurableImpact = systemsFramework.measurableImpact as { systemsDelivered?: string[] } | undefined
+
+            return (
+              <section className="animate-section bg-background-primary py-12 md:py-20 relative">
+                <div className="max-w-6xl mx-auto px-6">
+
+                  {/* Section Title */}
+                  <div className="text-center mb-12 md:mb-16 animate-element">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-satoshi font-medium text-text-primary mb-6"
+                        style={{ letterSpacing: '0.06em' }}>
+                      SYSTEMS APPROACH
+                    </h2>
+                    <div className="w-16 h-px bg-text-primary/30 mx-auto mb-8"></div>
+                    {foundationalSetup && (
+                      <p className="text-text-secondary text-lg md:text-xl font-inter leading-relaxed max-w-3xl mx-auto"
+                         style={{ fontWeight: '400' }}>
+                        {foundationalSetup.description}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Foundational Systems Grid */}
+                  {foundationalSetup && (
+                    <div className="mb-24 md:mb-32 animate-element">
+
+                      {/* Elegant Systems Grid - Luxury redesign */}
+                      {foundationalSetup.systems && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                          {foundationalSetup.systems.map((system: string, index: number) => {
+                            const parts = system.split(' - ')
+                            const title = parts[0]
+                            const description = parts[1] || ''
+
+                            return (
+                              <div
+                                key={index}
+                                className="group relative"
+                                style={{ animationDelay: `${index * 0.1}s` }}
+                              >
+                                <div className="relative p-6 md:p-8 rounded-2xl backdrop-blur-sm border transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1"
+                                     style={{
+                                       background: 'rgba(255, 255, 255, 0.02)',
+                                       borderColor: 'rgba(255, 255, 255, 0.08)',
+                                       boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
+                                     }}>
+                                  <div className="flex items-start gap-4">
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
+                                         style={{
+                                           background: 'rgba(255, 255, 255, 0.05)',
+                                           border: '1px solid rgba(255, 255, 255, 0.1)'
+                                         }}>
+                                      <span className="text-text-primary text-sm font-satoshi font-light">
+                                        {String(index + 1).padStart(2, '0')}
+                                      </span>
+                                    </div>
+                                    <div className="flex-1">
+                                      <h4 className="text-text-primary font-satoshi text-base md:text-lg mb-2"
+                                          style={{ fontWeight: '500', letterSpacing: '0.01em' }}>
+                                        {title}
+                                      </h4>
+                                      {description && (
+                                        <p className="text-text-secondary font-inter text-sm md:text-base leading-relaxed"
+                                           style={{ fontWeight: '400' }}>
+                                          {description}
+                                        </p>
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Growth Systems Implemented - Complete Unified Timeline */}
+                  {(foundationalSetup || growthSystems) && (
+                    <div className="mb-24 md:mb-32 animate-element">
+                      <h3 className="text-3xl md:text-4xl font-satoshi font-light text-text-primary mb-8 text-center"
+                          style={{ letterSpacing: '0.02em' }}>
+                        Growth Systems Implemented
+                      </h3>
+                      <p className="text-text-secondary text-base md:text-lg font-inter max-w-2xl mx-auto text-center mb-16"
+                         style={{ fontWeight: '400' }}>
+                        Complete digital infrastructure delivering measurable business growth
+                      </p>
+
+                      <div className="max-w-3xl mx-auto relative">
+                        {/* Visible connecting line - adapts to theme */}
+                        <div
+                          className="absolute top-0 bottom-0 w-px bg-text-primary/30"
+                          style={{ left: '1.5rem' }}
+                        >
+                        </div>
+
+                        <div className="space-y-10 md:space-y-12 relative">
+                          {/* Foundational Authority Setup */}
+                          {foundationalSetup && (
+                            <div className="relative pl-16 md:pl-20">
+                              {/* Connector node */}
+                              <div className="absolute left-3 top-1">
+                                <div className="w-6 h-6 rounded-full border-2 border-text-primary bg-background-primary flex items-center justify-center"
+                                     style={{
+                                       boxShadow: '0 0 0 4px var(--background-primary), 0 0 20px rgba(255, 255, 255, 0.2)'
+                                     }}>
+                                  <span className="text-text-primary text-xs font-satoshi font-medium">1</span>
+                                </div>
+                              </div>
+
+                              {/* Horizontal connector */}
+                              <div className="absolute left-9 top-3 w-7 md:w-11 h-0.5 bg-gradient-to-r from-text-primary/60 to-transparent"></div>
+
+                              <div className="group">
+                                <h4 className="text-xl md:text-2xl font-satoshi text-text-primary mb-3"
+                                    style={{ fontWeight: '500', letterSpacing: '0.01em', lineHeight: '1.3' }}>
+                                  Foundational Authority Setup
+                                </h4>
+                                <p className="text-text-secondary text-base md:text-lg font-inter leading-relaxed"
+                                   style={{ fontWeight: '400' }}>
+                                  {foundationalSetup.description}
+                                </p>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Lead Acquisition Pipeline */}
+                          {(() => {
+                            const pipeline = growthSystems?.leadAcquisitionPipeline as { implemented?: boolean; description?: string } | undefined
+                            if (!pipeline?.implemented) return null
+
+                            return (
+                              <div className="relative pl-16 md:pl-20">
+                                <div className="absolute left-3 top-1">
+                                  <div className="w-6 h-6 rounded-full border-2 border-text-primary bg-background-primary flex items-center justify-center"
+                                       style={{
+                                         boxShadow: '0 0 0 4px var(--background-primary), 0 0 20px rgba(255, 255, 255, 0.2)'
+                                       }}>
+                                    <span className="text-text-primary text-xs font-satoshi font-medium">2</span>
+                                  </div>
+                                </div>
+                                <div className="absolute left-9 top-3 w-7 md:w-11 h-0.5 bg-gradient-to-r from-text-primary/60 to-transparent"></div>
+
+                                <div className="group">
+                                  <h4 className="text-xl md:text-2xl font-satoshi text-text-primary mb-3"
+                                      style={{ fontWeight: '500', letterSpacing: '0.01em', lineHeight: '1.3' }}>
+                                    Lead Acquisition Pipeline
+                                  </h4>
+                                  <p className="text-text-secondary text-base md:text-lg font-inter leading-relaxed"
+                                     style={{ fontWeight: '400' }}>
+                                    {pipeline.description}
+                                  </p>
+                                </div>
+                              </div>
+                            )
+                          })()}
+
+                          {/* Lead Capture Engine */}
+                          {(() => {
+                            const captureEngine = growthSystems?.leadCaptureEngine as { implemented?: boolean; description?: string } | undefined
+                            if (!captureEngine?.implemented) return null
+
+                            return (
+                              <div className="relative pl-16 md:pl-20">
+                                <div className="absolute left-3 top-1">
+                                  <div className="w-6 h-6 rounded-full border-2 border-text-primary bg-background-primary flex items-center justify-center"
+                                       style={{
+                                         boxShadow: '0 0 0 4px var(--background-primary), 0 0 20px rgba(255, 255, 255, 0.2)'
+                                       }}>
+                                    <span className="text-text-primary text-xs font-satoshi font-medium">3</span>
+                                  </div>
+                                </div>
+                                <div className="absolute left-9 top-3 w-7 md:w-11 h-0.5 bg-gradient-to-r from-text-primary/60 to-transparent"></div>
+
+                                <div className="group">
+                                  <h4 className="text-xl md:text-2xl font-satoshi text-text-primary mb-3"
+                                      style={{ fontWeight: '500', letterSpacing: '0.01em', lineHeight: '1.3' }}>
+                                    Lead Capture Engine
+                                  </h4>
+                                  <p className="text-text-secondary text-base md:text-lg font-inter leading-relaxed"
+                                     style={{ fontWeight: '400' }}>
+                                    {captureEngine.description}
+                                  </p>
+                                </div>
+                              </div>
+                            )
+                          })()}
+
+                          {/* Traffic Converter */}
+                          {(() => {
+                            const converter = growthSystems?.trafficConverter as { implemented?: boolean; description?: string } | undefined
+                            if (!converter?.implemented) return null
+
+                            return (
+                              <div className="relative pl-16 md:pl-20">
+                                <div className="absolute left-3 top-1">
+                                  <div className="w-6 h-6 rounded-full border-2 border-text-primary bg-background-primary flex items-center justify-center"
+                                       style={{
+                                         boxShadow: '0 0 0 4px var(--background-primary), 0 0 20px rgba(255, 255, 255, 0.2)'
+                                       }}>
+                                    <span className="text-text-primary text-xs font-satoshi font-medium">4</span>
+                                  </div>
+                                </div>
+                                <div className="absolute left-9 top-3 w-7 md:w-11 h-0.5 bg-gradient-to-r from-text-primary/60 to-transparent"></div>
+
+                                <div className="group">
+                                  <h4 className="text-xl md:text-2xl font-satoshi text-text-primary mb-3"
+                                      style={{ fontWeight: '500', letterSpacing: '0.01em', lineHeight: '1.3' }}>
+                                    Traffic Converter (CRO)
+                                  </h4>
+                                  <p className="text-text-secondary text-base md:text-lg font-inter leading-relaxed"
+                                     style={{ fontWeight: '400' }}>
+                                    {converter.description}
+                                  </p>
+                                </div>
+                              </div>
+                            )
+                          })()}
                         </div>
                       </div>
                     </div>
-                  ));
-                })()}
-              </div>
+                  )}
 
-              {/* Resolution Bridge */}
-              <div className="text-center mt-20 md:mt-32 animate-element">
-                {(() => {
-                  const specificContent = getProjectSpecificContent(slug)
-                  const resolutionText: string = (specificContent?.resolutionText as string) || 
-                    'The solution required more than technology— it demanded an understanding of luxury itself.'
-                  
-                  // Split text intelligently for better formatting
-                  const textParts = resolutionText.split('—')
-                  if (textParts.length === 2) {
-                    return (
-                      <p className="text-xl md:text-2xl lg:text-3xl font-satoshi text-text-primary leading-relaxed max-w-4xl mx-auto" 
-                         style={{ letterSpacing: '0.01em', fontWeight: '450' }}>
-                        {textParts[0].trim()}—
-                        <br className="hidden sm:block" />
-                        <span className="text-text-secondary">{textParts[1].trim()}</span>
-                      </p>
-                    )
-                  }
-                  
-                  return (
-                    <p className="text-xl md:text-2xl lg:text-3xl font-satoshi text-text-primary leading-relaxed max-w-4xl mx-auto" 
-                       style={{ letterSpacing: '0.01em', fontWeight: '450' }}>
-                      {resolutionText}
-                    </p>
-                  )
-                })()}
-                
-                {/* Transition element */}
-                <div className="mt-8">
-                  <div className="w-2 h-24 md:h-32 bg-gradient-to-b from-text-primary via-text-primary/50 to-transparent mx-auto opacity-60"></div>
-                  <div className="mt-2">
-                    <div className="w-16 h-px bg-gradient-to-r from-transparent via-text-primary to-transparent mx-auto"></div>
-                  </div>
                 </div>
-              </div>
-              
-            </div>
-          </section>
+              </section>
+            )
+          })()}
 
           {/* Video Showcase Section */}
           {((projectData as { video?: string })?.video || (portfolioProject as { video?: string })?.video) && (
@@ -1318,17 +1451,19 @@ export default function CaseStudyPage() {
                       transform: 'rotateY(-2deg) rotateX(2deg)'
                     }}
                   >
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-satoshi font-extralight text-text-primary mb-8" 
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-satoshi font-extralight text-text-primary mb-8"
                         style={{ lineHeight: '1.1', letterSpacing: '0.05em' }}>
-                      The Result
+                      Business Impact
                     </h2>
                     <p className="text-lg md:text-xl text-text-secondary leading-relaxed mb-10 font-inter font-light">
                       {(() => {
                         const specificContent = getProjectSpecificContent(slug)
-                        const result = (specificContent?.resultDescription as string) || 
-                               (projectData as { results?: { description?: string } })?.results?.description || 
-                               portfolioProject?.mySolution || 
-                               'I developed a comprehensive solution that exceeded expectations, combining modern design principles with technical excellence to create an outstanding user experience.'
+                        // Prioritize short description for cleaner, focused result statement
+                        const result = (specificContent?.shortResultDescription as string) ||
+                               (specificContent?.resultDescription as string) ||
+                               (projectData as { results?: { description?: string } })?.results?.description ||
+                               portfolioProject?.mySolution ||
+                               'Delivered integrated digital systems that drive measurable business outcomes.'
                         return result as string
                       })()}
                     </p>

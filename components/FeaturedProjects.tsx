@@ -10,8 +10,8 @@ const featuredProjects = [
   {
     id: 'anabs',
     title: 'Anabs',
-    category: 'Luxury Real Estate Website',
-    description: 'Premium high-rise residential development showcase',
+    category: 'Premium Brand Authority',
+    description: 'Luxury high-rise development commanding premium positioning through sophisticated digital storytelling',
     image: '/images/anabs.png',
     year: '2025',
     position: 'left'
@@ -19,8 +19,8 @@ const featuredProjects = [
   {
     id: 'gwen-addo',
     title: 'Gwen Addo',
-    category: 'Web Development',
-    description: 'Personal brand and portfolio website',
+    category: 'Premium Lead Generation',
+    description: 'Strategic consultation platform converting high-value prospects with integrated booking systems',
     image: '/images/gwen-addo.png',
     year: '2025',
     position: 'right'
@@ -28,8 +28,8 @@ const featuredProjects = [
   {
     id: 'girl-code-africa',
     title: 'Girl Code Africa',
-    category: 'Website Design & Development',
-    description: 'Non-profit tech education platform',
+    category: 'Premium Brand Authority',
+    description: 'Multi-audience platform driving program enrollments, partnership acquisitions, and donor engagement for STEM education non-profit',
     image: '/images/girlcode.png',
     year: '2023',
     position: 'left'
@@ -41,16 +41,25 @@ export default function FeaturedProjects() {
     <section className="bg-black pt-16 pb-16 sm:pt-20 sm:pb-20 md:pt-32 md:pb-24 lg:pt-40 lg:pb-16">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         {/* Section Header */}
-        <div className="mb-16 sm:mb-20 md:mb-24 lg:mb-28 text-center">
+        <div className="mb-16 sm:mb-20 md:mb-24 lg:mb-28 text-center max-w-5xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-white font-light text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight"
+            className="text-white font-light text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight mb-6"
           >
-            Featured Projects
+            Strategic Challenges Solved. Measurable Results Delivered.
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-white/70 text-base sm:text-lg md:text-xl font-light max-w-3xl mx-auto"
+          >
+            From luxury real estate commanding 340% traffic growth to lead generation systems achieving 28% conversion increases—I architect complete growth ecosystems for premium brands who refuse to compete on price.
+          </motion.p>
         </div>
 
         {/* Projects Stack */}
@@ -181,7 +190,7 @@ export default function FeaturedProjects() {
           className="mt-16 sm:mt-40 md:mt-44 lg:mt-48 text-center"
         >
           <TransparentCTA href="/portfolio">
-            View All Projects
+            Explore Growth Outcomes
           </TransparentCTA>
         </motion.div>
       </div>

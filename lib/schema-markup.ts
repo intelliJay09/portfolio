@@ -181,10 +181,10 @@ export function generatePersonSchema(): PersonSchema {
       "https://linkedin.com/in/jacqueline-frempomah-amoako",
       "https://github.com/jacquelineamoako"
     ],
-    jobTitle: "Luxury Web Developer & Creative Technologist",
+    jobTitle: "Digital Growth Strategist & Systems Architect",
     worksFor: {
       "@type": "Organization",
-      name: "Freelance Creative Technology Studio",
+      name: "Strategic Growth Consulting",
       url: "https://jacquelineamoako.com"
     },
     address: {
@@ -193,18 +193,18 @@ export function generatePersonSchema(): PersonSchema {
       addressCountry: "Ghana"
     },
     knowsAbout: [
-      "Luxury Web Development",
-      "Premium Brand Design",
-      "E-commerce Solutions",
-      "SEO Optimization",
-      "Frontend Development",
-      "Backend Architecture",
-      "Creative Technology",
-      "React Development",
-      "Next.js Applications",
-      "Database Optimization",
-      "User Experience Design",
-      "Brand Identity Design"
+      "Digital Growth Strategy",
+      "Revenue Systems Architecture",
+      "SEO Authority Building",
+      "Conversion Rate Optimization",
+      "Premium Brand Positioning",
+      "Lead Generation Systems",
+      "Growth Analytics Strategy",
+      "Market Authority Development",
+      "Traffic Acquisition Systems",
+      "Business Growth Consulting",
+      "Strategic Partnerships",
+      "Measurable Business Outcomes"
     ],
     hasCredential: [
       {
@@ -238,32 +238,32 @@ export function generateProfessionalServiceSchema(): ProfessionalServiceSchema {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": "https://jacquelineamoako.com/#professional-service",
-    name: "Luxury Web Development & Creative Technology Services",
-    description: "Premium web development, e-commerce solutions, and creative technology services for luxury brands and high-end businesses. Specializing in custom websites that drive growth and conversions.",
+    name: "Strategic Growth & Business Development Services",
+    description: "Digital growth strategist architecting complete revenue-generating ecosystems for premium brands. From 340% traffic growth to 28% conversion increases—delivering measurable business outcomes that scale from $100K to $10M.",
     url: "https://jacquelineamoako.com",
     image: "https://jacquelineamoako.com/images/jackie-studio.png",
-    priceRange: "$2000-$50000",
+    priceRange: "$5000-$50000",
     areaServed: {
       "@type": "Place",
-      name: "Ghana, West Africa, International"
+      name: "Ghana, West Africa, Global"
     },
     serviceType: [
-      "Custom Web Development",
-      "Luxury E-commerce Solutions", 
-      "SEO & Performance Optimization",
-      "Brand Identity Design",
-      "Creative Technology Consulting",
-      "Frontend Development",
-      "Backend Architecture",
-      "Database Optimization",
-      "Website Maintenance"
+      "Strategic Growth Consulting",
+      "SEO Authority Building",
+      "Conversion Rate Optimization",
+      "Premium Lead Generation Systems",
+      "Revenue-Optimized Commerce",
+      "Market Authority Development",
+      "Brand Positioning Strategy",
+      "Growth Analytics & Measurement",
+      "Traffic Acquisition Systems"
     ],
     provider: {
       "@type": "Person",
       name: "Jacqueline Frempomah Amoako",
       url: "https://jacquelineamoako.com",
       image: "https://jacquelineamoako.com/images/jackie-studio.png",
-      jobTitle: "Luxury Web Developer & Creative Technologist",
+      jobTitle: "Digital Growth Strategist & Systems Architect",
       email: "hello@jacquelineamoako.com",
       address: {
         "@type": "PostalAddress",
@@ -273,38 +273,38 @@ export function generateProfessionalServiceSchema(): ProfessionalServiceSchema {
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Creative Technology Services",
+      name: "Strategic Growth Services",
       itemListElement: [
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Custom Luxury Web Development",
-            description: "Bespoke websites crafted for premium brands with focus on performance, aesthetics, and conversion optimization."
-          }
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service", 
-            name: "High-End E-commerce Solutions",
-            description: "Sophisticated online stores with advanced features, secure payments, and optimized user experiences."
+            name: "Premium Brand Authority Building",
+            description: "Establish category leadership through SEO strategy, content positioning, and authority architecture. Achieving 340% average traffic growth for premium brands."
           }
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "SEO & Performance Optimization",
-            description: "Technical SEO, Core Web Vitals optimization, and performance tuning for maximum visibility and speed."
+            name: "Premium Lead Generation Systems",
+            description: "Convert high-value prospects with strategic acquisition funnels, conversion optimization, and buyer journey architecture. 28% average conversion increase."
           }
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Brand Identity & Visual Design",
-            description: "Complete brand identity systems including logos, marketing materials, and cohesive visual experiences."
+            name: "Revenue-Optimized Commerce",
+            description: "Maximize e-commerce revenue with conversion psychology, checkout optimization, and customer lifetime value systems. 42% average order value increase."
+          }
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Strategic Brand Positioning",
+            description: "Command premium pricing through sophisticated positioning, immersive storytelling, and exclusivity architecture for luxury brands."
           }
         }
       ]
@@ -317,8 +317,8 @@ export function generateWebsiteSchema(): WebsiteSchema {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": "https://jacquelineamoako.com/#website",
-    name: "Jacqueline Amoako - Luxury Web Developer & Creative Technologist",
-    description: "Premium web development and creative technology services. Specializing in luxury websites, e-commerce solutions, and brand experiences that drive growth for high-end businesses.",
+    name: "Jacqueline Amoako - Digital Growth Strategist & Systems Architect",
+    description: "Digital growth strategist architecting revenue-generating ecosystems for premium brands worldwide. Complete growth systems delivering measurable outcomes from $100K to $10M—340% traffic growth, 28% conversion increases, 42% revenue optimization.",
     url: "https://jacquelineamoako.com",
     image: "https://jacquelineamoako.com/images/jackie-studio.png",
     author: {
@@ -334,29 +334,29 @@ export function generateWebsiteSchema(): WebsiteSchema {
     inLanguage: "en-US",
     copyrightYear: "2025",
     genre: [
-      "Portfolio",
-      "Professional Services",
-      "Creative Technology",
-      "Web Development",
-      "Luxury Design"
+      "Strategic Growth Portfolio",
+      "Business Development Services",
+      "Digital Growth Strategy",
+      "Revenue Systems Architecture",
+      "Premium Brand Consulting"
     ],
     keywords: [
-      "luxury web development",
-      "premium website design",
-      "high-end e-commerce",
-      "Ghana web developer",
-      "luxury brand websites",
-      "custom web development",
-      "creative technology",
-      "React developer Ghana",
-      "Next.js developer",
-      "luxury digital experiences",
-      "premium brand design",
-      "high-performance websites"
+      "digital growth strategist",
+      "strategic growth systems",
+      "revenue-generating ecosystems",
+      "Ghana growth consultant",
+      "SEO authority building",
+      "conversion rate optimization",
+      "premium lead generation",
+      "business growth architect",
+      "market authority development",
+      "strategic brand positioning",
+      "measurable business outcomes",
+      "growth analytics strategy"
     ],
     audience: {
       "@type": "Audience",
-      audienceType: "Business executives, luxury brand owners, entrepreneurs, marketing directors"
+      audienceType: "CEOs, founders, luxury brand owners, marketing directors seeking measurable growth outcomes and strategic partnerships"
     },
     potentialAction: {
       "@type": "SearchAction",
@@ -378,8 +378,8 @@ export function generatePortfolioSchema(): PortfolioSchema {
   return {
     "@context": "https://schema.org",
     "@type": "Collection",
-    name: "Luxury Web Development Portfolio",
-    description: "A curated collection of premium websites, e-commerce platforms, and creative technology solutions for luxury brands and high-end businesses.",
+    name: "Strategic Growth Portfolio - Measurable Business Outcomes",
+    description: "Complete growth ecosystems delivering measurable results for premium brands—from 340% traffic growth to 28% conversion increases. SEO authority, lead generation, revenue optimization, and brand positioning case studies.",
     creator: {
       "@type": "Person",
       name: "Jacqueline Frempomah Amoako",

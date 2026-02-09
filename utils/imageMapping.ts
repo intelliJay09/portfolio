@@ -61,7 +61,7 @@ export function getProjectImage(slug: string, category: string): string {
     return websiteImages[slug] || '/images/hero%20image.png'
   } else if (category === 'Web Apps') {
     return webAppImages[slug] || '/images/lovel.ai.png'
-  } else if (category === 'Graphic Design') {
+  } else if (category === 'Brand Identity') {
     return graphicDesignImages[slug] || '/graphic-design/braids-and-beyond.jpg'
   }
   
@@ -147,7 +147,7 @@ export function hasProjectImage(slug: string, category: string): boolean {
     return slug in websiteImages
   } else if (category === 'Web Apps') {
     return slug in webAppImages
-  } else if (category === 'Graphic Design') {
+  } else if (category === 'Brand Identity') {
     return slug in graphicDesignImages
   }
   
@@ -161,7 +161,7 @@ export function getFallbackImage(category: string): string {
   const fallbacks = {
     'Websites': '/images/hero%20image.png',
     'Web Apps': '/images/lovel.ai.png',
-    'Graphic Design': '/graphic-design/braids-and-beyond.jpg'
+    'Brand Identity': '/graphic-design/braids-and-beyond.jpg'
   }
   return fallbacks[category as keyof typeof fallbacks] || fallbacks['Websites']
 }

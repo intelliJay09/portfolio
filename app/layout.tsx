@@ -13,6 +13,7 @@ import {
   generateWebsiteSchema,
   generateProfessionalServiceSchema
 } from '../lib/schema-markup'
+import { getHomepageOpenGraph, getDefaultTwitterCard, generateCompleteMetadata } from '../lib/open-graph'
 import '../globals.css'
 
 const inter = Inter({ 
@@ -64,47 +65,48 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Jacqueline Amoako - Luxury Web Developer & Creative Technologist',
-    template: '%s | Jacqueline Amoako - Luxury Web Developer'
+    default: 'Jacqueline Amoako - Digital Growth Strategist & Systems Architect',
+    template: '%s | Jacqueline Amoako'
   },
-  description: 'Premium web development and creative technology services for luxury brands. Specializing in high-end websites, sophisticated e-commerce solutions, and bespoke digital experiences that drive growth for discerning businesses.',
+  description: 'Digital Growth Strategist architecting revenue-generating ecosystems for premium brands worldwide. From 340% traffic growth to 28% conversion increases—complete growth systems that scale your vision from $100K to $10M.',
   keywords: [
-    // Primary luxury keywords
-    'luxury web developer',
-    'premium website design', 
-    'high-end web development',
-    'luxury brand websites',
-    'exclusive digital experiences',
-    'bespoke web solutions',
-    
-    // Service-specific luxury keywords
-    'luxury e-commerce development',
-    'premium online store design',
-    'high-end React developer',
-    'luxury Next.js applications',
-    'sophisticated web applications',
-    'premium brand digital presence',
-    
-    // Location + luxury
-    'luxury web developer Ghana',
-    'premium web design Accra',
-    'high-end developer West Africa',
-    'luxury website design Ghana',
-    
-    // Technical + luxury positioning
-    'luxury website performance optimization',
-    'premium SEO services',
-    'high-end database solutions',
-    'luxury creative technology',
-    'premium digital consulting',
-    'exclusive web development services'
+    // Primary strategic keywords
+    'digital growth strategist',
+    'strategic growth systems',
+    'revenue-generating ecosystems',
+    'premium brand growth',
+    'business growth architect',
+    'conversion optimization specialist',
+
+    // Service-specific strategic keywords
+    'SEO authority building',
+    'conversion rate optimization',
+    'premium lead generation systems',
+    'revenue-optimized commerce',
+    'market authority development',
+    'strategic brand positioning',
+
+    // Location + strategic positioning
+    'Ghana growth strategist',
+    'Accra digital strategist',
+    'West Africa business growth',
+    'Ghana strategic consulting',
+    'African market growth expert',
+
+    // Outcome-focused keywords
+    'measurable business outcomes',
+    'strategic business growth',
+    'revenue systems architect',
+    'growth analytics strategy',
+    'traffic acquisition systems',
+    'premium business consulting'
   ],
-  authors: [{ 
+  authors: [{
     name: 'Jacqueline Frempomah Amoako',
     url: 'https://jacquelineamoako.com'
   }],
   creator: 'Jacqueline Frempomah Amoako',
-  publisher: 'Jacqueline Amoako Creative Technology Studio',
+  publisher: 'Jacqueline Amoako - Strategic Growth Consulting',
   formatDetection: {
     email: false,
     address: false,
@@ -124,7 +126,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Jacqueline Amoako - Luxury Web Developer',
+    title: 'Jacqueline Amoako - Digital Growth Strategist',
   },
   verification: {
     google: 'your-google-verification-code',
@@ -142,15 +144,15 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://jacquelineamoako.com',
-    siteName: 'Jacqueline Amoako - Luxury Web Developer',
-    title: 'Luxury Web Developer & Creative Technologist | Premium Digital Experiences',
-    description: 'Transform your brand with sophisticated web development and creative technology. Specializing in luxury websites, high-end e-commerce, and bespoke digital solutions for discerning businesses worldwide.',
+    siteName: 'Jacqueline Amoako',
+    title: 'Jacqueline Amoako | Digital Growth Strategist & Systems Architect',
+    description: 'Digital Growth Strategist architecting revenue-generating ecosystems for premium brands worldwide. From 340% traffic growth to 28% conversion increases—complete growth systems that scale your vision from $100K to $10M.',
     images: [
       {
-        url: 'https://jacquelineamoako.com/images/jackie-studio.png',
-        width: 1200,
-        height: 630,
-        alt: 'Jacqueline Amoako - Luxury Web Developer & Creative Technologist',
+        url: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
+        width: 3000,
+        height: 1575,
+        alt: 'Jacqueline Amoako - Digital Growth Strategist building revenue ecosystems for luxury brands',
         type: 'image/png',
       }
     ],
@@ -165,16 +167,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Luxury Web Developer & Creative Technologist | Premium Digital Experiences',
-    description: 'Transform your brand with sophisticated web development and creative technology. Specializing in luxury websites and bespoke digital solutions.',
+    title: 'Jacqueline Amoako | Digital Growth Strategist',
+    description: 'Architecting revenue-generating ecosystems for premium brands worldwide. Complete growth systems from $100K to $10M—340% traffic growth, 28% conversion increases.',
     creator: '@jacquelineamoako',
     site: '@jacquelineamoako',
     images: [
       {
-        url: 'https://jacquelineamoako.com/images/jackie-studio.png',
-        alt: 'Jacqueline Amoako - Luxury Web Developer',
-        width: 1200,
-        height: 630,
+        url: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
+        alt: 'Digital Growth Strategist building complete growth ecosystems',
+        width: 3000,
+        height: 1575,
       }
     ],
   },
@@ -192,7 +194,7 @@ export const metadata: Metadata = {
     'max-snippet': -1,
   },
   category: 'Professional Services',
-  classification: 'Luxury Web Development, Creative Technology, Premium Digital Services',
+  classification: 'Strategic Growth Consulting, Digital Growth Strategy, Business Development',
 }
 
 export default async function RootLayout({

@@ -1,0 +1,465 @@
+{
+  "global": {
+    "name": "Jacqueline Amoako",
+    "email": "hello@jacquelineamoako.com",
+    "location": "Accra, Ghana",
+    "social": {
+      "linkedin": "https://linkedin.com/in/jacqueline-frempomah-amoako"
+    }
+  },
+  "preloader": {
+    "greetings": [
+      "Akwaaba",
+      "Hello",
+      "Bonjour",
+      "Hola",
+      "你好"
+    ]
+  },
+  "homepage": {
+    "hero": {
+      "headline": "Transforming Global Luxury Brands Into Digital Growth Engines",
+      "subheadline": "I'm Jacqueline Amoako—digital growth strategist, technical architect, and educator. I partner with discerning luxury brands worldwide to build revenue-generating digital ecosystems that command premium positioning and drive measurable business growth. Not just websites. Complete growth systems that scale your vision.",
+      "cta": "Explore Growth Outcomes"
+    },
+    "introduction": {
+      "title": "Strategic Thinking. Technical Mastery. Measurable Impact.",
+      "body": "Premium brands don't need more websites—they need growth partners who understand the intersection of luxury positioning and digital commerce. I architect complete digital ecosystems: conversion-optimized platforms, SEO strategies that establish market authority, technical foundations that scale from $100K to $10M ARR, and brand systems that command premium pricing. My approach combines strategic business thinking with technical excellence. I don't just execute your vision—I challenge it, refine it, and engineer it into scalable growth systems.",
+      "cta": "Discover Strategic Partnerships"
+    },
+    "services_overview": {
+      "title": "Strategic Growth Services",
+      "intro": "Complete digital transformation for luxury brands who refuse to compete on price.",
+      "services": [
+        {
+          "title": "Digital Growth Strategy & Architecture",
+          "description": "Strategic digital transformation for premium brands entering new markets or scaling revenue. Complete growth ecosystem design—conversion-optimized platforms, customer acquisition funnels, SEO authority strategies, and technical foundations that support 10x growth. Ideal for luxury brands targeting $500K+ annual revenue.",
+          "experience": "6+ Years",
+          "outcomes": "Average 340% organic traffic growth, 28% conversion rate increase"
+        },
+        {
+          "title": "Revenue-Optimized E-Commerce Systems",
+          "description": "E-commerce platforms engineered for premium conversion. Psychology-informed checkout flows, premium product storytelling, customer retention automation. Built for brands that refuse to compete on price. Average 42% increase in order value.",
+          "experience": "5+ Years",
+          "outcomes": "35% cart abandonment reduction, 28% higher conversions"
+        },
+        {
+          "title": "Market Authority Through Strategic SEO",
+          "description": "Organic growth systems that establish category leadership. Competitive authority gap analysis, content strategy that builds positioning, technical SEO foundations. Generate compounding traffic and qualified leads month over month.",
+          "experience": "4+ Years",
+          "outcomes": "340% average traffic increase in 12 months, 6x higher conversion vs paid"
+        },
+        {
+          "title": "Strategic Consulting & Fractional CDO",
+          "description": "Ongoing strategic partnership for premium brands committed to digital excellence. Monthly retainer where I serve as your fractional Chief Digital Officer—guiding strategy, reviewing execution, optimizing performance. Starting at $5,000/month.",
+          "experience": "6+ Years",
+          "outcomes": "Continuous optimization, priority implementation access"
+        },
+        {
+          "title": "Corporate Training & Team Enablement",
+          "description": "Empowering your team to own digital growth. Custom programs for marketing teams, technical training for developers, strategic workshops for executives. Built on experience training 150+ entrepreneurs through GIZ/GEA program.",
+          "experience": "3+ Years",
+          "outcomes": "150+ professionals trained, 95% success rate, 15 cohorts delivered"
+        }
+      ],
+      "cta": "Explore Strategic Services"
+    },
+    "featured_projects": {
+      "title": "Exceptional Results for Discerning Clients",
+      "intro": "I've had the privilege of partnering with visionary brands to transform their digital presence. Each project represents a masterful fusion of sophisticated design and cutting-edge technology.",
+      "cta": "View Complete Portfolio"
+    }
+  },
+  "about": {
+    "hero": {
+      "headline": "Strategic Partner. Technical Architect. Growth Catalyst.",
+      "body": "I transform how premium brands compete in digital markets. Over the past 6 years, I've partnered with 24+ discerning brands across luxury real estate, high-end consulting, beauty, technology, and hospitality to architect digital ecosystems that drive measurable revenue growth. My clients don't just get websites—they get strategic thinking, technical mastery, and a partner who challenges them to reach higher. I'm Jacqueline F. Amoako—based in Accra, Ghana, serving luxury brands globally."
+    },
+    "mission": {
+      "title": "Mission: Elevating Africa's Digital Economy Through Excellence",
+      "intro": "As the sole female web developer in the GIZ/GEA 'Digitalize for Jobs' program, I didn't just build websites—I taught 150+ women entrepreneurs across Ghana to own their digital futures.",
+      "points": [
+        "Delivered 15 intensive cohorts across Ho, Bono, and Eastern regions",
+        "Achieved 95% success rate in digital transformation outcomes",
+        "Empowered women-led businesses with websites, social media strategies, and digital literacy",
+        "Proved that technical excellence combined with strategic thinking transforms entire communities"
+      ],
+      "conclusion": "This experience shaped my philosophy: technology is only valuable when it drives real business outcomes. Every system I build, every strategy I architect, every mentorship I provide—it's all focused on measurable impact that compounds over time."
+    },
+    "skills": [
+      "Strategic Digital Thinking: Market positioning strategy, customer journey architecture, digital transformation roadmapping, revenue model optimization",
+      "Technical Mastery That Scales: Full-stack development (React, Next.js, Node.js), e-commerce platforms (WooCommerce, Shopify, custom), performance optimization (Core Web Vitals, SEO), API integrations and automation",
+      "Knowledge Transfer & Empowerment: Team training workshops, documentation and SOPs, strategic advisory, ongoing mentorship"
+    ]
+  },
+  "services": {
+    "headline": "Solutions Tailored to Your Success",
+    "intro": "I provide a range of web development services designed to deliver a significant return on your investment.",
+    "list": [
+      {
+        "title": "Custom Web Development",
+        "description": "I create bespoke websites from the ground up, ensuring a unique and interactive platform that caters to your specific business goals. My development process is collaborative, focusing on creating a visually appealing and user-friendly experience that engages your audience from the first click.",
+        "features": [
+          "A fully customized, responsive website.",
+          "Dynamic and captivating web interfaces built with HTML, CSS, and JavaScript.",
+          "A platform that is easy to manage and update."
+        ]
+      },
+      {
+        "title": "E-Commerce & Online Stores",
+        "description": "I specialize in building robust e-commerce platforms that not only showcase your products beautifully but are also optimized for conversions. From secure payment gateways to intuitive product management, I create online shopping experiences that your customers will love.",
+        "features": [
+          "A fully functional and secure online store.",
+          "An optimized user journey to reduce cart abandonment.",
+          "Easy-to-manage inventory and sales reporting."
+        ]
+      },
+      {
+        "title": "SEO & Digital Strategy",
+        "description": "A beautiful website is only effective if it can be found. I implement a strategic combination of tools and techniques to optimize your website for high search engine rankings, significantly enhancing your online visibility and driving organic search traffic.",
+        "features": [
+          "Improved rankings on Google and other search engines.",
+          "Increased organic traffic from your target audience.",
+          "A long-term strategy for sustained online growth."
+        ]
+      },
+      {
+        "title": "Website Maintenance & Support",
+        "description": "I offer comprehensive maintenance packages to ensure your website remains seamless, up-to-date, and secure. From daily backups to content updates, I handle the technical details so you can focus on running your business.",
+        "features": [
+          "Regular updates and security checks.",
+          "Content and image updates.",
+          "Peace of mind knowing your website is in expert hands."
+        ]
+      }
+    ]
+  },
+  "portfolio": {
+    "headline": "Digital Experiences & Brand Transformations",
+    "intro": "Complete creative technology solutions—from visual identity to web architecture. Each project represents a fusion of aesthetic excellence and technical innovation.",
+    "projects": [
+      {
+        "slug": "lovel-ai",
+        "title": "Lovel.ai",
+        "short_description": "AI-powered relationship insights and compatibility matching platform",
+        "category": "Web Apps"
+      },
+      {
+        "slug": "anabs",
+        "title": "Anabs",
+        "short_description": "Luxury high-rise residential development showcase",
+        "category": "Websites",
+        "strategicCategory": "Luxury High-Rise Development",
+        "strategicFilter": "Luxury Brand Positioning"
+      },
+      {
+        "slug": "eleven-eleven-ghana",
+        "title": "Eleven Eleven Ghana",
+        "short_description": "Luxury beachfront resort with immersive booking experience",
+        "category": "Websites",
+        "strategicCategory": "Luxury Hospitality & Resorts",
+        "strategicFilter": "Luxury Brand Positioning"
+      },
+      {
+        "slug": "gwen-addo",
+        "title": "Gwen Addo",
+        "short_description": "Business strategist consultancy with integrated booking system",
+        "category": "Websites",
+        "strategicCategory": "Consulting & Personal Branding",
+        "strategicFilter": "Premium Lead Generation"
+      },
+      {
+        "slug": "optimum-property-solutions",
+        "title": "Optimum Property Solutions",
+        "short_description": "International real estate portal with advanced search capabilities",
+        "category": "Websites",
+        "strategicCategory": "International Real Estate",
+        "strategicFilter": "Premium Lead Generation"
+      },
+      {
+        "slug": "emmanuel-kotia",
+        "title": "Dr. Emmanuel Kotia",
+        "short_description": "Academic portfolio and digital publication repository",
+        "category": "Websites",
+        "strategicCategory": "Academic Portfolio & Research",
+        "strategicFilter": "Market Authority Building"
+      },
+      {
+        "slug": "imagebloom-by-saida",
+        "title": "Image Bloom by Saida",
+        "short_description": "Makeup artist e-commerce platform with portfolio showcase",
+        "category": "Websites",
+        "strategicCategory": "Beauty Services & E-commerce",
+        "strategicFilter": "Revenue-Optimized Commerce"
+      },
+      {
+        "slug": "rosemond-prempeh",
+        "title": "Rosemond Prempeh Ministries",
+        "short_description": "Inspirational ministry platform with community engagement",
+        "category": "Websites",
+        "strategicCategory": "Faith-Based Ministry",
+        "strategicFilter": "Community Growth Systems"
+      },
+      {
+        "slug": "kline-designs",
+        "title": "K_Line Designs LTD",
+        "short_description": "Design and engineering firm showcasing innovative architectural solutions",
+        "category": "Websites",
+        "strategicCategory": "Architecture & Engineering",
+        "strategicFilter": "Market Authority Building"
+      },
+      {
+        "slug": "royal-itech",
+        "title": "Royal iTech",
+        "short_description": "Cybersecurity firm with trust-focused corporate presence",
+        "category": "Websites",
+        "strategicCategory": "Cybersecurity Services",
+        "strategicFilter": "Market Authority Building"
+      },
+      {
+        "slug": "girl-code-africa",
+        "title": "GirlCode Africa",
+        "short_description": "Empowering women in tech across Africa with React platform",
+        "category": "Websites",
+        "strategicCategory": "Tech Education & Empowerment",
+        "strategicFilter": "Community Growth Systems"
+      },
+      {
+        "slug": "goa-conference",
+        "title": "GOA Conference",
+        "short_description": "Professional event microsite with registration system",
+        "category": "Websites",
+        "strategicCategory": "Professional Conference",
+        "strategicFilter": "Community Growth Systems"
+      },
+      {
+        "slug": "eden-heights",
+        "title": "Eden Heights",
+        "short_description": "Luxury apartment complex with virtual tour integration",
+        "category": "Websites",
+        "strategicCategory": "Luxury Residential Development",
+        "strategicFilter": "Luxury Brand Positioning"
+      },
+      {
+        "slug": "landmark-homes",
+        "title": "Landmark Homes",
+        "short_description": "Exclusive luxury development showcase platform",
+        "category": "Websites",
+        "strategicCategory": "Real Estate Development",
+        "strategicFilter": "Premium Lead Generation"
+      },
+      {
+        "slug": "ghana-optometric-association",
+        "title": "Ghana Optometric Association",
+        "short_description": "Professional association portal with member management",
+        "category": "Websites",
+        "strategicCategory": "Professional Association",
+        "strategicFilter": "Community Growth Systems"
+      },
+      {
+        "slug": "twist-nightclub",
+        "title": "Twist Night Club",
+        "short_description": "Dynamic entertainment venue with events calendar",
+        "category": "Websites",
+        "strategicCategory": "Nightlife & Entertainment",
+        "strategicFilter": "Community Growth Systems"
+      },
+      {
+        "slug": "command-space",
+        "title": "Command-Space",
+        "short_description": "Digital marketing agency corporate website",
+        "category": "Websites",
+        "strategicCategory": "Digital Agency Services",
+        "strategicFilter": "Market Authority Building"
+      },
+      {
+        "slug": "qualivex-solutions",
+        "title": "Qualivex Solutions",
+        "short_description": "Business solutions corporate presence",
+        "category": "Websites",
+        "strategicCategory": "B2B Business Solutions",
+        "strategicFilter": "Market Authority Building"
+      },
+      {
+        "slug": "vwear-coming-soon",
+        "title": "VWear Coming Soon",
+        "short_description": "Fashion brand teaser and coming soon promotional design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "allure-bloom-pricelist",
+        "title": "Allure Bloom Pricelist",
+        "short_description": "Piercing & waxing services pricing design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "allure-bloom-training-flyer",
+        "title": "Allure Bloom Training Flyer",
+        "short_description": "Training program promotional flyer design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "braids-and-beyond-2",
+        "title": "Braids and Beyond Portfolio",
+        "short_description": "Extended portfolio design for hair styling business",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "vwear-logo-black",
+        "title": "VWear Logo Black",
+        "short_description": "Professional black version logo design for VWear fashion brand",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "ab-beauty-supply",
+        "title": "AB Beauty Supply",
+        "short_description": "Custom paper bag packaging design for beauty retail brand",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "allure-bloom-brand",
+        "title": "Allure Bloom Brand Identity",
+        "short_description": "Complete brand identity with promotional materials and training certificates",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "leejay-looks-brand",
+        "title": "Leejay Looks Brand Materials",
+        "short_description": "Marketing flyers and opening hours design for beauty salon",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "mavis-nails-logo",
+        "title": "Mavis Nails GH Logo",
+        "short_description": "Professional logo design for nail salon business",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "tda-luxe-logo",
+        "title": "TDA Luxe Set Logo",
+        "short_description": "Elegant logo design for luxury brand",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "kloves-advisor-hotels",
+        "title": "Kloves Advisor Hotels",
+        "short_description": "Promotional flyer design for hospitality business",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "braids-and-beyond",
+        "title": "Braids and Beyond",
+        "short_description": "Brand design and visual identity for hair styling business",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "accra-price-list",
+        "title": "Accra Price List Flyer",
+        "short_description": "Professional pricing flyer design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "allure-bloom-loyalty-card",
+        "title": "Allure Bloom Loyalty Card",
+        "short_description": "Customer loyalty card design for beauty salon",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "allure-bloom-certificate",
+        "title": "Allure Bloom Certificate",
+        "short_description": "Professional training certificate design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "gift-voucher",
+        "title": "Gift Voucher Design",
+        "short_description": "Elegant gift voucher template design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "leejay-looks-intensive",
+        "title": "Leejay Looks Intensive Training",
+        "short_description": "2 weeks intensive program promotional flyer",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "leejay-looks-hours",
+        "title": "Leejay Looks Opening Hours",
+        "short_description": "Business hours display design",
+        "category": "Graphic Design"
+      },
+      {
+        "slug": "spa-on-the-go",
+        "title": "Spa on the Go Packages",
+        "short_description": "Mobile spa service packages design",
+        "category": "Graphic Design"
+      }
+    ]
+  },
+  "contact": {
+    "headline": "Ready to Transform Your Brand Into a Digital Growth Engine?",
+    "intro": "I partner with premium brands who are serious about digital growth. Reach out to explore how strategic digital transformation can elevate your business and drive measurable results.",
+    "form": {
+      "name": "Name",
+      "organization": "Company/Brand Name",
+      "email": "Email",
+      "website": "Current Website (optional)",
+      "service": "What do you need?",
+      "revenue": "Current Annual Revenue",
+      "timeline": "Project Timeline",
+      "budget": "Investment Budget",
+      "subject": "Subject",
+      "message": "Tell me about your business challenge",
+      "cta": "Request Strategy Session"
+    },
+    "serviceOptions": [
+      "Digital Growth Strategy & Architecture",
+      "Revenue-Optimized E-Commerce",
+      "Strategic SEO & Market Authority",
+      "Fractional CDO / Ongoing Advisory",
+      "Corporate Training & Team Enablement",
+      "Not sure - Need consultation"
+    ],
+    "revenueOptions": [
+      "Pre-launch / Startup",
+      "$0 - $100K",
+      "$100K - $500K",
+      "$500K - $1M",
+      "$1M+",
+      "Prefer not to say"
+    ],
+    "timelineOptions": [
+      "Urgent (1-2 months)",
+      "Near-term (3-4 months)",
+      "Flexible (5-6 months)",
+      "Long-term planning (6+ months)"
+    ],
+    "budgetOptions": [
+      "$5K - $10K",
+      "$10K - $25K",
+      "$25K - $50K",
+      "$50K+",
+      "Ongoing retainer ($5K+/month)",
+      "Not sure yet"
+    ],
+    "outro": {
+      "title": "What to Expect:",
+      "body": "I am committed to providing exceptional service and strategic thinking. I will respond to your inquiry within 24-48 hours with initial strategic insights."
+    },
+    "qualification": {
+      "title": "Ideal Partnership Criteria",
+      "criteria": [
+        "✓ Premium brands with growth ambitions (refusing to compete on price)",
+        "✓ Visionary founders who think strategically (value being challenged)",
+        "✓ Businesses ready to invest in foundations (thinking 3-5 years out)",
+        "✓ Teams that value knowledge transfer (building internal capability)"
+      ],
+      "notIdeal": [
+        "✗ Brands competing primarily on price",
+        "✗ 'Just build what I tell you' relationships",
+        "✗ Rush projects with unrealistic timelines",
+        "✗ Unwillingness to invest in proper strategy"
+      ]
+    }
+  }
+}

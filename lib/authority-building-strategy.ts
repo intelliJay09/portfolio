@@ -299,7 +299,7 @@ export const pressOpportunities = {
     'Small business digitalization'
   ],
   credentials: [
-    'Luxury web developer with 5+ years experience',
+    'Digital growth strategist with 5+ years scaling luxury brands',
     'Female tech entrepreneur in Ghana',
     'Expert in React/Next.js development',
     'Specialist in luxury brand digital transformation',
@@ -318,7 +318,7 @@ export const strategicPartnerships = {
       examples: ['SEO agencies', 'Social media agencies', 'Content marketers']
     },
     {
-      type: 'Graphic Design Studios',
+      type: 'Brand Identity Studios',
       value: 'Portfolio collaborations and cross-linking',
       examples: ['Brand design agencies', 'UI/UX studios', 'Creative agencies']
     },
@@ -418,7 +418,7 @@ Subject: Luxury Web Development Insights for [Publication Name] Readers
 
 Dear [Editor Name],
 
-I'm Jacqueline Amoako, a luxury web developer based in Accra, Ghana, specializing in creating premium digital experiences for high-end brands.
+I'm Jacqueline Amoako, a digital growth strategist based in Accra, Ghana, specializing in scaling luxury brands through strategic digital systems and authority-building.
 
 I've been following [Publication Name] and particularly enjoyed your recent article on [specific article]. I'd love to contribute a piece that would provide value to your readers:
 

@@ -21,49 +21,49 @@ export interface InternalLink {
 
 export const luxuryKeywords: LuxuryKeyword = {
   primary: [
-    'luxury web developer',
-    'premium website design',
-    'high-end web development',
-    'luxury brand websites',
-    'bespoke digital solutions',
-    'sophisticated web applications',
-    'exclusive digital experiences',
-    'premium e-commerce development'
+    'digital growth strategist',
+    'strategic growth systems',
+    'revenue-generating ecosystems',
+    'premium brand growth',
+    'business growth architect',
+    'conversion optimization specialist',
+    'SEO authority strategist',
+    'digital growth partner'
   ],
   secondary: [
-    'creative technologist',
-    'luxury portfolio',
-    'premium brand design',
-    'high-performance websites',
-    'sophisticated UI/UX',
-    'enterprise web solutions',
-    'luxury creative services',
-    'premium digital consulting'
+    'strategic business outcomes',
+    'measurable growth results',
+    'premium brand positioning',
+    'revenue systems architect',
+    'growth ecosystem engineer',
+    'conversion rate optimization',
+    'market authority building',
+    'premium lead generation'
   ],
   location: [
-    'Ghana web developer',
-    'Accra luxury design',
-    'West Africa premium services',
-    'Ghana creative technology',
-    'African luxury web development'
+    'Ghana growth strategist',
+    'Accra digital strategist',
+    'West Africa business growth',
+    'Ghana strategic consulting',
+    'African market growth expert'
   ],
   services: [
-    'React development',
-    'Next.js applications',
-    'luxury e-commerce',
-    'premium SEO services',
-    'high-end database solutions',
-    'sophisticated API integration',
-    'luxury brand identity',
-    'premium performance optimization'
+    'SEO authority building',
+    'conversion rate optimization',
+    'lead generation systems',
+    'revenue optimization',
+    'growth analytics strategy',
+    'traffic acquisition systems',
+    'brand positioning strategy',
+    'business growth consulting'
   ],
   industry: [
-    'luxury hospitality websites',
-    'high-end real estate platforms',
-    'premium fashion e-commerce',
-    'luxury automotive websites',
-    'exclusive resort booking systems',
-    'high-end consultancy websites'
+    'luxury real estate growth',
+    'hospitality revenue systems',
+    'premium e-commerce optimization',
+    'high-end property marketing',
+    'resort booking optimization',
+    'consultancy lead generation'
   ]
 }
 
@@ -71,62 +71,62 @@ export const strategicInternalLinks: InternalLink[] = [
   // High priority - main services and portfolio
   {
     href: '/portfolio',
-    text: 'luxury web development portfolio',
-    title: 'View Premium Web Development Portfolio - Luxury Digital Experiences',
-    keywords: ['luxury portfolio', 'premium websites', 'high-end development'],
+    text: 'strategic growth portfolio',
+    title: 'View Strategic Growth Portfolio - Measurable Business Outcomes',
+    keywords: ['growth portfolio', 'business outcomes', 'strategic results'],
     priority: 'high'
   },
   {
     href: '/about',
-    text: 'luxury web developer',
-    title: 'About Jacqueline Amoako - Luxury Web Developer & Creative Technologist',
-    keywords: ['luxury web developer', 'creative technologist', 'premium services'],
+    text: 'digital growth strategist',
+    title: 'About Jacqueline Amoako - Digital Growth Strategist & Systems Architect',
+    keywords: ['growth strategist', 'systems architect', 'strategic partner'],
     priority: 'high'
   },
   {
     href: '/contact',
-    text: 'premium web development consultation',
-    title: 'Contact for Luxury Web Development Services - Premium Digital Solutions',
-    keywords: ['luxury consultation', 'premium services', 'bespoke solutions'],
+    text: 'strategic growth consultation',
+    title: 'Contact for Strategic Growth Partnership - Revenue-Generating Ecosystems',
+    keywords: ['growth consultation', 'strategic partnership', 'business outcomes'],
     priority: 'high'
   },
   
   // Medium priority - specific project categories
   {
     href: '/portfolio/anabs-ghana',
-    text: 'luxury real estate website development',
-    title: 'Anabs Ghana - Luxury High-Rise Development Website',
-    keywords: ['luxury real estate', 'premium property websites', 'high-end development'],
+    text: 'luxury real estate growth strategy',
+    title: 'Anabs Ghana - Premium Brand Authority Case Study',
+    keywords: ['real estate growth', 'premium positioning', 'brand authority'],
     priority: 'medium'
   },
   {
     href: '/portfolio/eleven-eleven-ghana',
-    text: 'luxury hospitality web development',
-    title: 'Eleven Eleven Ghana - Luxury Beachfront Resort Website',
-    keywords: ['luxury hospitality', 'premium resort websites', 'booking systems'],
+    text: 'hospitality revenue optimization',
+    title: 'Eleven Eleven Ghana - Direct Booking Revenue System',
+    keywords: ['hospitality growth', 'booking optimization', 'revenue systems'],
     priority: 'medium'
   },
   {
-    href: '/portfolio/lovel-ai',
-    text: 'sophisticated web application development',
-    title: 'Lovel.ai - AI-Powered Relationship Platform',
-    keywords: ['web applications', 'AI platforms', 'sophisticated development'],
+    href: '/portfolio/gwen-addo',
+    text: 'consultation lead generation',
+    title: 'Gwen Addo - Premium Lead Generation System',
+    keywords: ['lead generation', 'conversion optimization', 'client acquisition'],
     priority: 'medium'
   },
-  
+
   // Service-specific links
   {
     href: '/portfolio',
-    text: 'premium e-commerce development',
-    title: 'Premium E-commerce Solutions - Luxury Online Store Development',
-    keywords: ['luxury e-commerce', 'premium online stores', 'high-end retail'],
+    text: 'revenue-optimized e-commerce',
+    title: 'Revenue-Optimized E-commerce - Growth Systems for Premium Brands',
+    keywords: ['e-commerce growth', 'revenue optimization', 'conversion systems'],
     priority: 'medium'
   },
   {
     href: '/about',
-    text: 'React development expertise',
-    title: 'Expert React Developer - Sophisticated Frontend Development',
-    keywords: ['React development', 'frontend expertise', 'modern web apps'],
+    text: 'conversion optimization expertise',
+    title: 'Conversion Optimization Strategist - Measurable Business Outcomes',
+    keywords: ['conversion optimization', 'CRO expertise', 'growth systems'],
     priority: 'medium'
   }
 ]
@@ -200,15 +200,15 @@ export function generateLuxuryTitle(
  */
 export function optimizeContentKeywords(content: string): string {
   const keywordReplacements: { [key: string]: string } = {
-    'web developer': 'luxury web developer',
-    'website design': 'premium website design',
-    'e-commerce': 'luxury e-commerce',
-    'digital solutions': 'bespoke digital solutions',
-    'web development': 'high-end web development',
-    'creative services': 'luxury creative services',
-    'brand design': 'premium brand design',
-    'portfolio': 'luxury portfolio',
-    'consultation': 'premium consultation'
+    'web developer': 'digital growth strategist',
+    'website': 'growth system',
+    'e-commerce': 'revenue-optimized commerce',
+    'digital solutions': 'growth ecosystems',
+    'web development': 'strategic growth systems',
+    'services': 'strategic partnerships',
+    'brand design': 'brand positioning strategy',
+    'portfolio': 'growth outcomes portfolio',
+    'consultation': 'strategic growth consultation'
   }
   
   let optimizedContent = content
