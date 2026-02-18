@@ -121,7 +121,7 @@ export function generateLocalBusinessSchema() {
       'https://linkedin.com/in/jacqueline-frempomah-amoako',
       'https://github.com/jacquelineamoako',
       'https://twitter.com/jacquelineamoako',
-      // Add other social profiles
+      'https://www.wikidata.org/wiki/Q138331544',
     ],
     knowsLanguage: localBusinessInfo.languages,
     hasOfferCatalog: {

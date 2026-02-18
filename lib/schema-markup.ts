@@ -179,7 +179,8 @@ export function generatePersonSchema(): PersonSchema {
     image: "https://jacquelineamoako.com/images/jackie-studio.png",
     sameAs: [
       "https://linkedin.com/in/jacqueline-frempomah-amoako",
-      "https://github.com/jacquelineamoako"
+      "https://github.com/jacquelineamoako",
+      "https://www.wikidata.org/wiki/Q138331544"
     ],
     jobTitle: "Digital Growth Strategist & Systems Architect",
     worksFor: {
@@ -462,7 +463,8 @@ export function generateLocalBusinessSchema() {
       closes: "18:00"
     },
     sameAs: [
-      "https://linkedin.com/in/jacqueline-frempomah-amoako"
+      "https://linkedin.com/in/jacqueline-frempomah-amoako",
+      "https://www.wikidata.org/wiki/Q138331544"
     ]
   }
 }
