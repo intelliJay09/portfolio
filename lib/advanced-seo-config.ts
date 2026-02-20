@@ -24,11 +24,11 @@ export const seoConfig: SEOConfig = {
   titleTemplate: '%s | Luxury Web Developer Ghana',
   defaultDescription: 'Premium web development and creative technology services in Accra, Ghana. Specializing in luxury websites, high-end e-commerce, and bespoke digital solutions for discerning brands across Africa.',
   siteAuthor: 'Jacqueline Frempomah Amoako',
-  twitterHandle: '@jacquelineamoako',
-  googleVerification: 'YOUR_GOOGLE_VERIFICATION_CODE', // TODO: Add from Google Search Console
-  bingVerification: 'YOUR_BING_VERIFICATION_CODE', // TODO: Add from Bing Webmaster Tools
-  yandexVerification: 'YOUR_YANDEX_VERIFICATION_CODE', // Optional
-  pinterestVerification: 'YOUR_PINTEREST_VERIFICATION_CODE' // Optional
+  twitterHandle: '@intelliJay09',
+  googleVerification: 'VXFIG8ay39DeBrq215zuCJtO0i0Z6wy6pRWr6uQom38',
+  bingVerification: '',
+  yandexVerification: '',
+  pinterestVerification: ''
 }
 
 /**

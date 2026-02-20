@@ -54,8 +54,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   minimumScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  maximumScale: 5,
+  userScalable: true,
   viewportFit: 'cover',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
@@ -129,9 +129,7 @@ export const metadata: Metadata = {
     title: 'Jacqueline Amoako - Digital Growth Strategist',
   },
   verification: {
-    google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
-    // yahoo: 'your-yahoo-verification-code',
+    google: 'VXFIG8ay39DeBrq215zuCJtO0i0Z6wy6pRWr6uQom38',
   },
   alternates: {
     canonical: 'https://jacquelineamoako.com',
@@ -169,8 +167,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Jacqueline Amoako | Digital Growth Strategist',
     description: 'Architecting revenue-generating ecosystems for premium brands worldwide. Complete growth systems from $100K to $10M—340% traffic growth, 28% conversion increases.',
-    creator: '@jacquelineamoako',
-    site: '@jacquelineamoako',
+    creator: '@intelliJay09',
+    site: '@intelliJay09',
     images: [
       {
         url: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
@@ -249,7 +247,7 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
         {/* Google Tag Manager */}
-        <Script id="google-tag-manager" strategy="afterInteractive">
+        <Script id="google-tag-manager" strategy="beforeInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -267,9 +265,12 @@ export default async function RootLayout({
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-7S9X5PWGY1');
+            if (!window.gtag) {
+              function gtag(){window.dataLayer.push(arguments);}
+              window.gtag = gtag;
+            }
+            window.gtag('js', new Date());
+            window.gtag('config', 'G-7S9X5PWGY1');
           `}
         </Script>
 

@@ -110,9 +110,11 @@ export function middleware(request: NextRequest) {
       
       // CSP for theme security (development vs production)
       const isDev = process.env.NODE_ENV === 'development'
+      const gtmDomains = 'https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://analytics.google.com'
+      const recaptchaDomains = 'https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/'
       const cspHeader = isDev
-        ? "default-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; frame-src 'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google.com/recaptcha/;"
-        : "default-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; frame-src 'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google.com/recaptcha/;"
+        ? `default-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' ${gtmDomains} ${recaptchaDomains}; frame-src 'self' https://www.googletagmanager.com https://www.google.com/recaptcha/ https://recaptcha.google.com/; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' ${gtmDomains} https://www.google.com/recaptcha/;`
+        : `default-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' ${gtmDomains} ${recaptchaDomains} https://static.cloudflareinsights.com; frame-src 'self' https://www.googletagmanager.com https://www.google.com/recaptcha/ https://recaptcha.google.com/; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' ${gtmDomains} https://static.cloudflareinsights.com https://www.google.com/recaptcha/;`
 
       response.headers.set('Content-Security-Policy', cspHeader)
     }
