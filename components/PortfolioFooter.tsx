@@ -248,7 +248,7 @@ export default function PortfolioFooter({ currentSlug }: PortfolioFooterProps) {
                 <a ref={(el) => {
                      if (el) socialLinksRef.current[0] = el
                    }}
-                   href="https://www.instagram.com/intellijay09/" 
+                   href="https://www.instagram.com/jackieofzera/" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    onMouseEnter={() => handleSocialHover(0, true)}

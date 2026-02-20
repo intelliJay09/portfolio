@@ -26,7 +26,7 @@ const hamburgerNavItems = [
 
 const socialLinks = [
   { href: 'https://linkedin.com/in/jacqueline-frempomah-amoako', label: 'LinkedIn', icon: Linkedin },
-  { href: 'https://www.instagram.com/intellijay09/', label: 'Instagram', icon: Instagram },
+  { href: 'https://www.instagram.com/jackieofzera/', label: 'Instagram', icon: Instagram },
   { href: 'https://x.com/intelliJay09', label: 'Twitter', icon: Twitter },
   { href: 'mailto:hello@jacquelineamoako.com', label: 'Email', icon: Mail },
 ]

@@ -370,7 +370,15 @@ export default function Footer() {
               <p className="text-sm font-inter mb-6 font-light" style={{ letterSpacing: '0.08em', color: '#8D8E85' }}>SOCIALS</p>
               <div className="flex flex-wrap gap-8">
                 <a
-                  href="https://www.instagram.com/intellijay09/"
+                  href={content.global.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white font-satoshi text-lg md:text-xl relative transition-all duration-300 ease-out will-change-transform hover:scale-[1.02] hover:tracking-wide hover:-translate-y-0.5 hover:opacity-90 active:scale-[1.02] active:tracking-wide active:-translate-y-0.5 active:opacity-90"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://www.instagram.com/jackieofzera/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white font-satoshi text-lg md:text-xl relative transition-all duration-300 ease-out will-change-transform hover:scale-[1.02] hover:tracking-wide hover:-translate-y-0.5 hover:opacity-90 active:scale-[1.02] active:tracking-wide active:-translate-y-0.5 active:opacity-90"
@@ -384,14 +392,6 @@ export default function Footer() {
                   className="text-white font-satoshi text-lg md:text-xl relative transition-all duration-300 ease-out will-change-transform hover:scale-[1.02] hover:tracking-wide hover:-translate-y-0.5 hover:opacity-90 active:scale-[1.02] active:tracking-wide active:-translate-y-0.5 active:opacity-90"
                 >
                   Twitter
-                </a>
-                <a
-                  href={content.global.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white font-satoshi text-lg md:text-xl relative transition-all duration-300 ease-out will-change-transform hover:scale-[1.02] hover:tracking-wide hover:-translate-y-0.5 hover:opacity-90 active:scale-[1.02] active:tracking-wide active:-translate-y-0.5 active:opacity-90"
-                >
-                  LinkedIn
                 </a>
               </div>
             </div>
@@ -437,7 +437,15 @@ export default function Footer() {
               <p className="text-sm font-inter mb-6 font-light" style={{ letterSpacing: '0.08em', color: '#8D8E85' }}>SOCIALS</p>
               <div className="flex space-x-10">
                 <a
-                  href="https://www.instagram.com/intellijay09/"
+                  href={content.global.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white font-satoshi text-lg relative transition-all duration-300 ease-out will-change-transform hover:scale-[1.02] hover:tracking-wide hover:-translate-y-0.5 hover:opacity-90 active:scale-[1.02] active:tracking-wide active:-translate-y-0.5 active:opacity-90"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://www.instagram.com/jackieofzera/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white font-satoshi text-lg relative transition-all duration-300 ease-out will-change-transform hover:scale-[1.02] hover:tracking-wide hover:-translate-y-0.5 hover:opacity-90 active:scale-[1.02] active:tracking-wide active:-translate-y-0.5 active:opacity-90"
@@ -451,14 +459,6 @@ export default function Footer() {
                   className="text-white font-satoshi text-lg relative transition-all duration-300 ease-out will-change-transform hover:scale-[1.02] hover:tracking-wide hover:-translate-y-0.5 hover:opacity-90 active:scale-[1.02] active:tracking-wide active:-translate-y-0.5 active:opacity-90"
                 >
                   Twitter
-                </a>
-                <a
-                  href={content.global.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white font-satoshi text-lg relative transition-all duration-300 ease-out will-change-transform hover:scale-[1.02] hover:tracking-wide hover:-translate-y-0.5 hover:opacity-90 active:scale-[1.02] active:tracking-wide active:-translate-y-0.5 active:opacity-90"
-                >
-                  LinkedIn
                 </a>
               </div>
             </div>
