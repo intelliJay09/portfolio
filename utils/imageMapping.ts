@@ -22,7 +22,8 @@ const websiteImages: Record<string, string> = {
   'command-space': '/images/command-space.png',
   'qualivex-solutions': '/images/qualivex-solutions.png',
   'anabs': '/images/anabs.png',
-  'kline-designs': '/images/klinedesign.png'
+  'kline-designs': '/images/klinedesign.png',
+  'eddy': '/images/eddy-hero.jpg'
 }
 
 // Image file mappings for web app projects

@@ -250,7 +250,8 @@
         "short_description": "Luxury high-rise residential development showcase",
         "category": "Websites",
         "strategicCategory": "Luxury High-Rise Development",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["Next.js", "Vercel"]
       },
       {
         "slug": "eleven-eleven-ghana",
@@ -258,7 +259,8 @@
         "short_description": "Luxury beachfront resort with immersive booking experience",
         "category": "Websites",
         "strategicCategory": "Luxury Hospitality & Resorts",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["Next.js", "Vercel"]
       },
       {
         "slug": "gwen-addo",
@@ -266,7 +268,8 @@
         "short_description": "Business strategist consultancy with integrated booking system",
         "category": "Websites",
         "strategicCategory": "Consulting & Personal Branding",
-        "strategicFilter": "Premium Lead Generation"
+        "strategicFilter": "Premium Lead Generation",
+        "stack": ["Next.js", "Vercel"]
       },
       {
         "slug": "optimum-property-solutions",
@@ -274,7 +277,8 @@
         "short_description": "International real estate portal with advanced search capabilities",
         "category": "Websites",
         "strategicCategory": "International Real Estate",
-        "strategicFilter": "Premium Lead Generation"
+        "strategicFilter": "Premium Lead Generation",
+        "stack": ["WordPress"]
       },
       {
         "slug": "emmanuel-kotia",
@@ -282,7 +286,8 @@
         "short_description": "Academic portfolio and digital publication repository",
         "category": "Websites",
         "strategicCategory": "Academic Portfolio & Research",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["WordPress"]
       },
       {
         "slug": "imagebloom-by-saida",
@@ -290,7 +295,8 @@
         "short_description": "Makeup artist e-commerce platform with portfolio showcase",
         "category": "Websites",
         "strategicCategory": "Beauty Services & E-commerce",
-        "strategicFilter": "Revenue-Optimized Commerce"
+        "strategicFilter": "Revenue-Optimized Commerce",
+        "stack": ["WordPress", "WooCommerce"]
       },
       {
         "slug": "rosemond-prempeh",
@@ -298,7 +304,8 @@
         "short_description": "Inspirational ministry platform with community engagement",
         "category": "Websites",
         "strategicCategory": "Faith-Based Ministry",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["WordPress"]
       },
       {
         "slug": "kline-designs",
@@ -306,7 +313,8 @@
         "short_description": "Design and engineering firm showcasing innovative architectural solutions",
         "category": "Websites",
         "strategicCategory": "Architecture & Engineering",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["WordPress"]
       },
       {
         "slug": "royal-itech",
@@ -314,7 +322,8 @@
         "short_description": "Cybersecurity firm with trust-focused corporate presence",
         "category": "Websites",
         "strategicCategory": "Cybersecurity Services",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["WordPress"]
       },
       {
         "slug": "girl-code-africa",
@@ -322,7 +331,8 @@
         "short_description": "Non-profit organization empowering girls and young women across Africa through STEM education and mentorship",
         "category": "Websites",
         "strategicCategory": "STEM Education & Empowerment",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["WordPress"]
       },
       {
         "slug": "goa-conference",
@@ -330,7 +340,8 @@
         "short_description": "Professional event microsite with registration system",
         "category": "Websites",
         "strategicCategory": "Professional Conference",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["WordPress"]
       },
       {
         "slug": "eden-heights",
@@ -338,7 +349,8 @@
         "short_description": "Luxury apartment complex with virtual tour integration",
         "category": "Websites",
         "strategicCategory": "Luxury Residential Development",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["WordPress"]
       },
       {
         "slug": "landmark-homes",
@@ -346,7 +358,8 @@
         "short_description": "Exclusive luxury development showcase platform",
         "category": "Websites",
         "strategicCategory": "Real Estate Development",
-        "strategicFilter": "Premium Lead Generation"
+        "strategicFilter": "Premium Lead Generation",
+        "stack": ["WordPress"]
       },
       {
         "slug": "ghana-optometric-association",
@@ -354,7 +367,8 @@
         "short_description": "Professional association portal with member management",
         "category": "Websites",
         "strategicCategory": "Professional Association",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["WordPress"]
       },
       {
         "slug": "twist-nightclub",
@@ -362,7 +376,8 @@
         "short_description": "Dynamic entertainment venue with events calendar",
         "category": "Websites",
         "strategicCategory": "Nightlife & Entertainment",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["WordPress"]
       },
       {
         "slug": "command-space",
@@ -370,7 +385,8 @@
         "short_description": "Digital marketing agency corporate website",
         "category": "Websites",
         "strategicCategory": "Digital Agency Services",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["WordPress"]
       },
       {
         "slug": "qualivex-solutions",
@@ -378,7 +394,17 @@
         "short_description": "Business solutions corporate presence",
         "category": "Websites",
         "strategicCategory": "B2B Business Solutions",
-        "strategicFilter": "Premium Brand Authority"
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["WordPress"]
+      },
+      {
+        "slug": "eddy",
+        "title": "Eddy Acquah",
+        "short_description": "Next.js booking platform with custom CRM pipeline for Ghana's premier MC — multi-step event booking, intelligent lead qualification, and proposal workflow.",
+        "category": "Websites",
+        "strategicCategory": "Professional Services Platform",
+        "strategicFilter": "Premium Brand Authority",
+        "stack": ["Next.js", "Vercel", "Cloudflare R2"]
       },
       {
         "slug": "vwear-coming-soon",

@@ -65,10 +65,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Jacqueline Amoako - Digital Growth Strategist & Systems Architect',
+    default: 'Jacqueline Amoako - Digital Systems Architect',
     template: '%s | Jacqueline Amoako'
   },
-  description: 'Digital Growth Strategist architecting revenue-generating ecosystems for premium brands worldwide. From 340% traffic growth to 28% conversion increases—complete growth systems that scale your vision from $100K to $10M.',
+  description: 'Digital Systems Architect building revenue-generating ecosystems for premium brands worldwide. From 340% traffic growth to 28% conversion increases—complete growth systems that scale your vision from $100K to $10M.',
   keywords: [
     // Primary strategic keywords
     'digital growth strategist',
@@ -126,7 +126,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Jacqueline Amoako - Digital Growth Strategist',
+    title: 'Jacqueline Amoako - Digital Systems Architect',
   },
   verification: {
     google: 'VXFIG8ay39DeBrq215zuCJtO0i0Z6wy6pRWr6uQom38',
@@ -143,14 +143,14 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://jacquelineamoako.com',
     siteName: 'Jacqueline Amoako',
-    title: 'Jacqueline Amoako | Digital Growth Strategist & Systems Architect',
-    description: 'Digital Growth Strategist architecting revenue-generating ecosystems for premium brands worldwide. From 340% traffic growth to 28% conversion increases—complete growth systems that scale your vision from $100K to $10M.',
+    title: 'Jacqueline Amoako | Digital Systems Architect',
+    description: 'Digital Systems Architect building revenue-generating ecosystems for premium brands worldwide. From 340% traffic growth to 28% conversion increases—complete growth systems that scale your vision from $100K to $10M.',
     images: [
       {
         url: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
         width: 3000,
         height: 1575,
-        alt: 'Jacqueline Amoako - Digital Growth Strategist building revenue ecosystems for luxury brands',
+        alt: 'Jacqueline Amoako - Digital Systems Architect building revenue ecosystems for premium brands',
         type: 'image/png',
       }
     ],
@@ -165,14 +165,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jacqueline Amoako | Digital Growth Strategist',
+    title: 'Jacqueline Amoako | Digital Systems Architect',
     description: 'Architecting revenue-generating ecosystems for premium brands worldwide. Complete growth systems from $100K to $10M—340% traffic growth, 28% conversion increases.',
     creator: '@intelliJay09',
     site: '@intelliJay09',
     images: [
       {
         url: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
-        alt: 'Digital Growth Strategist building complete growth ecosystems',
+        alt: 'Digital Systems Architect building complete growth systems',
         width: 3000,
         height: 1575,
       }

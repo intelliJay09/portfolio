@@ -47,9 +47,10 @@ const getProjectHeroImage = (slug: string) => {
     'command-space': '/images/command-space.png',
     'qualivex-solutions': '/images/qualivex-solutions.png',
     'anabs': '/images/anabs.png',
-    'kline-designs': '/images/klinedesign.png'
+    'kline-designs': '/images/klinedesign.png',
+    'eddy': '/images/eddy-hero.jpg'
   }
-  
+
   return heroImageMap[slug] || '/images/11-11-case-study-hero.webp' // Default fallback
 }
 
@@ -108,9 +109,10 @@ const getProjectYear = (slug: string, portfolioProject: PortfolioProject | undef
     'command-space': '2023',
     'qualivex-solutions': '2024',
     'anabs': '2025',
-    'kline-designs': '2025'
+    'kline-designs': '2025',
+    'eddy': '2024'
   }
-  
+
   return projectYears[slug] || portfolioProject?.year || projectData?.year || '2024'
 }
 
@@ -133,10 +135,10 @@ const getProjectChallengeQuote = (slug: string, projectData: ProjectData, portfo
     'command-space': 'How do you position digital agency authority that converts prospects into high-value client partnerships?',
     'qualivex-solutions': 'How do you establish business solutions authority that generates qualified B2B leads and drives service adoption?',
     'anabs': 'How do you position luxury high-rise authority that attracts discerning investors and commands premium pricing?',
-    'kline-designs': 'How do you establish architectural design authority that positions firm as innovation leader and drives project inquiries?'
+    'kline-designs': 'How do you establish architectural design authority that positions firm as innovation leader and drives project inquiries?',
+    'eddy': 'How do you turn a world-class MC\'s reputation into a revenue-generating booking system that qualifies leads automatically and converts inquiries into confirmed events?'
   }
-  
-  
+
   return quotes[slug] || projectData?.challenge?.quote || portfolioProject?.theChallenge || 'How do you create something exceptional for this project?'
 }
 
@@ -467,9 +469,15 @@ const getProjectMetrics = (slug: string) => {
       { value: '3.8x', label: 'Project Inquiries', icon: Users },
       { value: '4.2k', label: 'Design Portfolio Views', icon: Calendar },
       { value: '195%', label: 'Client Acquisition', icon: Star }
+    ],
+    'eddy': [
+      { value: '17', label: 'Applications (Month 1)', icon: TrendingUp },
+      { value: '3', label: 'Hot Leads (GHS 50k+)', icon: Users },
+      { value: '2', label: 'Confirmed Bookings', icon: Calendar },
+      { value: '700+', label: 'Events Hosted', icon: Star }
     ]
   }
-  
+
   return projectMetrics[slug] || [
     { value: '150%', label: 'Growth', icon: TrendingUp },
     { value: '5k+', label: 'Users', icon: Users },
@@ -561,6 +569,8 @@ export default function CaseStudyPage() {
   // Always try to get project-specific data first, fallback to eleven-eleven template structure
   const portfolioProject = portfolioData.portfolio.find(p => p.id === slug || p.id === slug.replace(/-/g, '-'))
   const projectData = (slug === 'eleven-eleven-ghana' || slug === 'eleven-eleven') ? elevenElevenData : getProjectData(slug)
+  const contentProject = content.portfolio.projects.find(p => p.slug === slug)
+  const projectStack = (contentProject as { stack?: string[] } | undefined)?.stack
 
   const handlePreloaderComplete = () => {
     setPreloaderComplete(true)
@@ -1049,6 +1059,17 @@ export default function CaseStudyPage() {
                 {displayData.hero.headline}
               </h1>
             </div>
+
+            {/* Stack Tags */}
+            {projectStack && projectStack.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-12 animate-element">
+                {projectStack.map((tech: string) => (
+                  <span key={tech} className="inline-block text-[11px] font-satoshi tracking-widest uppercase px-3 py-1 rounded-full bg-background-secondary text-text-tertiary border border-text-tertiary/20">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
 
             {/* Project Details Grid */}
             <div className="grid md:grid-cols-3 gap-12 md:gap-16 animate-element relative">

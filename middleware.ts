@@ -96,10 +96,12 @@ export function middleware(request: NextRequest) {
     } else if (pathname.startsWith('/_next/')) {
       // Next.js internals: moderate caching
       response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400')
-    } else if (pathname.match(/\.(css|js|woff2?|png|jpg|jpeg|webp|svg)$/)) {
-      // Asset files: theme-aware caching
+    } else if (pathname.match(/\.(css|js|woff2?)$/)) {
+      // CSS/JS: theme-aware caching
       response.headers.set('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800')
-      response.headers.set('Vary', 'Cookie') // Vary by theme cookie
+    } else if (pathname.match(/\.(png|jpg|jpeg|webp|svg|gif)$/)) {
+      // Static image files: no Vary by Cookie — images don't change per theme
+      response.headers.set('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800')
     }
     
     // Security Headers: Enhanced protection

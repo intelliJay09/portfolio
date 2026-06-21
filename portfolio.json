@@ -978,6 +978,82 @@
           ]
         }
       }
+    },
+    {
+      "id": "eddy",
+      "title": "Eddy Acquah",
+      "client": "Eddy Acquah",
+      "category": "Professional Services Platform",
+      "url": "https://eddy.zerahq.com",
+      "description": "Complete booking platform and CRM pipeline for Ghana's premier MC and award-winning event host — converting website visitors into confirmed event bookings through intelligent lead qualification.",
+      "theChallenge": "Eddy Acquah, Ghana's most in-demand MC with 700+ events hosted, needed a digital system that matched his calibre — one that would position him as the premium choice while automating the full journey from first inquiry to confirmed booking.",
+      "mySolution": "Built a premium Next.js platform with a custom 4-step booking form that captures event type, date, budget, and contact details — feeding directly into a bespoke CRM admin dashboard. The pipeline automatically tags leads by budget qualification, decision-making authority, and event type, enabling Eddy to prioritise and respond to high-value inquiries first.",
+      "theResult": "17 booking applications in the first month with 3 high-value leads (GHS 50k+) automatically flagged. The pipeline stages (New Application → Proposal Sent → Confirmed → Event Complete) reduced manual follow-up and created a scalable booking infrastructure.",
+      "techStack": [
+        "Next.js",
+        "Vercel",
+        "Cloudflare R2",
+        "Custom CRM Pipeline",
+        "Lead Qualification System"
+      ],
+      "systemsFramework": {
+        "businessChallenge": "Ghana's premier MC needed a digital booking system that would position him as the premium choice while automating lead qualification and the full journey from inquiry to confirmed event.",
+        "foundationalAuthoritySetup": {
+          "description": "Premium personal brand platform built on Next.js with Cloudflare R2 media delivery — positioning Eddy as Ghana's most bookable professional MC across corporate, wedding, and private event categories.",
+          "systems": [
+            "Next.js performance-optimised site with Cloudflare R2 media pipeline",
+            "Award and credential showcase (Forty Under 40 Ghana 2025, Most Distinguished Real Estate Broker in Africa 2024)",
+            "Cross-linked real estate brokerage profile (eddyacquahproperties.com)",
+            "700+ events social proof display with testimonials"
+          ]
+        },
+        "growthSystemsImplemented": {
+          "leadAcquisitionPipeline": {
+            "implemented": true,
+            "description": "Multi-step booking form capturing event type, date, budget, and contact details — qualifying leads before they enter the pipeline.",
+            "components": [
+              "4-step booking form (Event Type → Details → Contact → Schedule)",
+              "Budget range qualifier (GHS 500 – GHS 50k+)",
+              "Event type segmentation (corporate, wedding, private, government)",
+              "Automatic lead tagging on submission"
+            ]
+          },
+          "leadCaptureEngine": {
+            "implemented": true,
+            "description": "Custom admin CRM dashboard tracking every booking inquiry through a defined pipeline with intelligent lead scoring.",
+            "components": [
+              "Booking Pipeline admin dashboard with stats (Total, This Month, Hot Leads, Confirmed)",
+              "Smart tagging: Budget_Qualified, Hot_Lead, Decision_Maker, Corporate_Executive, MC_Lead",
+              "Pipeline stages: New Application → Proposal Sent → Confirmed → Event Complete → Declined",
+              "One-click proposal workflow"
+            ]
+          },
+          "trafficConverter": {
+            "implemented": true,
+            "description": "Premium brand platform converting profile visitors into booking inquiries through authority signals and frictionless booking UX.",
+            "components": [
+              "700+ events social proof display",
+              "Award credentials and recognition badges",
+              "Prominent Book Eddy CTA with immediate booking flow",
+              "Mobile-optimised experience for event planners on the go"
+            ]
+          }
+        },
+        "measurableImpact": {
+          "outcomes": [
+            "17 booking applications in first month of launch",
+            "3 high-value leads (GHS 50k+ budget) automatically qualified in first month",
+            "[FILL: X bookings confirmed since launch]",
+            "[FILL: X% of applications converted to proposals]"
+          ],
+          "systemsDelivered": [
+            "Multi-step booking pipeline",
+            "Custom CRM admin with intelligent lead scoring",
+            "Cloudflare R2 media delivery",
+            "Lead qualification tagging system"
+          ]
+        }
+      }
     }
   ]
 }

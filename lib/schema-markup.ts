@@ -182,7 +182,7 @@ export function generatePersonSchema(): PersonSchema {
       "https://github.com/jacquelineamoako",
       "https://www.wikidata.org/wiki/Q138331544"
     ],
-    jobTitle: "Digital Growth Strategist & Systems Architect",
+    jobTitle: "Digital Systems Architect",
     worksFor: {
       "@type": "Organization",
       name: "Strategic Growth Consulting",
@@ -264,7 +264,7 @@ export function generateProfessionalServiceSchema(): ProfessionalServiceSchema {
       name: "Jacqueline Frempomah Amoako",
       url: "https://jacquelineamoako.com",
       image: "https://jacquelineamoako.com/images/jackie-studio.png",
-      jobTitle: "Digital Growth Strategist & Systems Architect",
+      jobTitle: "Digital Systems Architect",
       email: "hello@jacquelineamoako.com",
       address: {
         "@type": "PostalAddress",
@@ -318,7 +318,7 @@ export function generateWebsiteSchema(): WebsiteSchema {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": "https://jacquelineamoako.com/#website",
-    name: "Jacqueline Amoako - Digital Growth Strategist & Systems Architect",
+    name: "Jacqueline Amoako - Digital Systems Architect",
     description: "Digital growth strategist architecting revenue-generating ecosystems for premium brands worldwide. Complete growth systems delivering measurable outcomes from $100K to $10M—340% traffic growth, 28% conversion increases, 42% revenue optimization.",
     url: "https://jacquelineamoako.com",
     image: "https://jacquelineamoako.com/images/jackie-studio.png",

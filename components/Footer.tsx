@@ -249,7 +249,7 @@ export default function Footer() {
           <div className="flex items-start mb-12 relative">
             <div className="w-20 h-20 rounded-full overflow-hidden mr-6">
               <Image
-                src="/images/favicon-new.png"
+                src="/images/jackie-side-profile.jpg"
                 alt="Jacqueline Amoako"
                 width={80}
                 height={80}

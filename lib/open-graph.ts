@@ -1,6 +1,6 @@
 /**
  * Open Graph & Social Media Meta Tags Generator
- * Strategic Growth Positioning for Digital Growth Strategist
+ * Strategic Growth Positioning for Digital Systems Architect
  */
 
 export interface OpenGraphData {
@@ -89,12 +89,12 @@ export function generateTwitterCardTags(data: TwitterCardData): Record<string, s
 }
 
 /**
- * Homepage Open Graph - Digital Growth Strategist
+ * Homepage Open Graph - Digital Systems Architect
  */
 export function getHomepageOpenGraph(): OpenGraphData {
   return {
-    title: 'Jacqueline Amoako | Digital Growth Strategist & Systems Architect',
-    description: 'Digital Growth Strategist architecting revenue-generating ecosystems for premium brands worldwide. From 340% traffic growth to 28% conversion increases—complete growth systems that scale your vision from $100K to $10M.',
+    title: 'Jacqueline Amoako | Digital Systems Architect',
+    description: 'Digital Systems Architect building revenue-generating ecosystems for premium brands worldwide. From 340% traffic growth to 28% conversion increases—complete growth systems that scale your vision from $100K to $10M.',
     url: 'https://jacquelineamoako.com',
     type: 'website',
     images: [
@@ -102,7 +102,7 @@ export function getHomepageOpenGraph(): OpenGraphData {
         url: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
         width: 3000,
         height: 1575,
-        alt: 'Jacqueline Amoako - Digital Growth Strategist building revenue ecosystems for luxury brands'
+        alt: 'Jacqueline Amoako - Digital Systems Architect building revenue ecosystems for premium brands'
       }
     ],
     siteName: 'Jacqueline Amoako',
@@ -116,7 +116,7 @@ export function getHomepageOpenGraph(): OpenGraphData {
 export function getAboutOpenGraph(): OpenGraphData {
   return {
     title: 'About Jacqueline | Strategic Growth Partner for Premium Brands',
-    description: 'Digital Growth Strategist with 5+ years architecting complete growth ecosystems—SEO authority platforms, conversion engines, revenue systems. Working with luxury brands from Ghana to global markets.',
+    description: 'Digital Systems Architect with 5+ years building complete growth ecosystems—SEO authority platforms, conversion engines, revenue systems. Working with premium brands from Ghana to global markets.',
     url: 'https://jacquelineamoako.com/about',
     type: 'profile',
     images: [
@@ -124,7 +124,7 @@ export function getAboutOpenGraph(): OpenGraphData {
         url: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
         width: 3000,
         height: 1575,
-        alt: 'Jacqueline Amoako - Digital Growth Strategist and Systems Architect'
+        alt: 'Jacqueline Amoako - Digital Systems Architect'
       }
     ],
     siteName: 'Jacqueline Amoako',
@@ -217,10 +217,10 @@ export function getDefaultTwitterCard(): TwitterCardData {
     card: 'summary_large_image',
     site: '@jacquelineamoako',
     creator: '@jacquelineamoako',
-    title: 'Jacqueline Amoako | Digital Growth Strategist',
-    description: 'Architecting revenue-generating ecosystems for premium brands worldwide. Complete growth systems from $100K to $10M.',
+    title: 'Jacqueline Amoako | Digital Systems Architect',
+    description: 'Building revenue-generating ecosystems for premium brands worldwide. Complete growth systems from $100K to $10M.',
     image: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
-    imageAlt: 'Digital Growth Strategist building complete growth ecosystems'
+    imageAlt: 'Digital Systems Architect building complete growth systems'
   }
 }
 

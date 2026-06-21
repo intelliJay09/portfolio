@@ -20,7 +20,7 @@ import contentData from '../../content.json'
 const portfolioData = contentData.portfolio
 
 type ViewMode = 'grid' | 'list'
-type FilterType = 'All' | 'Premium Brand Authority' | 'Premium Lead Generation' | 'Revenue-Optimized Commerce' | 'Brand Identity'
+type FilterType = 'Web & Systems' | 'All' | 'Premium Brand Authority' | 'Premium Lead Generation' | 'Revenue-Optimized Commerce' | 'Brand Identity'
 
 interface Project {
   slug: string
@@ -29,11 +29,12 @@ interface Project {
   category: string
   strategicCategory?: string
   strategicFilter?: string
+  stack?: string[]
 }
 
 export default function PortfolioPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
-  const [activeFilter, setActiveFilter] = useState<FilterType>('All')
+  const [activeFilter, setActiveFilter] = useState<FilterType>('Web & Systems')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [preloaderComplete, setPreloaderComplete] = useState(false)
@@ -57,6 +58,10 @@ export default function PortfolioPage() {
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return portfolioData.projects
 
+    if (activeFilter === 'Web & Systems') {
+      return portfolioData.projects.filter(project => project.category !== 'Brand Identity')
+    }
+
     // Brand Identity filters by category "Brand Identity"
     if (activeFilter === 'Brand Identity') {
       return portfolioData.projects.filter(project => project.category === 'Brand Identity')
@@ -64,20 +69,21 @@ export default function PortfolioPage() {
 
     // Strategic filters use strategicFilter field
     return portfolioData.projects.filter(project =>
-      (project as Record<string, string>).strategicFilter === activeFilter
+      (project as Record<string, unknown>).strategicFilter === activeFilter
     )
   }, [activeFilter])
 
   // Project count
   const projectCount = filteredProjects.length
+  const webSystemsCount = portfolioData.projects.filter(p => p.category !== 'Brand Identity').length
   const authorityCount = portfolioData.projects.filter(p =>
-    (p as Record<string, string>).strategicFilter === 'Premium Brand Authority'
+    (p as Record<string, unknown>).strategicFilter === 'Premium Brand Authority'
   ).length
   const leadGenCount = portfolioData.projects.filter(p =>
-    (p as Record<string, string>).strategicFilter === 'Premium Lead Generation'
+    (p as Record<string, unknown>).strategicFilter === 'Premium Lead Generation'
   ).length
   const commerceCount = portfolioData.projects.filter(p =>
-    (p as Record<string, string>).strategicFilter === 'Revenue-Optimized Commerce'
+    (p as Record<string, unknown>).strategicFilter === 'Revenue-Optimized Commerce'
   ).length
   const brandIdentityCount = portfolioData.projects.filter(p =>
     p.category === 'Brand Identity'
@@ -277,7 +283,7 @@ export default function PortfolioPage() {
               
               {/* Filter Pills */}
               <div className="flex flex-wrap gap-3">
-                {(['All', 'Premium Brand Authority', 'Premium Lead Generation', 'Revenue-Optimized Commerce', 'Brand Identity'] as FilterType[]).map((filter) => (
+                {(['Web & Systems', 'All', 'Premium Brand Authority', 'Premium Lead Generation', 'Revenue-Optimized Commerce', 'Brand Identity'] as FilterType[]).map((filter) => (
                   <button
                     key={filter}
                     onClick={() => setActiveFilter(filter)}
@@ -300,21 +306,16 @@ export default function PortfolioPage() {
                     {/* Button content */}
                     <span className="relative z-10">
                       {filter}
-                      {filter !== 'All' && (
-                        <span className="ml-2 opacity-60 transition-opacity duration-500 group-hover:opacity-90">
-                          ({
-                            filter === 'Premium Brand Authority' ? authorityCount :
-                            filter === 'Premium Lead Generation' ? leadGenCount :
-                            filter === 'Revenue-Optimized Commerce' ? commerceCount :
-                            filter === 'Brand Identity' ? brandIdentityCount : 0
-                          })
-                        </span>
-                      )}
-                      {filter === 'All' && (
-                        <span className="ml-2 opacity-60 transition-opacity duration-500 group-hover:opacity-90">
-                          ({portfolioData.projects.length})
-                        </span>
-                      )}
+                      <span className="ml-2 opacity-60 transition-opacity duration-500 group-hover:opacity-90">
+                        ({
+                          filter === 'Web & Systems' ? webSystemsCount :
+                          filter === 'All' ? portfolioData.projects.length :
+                          filter === 'Premium Brand Authority' ? authorityCount :
+                          filter === 'Premium Lead Generation' ? leadGenCount :
+                          filter === 'Revenue-Optimized Commerce' ? commerceCount :
+                          filter === 'Brand Identity' ? brandIdentityCount : 0
+                        })
+                      </span>
                     </span>
                   </button>
                 ))}
@@ -454,6 +455,15 @@ export default function PortfolioPage() {
                               </span>
                             )}
                           </h3>
+                          {project.stack && project.stack.length > 0 && (
+                            <div className="flex flex-wrap gap-1.5 mt-2">
+                              {project.stack.map((tech: string) => (
+                                <span key={tech} className="inline-block text-[10px] font-satoshi tracking-widest uppercase px-2 py-0.5 rounded-full bg-white/10 text-white/70 border border-white/15">
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -484,7 +494,7 @@ export default function PortfolioPage() {
                             {getProjectNumber(index)}
                           </div>
                           <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
-                            {(project as Record<string, string>).strategicCategory ||
+                            {(project as Record<string, unknown>).strategicCategory as string ||
                              (project.category === 'Websites' ? 'Website' :
                               project.category === 'Web Apps' ? 'Web App' :
                               project.category)}
@@ -523,12 +533,21 @@ export default function PortfolioPage() {
                               </h3>
                             </Link>
                           )}
-                          <p 
+                          <p
                             className="text-text-secondary font-satoshi font-normal text-base lg:text-lg leading-relaxed"
                             style={{ letterSpacing: '0.01em' }}
                           >
                             {project.short_description}
                           </p>
+                          {project.stack && project.stack.length > 0 && (
+                            <div className="flex flex-wrap gap-1.5 mt-3">
+                              {project.stack.map((tech: string) => (
+                                <span key={tech} className="inline-block text-[10px] font-satoshi tracking-widest uppercase px-2 py-0.5 rounded-full bg-background-secondary text-text-tertiary border border-text-tertiary/20">
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
 
                         {/* Project Image */}

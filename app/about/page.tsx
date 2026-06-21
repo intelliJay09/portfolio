@@ -995,7 +995,7 @@ export default function AboutPage() {
                   {/* Bio in Glass Panel */}
                   <div className="hero-glass-panel opacity-0" style={{ transform: 'translateX(-60px) scale(0.95)' }}>
                     <p className="text-text-secondary leading-relaxed font-inter text-center lg:text-left px-2 lg:px-0" style={{ fontSize: 'clamp(calc(0.875rem + 2px), 2vw, calc(1rem + 2px))' }}>
-                      Digital Growth Strategist architecting revenue-generating ecosystems for premium brands worldwide.
+                      Digital Systems Architect building revenue-generating ecosystems for premium brands worldwide.
                     </p>
                   </div>
                   

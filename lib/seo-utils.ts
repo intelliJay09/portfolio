@@ -21,6 +21,7 @@ export interface InternalLink {
 
 export const luxuryKeywords: LuxuryKeyword = {
   primary: [
+    'digital systems architect',
     'digital growth strategist',
     'strategic growth systems',
     'revenue-generating ecosystems',
@@ -79,7 +80,7 @@ export const strategicInternalLinks: InternalLink[] = [
   {
     href: '/about',
     text: 'digital growth strategist',
-    title: 'About Jacqueline Amoako - Digital Growth Strategist & Systems Architect',
+    title: 'About Jacqueline Amoako - Digital Systems Architect',
     keywords: ['growth strategist', 'systems architect', 'strategic partner'],
     priority: 'high'
   },

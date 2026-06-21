@@ -83,12 +83,10 @@ const nextConfig: NextConfig = {
         {
           key: 'Content-Security-Policy',
           value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; media-src 'self'; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://www.google.com/recaptcha/; frame-src 'self' https://www.googletagmanager.com https://www.google.com/recaptcha/ https://recaptcha.google.com/;"
-        },
-        // Performance headers for Core Web Vitals
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=31536000, immutable'
         }
+        // Note: Cache-Control is intentionally NOT set here — HTML pages must not be
+        // immutably cached so social media scrapers and browsers always get fresh metadata.
+        // Next.js sets appropriate Cache-Control per route type automatically.
       ]
     },
     // Specific caching for static assets
