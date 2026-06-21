@@ -473,7 +473,7 @@ const getProjectMetrics = (slug: string) => {
     'eddy': [
       { value: '17', label: 'Applications (Month 1)', icon: TrendingUp },
       { value: '3', label: 'Hot Leads (GHS 50k+)', icon: Users },
-      { value: '2', label: 'Confirmed Bookings', icon: Calendar },
+      { value: '5', label: 'Confirmed Bookings', icon: Calendar },
       { value: '700+', label: 'Events Hosted', icon: Star }
     ]
   }
