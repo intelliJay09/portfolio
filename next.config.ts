@@ -70,19 +70,17 @@ const nextConfig: NextConfig = {
 
     return config
   },
+  // NOTE: X-Frame-Options, X-Content-Type-Options, Content-Security-Policy, and
+  // Cross-Origin-Opener-Policy are set in middleware.ts, not here — middleware is
+  // the only layer that can generate the per-request CSP nonce, so it's the single
+  // source of truth for those headers. Cache-Control for images/fonts/css/js is
+  // likewise owned by middleware.ts (it already covers those extensions). This file
+  // only owns headers middleware does NOT set: Referrer-Policy, HSTS, and video
+  // Accept-Ranges/caching.
   headers: async () => [
     {
       source: '/(.*)',
       headers: [
-        // Security headers
-        {
-          key: 'X-Frame-Options',
-          value: 'DENY'
-        },
-        {
-          key: 'X-Content-Type-Options',
-          value: 'nosniff'
-        },
         {
           key: 'Referrer-Policy',
           value: 'strict-origin-when-cross-origin'
@@ -90,45 +88,13 @@ const nextConfig: NextConfig = {
         {
           key: 'Strict-Transport-Security',
           value: 'max-age=31536000; includeSubDomains; preload'
-        },
-        {
-          key: 'Content-Security-Policy',
-          value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; media-src 'self'; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://www.google.com/recaptcha/; frame-src 'self' https://www.googletagmanager.com https://www.google.com/recaptcha/ https://recaptcha.google.com/;"
         }
         // Note: Cache-Control is intentionally NOT set here — HTML pages must not be
         // immutably cached so social media scrapers and browsers always get fresh metadata.
         // Next.js sets appropriate Cache-Control per route type automatically.
       ]
     },
-    // Specific caching for static assets
-    {
-      source: '/images/(.*)',
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=31536000, immutable'
-        },
-        {
-          key: 'Vary',
-          value: 'Accept'
-        }
-      ]
-    },
-    // Font optimization
-    {
-      source: '/fonts/(.*)',
-      headers: [
-        {
-          key: 'Cache-Control', 
-          value: 'public, max-age=31536000, immutable'
-        },
-        {
-          key: 'Access-Control-Allow-Origin',
-          value: '*'
-        }
-      ]
-    },
-    // Video optimization
+    // Video optimization — not covered by middleware.ts's extension matching
     {
       source: '/images/(.*).mp4',
       headers: [
