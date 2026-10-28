@@ -486,8 +486,7 @@ export default function AboutPage() {
     if (skillsRef.current) {
       const timelineContainer = skillsRef.current
       const skillNodes = timelineContainer.querySelectorAll('.skill-node')
-      const milestones = timelineContainer.querySelectorAll('.milestone')
-      
+
       // Timeline path drawing animation
       ScrollTrigger.create({
         trigger: timelineContainer,
@@ -517,26 +516,6 @@ export default function AboutPage() {
           scrollTrigger: {
             trigger: skillsRef.current,
             start: 'top 70%',
-          },
-        }
-      )
-
-      // Milestones animation
-      gsap.fromTo(
-        milestones,
-        { 
-          opacity: 0, 
-          scale: 0.5 
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          stagger: 0.3,
-          ease: 'elastic.out(1, 0.8)',
-          scrollTrigger: {
-            trigger: skillsRef.current,
-            start: 'top 60%',
           },
         }
       )

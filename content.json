@@ -246,6 +246,7 @@
       },
       {
         "slug": "anabs",
+        "caseStudy": true,
         "title": "Anabs",
         "short_description": "Luxury high-rise residential development showcase",
         "category": "Websites",
@@ -255,6 +256,7 @@
       },
       {
         "slug": "eleven-eleven-ghana",
+        "caseStudy": true,
         "title": "Eleven Eleven Ghana",
         "short_description": "Luxury beachfront resort with immersive booking experience",
         "category": "Websites",
@@ -264,6 +266,7 @@
       },
       {
         "slug": "gwen-addo",
+        "caseStudy": true,
         "title": "Gwen Addo",
         "short_description": "Business strategist consultancy with integrated booking system",
         "category": "Websites",
@@ -273,6 +276,7 @@
       },
       {
         "slug": "optimum-property-solutions",
+        "caseStudy": true,
         "title": "Optimum Property Solutions",
         "short_description": "International real estate portal with advanced search capabilities",
         "category": "Websites",
@@ -282,6 +286,7 @@
       },
       {
         "slug": "emmanuel-kotia",
+        "caseStudy": true,
         "title": "Dr. Emmanuel Kotia",
         "short_description": "Academic portfolio and digital publication repository",
         "category": "Websites",
@@ -291,6 +296,7 @@
       },
       {
         "slug": "imagebloom-by-saida",
+        "caseStudy": true,
         "title": "Image Bloom by Saida",
         "short_description": "Makeup artist e-commerce platform with portfolio showcase",
         "category": "Websites",
@@ -300,6 +306,7 @@
       },
       {
         "slug": "rosemond-prempeh",
+        "caseStudy": true,
         "title": "Rosemond Prempeh Ministries",
         "short_description": "Inspirational ministry platform with community engagement",
         "category": "Websites",
@@ -309,6 +316,7 @@
       },
       {
         "slug": "kline-designs",
+        "caseStudy": true,
         "title": "K_Line Designs LTD",
         "short_description": "Design and engineering firm showcasing innovative architectural solutions",
         "category": "Websites",
@@ -318,6 +326,7 @@
       },
       {
         "slug": "royal-itech",
+        "caseStudy": true,
         "title": "Royal iTech",
         "short_description": "Cybersecurity firm with trust-focused corporate presence",
         "category": "Websites",
@@ -327,6 +336,7 @@
       },
       {
         "slug": "girl-code-africa",
+        "caseStudy": true,
         "title": "GirlCode Africa",
         "short_description": "Non-profit organization empowering girls and young women across Africa through STEM education and mentorship",
         "category": "Websites",
@@ -336,6 +346,7 @@
       },
       {
         "slug": "goa-conference",
+        "caseStudy": true,
         "title": "GOA Conference",
         "short_description": "Professional event microsite with registration system",
         "category": "Websites",
@@ -345,6 +356,7 @@
       },
       {
         "slug": "eden-heights",
+        "caseStudy": true,
         "title": "Eden Heights",
         "short_description": "Luxury apartment complex with virtual tour integration",
         "category": "Websites",
@@ -354,6 +366,7 @@
       },
       {
         "slug": "landmark-homes",
+        "caseStudy": true,
         "title": "Landmark Homes",
         "short_description": "Exclusive luxury development showcase platform",
         "category": "Websites",
@@ -363,6 +376,7 @@
       },
       {
         "slug": "ghana-optometric-association",
+        "caseStudy": true,
         "title": "Ghana Optometric Association",
         "short_description": "Professional association portal with member management",
         "category": "Websites",
@@ -372,6 +386,7 @@
       },
       {
         "slug": "twist-nightclub",
+        "caseStudy": true,
         "title": "Twist Night Club",
         "short_description": "Dynamic entertainment venue with events calendar",
         "category": "Websites",
@@ -381,6 +396,7 @@
       },
       {
         "slug": "command-space",
+        "caseStudy": true,
         "title": "Command-Space",
         "short_description": "Digital marketing agency corporate website",
         "category": "Websites",
@@ -390,6 +406,7 @@
       },
       {
         "slug": "qualivex-solutions",
+        "caseStudy": true,
         "title": "Qualivex Solutions",
         "short_description": "Business solutions corporate presence",
         "category": "Websites",
@@ -399,6 +416,7 @@
       },
       {
         "slug": "eddy",
+        "caseStudy": true,
         "title": "Eddy Acquah",
         "short_description": "Next.js booking platform with custom CRM pipeline for Ghana's premier MC — multi-step event booking, intelligent lead qualification, and proposal workflow.",
         "category": "Websites",

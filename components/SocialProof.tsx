@@ -16,7 +16,7 @@ const BLUR_INTENSITIES = [25, 20, 18, 22, 20] // Varying blur for visual interes
 const testimonials = [
   {
     id: 'gwen',
-    quote: "Jacqueliene has a remarkable ability to translate a personal brand into a compelling digital experience. The website she built for me is not only professional and polished but also strategically designed to convert visitors into clients.",
+    quote: "Jacqueline has a remarkable ability to translate a personal brand into a compelling digital experience. The website she built for me is not only professional and polished but also strategically designed to convert visitors into clients.",
     author: "Gwen Addo",
     role: "Business Strategist",
     company: "Personal Brand",
@@ -24,7 +24,7 @@ const testimonials = [
   },
   {
     id: 'curtis',
-    quote: "We develop luxury experiences, and we needed a website that reflected that same standard of quality. Jacqueliene delivered precisely that—elegant, immersive, and perfectly communicates exclusivity.",
+    quote: "We develop luxury experiences, and we needed a website that reflected that same standard of quality. Jacqueline delivered precisely that—elegant, immersive, and perfectly communicates exclusivity.",
     author: "Curtis",
     role: "Founder",
     company: "Eleven Eleven",
@@ -40,7 +40,7 @@ const testimonials = [
   },
   {
     id: 'remie',
-    quote: "Handling the digital needs of a national professional body is a massive undertaking, and Jacqueliene exceeded all expectations with technical excellence.",
+    quote: "Handling the digital needs of a national professional body is a massive undertaking, and Jacqueline exceeded all expectations with technical excellence.",
     author: "Dr. Remie",
     role: "President",
     company: "Ghana Optometric Association",
@@ -48,7 +48,7 @@ const testimonials = [
   },
   {
     id: 'tyrone',
-    quote: "As a digital agency, our website has to be flawless—it&apos;s our ultimate business card. Jacqueliene built a company website that is sleek, functional, and showcases our expertise.",
+    quote: "As a digital agency, our website has to be flawless—it&apos;s our ultimate business card. Jacqueline built a company website that is sleek, functional, and showcases our expertise.",
     author: "Tyrone",
     role: "CEO",
     company: "Command Space",

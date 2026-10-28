@@ -40,10 +40,11 @@ const SCROLL_CONFIG = {
 }
 
 interface NavigationProps {
+  // Pages with a preloader pass false until it finishes; pages without one show the nav at once
   preloaderComplete?: boolean
 }
 
-export default function Navigation({ preloaderComplete = false }: NavigationProps) {
+export default function Navigation({ preloaderComplete = true }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
 

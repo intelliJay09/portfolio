@@ -13,6 +13,20 @@ const greetings = [
   'नमस्ते', 'مرحبا', 'Olá', 'Привет', 'こんにちは'
 ]
 
+// The whole intro, content reveal included, finishes inside the 2.5s loader cap
+const FIRST_SLOT = 0.5 // Akwaaba holds longer
+const SLOT = 0.11 // every greeting after it
+const SEEN_KEY = 'intro-seen'
+
+const shouldSkipIntro = () => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true
+  try {
+    return sessionStorage.getItem(SEEN_KEY) === '1'
+  } catch {
+    return false // storage blocked: play the intro
+  }
+}
+
 export default function InitialPreloader({ onComplete, pageContentRef }: InitialPreloaderProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const greetingsRef = useRef<HTMLDivElement[]>([])
@@ -21,6 +35,12 @@ export default function InitialPreloader({ onComplete, pageContentRef }: Initial
   useEffect(() => {
     if (!containerRef.current) return
 
+    // Once per browser session, and never for visitors who ask for reduced motion
+    if (shouldSkipIntro()) {
+      setIsComplete(true)
+      onComplete()
+      return
+    }
 
     const tl = gsap.timeline()
     
@@ -39,15 +59,11 @@ export default function InitialPreloader({ onComplete, pageContentRef }: Initial
       if (!greetingEl) return
 
       // Give first greeting (Akwaaba) more time for elegant entrance
-      const fadeInDuration = index === 0 ? 0.3 : 0.12
-      const holdDuration = index === 0 ? 1.0 : 0.08
-      const fadeOutDuration = index === 0 ? 0.2 : 0.15
-      
-      // Calculate cumulative start time
-      let startTime = 0
-      for (let i = 0; i < index; i++) {
-        startTime += i === 0 ? 1.5 : 0.35
-      }
+      const fadeInDuration = index === 0 ? 0.25 : 0.05
+      const holdDuration = index === 0 ? 0.1 : 0.02
+      const fadeOutDuration = index === 0 ? 0.15 : 0.04
+
+      const startTime = index === 0 ? 0 : FIRST_SLOT + (index - 1) * SLOT
       
       // Special elegant entrance for Akwaaba
       if (index === 0) {
@@ -61,7 +77,7 @@ export default function InitialPreloader({ onComplete, pageContentRef }: Initial
           {
             opacity: 1,
             scale: 1.0,
-            duration: 0.3,
+            duration: fadeInDuration,
             ease: 'power2.out'
           },
           startTime
@@ -103,10 +119,10 @@ export default function InitialPreloader({ onComplete, pageContentRef }: Initial
     })
 
     // Hold the last greeting, then exit with coordinated page content reveal
-    tl.to({}, { duration: 0.4 })
+    tl.to({}, { duration: 0.15 })
       .to(containerRef.current, {
         y: '-100vh',
-        duration: 1.2,
+        duration: 0.7,
         ease: 'power3.inOut'
       }, "exit")
       
@@ -115,9 +131,14 @@ export default function InitialPreloader({ onComplete, pageContentRef }: Initial
       tl.to(pageContentRef.current, {
         filter: 'blur(0px)',
         scale: 1,
-        duration: 1.5,
+        duration: 0.9,
         ease: 'power2.out',
         onComplete: () => {
+          try {
+            sessionStorage.setItem(SEEN_KEY, '1')
+          } catch {
+            // storage blocked: the intro plays again next visit
+          }
           // Delay state updates until all animations are completely finished
           setTimeout(() => {
             setIsComplete(true)

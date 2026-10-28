@@ -63,7 +63,14 @@ export const viewport: Viewport = {
   ],
 }
 
+// Absolute base for relative metadata URLs, such as each case study's og:image
+const siteUrl = process.env.SITE_URL
+if (!siteUrl && process.env.NODE_ENV === 'production') {
+  console.error('SITE_URL is not set: share images will resolve to localhost')
+}
+
 export const metadata: Metadata = {
+  ...(siteUrl && { metadataBase: new URL(siteUrl) }),
   title: {
     default: 'Jacqueline Amoako - Digital Systems Architect',
     template: '%s | Jacqueline Amoako'

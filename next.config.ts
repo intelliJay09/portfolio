@@ -43,6 +43,17 @@ const nextConfig: NextConfig = {
       }
     }
     
+    // Don't watch .playwright-mcp: browser tooling writes logs there continuously,
+    // and each write triggered a recompile, so requests landing mid-rebuild read
+    // half-written manifests and 500'd. Same regex as Next's default ignore list,
+    // with .playwright-mcp added.
+    if (dev) {
+      config.watchOptions = {
+        ...config.watchOptions,
+        ignored: /^((?:[^/]*(?:\/|$))*)(\.(git|next|playwright-mcp)|node_modules)(\/((?:[^/]*(?:\/|$))*)(?:$|\/))?/,
+      }
+    }
+
     // Add bundle analyzer in development
     if (dev && !isServer) {
       config.optimization.splitChunks = {

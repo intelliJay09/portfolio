@@ -30,6 +30,7 @@ interface Project {
   strategicCategory?: string
   strategicFilter?: string
   stack?: string[]
+  caseStudy?: boolean
 }
 
 export default function PortfolioPage() {
@@ -211,14 +212,32 @@ export default function PortfolioPage() {
     }
   }, [preloaderComplete])
 
-  const handleProjectClick = (project: Project) => {
+  // One full-card control per project: a link to its case study, a button that opens a
+  // brand identity piece, or nothing for a project with no page yet
+  const renderProjectAction = (project: Project) => {
     if (project.category === 'Brand Identity') {
-      setSelectedProject(project)
-      setIsModalOpen(true)
-    } else {
-      // Navigate to case study for websites and web apps
-      window.location.href = `/portfolio/${project.slug}`
+      return (
+        <button
+          type="button"
+          onClick={() => {
+            setSelectedProject(project)
+            setIsModalOpen(true)
+          }}
+          aria-label={`View ${project.title}`}
+          className="absolute inset-0 z-[3] rounded-[inherit] cursor-pointer"
+        />
+      )
     }
+    if (project.caseStudy) {
+      return (
+        <Link
+          href={`/portfolio/${project.slug}`}
+          aria-label={`${project.title} case study`}
+          className="absolute inset-0 z-[3] rounded-[inherit]"
+        />
+      )
+    }
+    return null
   }
 
   const getProjectNumber = (index: number) => {
@@ -421,9 +440,10 @@ export default function PortfolioPage() {
                       ref={(el) => {
                         projectRefs.current[index] = el
                       }}
-                      className={`${getLuxuryGridClass(index, project.category)} group cursor-pointer`}
-                      onClick={() => handleProjectClick(project)}
+                      className={`${getLuxuryGridClass(index, project.category)} group`}
                     >
+                      {renderProjectAction(project)}
+
                       {/* Project Number */}
                       <div className="luxury-number">
                         {getProjectNumber(index)}
@@ -445,6 +465,8 @@ export default function PortfolioPage() {
                           placeholderText={`${project.category} project`}
                         />
                         
+                        <div className="luxury-overlay" aria-hidden="true" />
+
                         {/* Content */}
                         <div className="luxury-content">
                           <h3 className="luxury-title">
@@ -484,9 +506,10 @@ export default function PortfolioPage() {
                       ref={(el) => {
                         projectRefs.current[index] = el
                       }}
-                      className="group cursor-pointer rounded-2xl p-8 lg:p-12"
-                      onClick={() => handleProjectClick(project)}
+                      className="group relative rounded-2xl p-8 lg:p-12"
                     >
+                      {renderProjectAction(project)}
+
                       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                         {/* Project Number & Category */}
                         <div className="lg:col-span-1">
@@ -515,23 +538,21 @@ export default function PortfolioPage() {
                               {project.title}
                             </h3>
                           ) : (
-                            <Link href={`/portfolio/${project.slug}`}>
-                              <h3
-                                className="text-2xl lg:text-3xl font-satoshi font-medium text-text-primary mb-3 group-hover:text-text-secondary transition-all duration-600 cursor-pointer hover:translate-x-2 hover:text-accent"
-                                style={{
-                                  letterSpacing: '0.01em',
-                                  lineHeight: '1.3',
-                                  transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                                }}
-                              >
-                                {project.title}
-                                {project.category === 'Web Apps' && (
-                                  <span className="ml-3 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
-                                    In Development
-                                  </span>
-                                )}
-                              </h3>
-                            </Link>
+                            <h3
+                              className="text-2xl lg:text-3xl font-satoshi font-medium text-text-primary mb-3 group-hover:text-text-secondary transition-all duration-600 group-hover:translate-x-2"
+                              style={{
+                                letterSpacing: '0.01em',
+                                lineHeight: '1.3',
+                                transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                              }}
+                            >
+                              {project.title}
+                              {project.category === 'Web Apps' && (
+                                <span className="ml-3 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+                                  In Development
+                                </span>
+                              )}
+                            </h3>
                           )}
                           <p
                             className="text-text-secondary font-satoshi font-normal text-base lg:text-lg leading-relaxed"
@@ -567,29 +588,27 @@ export default function PortfolioPage() {
                                 placeholderText={`${project.category} project`}
                               />
                             ) : (
-                              <Link href={`/portfolio/${project.slug}`}>
-                                <div className="relative">
-                                  <RobustImage
-                                    src={getProjectImage(project.slug, project.category)}
-                                    alt={project.title}
-                                    category={project.category}
-                                    fill
-                                    className="object-cover cursor-pointer transition-all duration-1000 ease-out group-hover:brightness-110"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 30vw, 25vw"
-                                    loading="lazy"
-                                    quality={85}
-                                    showPlaceholder={false}
-                                    placeholderText={`${project.category} project`}
-                                  />
-                                  {project.category === 'Web Apps' && (
-                                    <div className="absolute top-2 right-2">
-                                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-amber-100/90 text-amber-800 dark:bg-amber-900/90 dark:text-amber-300 backdrop-blur-sm">
-                                        In Development
-                                      </span>
-                                    </div>
-                                  )}
-                                </div>
-                              </Link>
+                              <div className="relative">
+                                <RobustImage
+                                  src={getProjectImage(project.slug, project.category)}
+                                  alt={project.title}
+                                  category={project.category}
+                                  fill
+                                  className="object-cover cursor-pointer transition-all duration-1000 ease-out group-hover:brightness-110"
+                                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 30vw, 25vw"
+                                  loading="lazy"
+                                  quality={85}
+                                  showPlaceholder={false}
+                                  placeholderText={`${project.category} project`}
+                                />
+                                {project.category === 'Web Apps' && (
+                                  <div className="absolute top-2 right-2">
+                                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-amber-100/90 text-amber-800 dark:bg-amber-900/90 dark:text-amber-300 backdrop-blur-sm">
+                                      In Development
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
                             )}
                           </div>
                         </div>
