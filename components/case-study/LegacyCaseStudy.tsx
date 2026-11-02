@@ -41,7 +41,6 @@ const getProjectHeroImage = (slug: string) => {
     'command-space': '/images/command-space.png',
     'anabs': '/images/anabs.png',
     'kline-designs': '/images/klinedesign.png',
-    'eddy': '/images/eddy-hero.jpg'
   }
 
   return heroImageMap[slug] || '/images/11-11-case-study-hero.webp' // Default fallback
@@ -97,7 +96,6 @@ const getProjectYear = (slug: string, portfolioProject: PortfolioProject | undef
     'command-space': '2023',
     'anabs': '2025',
     'kline-designs': '2025',
-    'eddy': '2024'
   }
 
   return projectYears[slug] || portfolioProject?.year || projectData?.year || '2024'
@@ -117,7 +115,6 @@ const getProjectChallengeQuote = (slug: string, projectData: ProjectData, portfo
     'command-space': 'How do you position digital agency authority that converts prospects into high-value client partnerships?',
     'anabs': 'How do you position luxury high-rise authority that attracts discerning investors and commands premium pricing?',
     'kline-designs': 'How do you establish architectural design authority that positions firm as innovation leader and drives project inquiries?',
-    'eddy': 'How do you turn a world-class MC\'s reputation into a revenue-generating booking system that qualifies leads automatically and converts inquiries into confirmed events?'
   }
 
   return quotes[slug] || projectData?.challenge?.quote || portfolioProject?.theChallenge || 'How do you create something exceptional for this project?'

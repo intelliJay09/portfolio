@@ -111,7 +111,7 @@ const nextConfig: NextConfig = {
   ],
   // Case studies that were removed from the portfolio keep their old links alive
   async redirects() {
-    return ['goa-conference', 'qualivex-solutions', 'optimum-property-solutions', 'imagebloom-by-saida', 'rosemond-prempeh', 'royal-itech'].map((slug) => ({
+    return ['goa-conference', 'qualivex-solutions', 'optimum-property-solutions', 'imagebloom-by-saida', 'rosemond-prempeh', 'royal-itech', 'eddy'].map((slug) => ({
       source: `/portfolio/${slug}`,
       destination: '/portfolio',
       permanent: true,

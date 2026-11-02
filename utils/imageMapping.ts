@@ -17,7 +17,6 @@ const websiteImages: Record<string, string> = {
   'command-space': '/images/command-space.png',
   'anabs': '/images/anabs.png',
   'kline-designs': '/images/klinedesign.png',
-  'eddy': '/images/eddy-hero.jpg',
   'finest-dietitian': '/images/case-studies/finest-dietitian/site-home.webp'
 }
 

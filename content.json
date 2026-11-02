@@ -219,16 +219,6 @@
         "strategicCategory": "Digital Agency Services",
         "strategicFilter": "Premium Brand Authority",
         "stack": ["Next.js"]
-      },
-      {
-        "slug": "eddy",
-        "caseStudy": true,
-        "title": "Eddy Acquah",
-        "short_description": "Next.js booking platform with custom CRM pipeline for Ghana's premier MC — multi-step event booking, intelligent lead qualification, and proposal workflow.",
-        "category": "Websites",
-        "strategicCategory": "Professional Services Platform",
-        "strategicFilter": "Premium Brand Authority",
-        "stack": ["Next.js", "Vercel", "Cloudflare R2"]
       }
     ]
   },
