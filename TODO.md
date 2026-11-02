@@ -32,11 +32,20 @@ Done on branch `content/recruiter-ready` (2026-11-02): all copy now comes from `
 - [x] Student quotes on About confirmed real by the user
 - [ ] Social links in the footer: Instagram `jackieofzera` and X `intelliJay09`. Keep or remove?
 - [x] About hero: email and LinkedIn links (CV left off the site, it is not tailored)
-- [x] Portfolio cut to 17 entries (2026-11-02, user YES): removed Lovel.ai, GOA Conference, Qualivex Solutions and all 19 brand-identity pieces; backup in `.trash-1793603802-cut/`; `/portfolio/goa-conference` and `/portfolio/qualivex-solutions` redirect to `/portfolio`. Filter pills removed from the portfolio page. Image files for removed entries are still in `public/images`.
+- [x] Portfolio cut to 12 entries (2026-11-02, user YES): removed Lovel.ai, GOA Conference, Qualivex, Optimum Property, Image Bloom, Rosemond Prempeh, Royal iTech, Eddy Acquah and all 19 brand-identity pieces; backups in the `.trash-*` folders; their `/portfolio/<slug>` URLs redirect to `/portfolio`. Filter pills removed from the portfolio page. Rows marked in the Notion database "Website portfolio".
 - [x] Finest Dietitian added as a case study (`lib/case-studies.ts`), second on the homepage; testimonial is Fredericka's words as sent to the user
 - [ ] Real results for the remaining older case studies (user does not control their analytics): needs numbers from her or the clients
 - [ ] Move the other older case studies onto the new case study layout (Gwen Addo and Finest Dietitian are done)
 - [ ] Delete dead files once you say YES: `components/Introduction.tsx`, `ServicesOverview.tsx`, `SocialProof.tsx`, `TestimonialSection.tsx`, `Preloader.tsx`, `lib/open-graph.ts`, `lib/seo-utils.ts`, `lib/advanced-seo-config.ts`, `lib/authority-building-strategy.ts`, `lib/blog-content-strategy.ts`, `lib/local-seo-ghana.ts`, and the `homepage` and `services` keys in `content.json`. They still carry the old claims.
+
+## Vercel move (staged 2026-11-02, not live)
+
+- [x] Vercel project `portfolio` in team `zeradynamics`, linked to GitHub `intelliJay09/portfolio`, production branch `main`, Node 24.x
+- [x] Environment variables set for Production and Preview from `.env.local` (GTM_ID Production only; SMTP_PASSWORD and RECAPTCHA_SECRET_KEY sensitive)
+- [x] Domains `jacquelineamoako.com` and `www.jacquelineamoako.com` added (www redirects 308 to the apex); DNS still points at AWS through Cloudflare
+- [ ] Merge PR #1 so `main` has this content (it also carries the CSP and GA4-through-GTM commits)
+- [ ] Cutover order: production deploy finished, then Cloudflare DNS to Vercel (grey cloud), then publish the GTM workspace, then confirm GA4 realtime (see the analytics memory)
+- [ ] Regenerate the reCAPTCHA keys: `.env.local` notes they were exposed in git history
 
 ## Housekeeping
 
