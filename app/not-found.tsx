@@ -17,8 +17,6 @@ export default function NotFound() {
   useEffect(() => {
     // Wait for DOM to be ready
     const timer = setTimeout(() => {
-      console.log('Particles found:', particlesRef.current.length) // Debug log
-      
       if (particlesRef.current.length > 0) {
         // Initial scattered state
         gsap.set(particlesRef.current, {

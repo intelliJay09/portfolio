@@ -5,6 +5,8 @@ class DebugLogger {
   private debugPanel: HTMLDivElement | null = null
 
   init() {
+    if (process.env.NODE_ENV === 'production') return
+
     this.startTime = performance.now()
     this.logs = []
 
@@ -65,6 +67,9 @@ class DebugLogger {
   }
 
   log(source: string, message: string, emoji: string = '📝') {
+    // Development only: production visitors never see these in the console
+    if (process.env.NODE_ENV === 'production') return
+
     const time = (performance.now() - this.startTime).toFixed(2)
     const logEntry = { time: parseFloat(time), message: `[${source}] ${message}`, emoji }
     this.logs.push(logEntry)
@@ -108,6 +113,8 @@ class DebugLogger {
   }
 
   printSummary() {
+    if (process.env.NODE_ENV === 'production') return
+
     console.log('\n\n')
     console.log('%c═══════════════════════════════════════════════════════', 'color: #0f0; font-weight: bold; font-size: 14px')
     console.log('%c                    DEBUG SUMMARY                      ', 'color: #0f0; font-weight: bold; font-size: 14px')

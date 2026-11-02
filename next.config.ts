@@ -117,6 +117,9 @@ const nextConfig: NextConfig = {
       permanent: true,
     }))
   },
+  // Next 15 streams page metadata into the body for browsers. Matching every user agent
+  // keeps the description, canonical and social tags in the head for all visitors and tools.
+  htmlLimitedBots: /.*/,
   experimental: {
     webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB', 'INP'],
   },

@@ -111,7 +111,6 @@ export const metadata: Metadata = {
     canonical: SITE.url,
     languages: {
       'en-US': SITE.url,
-      'en-GB': `${SITE.url}/en-gb`,
     },
   },
   openGraph: {

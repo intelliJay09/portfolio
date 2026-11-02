@@ -39,14 +39,12 @@ export default function RobustImage({
     // Try fallback image if provided
     const nextFallback = fallbackSrc || getFallbackImage()
     if (currentSrc !== nextFallback) {
-      console.log('RobustImage: Trying fallback image:', nextFallback)
       setCurrentSrc(nextFallback)
       setHasError(false)
     }
   }
 
   const handleLoad = () => {
-    console.log('RobustImage: onLoad fired for:', src)
     setHasError(false)
   }
 

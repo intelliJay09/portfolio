@@ -90,12 +90,10 @@ export default function TeachingTeaser() {
         entries.forEach((entry) => {
           const video = entry.target as HTMLVideoElement
           if (entry.isIntersecting && video.paused) {
-            console.log('Video entering viewport, attempting to play')
             video.play().catch((error) => {
               console.warn('Video autoplay failed:', error.message)
             })
           } else if (!entry.isIntersecting && !video.paused) {
-            console.log('Video leaving viewport, pausing')
             video.pause()
           }
         })
@@ -311,7 +309,7 @@ export default function TeachingTeaser() {
                     onMouseMove={handleButtonMouseMove}
                   >
                     <span className="text-white">
-                      Learn More
+                      About my teaching
                     </span>
                     <svg 
                       className="w-5 h-5 text-white/80 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white" 

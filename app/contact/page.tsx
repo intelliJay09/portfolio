@@ -149,7 +149,6 @@ export default function ContactPage() {
 
     // Check if reCAPTCHA is ready
     if (!isReady || !executeRecaptcha) {
-      console.log('reCAPTCHA not yet ready')
       return
     }
 
