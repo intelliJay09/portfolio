@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useMemo } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { Grid3X3, List } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -8,7 +8,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Navigation from '../../components/Navigation'
 import Footer from '../../components/Footer'
-import GraphicDesignModal from '../../components/ui/GraphicDesignModal'
 import ErrorBoundary from '../../components/ui/ErrorBoundary'
 import RobustImage from '../../components/ui/RobustImage'
 import PagePreloader from '../../components/PagePreloader'
@@ -20,7 +19,6 @@ import contentData from '../../content.json'
 const portfolioData = contentData.portfolio
 
 type ViewMode = 'grid' | 'list'
-type FilterType = 'Web & Systems' | 'All' | 'Premium Brand Authority' | 'Premium Lead Generation' | 'Revenue-Optimized Commerce' | 'Brand Identity'
 
 interface Project {
   slug: string
@@ -35,9 +33,6 @@ interface Project {
 
 export default function PortfolioPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
-  const [activeFilter, setActiveFilter] = useState<FilterType>('Web & Systems')
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
   const [preloaderComplete, setPreloaderComplete] = useState(false)
 
   // Refs for animations with proper typing
@@ -55,40 +50,9 @@ export default function PortfolioPage() {
     setPreloaderComplete(true)
   }
 
-  // Filter projects based on active filter
-  const filteredProjects = useMemo(() => {
-    if (activeFilter === 'All') return portfolioData.projects
-
-    if (activeFilter === 'Web & Systems') {
-      return portfolioData.projects.filter(project => project.category !== 'Brand Identity')
-    }
-
-    // Brand Identity filters by category "Brand Identity"
-    if (activeFilter === 'Brand Identity') {
-      return portfolioData.projects.filter(project => project.category === 'Brand Identity')
-    }
-
-    // Strategic filters use strategicFilter field
-    return portfolioData.projects.filter(project =>
-      (project as Record<string, unknown>).strategicFilter === activeFilter
-    )
-  }, [activeFilter])
-
-  // Project count
+  // Every remaining project is a website with its own page, so there is nothing to filter
+  const filteredProjects: Project[] = portfolioData.projects
   const projectCount = filteredProjects.length
-  const webSystemsCount = portfolioData.projects.filter(p => p.category !== 'Brand Identity').length
-  const authorityCount = portfolioData.projects.filter(p =>
-    (p as Record<string, unknown>).strategicFilter === 'Premium Brand Authority'
-  ).length
-  const leadGenCount = portfolioData.projects.filter(p =>
-    (p as Record<string, unknown>).strategicFilter === 'Premium Lead Generation'
-  ).length
-  const commerceCount = portfolioData.projects.filter(p =>
-    (p as Record<string, unknown>).strategicFilter === 'Revenue-Optimized Commerce'
-  ).length
-  const brandIdentityCount = portfolioData.projects.filter(p =>
-    p.category === 'Brand Identity'
-  ).length
 
   useEffect(() => {
     // Register GSAP plugin on client side only
@@ -212,22 +176,8 @@ export default function PortfolioPage() {
     }
   }, [preloaderComplete])
 
-  // One full-card control per project: a link to its case study, a button that opens a
-  // brand identity piece, or nothing for a project with no page yet
+  // One full-card control per project: a link to its case study, or nothing for a project with no page yet
   const renderProjectAction = (project: Project) => {
-    if (project.category === 'Brand Identity') {
-      return (
-        <button
-          type="button"
-          onClick={() => {
-            setSelectedProject(project)
-            setIsModalOpen(true)
-          }}
-          aria-label={`View ${project.title}`}
-          className="absolute inset-0 z-[3] rounded-[inherit] cursor-pointer"
-        />
-      )
-    }
     if (project.caseStudy) {
       return (
         <Link
@@ -298,48 +248,8 @@ export default function PortfolioPage() {
           className="px-4 sm:px-6 md:px-8 lg:px-10 mb-12 sm:mb-16 md:mb-20 lg:mb-24"
         >
           <div className="w-full max-w-7xl mx-auto">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-end gap-8">
               
-              {/* Filter Pills */}
-              <div className="flex flex-wrap gap-3">
-                {(['Web & Systems', 'All', 'Premium Brand Authority', 'Premium Lead Generation', 'Revenue-Optimized Commerce', 'Brand Identity'] as FilterType[]).map((filter) => (
-                  <button
-                    key={filter}
-                    onClick={() => setActiveFilter(filter)}
-                    className={`animate-filter px-6 py-3 rounded-full transition-all duration-600 font-satoshi font-medium text-sm tracking-wide relative overflow-hidden group ${
-                      activeFilter === filter
-                        ? 'bg-[#2a2a2a] text-white scale-105 dark:bg-[#2a2a2a] dark:text-white dark:shadow-lg dark:shadow-black/20'
-                        : 'bg-background-secondary text-text-secondary hover:bg-[#d5d5d5] hover:text-text-primary dark:hover:bg-[#3a3a3a] dark:hover:text-white'
-                    }`}
-                    style={{
-                      letterSpacing: '0.05em',
-                      transform: activeFilter === filter ? 'translateY(-1px)' : 'translateY(0)',
-                      transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                    }}
-                  >
-                    {/* Dark theme gradient overlay for active state only */}
-                    {activeFilter === filter && (
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 dark:opacity-100 transition-opacity duration-500" />
-                    )}
-
-                    {/* Button content */}
-                    <span className="relative z-10">
-                      {filter}
-                      <span className="ml-2 opacity-60 transition-opacity duration-500 group-hover:opacity-90">
-                        ({
-                          filter === 'Web & Systems' ? webSystemsCount :
-                          filter === 'All' ? portfolioData.projects.length :
-                          filter === 'Premium Brand Authority' ? authorityCount :
-                          filter === 'Premium Lead Generation' ? leadGenCount :
-                          filter === 'Revenue-Optimized Commerce' ? commerceCount :
-                          filter === 'Brand Identity' ? brandIdentityCount : 0
-                        })
-                      </span>
-                    </span>
-                  </button>
-                ))}
-              </div>
-
               {/* View Mode Toggle & Project Count */}
               <div className="flex items-center gap-6">
                 {/* Project Count */}
@@ -436,11 +346,11 @@ export default function PortfolioPage() {
                 >
                   {filteredProjects.map((project, index) => (
                     <div
-                      key={`${project.slug}-${activeFilter}`}
+                      key={`${project.slug}`}
                       ref={(el) => {
                         projectRefs.current[index] = el
                       }}
-                      className={`${getLuxuryGridClass(index, project.category)} group`}
+                      className={`${getLuxuryGridClass(index)} group`}
                     >
                       {renderProjectAction(project)}
 
@@ -454,7 +364,6 @@ export default function PortfolioPage() {
                         <RobustImage
                           src={getProjectImage(project.slug, project.category)}
                           alt={project.title}
-                          category={project.category}
                           fill
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 66vw, (max-width: 1200px) 50vw, 40vw"
@@ -502,7 +411,7 @@ export default function PortfolioPage() {
                 >
                   {filteredProjects.map((project, index) => (
                     <div
-                      key={`${project.slug}-${activeFilter}-list`}
+                      key={`${project.slug}-list`}
                       ref={(el) => {
                         projectRefs.current[index] = el
                       }}
@@ -517,7 +426,7 @@ export default function PortfolioPage() {
                             {getProjectNumber(index)}
                           </div>
                           <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
-                            {(project as Record<string, unknown>).strategicCategory as string ||
+                            {project.strategicCategory ||
                              (project.category === 'Websites' ? 'Website' :
                               project.category === 'Web Apps' ? 'Web App' :
                               project.category)}
@@ -578,7 +487,6 @@ export default function PortfolioPage() {
                               <RobustImage
                                 src={getProjectImage(project.slug, project.category)}
                                 alt={project.title}
-                                category={project.category}
                                 fill
                                 className="object-cover cursor-pointer transition-all duration-1000 ease-out group-hover:brightness-110"
                                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 30vw, 25vw"
@@ -592,7 +500,6 @@ export default function PortfolioPage() {
                                 <RobustImage
                                   src={getProjectImage(project.slug, project.category)}
                                   alt={project.title}
-                                  category={project.category}
                                   fill
                                   className="object-cover cursor-pointer transition-all duration-1000 ease-out group-hover:brightness-110"
                                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 30vw, 25vw"
@@ -626,18 +533,6 @@ export default function PortfolioPage() {
         <Footer />
       </div>
 
-      {/* Brand Identity Modal */}
-      {selectedProject && (
-        <GraphicDesignModal
-          isOpen={isModalOpen}
-          onClose={() => {
-            setIsModalOpen(false)
-            setSelectedProject(null)
-          }}
-          project={selectedProject}
-          imageSrc={getProjectImage(selectedProject.slug, selectedProject.category)}
-        />
-      )}
     </>
   )
 }

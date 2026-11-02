@@ -6,6 +6,7 @@ import { ArrowDownRight, ArrowDownLeft } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTheme } from '../contexts/ThemeProvider'
+import { SITE } from '../lib/site'
 
 export default function Hero() {
   const { theme } = useTheme()
@@ -120,7 +121,7 @@ export default function Hero() {
               transformOrigin: 'center center'
             }}
           >
-            Jacqueline
+            Jacqueline<span className="sr-only"> Amoako</span>
           </h1>
           
           {/* Arrow and Text Container */}
@@ -142,13 +143,16 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Digital Systems Architect Text */}
+            {/* Role, then the plain sentence a recruiter should leave with */}
             <div
               ref={titleRef}
             >
               <div className="text-left md:text-left">
                 <p className="text-text-primary font-satoshi font-normal text-base sm:text-lg md:text-xl lg:text-2xl leading-tight tracking-wide">
-                  Digital Systems Architect
+                  {SITE.role}
+                </p>
+                <p className="mt-2 max-w-[22ch] text-text-secondary font-satoshi font-normal text-sm sm:text-base leading-snug">
+                  {SITE.tagline}
                 </p>
               </div>
             </div>

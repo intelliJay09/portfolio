@@ -76,10 +76,10 @@ export default function PortfolioFooter({ currentSlug }: PortfolioFooterProps) {
 
   // Get website projects only (filter out graphic design projects)
   const websiteProjectSlugs = [
-    'anabs', 'eleven-eleven-ghana', 'gwen-addo', 'optimum-property-solutions', 'emmanuel-kotia',
-    'imagebloom-by-saida', 'rosemond-prempeh', 'royal-itech', 'girl-code-africa',
-    'goa-conference', 'eden-heights', 'landmark-homes', 'ghana-optometric-association',
-    'twist-nightclub', 'command-space', 'qualivex-solutions'
+    'anabs', 'eleven-eleven-ghana', 'gwen-addo', 'finest-dietitian', 'emmanuel-kotia',
+    'royal-itech', 'girl-code-africa',
+    'eden-heights', 'landmark-homes', 'ghana-optometric-association',
+    'twist-nightclub', 'command-space'
   ];
   
   const websiteProjects = content.portfolio.projects.filter(project => 
@@ -98,20 +98,16 @@ export default function PortfolioFooter({ currentSlug }: PortfolioFooterProps) {
     const imageMap: { [key: string]: string } = {
       'anabs': '/images/anabs.png',
       'gwen-addo': '/images/gwen-addo.png',
+      'finest-dietitian': '/images/case-studies/finest-dietitian/site-home.webp',
       'eleven-eleven-ghana': '/images/eleven-eleven.png',
-      'optimum-property-solutions': '/images/optimum-property.png',
       'emmanuel-kotia': '/images/emma-kotia.png',
-      'imagebloom-by-saida': '/images/image-bloom.png',
-      'rosemond-prempeh': '/images/rosemond-prempeh.png',
       'royal-itech': '/images/royal-itech.png',
       'girl-code-africa': '/images/girlcode.png',
-      'goa-conference': '/images/ghana-optometric- association-conference.png',
       'eden-heights': '/images/eden-heights.png',
       'landmark-homes': '/images/landmark-homes.png',
       'ghana-optometric-association': '/images/ghana-optometric- association-main.png',
       'twist-nightclub': '/images/twist-night-club.png',
       'command-space': '/images/command-space.png',
-      'qualivex-solutions': '/images/qualivex-solutions.png'
     }
     
     return imageMap[slug] || '/images/11-11-case-study-hero.webp'
@@ -259,13 +255,13 @@ export default function PortfolioFooter({ currentSlug }: PortfolioFooterProps) {
                 <a ref={(el) => {
                      if (el) socialLinksRef.current[1] = el
                    }}
-                   href="https://x.com/intelliJay09" 
+                   href="https://github.com/intelliJay09" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    onMouseEnter={() => handleSocialHover(1, true)}
                    onMouseLeave={() => handleSocialHover(1, false)}
                    className="text-white font-satoshi transition-none">
-                  Twitter
+                  GitHub
                 </a>
                 <a ref={(el) => {
                      if (el) socialLinksRef.current[2] = el

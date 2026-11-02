@@ -390,7 +390,7 @@ export default function ContactPage() {
                       {/* Service Field */}
                       <div className="form-field">
                         <label htmlFor="service" className="block text-sm font-medium text-text-secondary mb-2">
-                          Service Needed <span className="text-red-500">*</span>
+                          What is this about? <span className="text-red-500">*</span>
                         </label>
                         <select
                           id="service"
@@ -412,15 +412,13 @@ export default function ContactPage() {
                             fontSize: '15px'
                           }}
                         >
-                          <option value="">Select a service...</option>
-                          <option value="custom-web-development">Custom Web Development</option>
-                          <option value="app-development">App Development</option>
-                          <option value="ecommerce-solutions">E-Commerce Solutions</option>
-                          <option value="seo-digital-strategy">SEO & Digital Strategy</option>
-                          <option value="website-maintenance">Website Maintenance & Support</option>
-                          <option value="teaching-mentorship">Teaching/Mentorship</option>
-                          <option value="consultation">Consultation</option>
-                          <option value="other">Other</option>
+                          <option value="">Choose one</option>
+                          <option value="role-or-opportunity">A role or an opportunity</option>
+                          <option value="lifecycle-automation">Lifecycle marketing and automation</option>
+                          <option value="crm-setup">CRM setup</option>
+                          <option value="website">A website</option>
+                          <option value="teaching-mentorship">Teaching or mentorship</option>
+                          <option value="other">Something else</option>
                         </select>
                       </div>
                       
@@ -525,7 +523,7 @@ export default function ContactPage() {
                               : 'none',
                             outline: 'none'
                           }}
-                          placeholder="Tell me about your project..."
+                          placeholder="What would you like to talk about?"
                         />
                       </div>
                       

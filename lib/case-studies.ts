@@ -1,7 +1,8 @@
 // Structured case studies, rendered by components/case-study/CaseStudy.tsx.
 // Every figure here traces to a client record: for Gwen Addo, the Orella
 // production data behind COHORT_3_VALUE_DIGEST.md and the lifecycle code in
-// orella-gwen/workflows/sequences.ts. Slugs without an entry here still render
+// orella-gwen/workflows/sequences.ts. Finest Dietitian: the booking journey and
+// first-booking date come from the live site and the build records. Slugs without an entry here still render
 // through the legacy template.
 
 export interface CaseStudyImage {
@@ -38,17 +39,18 @@ export interface CaseStudy {
   liveUrl?: string
   cover: CaseStudyImage
   situation: { heading: string; body: string[] }
-  journey: { heading: string; intro: string; stages: JourneyStage[]; beyond: string }
-  finding: {
+  journey: { heading: string; intro: string; stages: JourneyStage[]; beyond?: string }
+  // Only studies with a measured finding or open work carry these sections
+  finding?: {
     heading: string
     body: string[]
     table: { caption: string; headers: string[]; rows: string[][] }
     response: string[]
   }
   results: { heading: string; items: { value: string; label: string }[]; source: string }
-  open: { heading: string; items: { title: string; body: string }[] }
+  open?: { heading: string; items: { title: string; body: string }[] }
   site: { heading: string; body: string; images: CaseStudyImage[] }
-  testimonial: { quote: string; name: string; role: string }
+  testimonial?: { quote: string; name: string; role: string }
 }
 
 const gwenEmail = (name: string, height: number, subject: string, sentAt: string): StageEmail => ({
@@ -233,8 +235,114 @@ const gwenAddo: CaseStudy = {
   },
 }
 
+const finest = (name: string, height: number, subject: string, sentAt: string): StageEmail => ({
+  src: `/images/case-studies/finest-dietitian/email-${name}.webp`,
+  alt: `The "${subject}" email, as sent`,
+  width: 1064,
+  height,
+  subject,
+  sentAt,
+})
+
+const finestDietitian: CaseStudy = {
+  slug: 'finest-dietitian',
+  title: 'Finest Dietitian',
+  line: 'A booking site where every patient becomes someone she can stay in touch with.',
+  metaTitle: 'Finest Dietitian: a booking site that keeps every patient',
+  metaDescription:
+    'How I built a booking website for a registered dietitian in Accra, from calendar and payment to the emails that follow, so every booking leaves her with a patient she can contact again.',
+  ogImage: '/images/case-studies/finest-dietitian/og.jpg',
+  facts: [
+    { label: 'Client', value: 'Fredericka Doku, registered dietitian in Accra' },
+    { label: 'My role', value: 'Website, booking and follow-up emails' },
+    { label: 'First paid booking', value: 'Three days after launch' },
+  ],
+  liveUrl: 'https://finestdietitian.com',
+  cover: {
+    src: '/images/case-studies/finest-dietitian/site-home.webp',
+    alt: 'The Finest Dietitian homepage, with Fredericka Doku in a green suit and her name in large type.',
+    width: 1440,
+    height: 900,
+  },
+  situation: {
+    heading: 'A booking that happens on WhatsApp is a patient she can’t email again',
+    body: [
+      'Fredericka is a registered dietitian in Accra. A booking that happens over WhatsApp leaves her with a chat thread and no easy way to follow up with the patient.',
+      'The brief was to move every booking onto her own site, so that each one leaves her with a patient she can contact again. I built the site, the booking and payment flow, and the emails behind it.',
+    ],
+  },
+  journey: {
+    heading: 'From the first visit to a paid booking, in one place',
+    intro:
+      'Each step is on her own site, so by the end she has the patient’s details, the payment and the appointment in her calendar.',
+    stages: [
+      {
+        id: 'visit',
+        name: 'They land on the site',
+        when: 'The first visit',
+        says: 'A site built to earn trust before it asks for anything.',
+        emails: [],
+      },
+      {
+        id: 'pick',
+        name: 'They pick a consultation and a time',
+        when: 'Before booking',
+        says: 'They choose a consultation, then a time from her live calendar.',
+        emails: [],
+      },
+      {
+        id: 'pay',
+        name: 'They pay',
+        when: 'At checkout',
+        says: 'Payment is on Paystack, by mobile money or card.',
+        emails: [],
+      },
+      {
+        id: 'booked',
+        name: 'The booking is confirmed',
+        when: 'The moment payment lands',
+        says: 'The appointment goes into her Google Calendar, with a Google Meet link for online sessions. The patient gets a confirmation with the details and a link to view or cancel.',
+        emails: [finest('confirmation', 914, 'Your booking is confirmed', 'On payment')],
+      },
+      {
+        id: 'guide',
+        name: 'They join her list',
+        when: 'One tick on the booking form',
+        says: 'Ticking the box sends the free PCOS guide straight away and adds the patient to her list, so she can write to them again.',
+        emails: [finest('guide', 544, 'Here’s your PCOS guide', 'On sign-up')],
+      },
+    ],
+  },
+  results: {
+    heading: 'What happened',
+    items: [
+      { value: '3 days', label: 'From the site going live to her first patient booking and paying through it.' },
+    ],
+    source: 'Her first booking through the site.',
+  },
+  site: {
+    heading: 'The website',
+    body: 'The front door to everything above, built to earn trust before it asks for anything.',
+    images: [
+      {
+        src: '/images/case-studies/finest-dietitian/site-home-mobile.webp',
+        alt: 'The Finest Dietitian homepage on a phone',
+        width: 390,
+        height: 844,
+      },
+    ],
+  },
+  testimonial: {
+    quote:
+      'I showed the website to my professor here in the US and he was wowed. Overall, everybody is wowed. You have done well. Congratulations. Thank you so much.',
+    name: 'Fredericka Doku',
+    role: 'Registered dietitian',
+  },
+}
+
 const caseStudies: Record<string, CaseStudy> = {
   [gwenAddo.slug]: gwenAddo,
+  [finestDietitian.slug]: finestDietitian,
 }
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {

@@ -8,30 +8,30 @@ import TransparentCTA from './ui/TransparentCTA'
 
 const featuredProjects = [
   {
-    id: 'anabs',
-    title: 'Anabs',
-    category: 'Premium Brand Authority',
-    description: 'Luxury high-rise development commanding premium positioning through sophisticated digital storytelling',
-    image: '/images/anabs.png',
+    id: 'gwen-addo',
+    title: 'Gwen Addo',
+    category: 'Website, CRM and customer journey',
+    description: 'Her website, then the CRM and the automated emails behind it: 1,695 emails to 194 people, none sent by hand.',
+    image: '/images/gwen-addo.png',
     year: '2025',
     position: 'left'
   },
   {
-    id: 'gwen-addo',
-    title: 'Gwen Addo',
-    category: 'Premium Lead Generation',
-    description: 'Strategic consultation platform converting high-value prospects with integrated booking systems',
-    image: '/images/gwen-addo.png',
-    year: '2025',
+    id: 'finest-dietitian',
+    title: 'Finest Dietitian',
+    category: 'Website, booking and follow-up emails',
+    description: 'A booking site for a registered dietitian in Accra, so every patient who books is someone she can contact again.',
+    image: '/images/case-studies/finest-dietitian/site-home.webp',
+    year: '2026',
     position: 'right'
   },
   {
-    id: 'girl-code-africa',
-    title: 'Girl Code Africa',
-    category: 'Premium Brand Authority',
-    description: 'Multi-audience platform driving program enrollments, partnership acquisitions, and donor engagement for STEM education non-profit',
-    image: '/images/girlcode.png',
-    year: '2023',
+    id: 'anabs',
+    title: 'Anabs',
+    category: 'Website',
+    description: 'A website for a 26-floor luxury residential tower in Accra, built to attract serious buyers and investors.',
+    image: '/images/anabs.png',
+    year: '2025',
     position: 'left'
   }
 ]
@@ -49,7 +49,7 @@ export default function FeaturedProjects() {
             transition={{ duration: 0.6 }}
             className="text-text-primary font-light text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight mb-6"
           >
-            Strategic Challenges Solved. Measurable Results Delivered.
+            Selected work
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -58,7 +58,7 @@ export default function FeaturedProjects() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-text-primary/70 text-base sm:text-lg md:text-xl font-light max-w-3xl mx-auto"
           >
-            From luxury real estate commanding 340% traffic growth to lead generation systems achieving 28% conversion increases—I architect complete growth ecosystems for premium brands who refuse to compete on price.
+            Websites, CRM and customer-journey automation for clients in Ghana. Gwen Addo is the full story, from the first sign-up to the next cohort.
           </motion.p>
         </div>
 
@@ -188,7 +188,7 @@ export default function FeaturedProjects() {
           className="mt-16 sm:mt-40 md:mt-44 lg:mt-48 text-center"
         >
           <TransparentCTA href="/portfolio">
-            Explore Growth Outcomes
+            See all work
           </TransparentCTA>
         </motion.div>
       </div>

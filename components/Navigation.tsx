@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { X, Instagram, Twitter, Linkedin, Mail } from 'lucide-react'
+import { X, Instagram, Github, Linkedin, Mail } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import ThemeTogglePortal from './ui/ThemeTogglePortal'
 import { useScrollTrigger } from '../hooks/useScrollTrigger'
@@ -27,7 +27,7 @@ const hamburgerNavItems = [
 const socialLinks = [
   { href: 'https://linkedin.com/in/jacqueline-frempomah-amoako', label: 'LinkedIn', icon: Linkedin },
   { href: 'https://www.instagram.com/jackieofzera/', label: 'Instagram', icon: Instagram },
-  { href: 'https://x.com/intelliJay09', label: 'Twitter', icon: Twitter },
+  { href: 'https://github.com/intelliJay09', label: 'GitHub', icon: Github },
   { href: 'mailto:hello@jacquelineamoako.com', label: 'Email', icon: Mail },
 ]
 
@@ -109,7 +109,7 @@ export default function Navigation({ preloaderComplete = true }: NavigationProps
               }}
             >
               <span className="block group-hover:-translate-x-full transition-all duration-700 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]">
-                © Code by Jacqueline
+                © Jacqueline Amoako
               </span>
               <span className="absolute top-0 left-full group-hover:left-0 transition-all duration-700 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]">
                 Jacqueline Amoako
@@ -213,6 +213,8 @@ export default function Navigation({ preloaderComplete = true }: NavigationProps
                 ref={mobileMenuRef}
                 data-nav="hamburger"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isMenuOpen}
                 className="lg:hidden rounded-full w-14 h-14 flex items-center justify-center cursor-pointer relative z-10"
                 whileHover={{ 
                   scale: 1.15, 
@@ -248,6 +250,8 @@ export default function Navigation({ preloaderComplete = true }: NavigationProps
                 ref={hamburgerRef}
                 data-nav="desktop-hamburger"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isMenuOpen}
                 className="hidden lg:flex items-center justify-center rounded-full w-16 h-16 cursor-pointer relative z-10"
                 whileHover={{ 
                   scale: 1.15, 

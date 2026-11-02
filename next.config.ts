@@ -109,6 +109,14 @@ const nextConfig: NextConfig = {
       ]
     }
   ],
+  // Case studies that were removed from the portfolio keep their old links alive
+  async redirects() {
+    return ['goa-conference', 'qualivex-solutions', 'optimum-property-solutions', 'imagebloom-by-saida', 'rosemond-prempeh'].map((slug) => ({
+      source: `/portfolio/${slug}`,
+      destination: '/portfolio',
+      permanent: true,
+    }))
+  },
   experimental: {
     webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB', 'INP'],
   },

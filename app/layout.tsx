@@ -13,7 +13,7 @@ import {
   generateWebsiteSchema,
   generateProfessionalServiceSchema
 } from '../lib/schema-markup'
-import { getHomepageOpenGraph, getDefaultTwitterCard, generateCompleteMetadata } from '../lib/open-graph'
+import { SITE } from '../lib/site'
 import '../globals.css'
 
 const inter = Inter({ 
@@ -72,48 +72,17 @@ if (!siteUrl && process.env.NODE_ENV === 'production') {
 export const metadata: Metadata = {
   ...(siteUrl && { metadataBase: new URL(siteUrl) }),
   title: {
-    default: 'Jacqueline Amoako - Digital Systems Architect',
-    template: '%s | Jacqueline Amoako'
+    default: `${SITE.name} | ${SITE.role}`,
+    template: `%s | ${SITE.name}`
   },
-  description: 'Digital Systems Architect building revenue-generating ecosystems for premium brands worldwide. From 340% traffic growth to 28% conversion increases—complete growth systems that scale your vision from $100K to $10M.',
-  keywords: [
-    // Primary strategic keywords
-    'digital growth strategist',
-    'strategic growth systems',
-    'revenue-generating ecosystems',
-    'premium brand growth',
-    'business growth architect',
-    'conversion optimization specialist',
-
-    // Service-specific strategic keywords
-    'SEO authority building',
-    'conversion rate optimization',
-    'premium lead generation systems',
-    'revenue-optimized commerce',
-    'market authority development',
-    'strategic brand positioning',
-
-    // Location + strategic positioning
-    'Ghana growth strategist',
-    'Accra digital strategist',
-    'West Africa business growth',
-    'Ghana strategic consulting',
-    'African market growth expert',
-
-    // Outcome-focused keywords
-    'measurable business outcomes',
-    'strategic business growth',
-    'revenue systems architect',
-    'growth analytics strategy',
-    'traffic acquisition systems',
-    'premium business consulting'
-  ],
+  description: SITE.description,
+  keywords: [...SITE.keywords],
   authors: [{
-    name: 'Jacqueline Frempomah Amoako',
-    url: 'https://jacquelineamoako.com'
+    name: SITE.legalName,
+    url: SITE.url
   }],
-  creator: 'Jacqueline Frempomah Amoako',
-  publisher: 'Jacqueline Amoako - Strategic Growth Consulting',
+  creator: SITE.legalName,
+  publisher: SITE.name,
   formatDetection: {
     email: false,
     address: false,
@@ -133,57 +102,32 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Jacqueline Amoako - Digital Systems Architect',
+    title: `${SITE.name} | ${SITE.role}`,
   },
   verification: {
     google: 'VXFIG8ay39DeBrq215zuCJtO0i0Z6wy6pRWr6uQom38',
   },
   alternates: {
-    canonical: 'https://jacquelineamoako.com',
+    canonical: SITE.url,
     languages: {
-      'en-US': 'https://jacquelineamoako.com',
-      'en-GB': 'https://jacquelineamoako.com/en-gb',
+      'en-US': SITE.url,
+      'en-GB': `${SITE.url}/en-gb`,
     },
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://jacquelineamoako.com',
-    siteName: 'Jacqueline Amoako',
-    title: 'Jacqueline Amoako | Digital Systems Architect',
-    description: 'Digital Systems Architect building revenue-generating ecosystems for premium brands worldwide. From 340% traffic growth to 28% conversion increases—complete growth systems that scale your vision from $100K to $10M.',
-    images: [
-      {
-        url: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
-        width: 3000,
-        height: 1575,
-        alt: 'Jacqueline Amoako - Digital Systems Architect building revenue ecosystems for premium brands',
-        type: 'image/png',
-      }
-    ],
-    videos: [
-      {
-        url: 'https://jacquelineamoako.com/images/gc-teaching-full.mp4',
-        width: 1280,
-        height: 720,
-        type: 'video/mp4',
-      }
-    ],
+    url: SITE.url,
+    siteName: SITE.name,
+    title: `${SITE.name} | ${SITE.role}`,
+    description: SITE.description,
+    images: [{ ...SITE.ogImage, type: 'image/png' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jacqueline Amoako | Digital Systems Architect',
-    description: 'Architecting revenue-generating ecosystems for premium brands worldwide. Complete growth systems from $100K to $10M—340% traffic growth, 28% conversion increases.',
-    creator: '@intelliJay09',
-    site: '@intelliJay09',
-    images: [
-      {
-        url: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
-        alt: 'Digital Systems Architect building complete growth systems',
-        width: 3000,
-        height: 1575,
-      }
-    ],
+    title: `${SITE.name} | ${SITE.role}`,
+    description: SITE.description,
+    images: [{ ...SITE.ogImage }],
   },
   robots: {
     index: true,
@@ -198,8 +142,8 @@ export const metadata: Metadata = {
     'max-image-preview': 'large',
     'max-snippet': -1,
   },
-  category: 'Professional Services',
-  classification: 'Strategic Growth Consulting, Digital Growth Strategy, Business Development',
+  category: 'Marketing',
+  classification: 'Lifecycle marketing, CRM and marketing automation, frontend development',
 }
 
 export default async function RootLayout({

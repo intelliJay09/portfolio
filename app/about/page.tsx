@@ -11,6 +11,7 @@ import Footer from '../../components/Footer'
 import PagePreloader from '../../components/PagePreloader'
 import { useGSAPManager } from '../../hooks/useGSAPManager'
 import content from '../../content.json'
+import { SITE } from '../../lib/site'
 
 // GSAP registration moved inside useEffect
 
@@ -21,8 +22,8 @@ export default function AboutPage() {
   const missionRef = useRef<HTMLDivElement>(null)
   const skillsRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
-  const [projectsCount, setProjectsCount] = useState(0)
-  const [yearsCount, setYearsCount] = useState(0)
+  const [trainedCount, setTrainedCount] = useState(0)
+  const [leadsCount, setLeadsCount] = useState(0)
   const [openAccordion, setOpenAccordion] = useState<number | null>(null)
   const countersRef = useRef<HTMLDivElement>(null)
 
@@ -751,8 +752,8 @@ export default function AboutPage() {
 
     // Smooth Counter Animations - starting from 1
     if (countersRef.current) {
-      const projectsTarget = 50
-      const yearsTarget = 5
+      const projectsTarget = 100
+      const yearsTarget = 240
       
       // Create scroll trigger for counters
       ScrollTrigger.create({
@@ -767,7 +768,7 @@ export default function AboutPage() {
             ease: 'power1.inOut',
             onUpdate: function() {
               const val = Math.floor(this.targets()[0].value)
-              setProjectsCount(val)
+              setTrainedCount(val)
             }
           })
           
@@ -779,7 +780,7 @@ export default function AboutPage() {
             ease: 'power1.inOut',
             onUpdate: function() {
               const val = Math.floor(this.targets()[0].value)
-              setYearsCount(val)
+              setLeadsCount(val)
             }
           })
         }
@@ -962,10 +963,10 @@ export default function AboutPage() {
                       lineHeight: '1.1',
                       letterSpacing: '-0.02em'
                     }}>
-                      <span className="hero-heading-light opacity-0" style={{ fontWeight: '200', display: 'inline-block', transform: 'translateY(80px) rotateX(-10deg)' }}>Empowering</span><br />
+                      <span className="hero-heading-light opacity-0" style={{ fontWeight: '200', display: 'inline-block', transform: 'translateY(80px) rotateX(-10deg)' }}>Lifecycle &amp;</span><br />
                       <span style={{ display: 'inline-flex', gap: '0.5rem' }}>
-                        <span className="hero-heading-bold opacity-0" style={{ fontWeight: '600', display: 'inline-block', transform: 'translateY(80px) rotateX(-10deg)' }}>Digital</span>
-                        <span className="hero-heading-light opacity-0" style={{ fontWeight: '200', display: 'inline-block', transform: 'translateY(80px) rotateX(-10deg)' }}>Journeys</span>
+                        <span className="hero-heading-bold opacity-0" style={{ fontWeight: '600', display: 'inline-block', transform: 'translateY(80px) rotateX(-10deg)' }}>Growth</span>
+                        <span className="hero-heading-light opacity-0" style={{ fontWeight: '200', display: 'inline-block', transform: 'translateY(80px) rotateX(-10deg)' }}>Marketer</span>
                       </span>
                     </h1>
                     
@@ -974,7 +975,7 @@ export default function AboutPage() {
                   {/* Bio in Glass Panel */}
                   <div className="hero-glass-panel opacity-0" style={{ transform: 'translateX(-60px) scale(0.95)' }}>
                     <p className="text-text-secondary leading-relaxed font-inter text-center lg:text-left px-2 lg:px-0" style={{ fontSize: 'clamp(calc(0.875rem + 2px), 2vw, calc(1rem + 2px))' }}>
-                      Digital Systems Architect building revenue-generating ecosystems for premium brands worldwide.
+                      {SITE.description} I started in customer success, so I plan every journey from the customer&apos;s side first.
                     </p>
                   </div>
                   
@@ -986,11 +987,11 @@ export default function AboutPage() {
                         className="counter-number text-2xl md:text-3xl font-satoshi font-extralight text-primary mb-1 relative overflow-hidden"
                       >
                         <span className="counter-value relative inline-block transition-all duration-600 group-hover:text-text-primary">
-                          {projectsCount}{projectsCount >= 50 ? '+' : ''}
+                          {trainedCount}{trainedCount >= 100 ? '+' : ''}
                         </span>
                       </div>
                       <div className="text-xs text-text-tertiary font-satoshi tracking-widest uppercase transition-all duration-500 group-hover:text-text-secondary">
-                        Projects
+                        Women trained
                       </div>
                     </div>
                     
@@ -1000,16 +1001,34 @@ export default function AboutPage() {
                         className="counter-number text-2xl md:text-3xl font-satoshi font-extralight text-primary mb-1 relative overflow-hidden"
                       >
                         <span className="counter-value relative inline-block transition-all duration-600 group-hover:text-text-primary">
-                          {yearsCount}{yearsCount >= 5 ? '+' : ''}
+                          {leadsCount}%
                         </span>
                       </div>
                       <div className="text-xs text-text-tertiary font-satoshi tracking-widest uppercase transition-all duration-500 group-hover:text-text-secondary">
-                        Years
+                        Leads, one client
                       </div>
                     </div>
                   </div>
+
+                  {/* Email and LinkedIn */}
+                  <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-2 justify-center lg:justify-start">
+                    <a
+                      href={`mailto:${SITE.email}`}
+                      className="w-fit px-8 py-3 rounded-full bg-text-primary text-background-primary font-satoshi text-sm font-medium tracking-wide transition-transform duration-300 hover:scale-105"
+                    >
+                      {SITE.email}
+                    </a>
+                    <a
+                      href={SITE.sameAs[0]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-fit font-satoshi text-sm font-medium tracking-wide text-text-secondary underline underline-offset-4 transition-colors duration-300 hover:text-text-primary"
+                    >
+                      LinkedIn
+                    </a>
+                  </div>
                 </div>
-                
+
                 {/* Spacer */}
                 <div className="lg:col-span-2 order-3 lg:order-2"></div>
                 
@@ -1221,10 +1240,10 @@ export default function AboutPage() {
                   lineHeight: '1.2',
                   letterSpacing: '-0.02em'
                 }}>
-                  Strategic Capabilities
+                  What I Do
                 </h2>
                 <p className="text-base md:text-lg text-text-secondary max-w-3xl mx-auto font-light px-4 md:px-0">
-                  The intersection of business strategy, technical mastery, and growth systems that drive measurable revenue impact
+                  Customer success, lifecycle marketing and automation, with the frontend skills to build the product side myself.
                 </p>
               </div>
               
@@ -1266,12 +1285,12 @@ export default function AboutPage() {
                       <Palette className="w-6 h-6" />
                     </div>
                     <div className="skill-node-label">
-                      <h3 className="skill-node-title">Brand Identity</h3>
+                      <h3 className="skill-node-title">Customer Success</h3>
                     </div>
                     <div className="skill-node-content skill-node-expanded">
-                      <p className="skill-node-description">Strategic visual systems that establish premium positioning and market differentiation</p>
+                      <p className="skill-node-description">Owned accounts from the first conversation through to conversion at BLUETOWN, keeping customer satisfaction at 90%.</p>
                       <div className="skill-node-details">
-                        <span className="skill-years">3+ Years Experience</span>
+                        <span className="skill-years">Since 2019</span>
                       </div>
                     </div>
                   </div>
@@ -1286,9 +1305,9 @@ export default function AboutPage() {
                       <h3 className="skill-node-title">Frontend Development</h3>
                     </div>
                     <div className="skill-node-content skill-node-expanded">
-                      <p className="skill-node-description">Conversion-optimized interfaces engineered for premium user experiences</p>
+                      <p className="skill-node-description">React, Next.js and TypeScript. Today at Command Space, on an eight-person team.</p>
                       <div className="skill-node-details">
-                        <span className="skill-years">4+ Years Experience</span>
+                        <span className="skill-years">Since 2019</span>
                       </div>
                     </div>
                   </div>
@@ -1300,12 +1319,12 @@ export default function AboutPage() {
                       <Search className="w-6 h-6" />
                     </div>
                     <div className="skill-node-label">
-                      <h3 className="skill-node-title">SEO & Performance</h3>
+                      <h3 className="skill-node-title">Lifecycle Marketing</h3>
                     </div>
                     <div className="skill-node-content skill-node-expanded">
-                      <p className="skill-node-description">Search optimization, Core Web Vitals & performance tuning</p>
+                      <p className="skill-node-description">Onboarding, retention and win-back, designed stage by stage around what the customer needs next.</p>
                       <div className="skill-node-details">
-                        <span className="skill-years">4+ Years Experience</span>
+                        <span className="skill-years">With Zera, since 2024</span>
                       </div>
                     </div>
                   </div>
@@ -1317,12 +1336,12 @@ export default function AboutPage() {
                       <Monitor className="w-6 h-6" />
                     </div>
                     <div className="skill-node-label">
-                      <h3 className="skill-node-title">Backend Development</h3>
+                      <h3 className="skill-node-title">CRM Automation</h3>
                     </div>
                     <div className="skill-node-content skill-node-expanded">
-                      <p className="skill-node-description">Scalable data architecture and robust systems that power business growth</p>
+                      <p className="skill-node-description">CRMs and workflows built around how a business runs, connected to its payments, forms and messaging.</p>
                       <div className="skill-node-details">
-                        <span className="skill-years">4+ Years Experience</span>
+                        <span className="skill-years">With Zera, since 2024</span>
                       </div>
                     </div>
                   </div>
@@ -1334,12 +1353,12 @@ export default function AboutPage() {
                       <Settings className="w-6 h-6" />
                     </div>
                     <div className="skill-node-label">
-                      <h3 className="skill-node-title">APIs & Automation</h3>
+                      <h3 className="skill-node-title">Email &amp; WhatsApp Automation</h3>
                     </div>
                     <div className="skill-node-content skill-node-expanded">
-                      <p className="skill-node-description">Business process automation and intelligent system orchestration</p>
+                      <p className="skill-node-description">Journeys that send the right message at the right moment, built in ActiveCampaign, Make.com and Manychat.</p>
                       <div className="skill-node-details">
-                        <span className="skill-years">3+ Years Experience</span>
+                        <span className="skill-years">With Zera, since 2024</span>
                       </div>
                     </div>
                   </div>
@@ -1362,12 +1381,10 @@ export default function AboutPage() {
                     </div>
                     {/* Content Card */}
                     <div className="flex-1 bg-background-secondary rounded-2xl p-5 sm:p-6 border border-border-light hover:shadow-lg transition-all duration-600 mobile-skill-content mt-1" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
-                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">Brand Identity</h3>
-                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">
-                        Strategic visual systems that establish premium positioning and market differentiation
-                      </p>
+                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">Customer Success</h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">Owned accounts from the first conversation through to conversion at BLUETOWN, keeping customer satisfaction at 90%.</p>
                       <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
-                        3+ Years Experience
+                        Since 2019
                       </div>
                     </div>
                   </div>
@@ -1384,12 +1401,10 @@ export default function AboutPage() {
                     </div>
                     {/* Content Card */}
                     <div className="flex-1 bg-background-secondary rounded-2xl p-5 sm:p-6 border border-border-light hover:shadow-lg transition-all duration-600 mobile-skill-content mt-1" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
-                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">SEO & Performance</h3>
-                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">
-                        Search optimization, Core Web Vitals & performance tuning
-                      </p>
+                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">Lifecycle Marketing</h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">Onboarding, retention and win-back, designed stage by stage around what the customer needs next.</p>
                       <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
-                        4+ Years Experience
+                        With Zera, since 2024
                       </div>
                     </div>
                   </div>
@@ -1406,12 +1421,10 @@ export default function AboutPage() {
                     </div>
                     {/* Content Card */}
                     <div className="flex-1 bg-background-secondary rounded-2xl p-5 sm:p-6 border border-border-light hover:shadow-lg transition-all duration-600 mobile-skill-content mt-1" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
-                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">Backend Development</h3>
-                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">
-                        Scalable data architecture and robust systems that power business growth
-                      </p>
+                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">CRM Automation</h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">CRMs and workflows built around how a business runs, connected to its payments, forms and messaging.</p>
                       <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
-                        4+ Years Experience
+                        With Zera, since 2024
                       </div>
                     </div>
                   </div>
@@ -1429,11 +1442,9 @@ export default function AboutPage() {
                     {/* Content Card */}
                     <div className="flex-1 bg-background-secondary rounded-2xl p-5 sm:p-6 border border-border-light hover:shadow-lg transition-all duration-600 mobile-skill-content mt-1" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
                       <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">Frontend Development</h3>
-                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">
-                        Conversion-optimized interfaces engineered for premium user experiences
-                      </p>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">React, Next.js and TypeScript. Today at Command Space, on an eight-person team.</p>
                       <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
-                        5+ Years Experience
+                        Since 2019
                       </div>
                     </div>
                   </div>
@@ -1448,12 +1459,10 @@ export default function AboutPage() {
                     </div>
                     {/* Content Card */}
                     <div className="flex-1 bg-background-secondary rounded-2xl p-5 sm:p-6 border border-border-light hover:shadow-lg transition-all duration-600 mobile-skill-content mt-1" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
-                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">APIs & Automation</h3>
-                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">
-                        Business process automation and intelligent system orchestration
-                      </p>
+                      <h3 className="text-base sm:text-lg font-satoshi font-medium text-primary mb-2 sm:mb-3">Email &amp; WhatsApp Automation</h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-3 sm:mb-4">Journeys that send the right message at the right moment, built in ActiveCampaign, Make.com and Manychat.</p>
                       <div className="text-xs text-text-tertiary font-satoshi tracking-wide">
-                        3+ Years Experience
+                        With Zera, since 2024
                       </div>
                     </div>
                   </div>
@@ -1657,29 +1666,16 @@ export default function AboutPage() {
                       </div>
                       <div className="min-w-0">
                         <h3 className="text-lg sm:text-xl font-semibold text-text-primary">Impact Metrics</h3>
-                        <p className="text-text-secondary text-xs sm:text-sm">Transforming lives through code</p>
+                        <p className="text-text-secondary text-xs sm:text-sm">Digitalize for Jobs, GIZ and GEA</p>
                       </div>
                     </div>
                     
                     <div className="space-y-1.5 sm:space-y-2">
                       <div className="flex justify-between items-center p-2.5 sm:p-3 rounded-xl transition-all duration-500 hover:bg-background-secondary/40 hover:scale-[1.02] cursor-pointer group" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
-                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-500 text-xs sm:text-sm">Girls Taught</span>
-                        <span className="text-xl sm:text-2xl font-bold text-text-primary counter transition-all duration-500 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="200">0</span>
+                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-500 text-xs sm:text-sm">Women entrepreneurs trained</span>
+                        <span className="text-xl sm:text-2xl font-bold text-text-primary counter transition-all duration-500 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="100">0</span>
                       </div>
-                      <div className="flex justify-between items-center p-2.5 sm:p-3 rounded-xl transition-all duration-500 hover:bg-background-secondary/40 hover:scale-[1.02] cursor-pointer group" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
-                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-500 text-xs sm:text-sm">Cohorts Completed</span>
-                        <span className="text-xl sm:text-2xl font-bold text-text-primary counter transition-all duration-500 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="15">0</span>
-                      </div>
-                      <div className="flex justify-between items-center p-2.5 sm:p-3 rounded-xl transition-all duration-500 hover:bg-background-secondary/40 hover:scale-[1.02] cursor-pointer group" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
-                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-500 text-xs sm:text-sm">Years Teaching</span>
-                        <span className="text-xl sm:text-2xl font-bold text-text-primary counter transition-all duration-500 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="3">0</span>
-                      </div>
-                      <div className="flex justify-between items-center p-2.5 sm:p-3 rounded-xl transition-all duration-500 hover:bg-background-secondary/40 hover:scale-[1.02] cursor-pointer group" style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}>
-                        <span className="text-text-secondary group-hover:text-text-primary transition-colors duration-500 text-xs sm:text-sm">Success Rate</span>
-                        <div>
-                          <span className="text-xl sm:text-2xl font-bold text-text-primary counter transition-all duration-500 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.3)]" data-count="95">0</span><span className="text-text-primary group-hover:text-accent transition-colors duration-500">%</span>
-                        </div>
-                      </div>
+                    
                     </div>
                   </div>
 
@@ -1726,7 +1722,7 @@ export default function AboutPage() {
               <div className="flex items-center justify-center gap-4 mb-6">
                 <div className="w-8 h-px bg-text-primary/30"></div>
                 <span className="text-xs font-satoshi tracking-[0.2em] uppercase text-text-tertiary">
-                  Strategic Partnership
+                  How I Work
                 </span>
                 <div className="w-8 h-px bg-text-primary/30"></div>
               </div>
@@ -1834,7 +1830,7 @@ export default function AboutPage() {
               <div className="flex items-center justify-center gap-4 mb-6">
                 <div className="w-8 h-px bg-text-primary/20"></div>
                 <span className="text-xs font-satoshi tracking-[0.2em] uppercase text-text-tertiary">
-                  Partnership Criteria
+                  Experience
                 </span>
                 <div className="w-8 h-px bg-text-primary/20"></div>
               </div>
@@ -2025,7 +2021,7 @@ export default function AboutPage() {
               <div className="flex items-center justify-center gap-4 mb-8">
                 <div className="w-8 h-px bg-text-primary/30"></div>
                 <span className="text-xs font-satoshi tracking-[0.2em] uppercase text-text-tertiary">
-                  Methodology
+                  Results
                 </span>
                 <div className="w-8 h-px bg-text-primary/30"></div>
               </div>

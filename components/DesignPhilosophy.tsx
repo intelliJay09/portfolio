@@ -9,14 +9,13 @@ import useResponsiveBreakpoint from '../hooks/useResponsiveBreakpoint'
 // Golden ratio for mathematical precision in spacing
 const GOLDEN_RATIO = 1.618
 
-// Strategic philosophy principles for growth-focused positioning
+// How the work is done: four stages of the customer lifecycle, in her own order
 const philosophyElements = [
   {
-    id: "challenge-thinking",
-    primaryText: "Challenge",
-    secondaryText: "Thinking",
-    morphText: ["Question", "Refine", "Transform", "Elevate"],
-    description: "Your vision is the starting point, not the blueprint. I challenge assumptions, refine strategies, and engineer solutions that push beyond what you thought possible.",
+    id: "map-the-journey",
+    primaryText: "Map",
+    secondaryText: "The Journey",
+    morphText: ["Sign-up", "Payment", "Onboarding", "Event day", "Win-back"],
     // Responsive positioning for different breakpoints
     position: {
       desktop: { x: 15, y: 20 },
@@ -31,11 +30,10 @@ const philosophyElements = [
     delay: 0
   },
   {
-    id: "growth-systems",
-    primaryText: "Engineer",
-    secondaryText: "Systems",
-    morphText: ["Architect", "Build", "Optimize", "Scale"],
-    description: "Not websites. Not campaigns. Complete growth ecosystems—acquisition funnels, conversion engines, authority platforms—designed to scale from $100K to $10M.",
+    id: "automate-follow-up",
+    primaryText: "Automate",
+    secondaryText: "The Follow-up",
+    morphText: ["Email", "WhatsApp", "CRM", "Reminders"],
     position: {
       desktop: { x: 65, y: 35 },
       tablet: { x: 60, y: 35 },
@@ -49,11 +47,10 @@ const philosophyElements = [
     delay: 0.3
   },
   {
-    id: "premium-value",
-    primaryText: "Command",
-    secondaryText: "Value",
-    morphText: ["Premium", "Authority", "Positioning", "Excellence"],
-    description: "Luxury brands refuse to compete on price. I build digital presence that attracts high-value clients and justifies premium positioning.",
+    id: "build-the-product",
+    primaryText: "Build",
+    secondaryText: "The Product",
+    morphText: ["Websites", "Forms", "Dashboards", "Fixes"],
     position: {
       desktop: { x: 25, y: 65 },
       tablet: { x: 15, y: 60 },
@@ -67,11 +64,10 @@ const philosophyElements = [
     delay: 0.6
   },
   {
-    id: "compounding-results",
-    primaryText: "Deliver",
-    secondaryText: "Results",
-    morphText: ["Growth", "Impact", "Outcomes", "Revenue"],
-    description: "340% traffic growth. 28% conversion increases. Success measured in business metrics that compound month over month, not vanity numbers.",
+    id: "bring-them-back",
+    primaryText: "Bring back",
+    secondaryText: "Past Customers",
+    morphText: ["Win-back", "Re-engage", "Invite", "Ask"],
     position: {
       desktop: { x: 70, y: 80 },
       tablet: { x: 55, y: 80 },
@@ -428,7 +424,7 @@ export default function DesignPhilosophy() {
             fontWeight: '300'
           }}
         >
-          Strategic Philosophy
+          How I work
         </h2>
       </div>
 

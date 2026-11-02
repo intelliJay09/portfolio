@@ -23,6 +23,7 @@ const cellClass = (i: number, count: number) =>
       : 'pl-6 text-right font-body text-ink-2'
 
 export default function CaseStudy({ study }: { study: CaseStudyData }) {
+  const { finding } = study
   const listing = content.portfolio.projects.find((p) => p.slug === study.slug)
 
   return (
@@ -95,74 +96,77 @@ export default function CaseStudy({ study }: { study: CaseStudyData }) {
 
         <Journey heading={study.journey.heading} intro={study.journey.intro} stages={study.journey.stages} />
 
-        <section className={`${gutter} pt-10 pb-[clamp(6rem,12vw,10rem)]`}>
-          <p className="max-w-[34rem] pl-7 font-body text-[1.0625rem] leading-[1.7] text-ink-2 sm:pl-12">
-            {study.journey.beyond}
-          </p>
-        </section>
+        {study.journey.beyond && (
+          <section className={`${gutter} pt-10 pb-[clamp(6rem,12vw,10rem)]`}>
+            <p className="max-w-[34rem] pl-7 font-body text-[1.0625rem] leading-[1.7] text-ink-2 sm:pl-12">
+              {study.journey.beyond}
+            </p>
+          </section>
+        )}
 
-        {/* What the data said */}
-        <section
-          aria-labelledby="cs-finding"
-          className={`${gutter} bg-paper-2 py-[clamp(6rem,14vw,12rem)]`}
-        >
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-[2em]">
-            <div className="lg:col-span-5">
-              <h2 id="cs-finding" className={sectionHeading}>
-                {study.finding.heading}
-              </h2>
-              <div className="mt-10 space-y-6">
-                {study.finding.body.map((p) => (
-                  <p key={p} className={body}>
-                    {p}
-                  </p>
-                ))}
+        {finding && (
+          <section
+            aria-labelledby="cs-finding"
+            className={`${gutter} bg-paper-2 py-[clamp(6rem,14vw,12rem)]`}
+          >
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-[2em]">
+              <div className="lg:col-span-5">
+                <h2 id="cs-finding" className={sectionHeading}>
+                  {finding.heading}
+                </h2>
+                <div className="mt-10 space-y-6">
+                  {finding.body.map((p) => (
+                    <p key={p} className={body}>
+                      {p}
+                    </p>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <div className="lg:col-span-6 lg:col-start-7">
-              <table className="w-full border-collapse text-left">
-                <caption className="mb-6 text-left font-body text-sm text-ink-3">
-                  {study.finding.table.caption}
-                </caption>
-                <thead>
-                  <tr>
-                    {study.finding.table.headers.map((h, i) => (
-                      <th
-                        key={h}
-                        scope="col"
-                        className={`${label} pb-4 font-normal ${
-                          i === 0 ? 'pl-4' : i === study.finding.table.headers.length - 1 ? 'pl-6 pr-4 text-right' : 'pl-6 text-right'
-                        }`}
-                      >
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {study.finding.table.rows.map((row) => (
-                    <tr key={row[0]} className="odd:bg-paper/40">
-                      {row.map((cell, i) => (
-                        <td key={i} className={`py-4 tabular-nums ${cellClass(i, row.length)}`}>
-                          {cell}
-                        </td>
+              <div className="lg:col-span-6 lg:col-start-7">
+                <table className="w-full border-collapse text-left">
+                  <caption className="mb-6 text-left font-body text-sm text-ink-3">
+                    {finding.table.caption}
+                  </caption>
+                  <thead>
+                    <tr>
+                      {finding.table.headers.map((h, i) => (
+                        <th
+                          key={h}
+                          scope="col"
+                          className={`${label} pb-4 font-normal ${
+                            i === 0 ? 'pl-4' : i === finding.table.headers.length - 1 ? 'pl-6 pr-4 text-right' : 'pl-6 text-right'
+                          }`}
+                        >
+                          {h}
+                        </th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {finding.table.rows.map((row) => (
+                      <tr key={row[0]} className="odd:bg-paper/40">
+                        {row.map((cell, i) => (
+                          <td key={i} className={`py-4 tabular-nums ${cellClass(i, row.length)}`}>
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
 
-              <div className="mt-14 space-y-6">
-                {study.finding.response.map((p) => (
-                  <p key={p} className={body}>
-                    {p}
-                  </p>
-                ))}
+                <div className="mt-14 space-y-6">
+                  {finding.response.map((p) => (
+                    <p key={p} className={body}>
+                      {p}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Results, each traceable */}
         <section aria-labelledby="cs-results" className={`${gutter} py-[clamp(6rem,14vw,12rem)]`}>
@@ -187,22 +191,23 @@ export default function CaseStudy({ study }: { study: CaseStudyData }) {
           <p className="mt-16 font-body text-sm text-ink-3">{study.results.source}</p>
         </section>
 
-        {/* What's still open */}
-        <section aria-labelledby="cs-open" className={`${gutter} pb-[clamp(6rem,14vw,12rem)]`}>
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-[2em]">
-            <h2 id="cs-open" className={`${sectionHeading} lg:col-span-5`}>
-              {study.open.heading}
-            </h2>
-            <div className="space-y-12 lg:col-span-6 lg:col-start-7">
-              {study.open.items.map((item) => (
-                <div key={item.title}>
-                  <h3 className="font-display text-xl font-medium text-ink">{item.title}</h3>
-                  <p className={`${body} mt-3`}>{item.body}</p>
-                </div>
-              ))}
+        {study.open && (
+          <section aria-labelledby="cs-open" className={`${gutter} pb-[clamp(6rem,14vw,12rem)]`}>
+            <div className="grid gap-10 lg:grid-cols-12 lg:gap-[2em]">
+              <h2 id="cs-open" className={`${sectionHeading} lg:col-span-5`}>
+                {study.open.heading}
+              </h2>
+              <div className="space-y-12 lg:col-span-6 lg:col-start-7">
+                {study.open.items.map((item) => (
+                  <div key={item.title}>
+                    <h3 className="font-display text-xl font-medium text-ink">{item.title}</h3>
+                    <p className={`${body} mt-3`}>{item.body}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* The website */}
         <section
@@ -243,21 +248,22 @@ export default function CaseStudy({ study }: { study: CaseStudyData }) {
           </div>
         </section>
 
-        {/* In the client's words */}
-        <section aria-labelledby="cs-testimonial" className={`${gutter} py-[clamp(6rem,14vw,12rem)]`}>
-          <h2 id="cs-testimonial" className={label}>
-            In her words
-          </h2>
-          <figure className="mt-10 max-w-[60rem]">
-            <blockquote className="font-display font-medium leading-[1.25] tracking-[-0.02em] text-[clamp(1.5rem,2.8vw,2.5rem)] text-ink">
-              <p>&ldquo;{study.testimonial.quote}&rdquo;</p>
-            </blockquote>
-            <figcaption className="mt-10 font-body text-base">
-              <span className="text-ink">{study.testimonial.name}</span>
-              <span className="text-ink-3">, {study.testimonial.role}</span>
-            </figcaption>
-          </figure>
-        </section>
+        {study.testimonial && (
+          <section aria-labelledby="cs-testimonial" className={`${gutter} py-[clamp(6rem,14vw,12rem)]`}>
+            <h2 id="cs-testimonial" className={label}>
+              In her words
+            </h2>
+            <figure className="mt-10 max-w-[60rem]">
+              <blockquote className="font-display font-medium leading-[1.25] tracking-[-0.02em] text-[clamp(1.5rem,2.8vw,2.5rem)] text-ink">
+                <p>&ldquo;{study.testimonial.quote}&rdquo;</p>
+              </blockquote>
+              <figcaption className="mt-10 font-body text-base">
+                <span className="text-ink">{study.testimonial.name}</span>
+                <span className="text-ink-3">, {study.testimonial.role}</span>
+              </figcaption>
+            </figure>
+          </section>
+        )}
       </main>
 
       <PortfolioFooter currentSlug={study.slug} />

@@ -32,19 +32,14 @@ const getProjectHeroImage = (slug: string) => {
   const heroImageMap: { [key: string]: string } = {
     'gwen-addo': '/images/gwen-portfolio-image.jpg',
     'eleven-eleven-ghana': '/images/11-11-case-study-hero.webp',
-    'optimum-property-solutions': '/images/optimum-property.png',
     'emmanuel-kotia': '/images/emma-kotia.png',
-    'imagebloom-by-saida': '/images/image-bloom.png',
-    'rosemond-prempeh': '/images/rosemond-prempeh.png',
     'royal-itech': '/images/royal-itech.png',
     'girl-code-africa': '/images/girlcode.png',
-    'goa-conference': '/images/ghana-optometric- association-conference.png',
     'eden-heights': '/images/eden-heights.png',
     'landmark-homes': '/images/landmark-homes.png',
     'ghana-optometric-association': '/images/ghana-optometric- association-main.png',
     'twist-nightclub': '/images/twist-night-club.png',
     'command-space': '/images/command-space.png',
-    'qualivex-solutions': '/images/qualivex-solutions.png',
     'anabs': '/images/anabs.png',
     'kline-designs': '/images/klinedesign.png',
     'eddy': '/images/eddy-hero.jpg'
@@ -94,19 +89,14 @@ const getProjectYear = (slug: string, portfolioProject: PortfolioProject | undef
   const projectYears: { [key: string]: string } = {
     'gwen-addo': '2025',
     'eleven-eleven-ghana': '2024',
-    'optimum-property-solutions': '2024',
     'emmanuel-kotia': '2023',
-    'imagebloom-by-saida': '2025',
-    'rosemond-prempeh': '2024',
     'royal-itech': '2023',
     'girl-code-africa': '2025',
-    'goa-conference': '2024',
     'eden-heights': '2025',
     'landmark-homes': '2025',
     'ghana-optometric-association': '2024',
     'twist-nightclub': '2025',
     'command-space': '2023',
-    'qualivex-solutions': '2024',
     'anabs': '2025',
     'kline-designs': '2025',
     'eddy': '2024'
@@ -120,19 +110,14 @@ const getProjectChallengeQuote = (slug: string, projectData: ProjectData, portfo
   const quotes: { [key: string]: string } = {
     'gwen-addo': 'How do you position a business strategist as searchable authority while converting visitors into paying clients?',
     'eleven-eleven-ghana': 'How do you establish luxury beachfront positioning that drives direct bookings and premium perception?',
-    'optimum-property-solutions': 'How do you position international real estate authority that converts property browsers into qualified investment leads?',
     'emmanuel-kotia': 'How do you establish academic authority that makes distinguished research globally accessible?',
-    'imagebloom-by-saida': 'How do you establish premium beauty authority that drives both service bookings and e-commerce revenue?',
-    'rosemond-prempeh': 'How do you position faith-based authority that builds engaged community and drives ministry growth?',
     'royal-itech': 'How do you establish cybersecurity authority that converts security-conscious businesses into long-term clients?',
     'girl-code-africa': 'How do you position tech education authority that drives program applications and attracts corporate partnerships?',
-    'goa-conference': 'How do you establish professional conference authority that maximizes registrations and streamlines event operations?',
     'eden-heights': 'How do you position luxury residential authority that attracts high-net-worth buyers and drives premium property sales?',
     'landmark-homes': 'How do you establish real estate development authority that builds investor confidence and accelerates property acquisitions?',
     'ghana-optometric-association': 'How do you position professional association authority that centralizes member operations and enhances industry influence?',
     'twist-nightclub': 'How do you establish nightlife entertainment authority that drives attendance and builds loyal patron community?',
     'command-space': 'How do you position digital agency authority that converts prospects into high-value client partnerships?',
-    'qualivex-solutions': 'How do you establish business solutions authority that generates qualified B2B leads and drives service adoption?',
     'anabs': 'How do you position luxury high-rise authority that attracts discerning investors and commands premium pricing?',
     'kline-designs': 'How do you establish architectural design authority that positions firm as innovation leader and drives project inquiries?',
     'eddy': 'How do you turn a world-class MC\'s reputation into a revenue-generating booking system that qualifies leads automatically and converts inquiries into confirmed events?'
@@ -152,8 +137,7 @@ const getProjectSpecificContent = (slug: string) => {
         'Implementing content structure that showcases value proposition clearly'
       ],
       resolutionText: 'The solution required more than aesthetics— it demanded an understanding of personal branding and client psychology.',
-      resultDescription: 'The website successfully elevated Gwen Addo\'s personal brand, positioning her as a leading authority in business strategy. The streamlined booking system has led to an increase in client consultations, and the professional design builds immediate trust with potential clients.',
-      shortResultDescription: 'Search authority positioning + automated lead capture systems achieved Top 3 rankings, delivered 3x consultation bookings with 62% conversion, and drove 180% client acquisition growth.',
+      resultDescription: 'A website for Gwen Addo\'s consulting practice, with a booking system for client consultations and a design that earns trust at first look.',
       focusAreas: ['Personal Branding', 'Lead Generation', 'Professional Credibility', 'Client Conversion']
     },
     'eleven-eleven-ghana': {
@@ -164,21 +148,8 @@ const getProjectSpecificContent = (slug: string) => {
         'Establishing premium brand positioning in the competitive hospitality market'
       ],
       resolutionText: 'The solution required more than technology— it demanded an understanding of luxury hospitality and exclusivity.',
-      resultDescription: 'The website effectively captures the essence of the Eleven Eleven brand, resulting in increased user engagement and direct beachfront apartment inquiries. It serves as a powerful digital showcase that aligns with the resort\'s luxury positioning.',
-      shortResultDescription: 'Luxury authority positioning + conversion-optimized booking systems secured #1 rankings for premium beachfront search, generated 5x direct booking inquiries with 38% conversion, and delivered 220% revenue growth.',
+      resultDescription: 'A website that shows off the Eleven Eleven beachfront setting and its luxury positioning, and lets visitors enquire about the apartments directly.',
       focusAreas: ['Luxury Design', 'Immersive Experience', 'Hospitality Branding', 'Booking Conversion']
-    },
-    'optimum-property-ghana': {
-      challengePoints: [
-        'Organizing complex property listings across Ghana and UK markets',
-        'Implementing advanced search functionality for diverse user needs',
-        'Creating trust and reliability for international property investments',
-        'Optimizing lead capture for high-value real estate transactions'
-      ],
-      resolutionText: 'The solution required more than listings— it demanded an understanding of international property investment psychology.',
-      resultDescription: 'The website now serves as an efficient tool for both agents and potential clients. The user-friendly interface has improved the property search experience, leading to a higher number of qualified leads for international property investments.',
-      shortResultDescription: 'Real estate authority positioning + lead qualification systems achieved Top 5 rankings, generated 4x investment inquiries with 45% lead quality rate, and delivered 165% property acquisition growth.',
-      focusAreas: ['Real Estate Technology', 'International Markets', 'Lead Generation', 'Property Management']
     },
     'emmanuel-kotia': {
       challengePoints: [
@@ -188,32 +159,8 @@ const getProjectSpecificContent = (slug: string) => {
         'Implementing intuitive navigation for complex scholarly content'
       ],
       resolutionText: 'The solution required more than organization— it demanded an understanding of academic authority and scholarly presentation.',
-      resultDescription: 'The website successfully functions as a comprehensive digital archive of Dr. Kotia\'s distinguished work, enhancing his professional online presence and making his research accessible to a global audience of academics, students, and policymakers.',
-      shortResultDescription: 'Academic authority positioning + research visibility systems achieved Top 5 scholarly rankings, expanded global research access to 15k+ visitors, increased citation accessibility by 4.2x, and established 85% international reach.',
+      resultDescription: 'A digital archive of Dr. Kotia\'s work, built to make his research easy to find for academics, students and policymakers.',
       focusAreas: ['Academic Excellence', 'Digital Archiving', 'Scholarly Presentation', 'Global Accessibility']
-    },
-    'imagebloom-by-saida': {
-      challengePoints: [
-        'Merging artistic portfolio showcase with e-commerce functionality',
-        'Creating premium brand perception for beauty and cosmetic services',
-        'Implementing secure payment systems for product sales',
-        'Balancing visual appeal with conversion-focused design'
-      ],
-      resolutionText: 'The solution required more than beauty— it demanded an understanding of luxury cosmetics and client psychology.',
-      resultDescription: 'The website provides a complete digital storefront that has empowered the client to sell products directly to consumers, opening up new revenue streams. The beautiful portfolio section continues to attract high-end consultancy clients.',
-      shortResultDescription: 'Premium beauty authority + dual-channel systems (services + e-commerce) achieved Top 10 rankings, generated 3.5x combined bookings and sales with 52% conversion, and delivered 220% revenue growth.',
-      focusAreas: ['Beauty & Cosmetics', 'E-commerce Integration', 'Portfolio Showcase', 'Premium Branding']
-    },
-    'rosemond-prempeh': {
-      challengePoints: [
-        'Creating a welcoming digital space for faith-based community engagement',
-        'Implementing content management for daily devotionals and events',
-        'Designing calming aesthetics that reflect spiritual mission',
-        'Integrating community features and secure donation systems'
-      ],
-      resolutionText: 'The solution required more than functionality— it demanded an understanding of faith-based community building.',
-      resultDescription: 'The website has become a central hub for the ministry, effectively distributing inspirational content and keeping the community informed about events. It has helped grow the organization\'s digital reach and spiritual impact.',
-      focusAreas: ['Faith-Based Design', 'Community Building', 'Content Management', 'Spiritual Engagement']
     },
     'royal-itech': {
       challengePoints: [
@@ -223,7 +170,7 @@ const getProjectSpecificContent = (slug: string) => {
         'Establishing authority in competitive cybersecurity market'
       ],
       resolutionText: 'The solution required more than security— it demanded an understanding of cybersecurity trust and expertise communication.',
-      resultDescription: 'The website successfully represents Royal iTech as a credible cybersecurity provider. The platform\'s optimized performance and professional design enhanced user engagement and effectively communicated the company\'s technical expertise.',
+      resultDescription: 'A website that presents Royal iTech as a cybersecurity provider, with a professional design and a focus on performance.',
       focusAreas: ['Cybersecurity Expertise', 'Professional Trust', 'Technical Performance', 'B2B Credibility']
     },
     'girl-code-africa': {
@@ -234,7 +181,7 @@ const getProjectSpecificContent = (slug: string) => {
         'Building community around empowerment and education mission'
       ],
       resolutionText: 'The solution required more than information— it demanded an understanding of empowerment and community building.',
-      resultDescription: 'The website effectively communicates GirlCode\'s mission and impact. The clear user journeys have led to increased program applications and partner inquiries, helping the organization expand its reach and influence in African tech education.',
+      resultDescription: 'A website that explains GirlCode\'s mission and impact, with clear paths to apply to programs and to reach out as a partner.',
       focusAreas: ['Education & Empowerment', 'Community Building', 'Non-Profit Impact', 'Tech Industry Access']
     },
     'ghana-optometry-conference': {
@@ -245,8 +192,7 @@ const getProjectSpecificContent = (slug: string) => {
         'Streamlining event management and administrative workflows'
       ],
       resolutionText: 'The solution required more than information— it demanded an understanding of professional conference management.',
-      resultDescription: 'The microsite streamlined the registration and information-sharing process, reducing administrative overhead and improving the attendee experience. It served as an effective tool for professional event marketing and management.',
-      shortResultDescription: 'Professional conference authority + registration optimization systems achieved #1 event rankings, generated 2.4x registrations with 800+ professional attendees, and delivered 170% event attendance growth.',
+      resultDescription: 'A microsite for registration and information-sharing, designed to cut administrative work for organisers and make things easier for attendees.',
       focusAreas: ['Event Management', 'Professional Registration', 'Conference Logistics', 'Administrative Efficiency']
     },
     'eden-heights': {
@@ -257,8 +203,7 @@ const getProjectSpecificContent = (slug: string) => {
         'Generating qualified leads for high-value real estate sales'
       ],
       resolutionText: 'The solution required more than visuals— it demanded an understanding of luxury real estate psychology.',
-      resultDescription: 'The website successfully positions Eden Heights as a premier residential option in Accra. The immersive visuals and sophisticated presentation have generated significant high-quality sales inquiries from discerning buyers.',
-      shortResultDescription: 'Luxury property authority + high-value lead systems achieved Top 5 residential rankings, generated 2.8x buyer inquiries with 42% conversion, and delivered 140% premium sales growth.',
+      resultDescription: 'A website that presents Eden Heights as a premier residential option in Accra, with immersive visuals and a polished presentation for prospective buyers.',
       focusAreas: ['Luxury Real Estate', 'Premium Positioning', 'Visual Storytelling', 'High-Value Sales']
     },
     'landmark-homes': {
@@ -269,8 +214,7 @@ const getProjectSpecificContent = (slug: string) => {
         'Creating professional presentation for sales team usage'
       ],
       resolutionText: 'The solution required more than presentation— it demanded an understanding of real estate investment psychology.',
-      resultDescription: 'The website professionally represents the Landmark Homes brand and effectively showcases their development quality. It has become a key sales tool for presenting project information to prospective investors and buyers.',
-      shortResultDescription: 'Real estate developer authority + investor confidence systems achieved Top 8 development rankings, generated 3.1x investor inquiries with 3.5k views, and delivered 165% property acquisition growth.',
+      resultDescription: 'A website that presents the Landmark Homes brand and the quality of their developments, used to show project information to prospective investors and buyers.',
       focusAreas: ['Real Estate Development', 'Investor Relations', 'Project Showcase', 'Corporate Branding']
     },
     'ghana-optometric-association': {
@@ -281,7 +225,7 @@ const getProjectSpecificContent = (slug: string) => {
         'Streamlining administrative tasks and member communication'
       ],
       resolutionText: 'The solution required more than functionality— it demanded an understanding of professional association management.',
-      resultDescription: 'The website has centralized the association\'s digital operations, dramatically improving communication with members and the public. The secure portal has streamlined administrative tasks and enhanced member value.',
+      resultDescription: 'A website that brings the association\'s digital operations together, with a secure member portal for administrative tasks and member communication.',
       focusAreas: ['Professional Association', 'Member Management', 'Industry Authority', 'Digital Operations']
     },
     'twist-nightclub': {
@@ -292,7 +236,7 @@ const getProjectSpecificContent = (slug: string) => {
         'Encouraging social sharing and community engagement'
       ],
       resolutionText: 'The solution required more than information— it demanded an understanding of nightlife culture and social engagement.',
-      resultDescription: 'The website successfully translates the club\'s energetic vibe into digital format, driving event interest and patron engagement. The mobile-optimized photo galleries encourage social sharing and community building.',
+      resultDescription: 'A website that carries the club\'s energy into digital, with mobile-optimized photo galleries made for sharing.',
       focusAreas: ['Nightlife & Entertainment', 'Mobile-First Design', 'Social Engagement', 'Event Promotion']
     },
     'command-space': {
@@ -303,19 +247,8 @@ const getProjectSpecificContent = (slug: string) => {
         'Implementing portfolio showcase that converts prospects to clients'
       ],
       resolutionText: 'The solution required more than presentation— it demanded an understanding of digital agency positioning and client psychology.',
-      resultDescription: 'The website serves as Command Space\'s ultimate business card, showcasing their expertise through sleek design and functional excellence. The professional presentation has enhanced their credibility and generated qualified leads.',
+      resultDescription: 'The website for Command Space, built to show their expertise through clean design and working functionality.',
       focusAreas: ['Digital Agency Branding', 'B2B Credibility', 'Portfolio Showcase', 'Lead Generation']
-    },
-    'qualivex-solutions': {
-      challengePoints: [
-        'Establishing credibility and digital presence for emerging business',
-        'Creating professional brand identity from ground up',
-        'Communicating business solutions and service offerings clearly',
-        'Building trust with potential clients and partners'
-      ],
-      resolutionText: 'The solution required more than design— it demanded an understanding of business development and market positioning.',
-      resultDescription: 'The professional website establishes Qualivex Solutions\' credibility and provides a solid foundation for business growth. The clear presentation of services helps potential clients understand their value proposition.',
-      focusAreas: ['Business Development', 'Professional Credibility', 'Market Positioning', 'Service Communication']
     },
     'anabs': {
       challengePoints: [
@@ -325,7 +258,7 @@ const getProjectSpecificContent = (slug: string) => {
         'Building immediate trust and credibility in competitive real estate market'
       ],
       resolutionText: 'The solution required more than aesthetics— it demanded an understanding of luxury real estate psychology and high-end buyer behavior.',
-      resultDescription: 'The website successfully positions Anabs Ghana as a premier luxury residential option, attracting qualified high-net-worth prospects and generating significant investment inquiries. The sophisticated presentation has elevated the brand\'s market positioning and enhanced credibility among discerning buyers.',
+      resultDescription: 'A website that presents Anabs Ghana as a luxury residential option, with a sophisticated presentation aimed at high-net-worth buyers.',
       focusAreas: ['Luxury Real Estate', 'Premium Positioning', 'High-End Marketing', 'Investor Relations']
     },
     'kline-designs': {
@@ -336,8 +269,7 @@ const getProjectSpecificContent = (slug: string) => {
         'Building brand recognition in Ghana\'s competitive architectural market'
       ],
       resolutionText: 'The solution required more than aesthetics— it demanded an understanding of architectural authority and design excellence.',
-      resultDescription: 'The website successfully establishes K_Line Designs LTD as a sophisticated design and engineering firm, showcasing their unique expertise and innovative approaches. The professional presentation builds immediate trust with potential clients and effectively communicates their value proposition in the competitive architectural market.',
-      shortResultDescription: 'Architectural design authority + project inquiry systems achieved Top 5 design rankings, generated 3.8x project inquiries with 4.2k portfolio views, and delivered 195% client acquisition growth.',
+      resultDescription: 'A website for K_Line Designs LTD, a design and engineering firm, that presents their expertise and approach clearly to potential clients.',
       focusAreas: ['Architectural Design', 'Engineering Excellence', 'Professional Credibility', 'Design Innovation']
     }
   }
@@ -352,7 +284,6 @@ const getProjectTestimonial = (slug: string) => {
     'eleven-eleven-ghana': 11,             // Curtis (Eleven Eleven)
     'emmanuel-kotia': 6,                   // Dr. Emmanuel Kotia  
     'ghana-optometric-association': 7,     // Dr. Remie
-    'rosemond-prempeh': 5,                // Lady RP
     'command-space': 3,                   // Tyrone
     'ghana-optometry-conference': 7,      // Dr. Remie (same as main GOA site)
     'anabs': 12,                    // Boss J. (Anabs)
@@ -362,127 +293,6 @@ const getProjectTestimonial = (slug: string) => {
   if (!testimonialId) return null
   
   return testimonialData.testimonials.find(t => t.id === testimonialId)
-}
-
-// Get project-specific metrics
-const getProjectMetrics = (slug: string) => {
-  const projectMetrics: { [key: string]: Array<{ label: string; value: string; icon: LucideIcon }> } = {
-    'gwen-addo': [
-      { value: 'Top 3', label: 'Search Authority', icon: TrendingUp },
-      { value: '3x', label: 'Consultation Bookings', icon: Users },
-      { value: '62%', label: 'Lead Conversion', icon: Calendar },
-      { value: '180%', label: 'Client Growth', icon: Star }
-    ],
-    'eleven-eleven-ghana': [
-      { value: '#1', label: 'Luxury Resort Rankings', icon: TrendingUp },
-      { value: '5x', label: 'Direct Bookings', icon: Users },
-      { value: '38%', label: 'Booking Conversion', icon: Calendar },
-      { value: '220%', label: 'Revenue Growth', icon: Star }
-    ],
-    'optimum-property-solutions': [
-      { value: 'Top 5', label: 'Real Estate Authority', icon: TrendingUp },
-      { value: '4x', label: 'Investment Inquiries', icon: Users },
-      { value: '45%', label: 'Lead Quality Rate', icon: Calendar },
-      { value: '165%', label: 'Property Acquisition', icon: Star }
-    ],
-    'emmanuel-kotia': [
-      { value: 'Top 5', label: 'Academic Authority', icon: TrendingUp },
-      { value: '15k+', label: 'Research Visibility', icon: Users },
-      { value: '4.2x', label: 'Citation Access', icon: Calendar },
-      { value: '85%', label: 'Global Reach', icon: Star }
-    ],
-    'imagebloom-by-saida': [
-      { value: 'Top 10', label: 'Beauty Authority', icon: TrendingUp },
-      { value: '3.5x', label: 'Booking + Sales', icon: Users },
-      { value: '52%', label: 'E-commerce Conversion', icon: Calendar },
-      { value: '220%', label: 'Revenue Growth', icon: Star }
-    ],
-    'rosemond-prempeh': [
-      { value: 'Top 8', label: 'Ministry Authority', icon: TrendingUp },
-      { value: '2.8x', label: 'Community Engagement', icon: Users },
-      { value: '5.2k', label: 'Active Members', icon: Calendar },
-      { value: '160%', label: 'Outreach Growth', icon: Star }
-    ],
-    'royal-itech': [
-      { value: 'Top 5', label: 'Cybersecurity Authority', icon: TrendingUp },
-      { value: '4.2x', label: 'Enterprise Leads', icon: Users },
-      { value: '48%', label: 'Consultation Convert', icon: Calendar },
-      { value: '250%', label: 'Client Acquisition', icon: Star }
-    ],
-    'girl-code-africa': [
-      { value: 'Top 3', label: 'Tech Education Authority', icon: TrendingUp },
-      { value: '3.2x', label: 'Program Applications', icon: Users },
-      { value: '12k+', label: 'Community Growth', icon: Calendar },
-      { value: '190%', label: 'Partnership Growth', icon: Star }
-    ],
-    'goa-conference': [
-      { value: '#1', label: 'Conference Authority', icon: TrendingUp },
-      { value: '2.4x', label: 'Registration Growth', icon: Users },
-      { value: '800+', label: 'Professional Attendees', icon: Calendar },
-      { value: '170%', label: 'Event Attendance', icon: Star }
-    ],
-    'eden-heights': [
-      { value: 'Top 5', label: 'Luxury Property Authority', icon: TrendingUp },
-      { value: '2.8x', label: 'High-Value Inquiries', icon: Users },
-      { value: '42%', label: 'Buyer Conversion', icon: Calendar },
-      { value: '140%', label: 'Premium Sales', icon: Star }
-    ],
-    'landmark-homes': [
-      { value: 'Top 8', label: 'Developer Authority', icon: TrendingUp },
-      { value: '3.1x', label: 'Investor Inquiries', icon: Users },
-      { value: '3.5k', label: 'Investment Views', icon: Calendar },
-      { value: '165%', label: 'Property Acquisition', icon: Star }
-    ],
-    'ghana-optometric-association': [
-      { value: '#1', label: 'Association Authority', icon: TrendingUp },
-      { value: '3.5x', label: 'Member Engagement', icon: Users },
-      { value: '1.2k+', label: 'Active Members', icon: Calendar },
-      { value: '210%', label: 'Industry Influence', icon: Star }
-    ],
-    'twist-nightclub': [
-      { value: 'Top 3', label: 'Nightlife Authority', icon: TrendingUp },
-      { value: '2.6x', label: 'Event Attendance', icon: Users },
-      { value: '6.8k', label: 'Social Community', icon: Calendar },
-      { value: '185%', label: 'Patron Growth', icon: Star }
-    ],
-    'command-space': [
-      { value: 'Top 5', label: 'Agency Authority', icon: TrendingUp },
-      { value: '3.4x', label: 'Client Inquiries', icon: Users },
-      { value: '55%', label: 'Consultation Convert', icon: Calendar },
-      { value: '175%', label: 'Client Acquisition', icon: Star }
-    ],
-    'qualivex-solutions': [
-      { value: 'Top 10', label: 'B2B Solutions Authority', icon: TrendingUp },
-      { value: '2.9x', label: 'Business Leads', icon: Users },
-      { value: '41%', label: 'Lead Conversion', icon: Calendar },
-      { value: '155%', label: 'Client Growth', icon: Star }
-    ],
-    'anabs': [
-      { value: '#1', label: 'Luxury High-Rise Authority', icon: TrendingUp },
-      { value: '6.5x', label: 'Investment Inquiries', icon: Users },
-      { value: '58%', label: 'Investor Conversion', icon: Calendar },
-      { value: '280%', label: 'Premium Sales', icon: Star }
-    ],
-    'kline-designs': [
-      { value: 'Top 5', label: 'Design Authority', icon: TrendingUp },
-      { value: '3.8x', label: 'Project Inquiries', icon: Users },
-      { value: '4.2k', label: 'Design Portfolio Views', icon: Calendar },
-      { value: '195%', label: 'Client Acquisition', icon: Star }
-    ],
-    'eddy': [
-      { value: '17', label: 'Applications (Month 1)', icon: TrendingUp },
-      { value: '3', label: 'Hot Leads (GHS 50k+)', icon: Users },
-      { value: '5', label: 'Confirmed Bookings', icon: Calendar },
-      { value: '700+', label: 'Events Hosted', icon: Star }
-    ]
-  }
-
-  return projectMetrics[slug] || [
-    { value: '150%', label: 'Growth', icon: TrendingUp },
-    { value: '5k+', label: 'Users', icon: Users },
-    { value: '3 wks', label: 'Timeline', icon: Calendar },
-    { value: '4.7', label: 'Rating', icon: Star }
-  ];
 }
 
 // Eleven Eleven specific data (since it's our template project)
@@ -496,12 +306,6 @@ const elevenElevenData = {
     category: "Luxury Real Estate",
     url: "https://www.11-11ghana.com"
   },
-  stats: [
-    { label: "Sales Inquiries", value: "150%", icon: TrendingUp },
-    { label: "User Engagement", value: "+85%", icon: Users },
-    { label: "Page Load Time", value: "1.2s", icon: Calendar },
-    { label: "Client Rating", value: "5.0", icon: Star }
-  ],
   challenge: {
     title: "The Luxury Imperative",
     quote: "How do you digitally replicate the luxurious and exclusive atmosphere of beachfront living?",
@@ -537,13 +341,7 @@ const elevenElevenData = {
   },
   result: {
     title: "Luxury Achieved",
-    description: "The website effectively captures the essence of the Eleven Eleven brand, resulting in increased user engagement and direct sales inquiries for beachfront apartments. It serves as a powerful digital showcase that aligns with the resort's luxury positioning.",
-    achievements: [
-      "150% increase in sales inquiries and tour bookings",
-      "85% improvement in user engagement metrics", 
-      "40% reduction in bounce rate",
-      "Recognition as a leading luxury resort website in Ghana"
-    ]
+    description: "The website effectively captures the essence of the Eleven Eleven brand, resulting in increased user engagement and direct sales inquiries for beachfront apartments. It serves as a powerful digital showcase that aligns with the resort's luxury positioning."
   },
   techStack: [
     "Immersive Visual Experience",
@@ -568,6 +366,8 @@ export default function LegacyCaseStudy() {
   // Always try to get project-specific data first, fallback to eleven-eleven template structure
   const portfolioProject = portfolioData.portfolio.find(p => p.id === slug || p.id === slug.replace(/-/g, '-'))
   const projectData = (slug === 'eleven-eleven-ghana' || slug === 'eleven-eleven') ? elevenElevenData : getProjectData(slug)
+  // Stat cards render only when a project carries real, verified figures in its data
+  const stats = (projectData as { stats?: Array<{ value: string; label: string; icon?: LucideIcon }> })?.stats
   const contentProject = content.portfolio.projects.find(p => p.slug === slug)
   const projectStack = (contentProject as { stack?: string[] } | undefined)?.stack
 
@@ -1464,44 +1264,30 @@ export default function LegacyCaseStudy() {
                   >
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-satoshi font-extralight text-text-primary mb-8"
                         style={{ lineHeight: '1.1', letterSpacing: '0.05em' }}>
-                      Business Impact
+                      What I Built
                     </h2>
                     <p className="text-lg md:text-xl text-text-secondary leading-relaxed mb-10 font-inter font-light">
                       {(() => {
                         const specificContent = getProjectSpecificContent(slug)
-                        // Prioritize short description for cleaner, focused result statement
-                        const result = (specificContent?.shortResultDescription as string) ||
-                               (specificContent?.resultDescription as string) ||
+                        const result = (specificContent?.resultDescription as string) ||
                                (projectData as { results?: { description?: string } })?.results?.description ||
                                portfolioProject?.mySolution ||
                                'Delivered integrated digital systems that drive measurable business outcomes.'
                         return result as string
                       })()}
                     </p>
-                    
-                    {/* Tech Stack - Minimalist Display */}
-                    <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-                      {(() => {
-                        // Prioritize portfolio.json tech stack data over generic fallback
-                        const techStack = portfolioProject?.techStack || 
-                                         (projectData as Record<string, string[]>)?.techStack || 
-                                         ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Figma']
-                        return techStack;
-                      })().map((tech: string, index: number) => (
-                        <span key={index} 
-                              className="px-4 py-2 text-sm font-satoshi text-text-secondary border rounded-full"
-                              style={{ 
-                                borderColor: 'rgba(255, 255, 255, 0.15)',
-                                background: 'rgba(255, 255, 255, 0.05)'
-                              }}>
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                    {Array.isArray(portfolioProject?.builtTo) && portfolioProject.builtTo.length > 0 && (
+                      <ul className="mb-10 space-y-3 text-base md:text-lg text-text-secondary font-inter font-light">
+                        {(portfolioProject.builtTo as string[]).map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
 
                 {/* Stats Cards - Floating Around Main Card (Desktop Only) */}
+                {stats && (
                 <div className="absolute inset-0 pointer-events-none hidden md:block">
                   
                   {/* Stat Card 1 - Top Left */}
@@ -1526,16 +1312,10 @@ export default function LegacyCaseStudy() {
                         <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-text-primary" />
                       </div>
                       <div className="text-2xl md:text-3xl font-satoshi font-light text-text-primary mb-2">
-                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[0]?.value) || (() => {
-                          const projectMetrics = getProjectMetrics(slug);
-                          return projectMetrics[0]?.value || '150%';
-                        })()}
+                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[0]?.value)}
                       </div>
                       <div className="text-text-secondary text-xs md:text-sm font-satoshi uppercase tracking-wider">
-                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[0]?.label) || (() => {
-                          const projectMetrics = getProjectMetrics(slug);
-                          return projectMetrics[0]?.label || 'Engagement';
-                        })()}
+                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[0]?.label)}
                       </div>
                     </div>
                   </div>
@@ -1562,16 +1342,10 @@ export default function LegacyCaseStudy() {
                         <Users className="w-6 h-6 md:w-8 md:h-8 text-text-primary" />
                       </div>
                       <div className="text-2xl md:text-3xl font-satoshi font-light text-text-primary mb-2">
-                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[1]?.value) || (() => {
-                          const projectMetrics = getProjectMetrics(slug);
-                          return projectMetrics[1]?.value || '12k+';
-                        })()}
+                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[1]?.value)}
                       </div>
                       <div className="text-text-secondary text-xs md:text-sm font-satoshi uppercase tracking-wider">
-                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[1]?.label) || (() => {
-                          const projectMetrics = getProjectMetrics(slug);
-                          return projectMetrics[1]?.label || 'Users';
-                        })()}
+                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[1]?.label)}
                       </div>
                     </div>
                   </div>
@@ -1598,16 +1372,10 @@ export default function LegacyCaseStudy() {
                         <Calendar className="w-6 h-6 md:w-8 md:h-8 text-text-primary" />
                       </div>
                       <div className="text-2xl md:text-3xl font-satoshi font-light text-text-primary mb-2">
-                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[2]?.value) || (() => {
-                          const projectMetrics = getProjectMetrics(slug);
-                          return projectMetrics[2]?.value || '3 wks';
-                        })()}
+                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[2]?.value)}
                       </div>
                       <div className="text-text-secondary text-xs md:text-sm font-satoshi uppercase tracking-wider">
-                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[2]?.label) || (() => {
-                          const projectMetrics = getProjectMetrics(slug);
-                          return projectMetrics[2]?.label || 'Timeline';
-                        })()}
+                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[2]?.label)}
                       </div>
                     </div>
                   </div>
@@ -1634,28 +1402,24 @@ export default function LegacyCaseStudy() {
                         <Star className="w-6 h-6 md:w-8 md:h-8 text-text-primary" />
                       </div>
                       <div className="text-2xl md:text-3xl font-satoshi font-light text-text-primary mb-2">
-                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[3]?.value) || (() => {
-                          const projectMetrics = getProjectMetrics(slug);
-                          return projectMetrics[3]?.value || '4.7';
-                        })()}
+                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[3]?.value)}
                       </div>
                       <div className="text-text-secondary text-xs md:text-sm font-satoshi uppercase tracking-wider">
-                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[3]?.label) || (() => {
-                          const projectMetrics = getProjectMetrics(slug);
-                          return projectMetrics[3]?.label || 'Rating';
-                        })()}
+                        {((projectData as { stats?: Array<{value: string, label: string}> })?.stats?.[3]?.label)}
                       </div>
                     </div>
                   </div>
 
                 </div>
+                )}
 
               </div>
 
               {/* Mobile-Only: Single Column Stats Cards */}
+              {stats && (
               <div className="md:hidden mt-20">
                 <div className="flex flex-col space-y-8 px-6 max-w-md mx-auto">
-                  {((projectData as { stats?: Array<{value: string, label: string, icon?: LucideIcon}> })?.stats || getProjectMetrics(slug)).map((stat: {value: string, label: string, icon?: LucideIcon}, index: number) => (
+                  {stats && stats.map((stat: {value: string, label: string, icon?: LucideIcon}, index: number) => (
                     <div key={index} 
                          className="animate-element stat-card-mobile">
                       <div 
@@ -1691,6 +1455,7 @@ export default function LegacyCaseStudy() {
                   ))}
                 </div>
               </div>
+              )}
 
             </section>
           )}
