@@ -222,57 +222,6 @@
       ]
     },
     {
-      "id": "royal-itech",
-      "title": "Royal iTech",
-      "client": "Royal iTech",
-      "category": "Cybersecurity Services",
-      "url": "https://royalitech.com/",
-      "description": "The corporate website for Royal iTech, a cybersecurity firm in Ghana, for whom I worked as a Web Developer.",
-      "theChallenge": "As a cybersecurity firm, Royal iTech needed a website that not only showcased its services but also projected an image of security, professionalism, and trust to potential clients.",
-      "mySolution": "As part of the development team, I collaborated to build and maintain the client website, ensuring high functionality and user-friendliness. I utilized HTML, CSS, and JavaScript to craft a dynamic and visually appealing interface, and contributed to database optimization to ensure high performance and efficient data management.",
-      "theResult": "The resulting website successfully represents Royal iTech as a credible and expert cybersecurity provider. The platform's optimized performance and user-friendly design enhanced user engagement and effectively communicated the company's value proposition.",
-      "systemsFramework": {
-        "businessChallenge": "Royal iTech, cybersecurity firm, needed website projecting security, professionalism, and trust to potential clients while establishing credibility as expert provider.",
-        "foundationalAuthoritySetup": {
-          "description": "Establish Royal iTech as searchable cybersecurity authority",
-          "systems": [
-            "Commercial website architecture - Corporate platform engineered for trust and credibility",
-            "Search entity registration - Authority for cybersecurity services Ghana",
-            "Technical SEO foundations - Optimized performance demonstrating capability",
-            "Authority positioning - Security-focused presentation aligning with expertise"
-          ]
-        },
-        "growthSystemsImplemented": {
-          "leadAcquisitionPipeline": {
-            "implemented": true,
-            "description": "Trust-focused journey converting browsers into client inquiries",
-            "components": [
-              "Dynamic, professional interface projecting credibility",
-              "Clear service showcase with value proposition",
-              "User-friendly design building trust",
-              "Performance optimization demonstrating technical capability"
-            ]
-          }
-        },
-        "measurableImpact": {
-          "outcomes": [
-            "Successfully represented as credible cybersecurity expert",
-            "Enhanced user engagement through optimized performance",
-            "Built trust through professional presentation",
-            "Establish digital presence for client acquisition"
-          ],
-          "systemsDelivered": [
-            "Foundational Authority Setup",
-            "Lead Acquisition Pipeline"
-          ]
-        }
-      },
-      "builtTo": [
-        "Front-end built in HTML, CSS and JavaScript as part of the development team",
-        "Database optimization for performance"
-      ]
-    },
-    {
       "id": "girl-code-africa",
       "title": "GirlCode Africa",
       "client": "GirlCode Africa",

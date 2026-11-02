@@ -77,7 +77,7 @@ export default function PortfolioFooter({ currentSlug }: PortfolioFooterProps) {
   // Get website projects only (filter out graphic design projects)
   const websiteProjectSlugs = [
     'anabs', 'eleven-eleven-ghana', 'gwen-addo', 'finest-dietitian', 'emmanuel-kotia',
-    'royal-itech', 'girl-code-africa',
+    'girl-code-africa',
     'eden-heights', 'landmark-homes', 'ghana-optometric-association',
     'twist-nightclub', 'command-space'
   ];
@@ -101,7 +101,6 @@ export default function PortfolioFooter({ currentSlug }: PortfolioFooterProps) {
       'finest-dietitian': '/images/case-studies/finest-dietitian/site-home.webp',
       'eleven-eleven-ghana': '/images/eleven-eleven.png',
       'emmanuel-kotia': '/images/emma-kotia.png',
-      'royal-itech': '/images/royal-itech.png',
       'girl-code-africa': '/images/girlcode.png',
       'eden-heights': '/images/eden-heights.png',
       'landmark-homes': '/images/landmark-homes.png',

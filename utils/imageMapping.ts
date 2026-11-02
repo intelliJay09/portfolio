@@ -9,7 +9,6 @@ const websiteImages: Record<string, string> = {
   'eleven-eleven-ghana': '/images/eleven-eleven.png',
   'gwen-addo': '/images/gwen-addo.png', 
   'emmanuel-kotia': '/images/emma-kotia.png',
-  'royal-itech': '/images/royal-itech.png',
   'girl-code-africa': '/images/girlcode.png',
   'eden-heights': '/images/eden-heights.png',
   'landmark-homes': '/images/landmark-homes.png',

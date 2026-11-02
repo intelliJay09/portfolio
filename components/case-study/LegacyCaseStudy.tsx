@@ -33,7 +33,6 @@ const getProjectHeroImage = (slug: string) => {
     'gwen-addo': '/images/gwen-portfolio-image.jpg',
     'eleven-eleven-ghana': '/images/11-11-case-study-hero.webp',
     'emmanuel-kotia': '/images/emma-kotia.png',
-    'royal-itech': '/images/royal-itech.png',
     'girl-code-africa': '/images/girlcode.png',
     'eden-heights': '/images/eden-heights.png',
     'landmark-homes': '/images/landmark-homes.png',
@@ -90,7 +89,6 @@ const getProjectYear = (slug: string, portfolioProject: PortfolioProject | undef
     'gwen-addo': '2025',
     'eleven-eleven-ghana': '2024',
     'emmanuel-kotia': '2023',
-    'royal-itech': '2023',
     'girl-code-africa': '2025',
     'eden-heights': '2025',
     'landmark-homes': '2025',
@@ -111,7 +109,6 @@ const getProjectChallengeQuote = (slug: string, projectData: ProjectData, portfo
     'gwen-addo': 'How do you position a business strategist as searchable authority while converting visitors into paying clients?',
     'eleven-eleven-ghana': 'How do you establish luxury beachfront positioning that drives direct bookings and premium perception?',
     'emmanuel-kotia': 'How do you establish academic authority that makes distinguished research globally accessible?',
-    'royal-itech': 'How do you establish cybersecurity authority that converts security-conscious businesses into long-term clients?',
     'girl-code-africa': 'How do you position tech education authority that drives program applications and attracts corporate partnerships?',
     'eden-heights': 'How do you position luxury residential authority that attracts high-net-worth buyers and drives premium property sales?',
     'landmark-homes': 'How do you establish real estate development authority that builds investor confidence and accelerates property acquisitions?',
@@ -161,17 +158,6 @@ const getProjectSpecificContent = (slug: string) => {
       resolutionText: 'The solution required more than organization— it demanded an understanding of academic authority and scholarly presentation.',
       resultDescription: 'A digital archive of Dr. Kotia\'s work, built to make his research easy to find for academics, students and policymakers.',
       focusAreas: ['Academic Excellence', 'Digital Archiving', 'Scholarly Presentation', 'Global Accessibility']
-    },
-    'royal-itech': {
-      challengePoints: [
-        'Projecting security expertise and professional trustworthiness',
-        'Creating technical credibility for cybersecurity services',
-        'Implementing performance optimization for business applications',
-        'Establishing authority in competitive cybersecurity market'
-      ],
-      resolutionText: 'The solution required more than security— it demanded an understanding of cybersecurity trust and expertise communication.',
-      resultDescription: 'A website that presents Royal iTech as a cybersecurity provider, with a professional design and a focus on performance.',
-      focusAreas: ['Cybersecurity Expertise', 'Professional Trust', 'Technical Performance', 'B2B Credibility']
     },
     'girl-code-africa': {
       challengePoints: [

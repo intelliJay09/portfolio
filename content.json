@@ -161,16 +161,6 @@
         "stack": ["WordPress"]
       },
       {
-        "slug": "royal-itech",
-        "caseStudy": true,
-        "title": "Royal iTech",
-        "short_description": "Cybersecurity firm with trust-focused corporate presence",
-        "category": "Websites",
-        "strategicCategory": "Cybersecurity Services",
-        "strategicFilter": "Premium Brand Authority",
-        "stack": ["WordPress"]
-      },
-      {
         "slug": "girl-code-africa",
         "caseStudy": true,
         "title": "GirlCode Africa",
