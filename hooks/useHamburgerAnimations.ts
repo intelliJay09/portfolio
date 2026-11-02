@@ -73,8 +73,9 @@ export const useHamburgerAnimations = (
         zIndex: 10,
         duration: 0.4,
         ease: 'power2.out',
-        // CRITICAL: Only overwrite opacity and y, preserve scale for Framer Motion
-        overwrite: false,
+        // 'auto' kills only the opposite GSAP tween's opacity/y, so a hide and a show never
+        // run at once; Framer Motion's hover scale is not a GSAP tween and is unaffected
+        overwrite: 'auto',
         onComplete: () => {
           // Ensure base scale is set but allow Framer Motion to override
           gsap.set(targetRef.current, { scale: 1, overwrite: false })
@@ -89,8 +90,7 @@ export const useHamburgerAnimations = (
         zIndex: -1,
         duration: 0.5,
         ease: 'power2.inOut',
-        // CRITICAL: Don't overwrite scale, let Framer Motion handle hover animations
-        overwrite: false
+        overwrite: 'auto'
       })
     }
   }, [showHamburger, isMobile, isMenuOpen])
@@ -136,7 +136,8 @@ export const useHamburgerAnimations = (
         duration: 0.45,
         ease: 'power2.out',
         transformOrigin: 'center center',
-        overwrite: false
+        // A hide must cancel a running show (and the reverse), or the longer tween wins
+        overwrite: 'auto'
       })
     } else {
       gsap.to(logoRef.current, {
@@ -146,7 +147,7 @@ export const useHamburgerAnimations = (
         ease: 'power2.out',
         delay: scrollDirection === 'up' ? 0.1 : 0,
         transformOrigin: 'center center',
-        overwrite: false
+        overwrite: 'auto'
       })
     }
   }, [hideDefault, scrollDirection, isMenuOpen])

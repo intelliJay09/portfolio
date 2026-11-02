@@ -8,37 +8,37 @@ import TransparentCTA from './ui/TransparentCTA'
 
 const featuredProjects = [
   {
-    id: 'anabs',
-    title: 'Anabs',
-    category: 'Premium Brand Authority',
-    description: 'Luxury high-rise development commanding premium positioning through sophisticated digital storytelling',
-    image: '/images/anabs.png',
+    id: 'gwen-addo',
+    title: 'Gwen Addo',
+    category: 'Website, CRM and customer journey',
+    description: 'Her website, then the CRM and the automated emails behind it: 1,695 emails to 194 people, none sent by hand.',
+    image: '/images/gwen-addo.png',
     year: '2025',
     position: 'left'
   },
   {
-    id: 'gwen-addo',
-    title: 'Gwen Addo',
-    category: 'Premium Lead Generation',
-    description: 'Strategic consultation platform converting high-value prospects with integrated booking systems',
-    image: '/images/gwen-addo.png',
-    year: '2025',
+    id: 'finest-dietitian',
+    title: 'Finest Dietitian',
+    category: 'Website, booking and follow-up emails',
+    description: 'A booking site for a registered dietitian in Accra, so every patient who books is someone she can contact again.',
+    image: '/images/case-studies/finest-dietitian/site-home.webp',
+    year: '2026',
     position: 'right'
   },
   {
-    id: 'girl-code-africa',
-    title: 'Girl Code Africa',
-    category: 'Premium Brand Authority',
-    description: 'Multi-audience platform driving program enrollments, partnership acquisitions, and donor engagement for STEM education non-profit',
-    image: '/images/girlcode.png',
-    year: '2023',
+    id: 'anabs',
+    title: 'Anabs',
+    category: 'Website',
+    description: 'A website for a 26-floor luxury residential tower in Accra, built to attract serious buyers and investors.',
+    image: '/images/anabs.png',
+    year: '2025',
     position: 'left'
   }
 ]
 
 export default function FeaturedProjects() {
   return (
-    <section className="bg-black pt-16 pb-16 sm:pt-20 sm:pb-20 md:pt-32 md:pb-24 lg:pt-40 lg:pb-16">
+    <section className="bg-background-primary pt-16 pb-16 sm:pt-20 sm:pb-20 md:pt-32 md:pb-24 lg:pt-40 lg:pb-16">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         {/* Section Header */}
         <div className="mb-16 sm:mb-20 md:mb-24 lg:mb-28 text-center max-w-5xl mx-auto">
@@ -47,18 +47,18 @@ export default function FeaturedProjects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-white font-light text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight mb-6"
+            className="text-text-primary font-light text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight mb-6"
           >
-            Strategic Challenges Solved. Measurable Results Delivered.
+            Selected work
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/70 text-base sm:text-lg md:text-xl font-light max-w-3xl mx-auto"
+            className="text-text-primary/70 text-base sm:text-lg md:text-xl font-light max-w-3xl mx-auto"
           >
-            From luxury real estate commanding 340% traffic growth to lead generation systems achieving 28% conversion increases—I architect complete growth ecosystems for premium brands who refuse to compete on price.
+            Websites, CRM and customer-journey automation for clients in Ghana. Gwen Addo is the full story, from the first sign-up to the next cohort.
           </motion.p>
         </div>
 
@@ -88,10 +88,8 @@ export default function FeaturedProjects() {
                 ease: [0.165, 0.84, 0.44, 1]
               }}
               className="relative"
-              style={{ 
-                transformStyle: 'preserve-3d',
-                perspective: '1000px'
-              }}
+              // No preserve-3d here: a 3D rendering context stops the glass card's backdrop blur from rendering
+              style={{ perspective: '1000px' }}
             >
               <Link href={`/portfolio/${project.id}`} className="group block">
                 {/* Image Container */}
@@ -130,14 +128,14 @@ export default function FeaturedProjects() {
                   }`}
                 >
                   <div
-                    className="backdrop-blur-xl bg-white/10 border border-white/25 rounded-xl p-5 sm:p-6 md:px-10 md:py-16 shadow-2xl group-hover:backdrop-blur-2xl group-hover:bg-white/15 group-hover:border-white/35 transition-all duration-[600ms]"
+                    className="backdrop-blur-xl bg-text-primary/10 border border-text-primary/25 md:bg-white/10 md:border-white/25 rounded-xl p-5 sm:p-6 md:px-10 md:py-16 shadow-2xl group-hover:backdrop-blur-2xl group-hover:bg-text-primary/15 group-hover:border-text-primary/35 md:group-hover:bg-white/15 md:group-hover:border-white/35 transition-all duration-[600ms]"
                     style={{
                       transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                     }}
                   >
                     {/* Project Title */}
                     <h3
-                      className="text-white text-xl sm:text-2xl md:text-3xl font-light tracking-wide mb-2 group-hover:text-white/90 transition-colors duration-[600ms]"
+                      className="text-text-primary md:text-white text-xl sm:text-2xl md:text-3xl font-light tracking-wide mb-2 group-hover:text-text-primary/90 md:group-hover:text-white/90 transition-colors duration-[600ms]"
                       style={{
                         transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                       }}
@@ -146,18 +144,18 @@ export default function FeaturedProjects() {
                     </h3>
 
                     {/* Category */}
-                    <p className="text-white/85 text-xs sm:text-sm tracking-wider uppercase mb-2 sm:mb-3 font-light">
+                    <p className="text-text-primary/85 md:text-white/85 text-xs sm:text-sm tracking-wider uppercase mb-2 sm:mb-3 font-light">
                       {project.category}
                     </p>
 
                     {/* Description */}
-                    <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 font-light">
+                    <p className="text-text-primary/80 md:text-white/80 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 font-light">
                       {project.description}
                     </p>
                     
                     {/* View Project CTA */}
                     <div
-                      className="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors duration-[600ms]"
+                      className="flex items-center gap-2 text-text-primary/80 md:text-white/80 group-hover:text-text-primary md:group-hover:text-white transition-colors duration-[600ms]"
                       style={{
                         transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                       }}
@@ -190,7 +188,7 @@ export default function FeaturedProjects() {
           className="mt-16 sm:mt-40 md:mt-44 lg:mt-48 text-center"
         >
           <TransparentCTA href="/portfolio">
-            Explore Growth Outcomes
+            See all work
           </TransparentCTA>
         </motion.div>
       </div>

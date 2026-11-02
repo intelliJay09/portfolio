@@ -30,7 +30,6 @@ Disallow: /nul
 
 # Premium SEO: Specify sitemap locations
 Sitemap: https://jacquelineamoako.com/sitemap.xml
-Sitemap: https://jacquelineamoako.com/portfolio-sitemap.xml
 
 # Crawl-delay for luxury sites (not too aggressive)
 Crawl-delay: 1

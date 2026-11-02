@@ -325,7 +325,7 @@ export default function Footer() {
               >
                 <div className="text-white font-satoshi font-light text-base flex items-center justify-center">
                   <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-                  Available for projects
+                  Get in touch
                 </div>
               </div>
             </div>
@@ -355,7 +355,7 @@ export default function Footer() {
             >
               <div className="text-white font-satoshi font-light text-base flex items-center">
                 <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-                Available for projects
+                Get in touch
               </div>
             </div>
           </div>
@@ -386,12 +386,12 @@ export default function Footer() {
                   Instagram
                 </a>
                 <a
-                  href="https://x.com/intelliJay09"
+                  href="https://github.com/intelliJay09"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white font-satoshi text-lg md:text-xl relative transition-all duration-300 ease-out will-change-transform hover:scale-[1.02] hover:tracking-wide hover:-translate-y-0.5 hover:opacity-90 active:scale-[1.02] active:tracking-wide active:-translate-y-0.5 active:opacity-90"
                 >
-                  Twitter
+                  GitHub
                 </a>
               </div>
             </div>
@@ -453,12 +453,12 @@ export default function Footer() {
                   Instagram
                 </a>
                 <a
-                  href="https://x.com/intelliJay09"
+                  href="https://github.com/intelliJay09"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white font-satoshi text-lg relative transition-all duration-300 ease-out will-change-transform hover:scale-[1.02] hover:tracking-wide hover:-translate-y-0.5 hover:opacity-90 active:scale-[1.02] active:tracking-wide active:-translate-y-0.5 active:opacity-90"
                 >
-                  Twitter
+                  GitHub
                 </a>
               </div>
             </div>

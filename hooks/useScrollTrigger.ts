@@ -15,6 +15,7 @@ export const useScrollTrigger = (config: ScrollTriggerConfig) => {
   const [showHamburger, setShowHamburger] = useState(false)
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down')
   const lastScrollY = useRef(0)
+  const scrollDirectionRef = useRef<'up' | 'down'>('down')
   const [hideDefault, setHideDefault] = useState(false)
 
   // Buffer zone for smooth transitions (default 15% of viewport)
@@ -42,9 +43,13 @@ export const useScrollTrigger = (config: ScrollTriggerConfig) => {
         requestAnimationFrame(() => {
           const currentScrollY = window.scrollY
           setScrollY(currentScrollY)
-          
-          // Determine scroll direction
-          const direction = currentScrollY > lastScrollY.current ? 'down' : 'up'
+
+          // Determine scroll direction; an unchanged position keeps the last direction
+          // instead of reading as 'up', which re-triggered the nav show animations
+          const direction = currentScrollY === lastScrollY.current
+            ? scrollDirectionRef.current
+            : currentScrollY > lastScrollY.current ? 'down' : 'up'
+          scrollDirectionRef.current = direction
           setScrollDirection(direction)
           lastScrollY.current = currentScrollY
           

@@ -1,4 +1,7 @@
 @import "tailwindcss";
+/* Tailwind v4 only reads a JS config when pointed at it. Without this line every
+   colour, font and animation defined in tailwind.config.ts generated no CSS. */
+@config "./tailwind.config.ts";
 @import "./styles/z-index-system.css";
 @import "./luxury-grid.css";
 @import "./styles/luxury-hero.css";
@@ -129,9 +132,11 @@
     box-sizing: border-box;
   }
   
+  /* clip, not hidden: hidden turns html/body into scroll containers, which
+     silently breaks every position: sticky element on the site */
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
@@ -140,7 +145,7 @@
     background-color: rgb(var(--color-background-primary));
     color: rgb(var(--color-text-primary));
     font-family: var(--font-inter), sans-serif;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
   
   h1 {
@@ -4464,3 +4469,58 @@ video {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+
+/* ========== CASE STUDY MOTION (components/case-study) ==========
+   One curve for every entrance. The un-animated state is the finished layout,
+   so reduced motion and no-JS both read the page as designed. */
+:root {
+  --cs-ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Short names for the palette's runtime variables, used by the case study
+   components. They follow the light/dark theme and take opacity modifiers
+   (bg-ink/15), alongside the longer names from tailwind.config.ts. */
+@theme inline {
+  --color-ink: rgb(var(--color-text-primary));
+  --color-ink-2: rgb(var(--color-text-secondary));
+  --color-ink-3: rgb(var(--color-text-tertiary));
+  --color-paper: rgb(var(--color-background-primary));
+  --color-paper-2: rgb(var(--color-background-secondary));
+  --color-paper-3: rgb(var(--color-background-tertiary));
+  --font-display: var(--font-satoshi), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+}
+
+@keyframes cs-rise {
+  from { transform: translateY(105%); }
+  to { transform: none; }
+}
+@keyframes cs-fade {
+  from { opacity: 0; transform: translateY(0.75rem); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes cs-wipe {
+  from { clip-path: inset(0 0 100% 0 round 0.75rem); }
+  to { clip-path: inset(0 0 0 0 round 0.75rem); }
+}
+
+.cs-rise { animation: cs-rise 1.2s var(--cs-ease-out) both; }
+.cs-fade { animation: cs-fade 1s var(--cs-ease-out) both; }
+.cs-row { animation: cs-fade 0.7s var(--cs-ease-out) both; }
+.cs-wipe { animation: cs-wipe 0.9s var(--cs-ease-out) both; }
+
+.cs-link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s var(--cs-ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .cs-link:hover { background-size: 0% 1px; background-position: 100% 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-rise, .cs-fade, .cs-row, .cs-wipe { animation: none; }
+  .cs-link { transition: none; }
+}

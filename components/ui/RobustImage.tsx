@@ -7,7 +7,6 @@ import { getFallbackImage } from '../../utils/imageMapping'
 interface RobustImageProps extends Omit<ImageProps, 'src' | 'onError'> {
   src: string
   fallbackSrc?: string
-  category?: string
   onImageError?: (error: Error) => void
   showPlaceholder?: boolean
   placeholderText?: string
@@ -16,7 +15,6 @@ interface RobustImageProps extends Omit<ImageProps, 'src' | 'onError'> {
 export default function RobustImage({
   src,
   fallbackSrc,
-  category = 'Websites',
   onImageError,
   showPlaceholder = true,
   placeholderText,
@@ -39,7 +37,7 @@ export default function RobustImage({
     setHasError(true)
 
     // Try fallback image if provided
-    const nextFallback = fallbackSrc || getFallbackImage(category)
+    const nextFallback = fallbackSrc || getFallbackImage()
     if (currentSrc !== nextFallback) {
       console.log('RobustImage: Trying fallback image:', nextFallback)
       setCurrentSrc(nextFallback)

@@ -1,427 +1,160 @@
 /**
- * Schema Markup Generator for Luxury Design Portfolio
- * Implements structured data for enhanced SEO and rich snippets
+ * Structured data (schema.org JSON-LD). Identity copy comes from lib/site.ts, so this file
+ * never carries its own claims: no prices, ratings or results unless they are verified.
  */
 
-export interface PersonSchema {
-  "@context": "https://schema.org"
-  "@type": "Person"
-  name: string
-  url: string
-  image: string
-  sameAs: string[]
-  jobTitle: string
-  worksFor: {
-    "@type": "Organization"
-    name: string
-    url: string
-  }
-  address: {
-    "@type": "PostalAddress"
-    addressLocality: string
-    addressCountry: string
-  }
-  knowsAbout: string[]
-  hasCredential: Array<{
-    "@type": "EducationalOccupationalCredential"
-    name: string
-    educationalLevel: string
-    credentialCategory: string
-  }>
-  alumniOf: Array<{
-    "@type": "CollegeOrUniversity"
-    name: string
-    url?: string
-  }>
+import { PAGES, SITE } from './site'
+
+const PERSON_REF = {
+  "@type": "Person" as const,
+  name: SITE.legalName,
+  url: SITE.url,
 }
 
-export interface CreativeWorkSchema {
-  "@context": "https://schema.org"
-  "@type": "CreativeWork"
-  name: string
-  description: string
-  creator: {
-    "@type": "Person"
-    name: string
-    url: string
-  }
-  dateCreated: string
-  image: string
-  url: string
-  keywords: string[]
-  genre: string
-  audience: {
-    "@type": "Audience"
-    audienceType: string
-  }
-  mainEntity: {
-    "@type": "WebSite"
-    url: string
-  }
-}
-
-export interface ProfessionalServiceSchema {
-  "@context": "https://schema.org"
-  "@type": "ProfessionalService"
-  "@id": string
-  name: string
-  description: string
-  url: string
-  image: string
-  priceRange: string
-  areaServed: {
-    "@type": "Place"
-    name: string
-  }
-  serviceType: string[]
-  provider: {
-    "@type": "Person"
-    name: string
-    url: string
-    image: string
-    jobTitle: string
-    telephone?: string
-    email?: string
-    address: {
-      "@type": "PostalAddress"
-      addressLocality: string
-      addressCountry: string
-    }
-  }
-  hasOfferCatalog: {
-    "@type": "OfferCatalog"
-    name: string
-    itemListElement: Array<{
-      "@type": "Offer"
-      itemOffered: {
-        "@type": "Service"
-        name: string
-        description: string
-      }
-    }>
-  }
-  aggregateRating?: {
-    "@type": "AggregateRating"
-    ratingValue: string
-    reviewCount: string
-  }
-}
-
-export interface PortfolioSchema {
-  "@context": "https://schema.org"
-  "@type": "Collection"
-  name: string
-  description: string
-  creator: {
-    "@type": "Person"
-    name: string
-    url: string
-  }
-  hasPart: Array<{
-    "@type": "CreativeWork"
-    name: string
-    description: string
-    url: string
-    image: string
-    dateCreated: string
-    keywords: string[]
-    genre: string
-  }>
-}
-
-export interface WebsiteSchema {
-  "@context": "https://schema.org"
-  "@type": "WebSite"
-  "@id": string
-  name: string
-  description: string
-  url: string
-  image: string
-  author: {
-    "@type": "Person"
-    name: string
-    url: string
-  }
-  publisher: {
-    "@type": "Person"
-    name: string
-    url: string
-  }
-  inLanguage: string
-  copyrightYear: string
-  genre: string[]
-  keywords: string[]
-  audience: {
-    "@type": "Audience"
-    audienceType: string
-  }
-  potentialAction: {
-    "@type": "SearchAction"
-    target: {
-      "@type": "EntryPoint"
-      urlTemplate: string
-    }
-    "query-input": string
-  }
-  mainEntity: {
-    "@type": "Person"
-    name: string
-    url: string
-  }
-}
-
-export function generatePersonSchema(): PersonSchema {
+export function generatePersonSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Jacqueline Frempomah Amoako",
-    url: "https://jacquelineamoako.com",
-    image: "https://jacquelineamoako.com/images/jackie-studio.png",
-    sameAs: [
-      "https://linkedin.com/in/jacqueline-frempomah-amoako",
-      "https://github.com/jacquelineamoako",
-      "https://www.wikidata.org/wiki/Q138331544"
-    ],
-    jobTitle: "Digital Systems Architect",
-    worksFor: {
-      "@type": "Organization",
-      name: "Strategic Growth Consulting",
-      url: "https://jacquelineamoako.com"
-    },
+    name: SITE.legalName,
+    url: SITE.url,
+    image: `${SITE.url}/images/jackie-studio.png`,
+    sameAs: [...SITE.sameAs],
+    jobTitle: SITE.role,
+    description: SITE.description,
+    worksFor: SITE.employers.map((name) => ({ "@type": "Organization", name })),
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Accra",
-      addressCountry: "Ghana"
+      addressLocality: SITE.location.city,
+      addressCountry: SITE.location.country,
     },
-    knowsAbout: [
-      "Digital Growth Strategy",
-      "Revenue Systems Architecture",
-      "SEO Authority Building",
-      "Conversion Rate Optimization",
-      "Premium Brand Positioning",
-      "Lead Generation Systems",
-      "Growth Analytics Strategy",
-      "Market Authority Development",
-      "Traffic Acquisition Systems",
-      "Business Growth Consulting",
-      "Strategic Partnerships",
-      "Measurable Business Outcomes"
-    ],
-    hasCredential: [
-      {
-        "@type": "EducationalOccupationalCredential",
-        name: "BSC Information Technology",
-        educationalLevel: "Bachelor's Degree",
-        credentialCategory: "degree"
-      },
-      {
-        "@type": "EducationalOccupationalCredential",
-        name: "Diploma in Software Engineering",
-        educationalLevel: "Diploma",
-        credentialCategory: "diploma"
-      }
-    ],
-    alumniOf: [
-      {
-        "@type": "CollegeOrUniversity",
-        name: "Ghana Technology University College"
-      },
-      {
-        "@type": "CollegeOrUniversity",
-        name: "IPMC Ghana"
-      }
-    ]
+    knowsAbout: [...SITE.knowsAbout],
+    alumniOf: SITE.education.map((e) => ({ "@type": "CollegeOrUniversity", name: e.school })),
+    hasCredential: SITE.education.map((e) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: e.name,
+      credentialCategory: e.name.startsWith('BSc') ? 'degree' : 'diploma',
+    })),
   }
 }
 
-export function generateProfessionalServiceSchema(): ProfessionalServiceSchema {
+export function generateProfessionalServiceSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://jacquelineamoako.com/#professional-service",
-    name: "Strategic Growth & Business Development Services",
-    description: "Digital growth strategist architecting complete revenue-generating ecosystems for premium brands. From 340% traffic growth to 28% conversion increases—delivering measurable business outcomes that scale from $100K to $10M.",
-    url: "https://jacquelineamoako.com",
-    image: "https://jacquelineamoako.com/images/jackie-studio.png",
-    priceRange: "$5000-$50000",
-    areaServed: {
-      "@type": "Place",
-      name: "Ghana, West Africa, Global"
-    },
+    "@id": `${SITE.url}/#professional-service`,
+    name: SITE.employers[0],
+    description:
+      'Customer lifecycle strategy, CRM and email and WhatsApp automation, and the websites that sit in front of them.',
+    url: SITE.url,
+    image: `${SITE.url}/images/jackie-studio.png`,
+    areaServed: { "@type": "Place", name: "Ghana and remote" },
     serviceType: [
-      "Strategic Growth Consulting",
-      "SEO Authority Building",
-      "Conversion Rate Optimization",
-      "Premium Lead Generation Systems",
-      "Revenue-Optimized Commerce",
-      "Market Authority Development",
-      "Brand Positioning Strategy",
-      "Growth Analytics & Measurement",
-      "Traffic Acquisition Systems"
+      "Customer lifecycle marketing",
+      "Email and WhatsApp automation",
+      "CRM setup and automation",
+      "Website design and development",
     ],
     provider: {
-      "@type": "Person",
-      name: "Jacqueline Frempomah Amoako",
-      url: "https://jacquelineamoako.com",
-      image: "https://jacquelineamoako.com/images/jackie-studio.png",
-      jobTitle: "Digital Systems Architect",
-      email: "hello@jacquelineamoako.com",
+      ...PERSON_REF,
+      jobTitle: SITE.role,
+      email: SITE.email,
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Accra",
-        addressCountry: "Ghana"
-      }
+        addressLocality: SITE.location.city,
+        addressCountry: SITE.location.country,
+      },
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Strategic Growth Services",
+      name: "Services",
       itemListElement: [
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Premium Brand Authority Building",
-            description: "Establish category leadership through SEO strategy, content positioning, and authority architecture. Achieving 340% average traffic growth for premium brands."
-          }
+            name: "Customer lifecycle automation",
+            description:
+              "Mapping each stage of the customer journey and building the email and WhatsApp messages that run at the right moment: sign-up, payment, onboarding, retention and win-back.",
+          },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Premium Lead Generation Systems",
-            description: "Convert high-value prospects with strategic acquisition funnels, conversion optimization, and buyer journey architecture. 28% average conversion increase."
-          }
+            name: "CRM setup",
+            description:
+              "A CRM built around how a business actually runs, connected to its payments, forms and messaging.",
+          },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Revenue-Optimized Commerce",
-            description: "Maximize e-commerce revenue with conversion psychology, checkout optimization, and customer lifetime value systems. 42% average order value increase."
-          }
+            name: "Website design and development",
+            description:
+              "Websites built in React and Next.js and connected to the bookings, payments and follow-up behind them.",
+          },
         },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Strategic Brand Positioning",
-            description: "Command premium pricing through sophisticated positioning, immersive storytelling, and exclusivity architecture for luxury brands."
-          }
-        }
-      ]
-    }
+      ],
+    },
   }
 }
 
-export function generateWebsiteSchema(): WebsiteSchema {
+export function generateWebsiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://jacquelineamoako.com/#website",
-    name: "Jacqueline Amoako - Digital Systems Architect",
-    description: "Digital growth strategist architecting revenue-generating ecosystems for premium brands worldwide. Complete growth systems delivering measurable outcomes from $100K to $10M—340% traffic growth, 28% conversion increases, 42% revenue optimization.",
-    url: "https://jacquelineamoako.com",
-    image: "https://jacquelineamoako.com/images/jackie-studio.png",
-    author: {
-      "@type": "Person",
-      name: "Jacqueline Frempomah Amoako",
-      url: "https://jacquelineamoako.com"
-    },
-    publisher: {
-      "@type": "Person", 
-      name: "Jacqueline Frempomah Amoako",
-      url: "https://jacquelineamoako.com"
-    },
+    "@id": `${SITE.url}/#website`,
+    name: `${SITE.name} | ${SITE.role}`,
+    description: SITE.description,
+    url: SITE.url,
+    image: `${SITE.url}/images/jackie-studio.png`,
+    author: PERSON_REF,
+    publisher: PERSON_REF,
     inLanguage: "en-US",
-    copyrightYear: "2025",
-    genre: [
-      "Strategic Growth Portfolio",
-      "Business Development Services",
-      "Digital Growth Strategy",
-      "Revenue Systems Architecture",
-      "Premium Brand Consulting"
-    ],
-    keywords: [
-      "digital growth strategist",
-      "strategic growth systems",
-      "revenue-generating ecosystems",
-      "Ghana growth consultant",
-      "SEO authority building",
-      "conversion rate optimization",
-      "premium lead generation",
-      "business growth architect",
-      "market authority development",
-      "strategic brand positioning",
-      "measurable business outcomes",
-      "growth analytics strategy"
-    ],
-    audience: {
-      "@type": "Audience",
-      audienceType: "CEOs, founders, luxury brand owners, marketing directors seeking measurable growth outcomes and strategic partnerships"
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: "https://jacquelineamoako.com/search?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    },
-    mainEntity: {
-      "@type": "Person",
-      name: "Jacqueline Frempomah Amoako",
-      url: "https://jacquelineamoako.com"
-    }
+    keywords: [...SITE.keywords],
+    mainEntity: PERSON_REF,
   }
 }
 
-export function generatePortfolioSchema(): PortfolioSchema {
+export function generatePortfolioSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Collection",
-    name: "Strategic Growth Portfolio - Measurable Business Outcomes",
-    description: "Complete growth ecosystems delivering measurable results for premium brands—from 340% traffic growth to 28% conversion increases. SEO authority, lead generation, revenue optimization, and brand positioning case studies.",
-    creator: {
-      "@type": "Person",
-      name: "Jacqueline Frempomah Amoako",
-      url: "https://jacquelineamoako.com"
-    },
+    name: PAGES.portfolio.title,
+    description: PAGES.portfolio.description,
+    creator: PERSON_REF,
     hasPart: [
       {
         "@type": "CreativeWork",
-        name: "Lovel.ai - AI Relationship Platform",
-        description: "Advanced AI-powered platform for relationship insights and compatibility matching with sophisticated user experience design.",
-        url: "https://jacquelineamoako.com/portfolio/lovel-ai",
-        image: "https://jacquelineamoako.com/images/lovel.ai.png",
-        dateCreated: "2024",
-        keywords: ["AI platform", "web application", "React", "user experience"],
-        genre: "Web Application"
+        name: "Gwen Addo: customer lifecycle, CRM and website",
+        description:
+          "Her whole customer journey, from the first sign-up to the next cohort: the website, the CRM and the automated emails behind them.",
+        url: `${SITE.url}/portfolio/gwen-addo`,
+        image: `${SITE.url}/images/case-studies/gwen-addo/og.jpg`,
+        genre: "Customer lifecycle and website",
       },
       {
         "@type": "CreativeWork",
-        name: "Anabs - Luxury Residential Development",
-        description: "Premium high-rise residential showcase with immersive user experience and sophisticated property presentation.",
-        url: "https://jacquelineamoako.com/portfolio/anabs",
-        image: "https://jacquelineamoako.com/images/anabs.png",
-        dateCreated: "2024",
-        keywords: ["luxury real estate", "property showcase", "premium design"],
-        genre: "Luxury Website"
+        name: "Anabs: luxury high-rise development",
+        description: "A website for a 26-floor luxury residential tower in Accra.",
+        url: `${SITE.url}/portfolio/anabs`,
+        image: `${SITE.url}/images/anabs.png`,
+        genre: "Website",
       },
       {
-        "@type": "CreativeWork", 
-        name: "Eleven Eleven Ghana - Beachfront Resort",
-        description: "Luxury beachfront resort website with integrated booking system and immersive visual storytelling.",
-        url: "https://jacquelineamoako.com/portfolio/eleven-eleven-ghana",
-        image: "https://jacquelineamoako.com/images/eleven-eleven.png", 
-        dateCreated: "2024",
-        keywords: ["luxury hospitality", "resort website", "booking system"],
-        genre: "Hospitality Website"
-      }
-    ]
+        "@type": "CreativeWork",
+        name: "Eleven Eleven Ghana: beachfront resort",
+        description: "A website for a luxury beachfront resort in Ghana, designed to immerse visitors in the experience and drive bookings.",
+        url: `${SITE.url}/portfolio/eleven-eleven-ghana`,
+        image: `${SITE.url}/images/eleven-eleven.png`,
+        genre: "Website",
+      },
+    ],
   }
 }
 
-export function generateBreadcrumbSchema(items: Array<{name: string, url: string}>) {
+export function generateBreadcrumbSchema(items: Array<{ name: string; url: string }>) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -429,42 +162,7 @@ export function generateBreadcrumbSchema(items: Array<{name: string, url: string
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: item.url
-    }))
-  }
-}
-
-export function generateLocalBusinessSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://jacquelineamoako.com/#local-business",
-    name: "Jacqueline Amoako Creative Technology Studio",
-    description: "Premier web development and creative technology services in Accra, Ghana. Specializing in luxury websites and e-commerce solutions.",
-    url: "https://jacquelineamoako.com",
-    telephone: "+233-XX-XXX-XXXX",
-    email: "hello@jacquelineamoako.com",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "",
-      addressLocality: "Accra",
-      addressRegion: "Greater Accra",
-      addressCountry: "Ghana"
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 5.6037,
-      longitude: -0.1870
-    },
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "18:00"
-    },
-    sameAs: [
-      "https://linkedin.com/in/jacqueline-frempomah-amoako",
-      "https://www.wikidata.org/wiki/Q138331544"
-    ]
+      item: item.url,
+    })),
   }
 }

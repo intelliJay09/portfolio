@@ -144,8 +144,7 @@ export default function TeachingTeaser() {
           alt="Teaching and mentorship background"
           fill
           className="object-cover"
-          onError={() => console.error('Poster image failed to load')}
-          onLoad={() => console.log('Poster image loaded successfully')}
+          onError={() => console.warn('Poster image failed to load')}
         />
         
         {/* Video Element - Overlay on top of poster */}
@@ -171,6 +170,7 @@ export default function TeachingTeaser() {
         >
           <source src="/images/mentorship-background.mp4" type="video/mp4" />
           <source src="/images/gc-teaching-full.mp4" type="video/mp4" />
+          <track kind="captions" srcLang="en" label="English" src="/captions/empty.vtt" default />
         </video>
         
         {/* Premium Gradient Overlays - Museum Quality */}
@@ -219,8 +219,8 @@ export default function TeachingTeaser() {
 
                 {/* Description - Exhibition Context */}
                 <p className="text-xl md:text-2xl text-white/90 max-w-2xl leading-[1.5] font-light mb-8 lg:mb-16 mx-auto lg:mx-0">
-                  Empowering young girls to build the future of technology
-                  through AI and venture mentorship.
+                  I mentor girls learning to code with Girl Code Africa, and
+                  I have trained more than 100 women entrepreneurs in digital skills.
                 </p>
 
                 {/* Mobile Statistics - Above Button */}
@@ -256,55 +256,12 @@ export default function TeachingTeaser() {
                       }}
                     >
                       <div className="text-center">
-                        <div className="text-2xl font-light text-white mb-1">150+</div>
-                        <div className="text-xs text-white/60 uppercase tracking-[0.1em] font-light">Students</div>
+                        <div className="text-2xl font-light text-white mb-1">100+</div>
+                        <div className="text-xs text-white/60 uppercase tracking-[0.1em] font-light">Women trained</div>
                       </div>
                     </motion.div>
                     
-                    {/* Mobile Success Rate Badge */}
-                    <motion.div 
-                      className="flex-shrink-0 min-w-[120px] px-5 py-3 rounded-full backdrop-blur-2xl border cursor-pointer snap-start"
-                      animate={{
-                        background: 'rgba(255, 255, 255, 0.06)',
-                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
-                        borderColor: 'rgba(255, 255, 255, 0.15)',
-                        scale: 1
-                      }}
-                      whileTap={{ 
-                        scale: 0.95,
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        borderColor: 'rgba(255, 255, 255, 0.25)',
-                        transition: { duration: 0.15, type: "spring", stiffness: 400 }
-                      }}
-                    >
-                      <div className="text-center">
-                        <div className="text-2xl font-light text-white mb-1">95%</div>
-                        <div className="text-xs text-white/60 uppercase tracking-[0.1em] font-light">Success</div>
-                      </div>
-                    </motion.div>
-                    
-                    {/* Mobile Cohorts Badge */}
-                    <motion.div 
-                      className="flex-shrink-0 min-w-[120px] px-5 py-3 rounded-full backdrop-blur-2xl border cursor-pointer snap-start"
-                      animate={{
-                        background: 'rgba(255, 255, 255, 0.06)',
-                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
-                        borderColor: 'rgba(255, 255, 255, 0.15)',
-                        scale: 1
-                      }}
-                      whileTap={{ 
-                        scale: 0.95,
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        borderColor: 'rgba(255, 255, 255, 0.25)',
-                        transition: { duration: 0.15, type: "spring", stiffness: 400 }
-                      }}
-                    >
-                      <div className="text-center">
-                        <div className="text-2xl font-light text-white mb-1">15</div>
-                        <div className="text-xs text-white/60 uppercase tracking-[0.1em] font-light">Cohorts</div>
-                      </div>
-                    </motion.div>
-                  </div>
+                    </div>
                 </div>
 
                 {/* CTA Button - Premium Glass Treatment */}
@@ -336,6 +293,7 @@ export default function TeachingTeaser() {
                 >
                   <Link
                     href="/about#teaching"
+                    aria-label="Learn more about my teaching and mentorship work"
                     className="group inline-flex items-center gap-4 px-12 py-5 rounded-full backdrop-blur-2xl font-light text-lg tracking-[0.02em] transition-all duration-700"
                     style={{
                       background: isButtonHovered ? 'rgba(255, 255, 255, 0.12)' : 'rgba(255, 255, 255, 0.06)',
@@ -408,81 +366,12 @@ export default function TeachingTeaser() {
                         scale: 1.1,
                         transition: { duration: 0.2 } 
                       }}
-                    >150+</motion.div>
-                    <div className="text-xs text-white/60 uppercase tracking-[0.15em] font-light">Students</div>
+                    >100+</motion.div>
+                    <div className="text-xs text-white/60 uppercase tracking-[0.15em] font-light">Women trained</div>
                   </div>
                 </motion.div>
 
-                {/* Success Rate Badge - Enhanced Gallery Style */}
-                <motion.div 
-                  className="px-8 py-4 rounded-full backdrop-blur-2xl border border-white/15 cursor-pointer min-w-[140px]"
-                  initial={{
-                    background: 'rgba(255, 255, 255, 0.06)',
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                  }}
-                  whileHover={{
-                    scale: 1.08,
-                    y: -12,
-                    rotate: -2,
-                    background: 'rgba(255, 255, 255, 0.12)',
-                    boxShadow: '0 24px 64px rgba(0, 0, 0, 0.4), 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
-                    borderColor: 'rgba(255, 255, 255, 0.35)',
-                    transition: {
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 20,
-                      delay: 0.1
-                    }
-                  }}
-                  whileTap={{ scale: 0.96 }}
-                >
-                  <div className="text-center">
-                    <motion.div 
-                      className="text-3xl font-light text-white mb-1"
-                      whileHover={{ 
-                        scale: 1.1,
-                        transition: { duration: 0.2 } 
-                      }}
-                    >95%</motion.div>
-                    <div className="text-xs text-white/60 uppercase tracking-[0.15em] font-light">Success</div>
-                  </div>
-                </motion.div>
-
-                {/* Cohorts Badge - Enhanced Gallery Style */}
-                <motion.div 
-                  className="px-8 py-4 rounded-full backdrop-blur-2xl border border-white/15 cursor-pointer min-w-[140px]"
-                  initial={{
-                    background: 'rgba(255, 255, 255, 0.06)',
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                  }}
-                  whileHover={{
-                    scale: 1.08,
-                    y: -12,
-                    rotate: 1,
-                    background: 'rgba(255, 255, 255, 0.12)',
-                    boxShadow: '0 24px 64px rgba(0, 0, 0, 0.4), 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
-                    borderColor: 'rgba(255, 255, 255, 0.35)',
-                    transition: {
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 20,
-                      delay: 0.2
-                    }
-                  }}
-                  whileTap={{ scale: 0.96 }}
-                >
-                  <div className="text-center">
-                    <motion.div 
-                      className="text-3xl font-light text-white mb-1"
-                      whileHover={{ 
-                        scale: 1.1,
-                        transition: { duration: 0.2 } 
-                      }}
-                    >15</motion.div>
-                    <div className="text-xs text-white/60 uppercase tracking-[0.15em] font-light">Cohorts</div>
-                  </div>
-                </motion.div>
-              </div>
+                </div>
             </div>
           </div>
         </div>

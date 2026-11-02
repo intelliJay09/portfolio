@@ -1,55 +1,25 @@
 import type { Metadata } from 'next'
 import { generateBreadcrumbSchema } from '../../lib/schema-markup'
+import { PAGES, SITE } from '../../lib/site'
 
 export const metadata: Metadata = {
-  title: 'Partner With Jacqueline | Strategic Growth Consultation',
-  description: 'Ready to architect a complete growth ecosystem for your premium brand? From SEO authority to revenue systems—let\'s engineer measurable business outcomes that compound month over month.',
-  keywords: [
-    'strategic growth consultation',
-    'business growth partnership',
-    'premium brand growth strategy',
-    'conversion optimization consultation',
-    'SEO authority consulting',
-    'revenue systems strategy',
-    'premium lead generation consultation',
-    'strategic business partnership',
-    'Ghana growth strategist contact',
-    'West Africa business consulting',
-    'strategic growth services inquiry',
-    'premium brand consulting',
-    'measurable outcomes partnership',
-    'growth ecosystem consultation'
-  ],
+  title: PAGES.contact.title,
+  description: PAGES.contact.description,
   openGraph: {
-    title: 'Partner With Jacqueline | Strategic Growth Consultation',
-    description: 'Ready to architect a complete growth ecosystem for your premium brand? From SEO authority to revenue systems—let\'s engineer measurable business outcomes that compound month over month.',
-    url: 'https://jacquelineamoako.com/contact',
+    title: `${PAGES.contact.title} | ${SITE.name}`,
+    description: PAGES.contact.description,
+    url: `${SITE.url}/contact`,
     type: 'website',
-    images: [
-      {
-        url: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
-        width: 3000,
-        height: 1575,
-        alt: 'Strategic partnership consultation for premium brand growth',
-        type: 'image/png',
-      }
-    ],
+    images: [{ ...SITE.ogImage, type: 'image/png' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Partner With Jacqueline | Strategic Growth Partnership',
-    description: 'Architect complete growth ecosystems for your premium brand. SEO authority, revenue systems, measurable outcomes.',
-    images: [
-      {
-        url: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
-        alt: 'Strategic Growth Consultation',
-        width: 3000,
-        height: 1575,
-      }
-    ],
+    title: `${PAGES.contact.title} | ${SITE.name}`,
+    description: PAGES.contact.description,
+    images: [{ ...SITE.ogImage }],
   },
   alternates: {
-    canonical: 'https://jacquelineamoako.com/contact',
+    canonical: `${SITE.url}/contact`,
   },
   robots: {
     index: true,

@@ -37,3 +37,6 @@ next-env.d.ts
 nul
 .claude/settings.local.json
 .claude/settings.local.json
+
+# Local browser-testing artifacts (Playwright MCP screenshots and logs)
+.playwright-mcp/

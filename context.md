@@ -1,5 +1,97 @@
 # Portfolio Project - Development Context & Changes Log
 
+## Current State (2026-10-28) - read this first
+
+Handoff for any agent picking up the portfolio. Everything below this section is the older change log. Open tasks live in `TODO.md`.
+
+### What the site is for now
+
+The site is being repositioned to match Jacqueline's LinkedIn. She's a lifecycle and growth marketer who can also build the product. She doesn't want to be boxed in as lifecycle only. The through-line is: "I build what brings customers in, and what brings them back."
+
+Rules for any copy on the site:
+- Case studies keep client names. They're proof of work. Gwen Addo agreed to her named data being shown.
+- Use verified numbers only. Never invent or round up a figure.
+- Don't run down off-the-shelf tools. Nothing should read as job-hunting.
+- No em dashes, no italic headings, no emojis. Run the `humanizer` skill on any new copy.
+- This is a content redesign, not a visual one. Keep the current palette and visual language.
+- Awwwards mode is standard (see CLAUDE.md).
+
+### What's built (uncommitted, on main's working tree)
+
+Nothing below is committed or deployed. The working tree also has the user's own uncommitted edits in `components/Navigation.tsx`, `components/TeachingTeaser.tsx`, `middleware.ts` and `package.json`. Leave those alone.
+
+**New case study template** (Gwen Addo is the only page on it so far):
+- `app/portfolio/[slug]/page.tsx` is a server page with `generateMetadata`. It renders `CaseStudy` for slugs in `lib/case-studies.ts` and `LegacyCaseStudy` for the other content.json slugs.
+- `components/case-study/CaseStudy.tsx` covers the hero, cover reveal, situation, journey, finding (no-show table), results, what's still open, website, testimonial and footer.
+- `components/case-study/Journey.tsx` is the signature moment: six lifecycle stages with a scrubbed rail and a sticky inbox (desktop, 1024px and up) showing that stage's real emails. On phones, the emails become a swipeable row under each stage.
+- `components/case-study/CoverReveal.tsx` does a scrubbed clip-path reveal. It's skipped under reduced motion.
+- `lib/case-studies.ts` holds the types and Gwen's data. Every number traces to the orella-gwen repo.
+- Images are in `public/images/case-studies/gwen-addo/`: 14 email renders, screenshots of her Next.js rebuild, and og.jpg.
+- `components/case-study/LegacyCaseStudy.tsx` is the old page, moved with git mv. The other 17 real case studies still use it.
+
+**Site-wide fixes**:
+- `globals.css` now loads `@config "./tailwind.config.ts"`. Before this, the config's colours and fonts generated no CSS.
+- html and body use `overflow-x: clip`, not `hidden`. Hidden broke `position: sticky`.
+- The "Jacqueliene" misspelling is fixed in `testimonials.json` and `components/SocialProof.tsx`.
+- The About page lost a dead `.milestone` animation, which was the source of its GSAP warnings.
+- `app/layout.tsx`: the hydration nonce mismatches are fixed, and the Trusted Types allowlist now covers reCAPTCHA and Cloudflare Insights.
+- `next.config.ts`: the dev watcher ignores `.playwright-mcp`. Its log writes caused endless recompiles and a /about 500.
+
+**Analytics**:
+- GA4 now loads through GTM only. The container ID comes from the `GTM_ID` env var.
+- `lib/analytics.ts` pushes every event to the dataLayer.
+- The GTM workspace is staged but unpublished. The go-live order is in `TODO.md`. Don't publish GTM before the Vercel deploy, or page views will double-count.
+
+### Awwwards audit (2026-10-28)
+
+An independent audit of the whole site scored it 5.84 weighted: Design 6.3, Usability 5.6, Creativity 5.6, Content 5.2. The developer jury came to 6.07. Gwen Addo is the strongest page at 7.32. The full report, with a ranked list of 24 issues, is at `/private/tmp/claude-501/-Users-jacqueline-projects-portfolio/7eae3f30-1ab5-40a6-bc64-483d6c1c78aa/scratchpad/awwwards-audit/report.md`, and the screenshots are in the same folder. The report says the identity is close to dennissnellenberg.com, but that came from the auditing agent's memory: it never loaded that site, so the claim isn't verified. A separate agent session is handling the redesign.
+
+### Bug fixes after the audit (done, uncommitted)
+
+- **Dead case studies.** `content.json` now flags every project that has a page with `"caseStudy": true` (18 of them). The route `app/portfolio/[slug]/page.tsx` calls `notFound()` on the server for anything else. The portfolio grid and `app/sitemap.ts` read the same flag. Eddy has a page again. Lovel.ai (in development) returns a real 404 and its card no longer links. The old allowlist in `LegacyCaseStudy.tsx` is gone. So is the unused portfolio sitemap generator, and robots.txt no longer points at the missing `portfolio-sitemap.xml`.
+- **Portfolio cards.** Each card has one full-size `Link` (case study) or `button` (brand identity modal), so the grid works with a keyboard. Titles, and a dark scrim behind them, show at rest on touch screens and on keyboard focus (`luxury-grid.css`).
+- **Nav on success, error and 404.** `Navigation`'s `preloaderComplete` now defaults to `true`. Pages with a preloader already pass it explicitly.
+- **Phone logo over text.** The logo and hamburger tweens in `hooks/useHamburgerAnimations.ts` use `overwrite: 'auto'`, so a show and a hide never run at once. `hooks/useScrollTrigger.ts` no longer reads an unchanged scroll position as "up".
+- **Homepage intro** (`components/InitialPreloader.tsx`). It's shortened to about 2.3s, plays once per browser session, and is skipped for reduced motion.
+- **Phone hero.** Below md, the name sits above the portrait in the flow instead of behind it (`components/Hero.tsx`).
+- **FeaturedProjects.**
+  - It uses theme tokens instead of hardcoded black and white.
+  - `preserve-3d` is removed, so the glass blur renders.
+  - Below md, the card follows the theme. From md up, it stays white glass over the photo.
+- **Share images.** `metadataBase` comes from a new `SITE_URL` env var, which is set in `.env.local` and documented in `.env.example`. Set it on Vercel too.
+
+Verified on a production build with Playwright:
+- Status codes are correct.
+- The sitemap lists the 18 case studies.
+- The Gwen og:image is absolute.
+- The phone logo stays hidden after scrolling.
+- There are no console errors.
+- Repeat visits skip the intro, and so do reduced-motion visitors.
+
+Still open:
+- **Desktop light mode.** The FeaturedProjects glass card hangs below the photo, so its white text is unreadable over the light page. The redesign should rethink this card rather than patch it.
+- **Not fixed (redesign scope):** the menu dialog's accessibility, the italic extralight DesignPhilosophy headings, the number of surfaces, the motion tokens, the legacy case study template, and `/test` and `/web-test`, which can't be deleted without the user's YES.
+
+### Hosting
+
+The site is live on AWS behind Cloudflare and is moving to Vercel. DNS stays on Cloudflare: point the domain by creating records there, never by moving nameservers.
+
+### Verification gotchas
+
+- `next build` fetches Google Fonts, and the sandbox blocks that. Run the build with the sandbox disabled.
+- `npm run start` serves on port 9201.
+- Light mode is set by the `portfolio-theme` cookie.
+- With Playwright against the local production server, `page.goto` waiting for `load` timed out. Use `waitUntil: 'domcontentloaded'`.
+- The CSP blocks `addScriptTag`. Inject audit scripts with `page.addInitScript` before navigating.
+- Next caches optimised images for a year. If you replace an image, rename the file.
+- Known pre-existing warnings: a homepage chunk preload warning, and an exhaustive-deps lint warning in `LegacyCaseStudy.tsx`.
+
+### Gwen Addo page scores (self-scored, 2026-10-28)
+
+Design 7.6, Usability 7.8, Creativity 7.4, Content 8.2, for a weighted 7.7. Creativity is below the 8.2 target. LCP was 1.55s throttled, CLS 0.0025, and the audit raised no flags.
+
+---
+
 ## Session Overview
 This document tracks all changes, fixes, and improvements made to the Jacqueline Amoako portfolio website.
 

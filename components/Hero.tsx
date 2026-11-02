@@ -6,6 +6,7 @@ import { ArrowDownRight, ArrowDownLeft } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTheme } from '../contexts/ThemeProvider'
+import { SITE } from '../lib/site'
 
 export default function Hero() {
   const { theme } = useTheme()
@@ -106,12 +107,13 @@ export default function Hero() {
   return (
     <section className="hero-section min-h-screen flex items-center justify-center relative overflow-hidden bg-background-secondary">
       <div className="relative w-full h-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-        <div className="flex items-center justify-center relative h-full max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center justify-center relative h-full max-w-7xl mx-auto">
           
-          {/* Jacqueline Text - Centered in Hero */}
+          {/* Jacqueline Text - centred behind the portrait from md up; on phones the portrait
+              is wider than the name, so the name sits above it in the flow instead */}
           <h1
             ref={textRef}
-            className="absolute text-[15vw] sm:text-[14vw] md:text-[16vw] lg:text-[15vw] xl:text-[16vw] font-satoshi font-black text-text-primary/90 select-none cursor-pointer z-0 text-center w-full"
+            className="relative md:absolute mb-2 md:mb-0 text-[15vw] sm:text-[14vw] md:text-[16vw] lg:text-[15vw] xl:text-[16vw] font-satoshi font-black text-text-primary/90 select-none cursor-pointer z-0 text-center w-full"
             style={{
               lineHeight: '1.1',
               letterSpacing: '0.02em',
@@ -119,7 +121,7 @@ export default function Hero() {
               transformOrigin: 'center center'
             }}
           >
-            Jacqueline
+            Jacqueline<span className="sr-only"> Amoako</span>
           </h1>
           
           {/* Arrow and Text Container */}
@@ -141,13 +143,16 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Digital Systems Architect Text */}
+            {/* Role, then the plain sentence a recruiter should leave with */}
             <div
               ref={titleRef}
             >
               <div className="text-left md:text-left">
                 <p className="text-text-primary font-satoshi font-normal text-base sm:text-lg md:text-xl lg:text-2xl leading-tight tracking-wide">
-                  Digital Systems Architect
+                  {SITE.role}
+                </p>
+                <p className="mt-2 max-w-[22ch] text-text-secondary font-satoshi font-normal text-sm sm:text-base leading-snug">
+                  {SITE.tagline}
                 </p>
               </div>
             </div>
@@ -156,7 +161,7 @@ export default function Hero() {
           {/* Hero Image */}
           <div
             ref={imageRef}
-            className="relative z-20 w-[55vh] max-w-[420px] h-[75vh] sm:w-[60vh] sm:max-w-[480px] sm:h-[80vh] md:w-[65vh] md:max-w-[550px] md:h-[85vh] lg:w-[65vh] lg:max-w-[600px] lg:h-[90vh] xl:w-[60vh] xl:max-w-[600px] next-image-protected"
+            className="relative z-20 w-[55vh] max-w-[420px] h-[62vh] sm:w-[60vh] sm:max-w-[480px] sm:h-[80vh] md:w-[65vh] md:max-w-[550px] md:h-[85vh] lg:w-[65vh] lg:max-w-[600px] lg:h-[90vh] xl:w-[60vh] xl:max-w-[600px] next-image-protected"
           >
             <Image
               src={theme === 'dark' ? "/images/jackie-studio-bnw.png" : "/images/jackie-studio.png"}

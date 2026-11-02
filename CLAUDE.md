@@ -1,3 +1,5 @@
+Awwwards mode: contest (changed from standard on 2026-10-28: the user wants Site of the Year)
+
 {
   "premiumLuxuryAnalysis": {
     "researchDate": "2025-08-11",
