@@ -4,6 +4,7 @@ import Navigation from '../Navigation'
 import PortfolioFooter from '../PortfolioFooter'
 import Journey from './Journey'
 import CoverReveal from './CoverReveal'
+import RecordingBand from './RecordingBand'
 import ProjectViewTracker from './ProjectViewTracker'
 import content from '../../content.json'
 import type { CaseStudy as CaseStudyData } from '../../lib/case-studies'
@@ -232,6 +233,7 @@ export default function CaseStudy({ study }: { study: CaseStudyData }) {
                 </a>
               )}
             </div>
+            {!study.showcase && (
             <div className="flex justify-center gap-[2em] lg:col-span-6 lg:col-start-7">
               {study.site.images.map((img) => (
                 <Image
@@ -245,8 +247,11 @@ export default function CaseStudy({ study }: { study: CaseStudyData }) {
                 />
               ))}
             </div>
+            )}
           </div>
         </section>
+
+        {study.showcase && <RecordingBand showcase={study.showcase} />}
 
         {study.testimonial && (
           <section aria-labelledby="cs-testimonial" className={`${gutter} py-[clamp(6rem,14vw,12rem)]`}>

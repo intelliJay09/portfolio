@@ -27,6 +27,15 @@ export interface JourneyStage {
   emails: StageEmail[]
 }
 
+// A muted looping screen recording. The poster is its still frame.
+export interface Recording {
+  mp4: string
+  poster: string
+  width: number
+  height: number
+  label: string
+}
+
 export interface CaseStudy {
   slug: string
   title: string
@@ -50,6 +59,9 @@ export interface CaseStudy {
   results: { heading: string; items: { value: string; label: string }[]; source: string }
   open?: { heading: string; items: { title: string; body: string }[] }
   site: { heading: string; body: string; images: CaseStudyImage[] }
+  // Recordings of the real site on a band in the client's brand colour. Where present
+  // they take the place of the still images under the site section.
+  showcase?: { tint: string; desktop: Recording; phone?: Recording }
   testimonial?: { quote: string; name: string; role: string }
 }
 
@@ -227,6 +239,24 @@ const gwenAddo: CaseStudy = {
       },
     ],
   },
+  showcase: {
+    // The paper tone of the rebuild, which uses paper, ink and her photographs only
+    tint: '#edebe6',
+    desktop: {
+      mp4: '/videos/gwen-addo/site-desktop.mp4',
+      poster: '/videos/gwen-addo/site-desktop-poster.jpg',
+      width: 1280,
+      height: 800,
+      label: 'recording of the rebuilt gwenaddo.com scrolling on a laptop',
+    },
+    phone: {
+      mp4: '/videos/gwen-addo/site-phone.mp4',
+      poster: '/videos/gwen-addo/site-phone-poster.jpg',
+      width: 390,
+      height: 844,
+      label: 'recording of the rebuilt gwenaddo.com scrolling on a phone',
+    },
+  },
   testimonial: {
     quote:
       'Jacqueline has a remarkable ability to translate a personal brand into a compelling digital experience. The website she built for me is not only professional and polished but also strategically designed to convert visitors into clients. It has become the cornerstone of my business’s online presence.',
@@ -331,6 +361,24 @@ const finestDietitian: CaseStudy = {
         height: 844,
       },
     ],
+  },
+  showcase: {
+    // The purple in her logo
+    tint: '#843a91',
+    desktop: {
+      mp4: '/videos/finest-dietitian/site-desktop.mp4',
+      poster: '/videos/finest-dietitian/site-desktop-poster.jpg',
+      width: 1280,
+      height: 800,
+      label: 'recording of finestdietitian.com scrolling on a laptop',
+    },
+    phone: {
+      mp4: '/videos/finest-dietitian/site-phone.mp4',
+      poster: '/videos/finest-dietitian/site-phone-poster.jpg',
+      width: 390,
+      height: 844,
+      label: 'recording of the booking page on a phone',
+    },
   },
   testimonial: {
     quote:
