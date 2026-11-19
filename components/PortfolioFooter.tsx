@@ -97,7 +97,7 @@ export default function PortfolioFooter({ currentSlug }: PortfolioFooterProps) {
   const getProjectImage = (slug: string) => {
     const imageMap: { [key: string]: string } = {
       'anabs': '/images/anabs.png',
-      'gwen-addo': '/images/gwen-addo.png',
+      'gwen-addo': '/images/case-studies/gwen-addo/site-rebuild-home.webp',
       'finest-dietitian': '/images/case-studies/finest-dietitian/site-home.webp',
       'eleven-eleven-ghana': '/images/eleven-eleven.png',
       'emmanuel-kotia': '/images/emma-kotia.png',

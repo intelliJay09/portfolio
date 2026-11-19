@@ -12,7 +12,7 @@ const featuredProjects = [
     title: 'Gwen Addo',
     category: 'Website, CRM and customer journey',
     description: 'Her website, then the CRM and the automated emails behind it: 1,695 emails to 194 people, none sent by hand.',
-    image: '/images/gwen-addo.png',
+    image: '/images/case-studies/gwen-addo/site-rebuild-home.webp',
     year: '2025',
     position: 'left'
   },
