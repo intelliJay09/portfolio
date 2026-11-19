@@ -35,5 +35,13 @@
     "eslint-config-next": "^15.1.6",
     "postcss": "^8.5.6",
     "typescript": "^5.9.2"
-  }
+  },
+  "browserslist": [
+    "chrome >= 107",
+    "edge >= 107",
+    "firefox >= 104",
+    "safari >= 16",
+    "ios_saf >= 16",
+    "not dead"
+  ]
 }

@@ -95,11 +95,7 @@ export default function DesignPhilosophy() {
     debugMode: process.env.NODE_ENV === 'development'
   })
   
-  const { sectionRef, isVisible } = useSectionManager({
-    id: 'design-philosophy',
-    minHeight: 'screen',
-    spacing: { top: 150, bottom: 200 }
-  })
+  const { sectionRef, isVisible } = useSectionManager()
 
   const typographyRefs = useRef<HTMLDivElement[]>([])
   const morphRefs = useRef<HTMLSpanElement[]>([])

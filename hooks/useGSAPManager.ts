@@ -13,13 +13,13 @@ interface GSAPManagerConfig {
 }
 
 interface GSAPManager {
-  registerTween: (tween: gsap.core.Tween) => void
+  registerTween: (tween: gsap.core.Animation) => void
   registerScrollTrigger: (trigger: ScrollTrigger) => void
   cleanup: () => void
-  killTween: (tween: gsap.core.Tween) => void
+  killTween: (tween: gsap.core.Animation) => void
   killScrollTrigger: (trigger: ScrollTrigger) => void
   getActiveAnimations: () => {
-    tweens: gsap.core.Tween[]
+    tweens: gsap.core.Animation[]
     scrollTriggers: ScrollTrigger[]
   }
   // Helper functions for easy component usage
@@ -40,7 +40,7 @@ export function useGSAPManager(config: GSAPManagerConfig): GSAPManager {
   const { componentId, enableDebug = false, debugMode = false } = config
   const debug = enableDebug || debugMode
   
-  const tweensRef = useRef<Set<gsap.core.Tween>>(new Set())
+  const tweensRef = useRef<Set<gsap.core.Animation>>(new Set())
   const scrollTriggersRef = useRef<Set<ScrollTrigger>>(new Set())
   const isCleanedUpRef = useRef(false)
   const isRegistered = useRef(false)
@@ -54,7 +54,7 @@ export function useGSAPManager(config: GSAPManagerConfig): GSAPManager {
   }, [])
 
   // Register a tween for component-specific cleanup
-  const registerTween = useCallback((tween: gsap.core.Tween) => {
+  const registerTween = useCallback((tween: gsap.core.Animation) => {
     if (isCleanedUpRef.current) return
     
     tweensRef.current.add(tween)
@@ -90,7 +90,7 @@ export function useGSAPManager(config: GSAPManagerConfig): GSAPManager {
   }, [componentId, debug])
 
   // Kill specific tween
-  const killTween = useCallback((tween: gsap.core.Tween) => {
+  const killTween = useCallback((tween: gsap.core.Animation) => {
     if (tweensRef.current.has(tween)) {
       tween.kill()
       tweensRef.current.delete(tween)
@@ -130,7 +130,7 @@ export function useGSAPManager(config: GSAPManagerConfig): GSAPManager {
 
   const createTimeline = useCallback((vars?: gsap.TimelineVars): gsap.core.Timeline => {
     const timeline = gsap.timeline(vars)
-    registerTween(timeline as any) // Timeline extends Tween
+    registerTween(timeline)
     return timeline
   }, [registerTween])
 
@@ -256,8 +256,7 @@ export function createTimeline(
 ): gsap.core.Timeline {
   const timeline = gsap.timeline(vars)
   
-  // Register timeline as a tween (Timeline extends Tween)
-  manager.registerTween(timeline as any)
+  manager.registerTween(timeline)
   
   return timeline
 }

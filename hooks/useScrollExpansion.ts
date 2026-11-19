@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { useScroll, useTransform, useSpring, MotionValue } from 'framer-motion'
+import { useScroll, useTransform, useSpring } from 'framer-motion'
 
 export function useScrollExpansion() {
   const containerRef = useRef<HTMLDivElement>(null)

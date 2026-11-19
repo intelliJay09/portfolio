@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -36,7 +36,7 @@ const getProjectHeroImage = (slug: string) => {
     'girl-code-africa': '/images/girlcode.png',
     'eden-heights': '/images/eden-heights.png',
     'landmark-homes': '/images/landmark-homes.png',
-    'ghana-optometric-association': '/images/ghana-optometric- association-main.png',
+    'ghana-optometric-association': '/images/ghana-optometric-association-main.png',
     'twist-nightclub': '/images/twist-night-club.png',
     'command-space': '/images/command-space.png',
     'anabs': '/images/anabs.png',
@@ -347,11 +347,16 @@ export default function LegacyCaseStudy() {
   // Contact image for CTA section - no dynamic logic needed
   
   // Always try to get project-specific data first, fallback to eleven-eleven template structure
-  const portfolioProject = portfolioData.portfolio.find(p => p.id === slug || p.id === slug.replace(/-/g, '-'))
-  const projectData = (slug === 'eleven-eleven-ghana' || slug === 'eleven-eleven') ? elevenElevenData : getProjectData(slug)
+  // All three are pure lookups on static data, memoised on the slug so the animation and
+  // tracking effect below reruns only when the page changes
+  const portfolioProject = useMemo(() => portfolioData.portfolio.find(p => p.id === slug), [slug])
+  const projectData = useMemo(
+    () => (slug === 'eleven-eleven-ghana' || slug === 'eleven-eleven') ? elevenElevenData : getProjectData(slug),
+    [slug]
+  )
   // Stat cards render only when a project carries real, verified figures in its data
   const stats = (projectData as { stats?: Array<{ value: string; label: string; icon?: LucideIcon }> })?.stats
-  const contentProject = content.portfolio.projects.find(p => p.slug === slug)
+  const contentProject = useMemo(() => content.portfolio.projects.find(p => p.slug === slug), [slug])
   const projectStack = (contentProject as { stack?: string[] } | undefined)?.stack
 
   const handlePreloaderComplete = () => {
@@ -759,7 +764,7 @@ export default function LegacyCaseStudy() {
       }
       cleanup()
     }
-  }, [preloaderComplete])
+  }, [preloaderComplete, slug, portfolioProject, projectData, contentProject])
 
 
   // Which slugs have a page is decided on the server in app/portfolio/[slug]/page.tsx
@@ -968,7 +973,6 @@ export default function LegacyCaseStudy() {
 
             const foundationalSetup = systemsFramework.foundationalAuthoritySetup as { description?: string; systems?: string[] } | undefined
             const growthSystems = systemsFramework.growthSystemsImplemented as Record<string, unknown> | undefined
-            const measurableImpact = systemsFramework.measurableImpact as { systemsDelivered?: string[] } | undefined
 
             return (
               <section className="animate-section bg-background-primary py-12 md:py-20 relative">
