@@ -135,3 +135,10 @@ Last audit: zero flags at 1440 and 390. 41.8 and 53.1 words per 1,000px, display
 - Craft pass: `shared/Arrow.tsx` ends every link arrow (13 links): joined to its word by a no-break space, and it leans the way it points on hover or focus (theme.module.css). The two send buttons keep their own arrows. The desktop nav has one underline that rests under the current page and glides to the link pointed at or focused (no script: each link keeps its own). Case-study openings rise in like the portfolio's, one line after another; the name only settles (no fade), so its first paint isn't held back.
 - Checked on a production build: every case study 100 accessibility; the player autoplays in view, steps seek, Enter pauses, reduced motion leaves the still; no console errors. Lighthouse runs on this machine swung with swap (the same page measured LCP 1.5s and 3.7s on identical runs), so compare medians.
 - Open: the homepage's only accessibility flag is a contrast reading on the "jam" word in Cases, taken mid-animation (it predates this work).
+
+## Live-ready (2026-11-25, late)
+
+- The redesign branch had been cut from cc866b9, four commits behind content/recruiter-ready. Merged (f00fcc4): titles and share cards naming all three disciplines, image protection removed, the server-theme rethrow fix, browser targets, reCAPTCHA types, the re-recorded Gwen Addo stills. Conflicts kept the redesign's side; RecordingBand and ScreenRecording (old case-study page only) were left out (copies in .trash-*-merged-old-recording-components).
+- The Gwen Addo stills (case study, and public/directions/work copies) are the re-recorded new-site ones. Her Build copy describes the live site: "I built her website in Next.js."
+- next.config.ts keeps optimised images a year (minimumCacheTTL); locally a replaced image needs .next/cache/images cleared. On Vercel, replacing an image's content and redeploying refreshes it (Vercel image docs).
+- The redesign homepage is now `/` (app/page.tsx, app/home.module.css); `/directions/home` 308s to `/`; HOME is '/'. It takes the root layout's title, description, canonical and JSON-LD, and is indexable.

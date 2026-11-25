@@ -1,82 +1,69 @@
-'use client'
+import SiteNav from '../components/directions/home/SiteNav'
+import SignatureScene from '../components/directions/home/SignatureScene'
+import Skills from '../components/directions/home/Skills'
+import Featured from '../components/directions/home/Featured'
+import Journey from '../components/directions/home/Journey'
+import Cases from '../components/directions/home/Cases'
+import Behind from '../components/directions/home/Behind'
+import SiteFooter from '../components/directions/home/SiteFooter'
+import Ask from '../components/directions/home/Ask'
+import HomeMotion from '../components/directions/home/HomeMotion'
+import { sans, mono } from '../components/directions/home/fonts'
+import theme from '../components/directions/home/theme.module.css'
+import s from './home.module.css'
 
-import { useState, useRef, useEffect } from 'react'
-import dynamic from 'next/dynamic'
-import InitialPreloader from '../components/InitialPreloader'
-import Navigation from '../components/Navigation'
-import Hero from '../components/Hero'
-
-// Below-the-fold sections: code-split out of the initial bundle so the
-// browser isn't parsing/executing their JS (GSAP timelines, scroll triggers,
-// etc.) before the above-the-fold Hero is interactive. Still server-rendered
-// (no ssr:false) so content, SEO, and CLS are unaffected — only the JS
-// execution is deferred into separate chunks.
-const FeaturedProjects = dynamic(() => import('../components/FeaturedProjects'))
-const DesignPhilosophy = dynamic(() => import('../components/DesignPhilosophy'))
-const TeachingTeaser = dynamic(() => import('../components/TeachingTeaser'))
-const Footer = dynamic(() => import('../components/Footer'))
-
+// The homepage. Its title, description, canonical and structured data come from the root layout.
 export default function Home() {
-  const [preloaderComplete, setPreloaderComplete] = useState(false)
-  const pageContentRef = useRef<HTMLDivElement>(null)
-
-
-  const handlePreloaderComplete = () => {
-    setPreloaderComplete(true)
-  }
-
-  // Failsafe: ensure content becomes visible and unblurred after reasonable time
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!preloaderComplete) {
-        setPreloaderComplete(true)
-      }
-      // Additional failsafe to ensure blur is removed
-      if (pageContentRef.current) {
-        pageContentRef.current.style.filter = 'none'
-        pageContentRef.current.style.transform = 'none'
-      }
-    }, 8000) // Extended timeout to account for longer smooth transition
-
-    return () => clearTimeout(timeout)
-  }, [preloaderComplete])
-
-
-  // Ensure blur is removed when preloader completes
-  useEffect(() => {
-    if (preloaderComplete && pageContentRef.current) {
-      // Force remove any lingering filters
-      pageContentRef.current.style.filter = 'none'
-      pageContentRef.current.style.transform = 'none'
-    }
-  }, [preloaderComplete])
 
   return (
-    <>
-      {!preloaderComplete && (
-        <InitialPreloader 
-          onComplete={handlePreloaderComplete} 
-          pageContentRef={pageContentRef}
-        />
-      )}
-      
-      <Navigation preloaderComplete={preloaderComplete} />
-      
-      <div 
-        ref={pageContentRef}
-        className={preloaderComplete ? 'opacity-100' : 'opacity-0'}
-        style={{ 
-          willChange: 'filter, transform, opacity'
-        }}
-      >
-        <main>
-          <Hero />
-          <FeaturedProjects />
-          <DesignPhilosophy />
-          <TeachingTeaser />
-        </main>
-        <Footer />
-      </div>
-    </>
+    <div data-direction="home" className={`${sans.variable} ${mono.variable} ${s.root}`}>
+      <a href="#main" className={theme.skip}>Skip to content</a>
+      <SiteNav />
+
+      <main id="main">
+        {/* ---------- The signature: her portrait drawn by the emails, which burst as you scroll ---------- */}
+        <section className={s.scene} data-scene="" aria-labelledby="hero-title">
+          {/* data-entrance holds the hero text back until the portrait arrives with it.
+              Reduced motion and no-JS see it at once (CSS below and the noscript rule). */}
+          <div className={s.stage} data-stage="" data-entrance="pending">
+            <div className={s.ink} data-ink="" aria-hidden="true" />
+            <div className={s.slot} data-face-slot="" aria-hidden="true" />
+            <canvas className={s.canvas} data-scene-canvas="" aria-hidden="true" />
+            <div className={s.heroText} data-hero-text="">
+              <h1 id="hero-title" className={s.h1}>
+                <span className={s.line}><span data-rise="">Jacqueline</span></span>{' '}
+                <span className={s.line}><span data-rise="">Amoako</span></span>
+              </h1>
+              <p className={s.role} data-fade="">Frontend developer, lifecycle marketer and technical support, in Accra.</p>
+              <p className={s.caption} data-fade=""><span data-count="">1,695</span> squares, one for every email my system sent for one client. None by hand.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ---------- What she does: the sentence, which is also the way in ---------- */}
+        <Skills />
+
+        {/* ---------- The sentence, played out: build, run, fix ---------- */}
+        <Featured />
+        <Journey />
+        <Cases />
+
+        {/* ---------- Who is behind it: where she came from, and what she gives back ---------- */}
+        <Behind />
+
+        {/* ---------- What do you need? The closing chapter, on ink like the page's opening ---------- */}
+        <section id="ask" data-tone="ink" className={s.askSection} aria-labelledby="ask-title">
+          <p className={s.kicker}>Ask</p>
+          <Ask />
+        </section>
+      </main>
+
+      <SiteFooter />
+      <noscript>
+        <style>{`[data-entrance] [data-rise], [data-entrance] [data-fade] { opacity: 1 !important; transform: none !important; }`}</style>
+      </noscript>
+      <SignatureScene intro="fly" />
+      <HomeMotion />
+    </div>
   )
 }

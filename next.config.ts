@@ -114,11 +114,15 @@ const nextConfig: NextConfig = {
   ],
   // Case studies that were removed from the portfolio keep their old links alive
   async redirects() {
-    return ['goa-conference', 'qualivex-solutions', 'optimum-property-solutions', 'imagebloom-by-saida', 'rosemond-prempeh', 'royal-itech', 'eddy', 'ghana-optometric-association', 'twist-nightclub'].map((slug) => ({
+    return [
+      // The redesign's homepage was previewed here before it became the homepage
+      { source: '/directions/home', destination: '/', permanent: true },
+      ...['goa-conference', 'qualivex-solutions', 'optimum-property-solutions', 'imagebloom-by-saida', 'rosemond-prempeh', 'royal-itech', 'eddy', 'ghana-optometric-association', 'twist-nightclub'].map((slug) => ({
       source: `/portfolio/${slug}`,
       destination: '/portfolio',
       permanent: true,
-    }))
+    })),
+    ]
   },
   // Next 15 streams page metadata into the body for browsers. Matching every user agent
   // keeps the description, canonical and social tags in the head for all visitors and tools.

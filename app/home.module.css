@@ -1,6 +1,6 @@
 /* The combined homepage. Its ground, tokens and base rules are the shared theme. */
 
-.root { composes: theme from '../../../components/directions/home/theme.module.css'; }
+.root { composes: theme from '../components/directions/home/theme.module.css'; }
 
 /* ================= The scene ================= */
 .scene { position: relative; height: 200vh; }

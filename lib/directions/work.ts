@@ -138,9 +138,8 @@ export const PROOF = {
   womenTrained: '100+',
 } as const
 
-// Where the homepage lives. The redesign is previewed at /directions/home; this becomes '/' when it
-// replaces the live homepage, and every link back to a homepage section follows it.
-export const HOME = '/directions/home'
+// Where the homepage lives; every link back to a homepage section follows it
+export const HOME = '/'
 
 export const CONTACT = {
   email: 'hello@jacquelineamoako.com',
