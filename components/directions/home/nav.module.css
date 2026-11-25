@@ -62,8 +62,8 @@
 
   .menu {
     position: fixed; inset: 0; z-index: 45;
-    display: flex; flex-direction: column; justify-content: space-between;
-    padding: 112px var(--gut) max(28px, env(safe-area-inset-bottom));
+    display: flex; flex-direction: column; justify-content: flex-start;
+    padding: 112px var(--gut) max(28px, env(safe-area-inset-bottom)); overflow-y: auto;
     background: var(--ink-ground); color: var(--bone);
     clip-path: inset(0 0 100% 0); visibility: hidden;
     transition: clip-path 0.7s var(--ease), visibility 0s linear 0.7s;
@@ -75,16 +75,18 @@
   .menuLink {
     display: block; padding: 6px 0 4px;
     font-family: var(--h-sans); font-weight: 620; font-stretch: 125%; text-transform: uppercase;
-    font-size: clamp(40px, 13vw, 72px); line-height: 0.95; letter-spacing: -0.005em;
+    /* "PORTFOLIO" is 7.45em wide in this face: the size that fits it between the margins on any phone */
+    font-size: min(72px, calc((100vw - 2 * var(--gut)) / 7.6)); line-height: 0.95; letter-spacing: -0.005em;
   }
   .menuLink > span { display: block; transform: translateY(110%); transition: transform 0.5s var(--ease); }
   .menu[data-open] .menuLink > span { transform: none; transition: transform 1s var(--ease) calc(0.18s + var(--i) * 0.07s); }
 
+  /* The ways to reach her, one under another, a short step below the links */
   .menuMeta {
-    display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0; padding: 0; list-style: none;
+    display: grid; justify-items: start; gap: 0; margin: 6vh 0 0; padding: 0; list-style: none;
     font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bone-2);
   }
-  .menuMeta a { display: inline-block; padding: 10px 0; }
+  .menuMeta a { display: inline-block; padding: 9px 0; }
   .menuLink:focus-visible, .menuMeta a:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
 }
 

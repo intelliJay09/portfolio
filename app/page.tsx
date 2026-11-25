@@ -1,3 +1,4 @@
+import { preload } from 'react-dom'
 import SiteNav from '../components/directions/home/SiteNav'
 import SignatureScene from '../components/directions/home/SignatureScene'
 import Skills from '../components/directions/home/Skills'
@@ -14,6 +15,12 @@ import s from './home.module.css'
 
 // The homepage. Its title, description, canonical and structured data come from the root layout.
 export default function Home() {
+  // The portrait's three files are asked for with the page itself, alongside the scripts, instead of
+  // after the scene's script has run (it fetches them then, and finds them ready). cells.json is
+  // fetched with fetch(), whose same-origin credentials match crossOrigin 'anonymous'.
+  preload('/directions/mosaic/cells.json', { as: 'fetch', crossOrigin: 'anonymous', fetchPriority: 'high' })
+  preload('/directions/mosaic/atlas.webp', { as: 'image', fetchPriority: 'high' })
+  preload('/directions/mosaic/bust.webp', { as: 'image', fetchPriority: 'high' })
 
   return (
     <div data-direction="home" className={`${sans.variable} ${mono.variable} ${s.root}`}>

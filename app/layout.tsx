@@ -91,14 +91,17 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  // The homepage portrait in its own squares (drawn from public/directions/mosaic/cells.json):
+  // the face for the small tab sizes, the whole mosaic for home screens
   icons: {
     icon: [
-      { url: '/images/favicon-new.png', sizes: '32x32', type: 'image/png' },
-      { url: '/images/favicon-new.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico', sizes: '16x16 32x32 48x48' },
+      { url: '/icons/icon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
     ],
-    shortcut: '/images/favicon-new.png',
+    shortcut: '/favicon.ico',
     apple: [
-      { url: '/images/favicon-new.png', sizes: '180x180', type: 'image/png' },
+      { url: '/icons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   manifest: '/manifest.json',

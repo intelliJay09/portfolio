@@ -107,8 +107,9 @@ export function middleware(request: NextRequest) {
     } else if (pathname.match(/\.(css|js|woff2?)$/)) {
       // CSS/JS: theme-aware caching
       response.headers.set('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800')
-    } else if (pathname.match(/\.(png|jpg|jpeg|webp|svg|gif)$/)) {
-      // Static image files: no Vary by Cookie — images don't change per theme
+    } else if (pathname.match(/\.(png|jpg|jpeg|webp|svg|gif|ico|json)$/)) {
+      // Static image and data files (the homepage portrait's cells.json, the manifest, the
+      // favicon): no Vary by Cookie, they don't change per theme
       response.headers.set('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800')
     }
     
