@@ -91,15 +91,15 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  // The homepage portrait in its own squares (drawn from public/directions/mosaic/cells.json):
-  // the face for the small tab sizes, the whole mosaic for home screens
+  // The homepage portrait in its own squares (drawn from public/directions/mosaic/cells.json),
+  // head and shoulders at every size. ?v= makes browsers fetch an icon again when it changes.
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: '16x16 32x32 48x48' },
-      { url: '/icons/icon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico?v=2', sizes: '16x16 32x32 48x48' },
+      { url: '/icons/icon-32.png?v=2', sizes: '32x32', type: 'image/png' },
       { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
     ],
-    shortcut: '/favicon.ico',
+    shortcut: '/favicon.ico?v=2',
     apple: [
       { url: '/icons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
