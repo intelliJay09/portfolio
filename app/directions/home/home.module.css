@@ -1,0 +1,64 @@
+/* The combined homepage. Its ground, tokens and base rules are the shared theme. */
+
+.root { composes: theme from '../../../components/directions/home/theme.module.css'; }
+
+/* ================= The scene ================= */
+.scene { position: relative; height: 200vh; }
+.stage {
+  position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
+  background: var(--paper);
+}
+
+/* Portrait, on ink */
+.ink { position: absolute; left: 0; right: 0; top: 0; height: 100svh; background: var(--ink-ground); z-index: 0; }
+.slot {
+  position: absolute; z-index: 1; right: 4vw; top: 100svh; transform: translateY(-100%);
+  height: min(90svh, 58vw); aspect-ratio: 1;
+}
+.photo { width: 100% !important; height: 100% !important; }
+.canvas { position: absolute; left: 0; top: 0; width: 100%; height: 100svh; z-index: 2; pointer-events: none; }
+
+.heroText { position: absolute; z-index: 6; left: var(--gut); top: calc(100svh - 8vh); transform: translateY(-100%); max-width: 60vw; color: var(--bone); }
+.h1 {
+  margin: 0; font-family: var(--h-sans); font-weight: 620; font-stretch: 125%; text-transform: uppercase;
+  font-size: clamp(44px, 6.6vw, 128px); line-height: 0.86; letter-spacing: -0.005em;
+}
+.line { display: block; overflow: hidden; padding-bottom: 0.04em; margin-bottom: -0.04em; }
+.line > span { display: block; will-change: transform; }
+/* Held back until the portrait arrives; the scene script brings it in with the emails */
+.stage[data-entrance='pending'] [data-rise] { transform: translateY(108%); }
+.stage[data-entrance='pending'] [data-fade] { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .stage[data-entrance='pending'] [data-rise] { transform: none; }
+  .stage[data-entrance='pending'] [data-fade] { opacity: 1; }
+}
+.role { margin: 26px 0 0; max-width: 34ch; color: var(--bone-2); }
+.caption {
+  margin: 22px 0 0; max-width: 44ch; color: var(--bone-3);
+  font-family: var(--h-mono); font-size: 12px; line-height: 1.6; letter-spacing: 0.04em; text-transform: uppercase;
+}
+
+/* ================= After the scene ================= */
+.kicker { margin: 0; font-family: var(--h-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+
+/* The closing chapter: the question and the footer share one ink ground, the way the page opened */
+.askSection { padding: 22vh var(--gut) 10vh; }
+.askSection > .kicker { margin-bottom: 3vh; }
+
+/* ================= Phone ================= */
+@media (max-width: 760px) {
+  .slot { right: auto; left: 50%; top: 68px; height: auto; width: 100vw; transform: translateX(-50%); }
+  .photo { -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
+  .heroText { top: calc(100svh - 5vh); max-width: none; right: var(--gut); }
+  .h1 { font-size: clamp(36px, 11.2vw, 64px); }
+  .role { margin-top: 14px; }
+  .caption { margin-top: 14px; max-width: none; }
+  .askSection { padding-top: 14vh; }
+}
+
+/* ================= Reduced motion: the portrait, still ================= */
+@media (prefers-reduced-motion: reduce) {
+  .scene { height: auto; }
+  .stage { position: relative; }
+}
+

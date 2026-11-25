@@ -1,0 +1,8 @@
+/* Page-level grounds for the three directions, so overscroll and the area behind the
+   fixed nav match each design. The site's global smooth-scroll rule fights Lenis. */
+html:has([data-direction]) { scroll-behavior: auto; }
+body:has([data-direction='mosaic']) { background: #0c0c0b; }
+body:has([data-direction='layers']) { background: #ecebe6; }
+body:has([data-direction='session']) { background: #f5f4f0; }
+body:has([data-direction='home']) { background: #ecebe6; }
+body:has([data-direction='portfolio']) { background: #ecebe6; }

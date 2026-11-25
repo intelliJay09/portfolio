@@ -1,6 +1,100 @@
 # Portfolio Project - Development Context & Changes Log
 
-## Current State (2026-10-28) - read this first
+## Homepage redesign (2026-11-19) - read this first
+
+The homepage is being redesigned in its own worktree. Nothing in it is committed, deployed, or merged into the live homepage yet. Awwwards mode is **contest** (CLAUDE.md, changed 2026-10-28); the "standard" note further down is out of date.
+
+### Where it lives
+
+- Worktree `~/projects/portfolio-worktrees/directions`, branch `design/directions`. Its `node_modules` is a symlink to the main project's.
+- The page is `/directions/home` (`app/directions/home/page.tsx`), served by the worktree's dev server on port 4417. It is `noindex`.
+- The other routes in `app/directions/` (mosaic, layers, session) are the rejected first drafts, kept for reference. Their history is in the auto-memory file `redesign_history.md`.
+- The portfolio page and the case studies belong to a separate session working in the main checkout (branch `content/recruiter-ready`). Don't edit them from the worktree.
+
+### The page, top to bottom
+
+The homepage follows one sentence: "I build the software, run the journey behind it, and fix what breaks." Each phrase has its own section of proof.
+
+1. **Hero** (`SignatureScene.tsx`, arrival "fly"): her portrait drawn by 1,695 WebGL email tiles. Scrolling bursts them, and ink wipes to paper.
+2. **What I do** (`Skills.tsx`, `SkillsMotion.tsx`, `skills.module.css`):
+   - The sentence alone, centred and held in view with `position: sticky` (never a pin). Its three phrases fill grey to ink, one after another, as you scroll.
+   - Under it, the three roles as links ("01 Frontend development", "02 Lifecycle and growth marketing", "03 Technical support"), with the line "Hiring for one of these? Pick it, or keep scrolling."
+3. **Choosing a role** (`path.ts`). A role or a phrase:
+   - glides to its section;
+   - inks that phrase and marks the role `aria-current`;
+   - shows "· Your pick" on that section's kicker;
+   - is remembered for the visit (`sessionStorage` key `ja-path`).
+
+   Two other places pick it up. "What do you need?" (`Ask.tsx`) lights that skill in its empty state, and "Say hello" (`Hello.tsx`) adds the role to the email subject.
+4. **Featured work** (`#work`, `Featured.tsx`, `FeaturedMotion.tsx`, `featured.module.css`): exactly three pieces, chosen by her: orellahub.com, gwenaddo.com and Vocyx. Everything else goes to the portfolio page.
+   - From 1024px up, with motion allowed, it is a stage: the three names in one line across the top (their size is calculated so they always fit), one screen under them, and the details below.
+   - Scrolling hands over from piece to piece: the name fills with ink, the screen wipes up, and the player and details cross-fade.
+   - Below 1024px, or with reduced motion, it is a plain list.
+   - The Gwen piece is recorded on her new site at gwen.zerahq.com but links to gwenaddo.com, which moves to the new site soon. That's her instruction.
+5. **Run the journey behind it** (`#run`, `Journey.tsx`): a 20-second recording of a journey firing for real in Orella, then the 17-journeys line and the six journeys in an index.
+6. **Fix what breaks** (`#fix`, `Cases.tsx`): three real support investigations as large titles. Each opens (native `<details>`) to what happened, the cause, the fix and what the client was told. The BLUETOWN line sits underneath.
+7. "What do you need?", Teaching, then the footer.
+
+### Directed recordings
+
+`Directed.tsx` (markup), `direct.ts` (behaviour), `directed.module.css`, and `DirectedAuto.tsx` (plays a standalone recording while it is on screen).
+
+- Each recording has **cues**: `[seconds, caption, [x, y, zoom]]`. As each cue starts, the camera eases to that point, so the step shows at close to real size, and the caption names it.
+- Under the screen, a rail marks each step (click to play from it), with Pause/Play, the clock and the caption.
+- The camera cuts rather than eases when the picture cuts (a loop, or a jump back), and every clip opens on the full recording. She objected to recordings looking cut off.
+- Cue times and camera points were read off each clip one frame a second, with on-screen elements located by macOS text recognition (`ocrall` in the session scratchpad). If a clip is re-recorded, re-measure them.
+- Visibility checks must watch the lens, not the video. The camera scales the video past the lens, and watching the video paused it mid-zoom (bug found and fixed).
+- Reduced motion or Save-Data: nothing plays on its own; Play and the step marks still work.
+
+### Recordings (`public/directions/rec/`)
+
+- **On the homepage:**
+  - `orella-site-demo`: the plan finder answered through to "We'd recommend Pro". Orella's own rounded black page corners are painted out of it, frame by frame.
+  - `gwen-new-demo`: gwen.zerahq.com, from the homepage to the application form with "Ama Mensah" typed in. Nothing is submitted.
+  - `vocyx-call`: one real practice call, 101 s with the live part at 1.6×, then the debrief.
+  - `journey-short`: the live journey with the page-refresh wait cut out.
+- **Kept for the portfolio page:** `finest-dietitian-demo`, `command-space-demo`, `journey-live` (the uncut journey), `onboard` and `winback` (journey-canvas pans).
+- **Recording rule (hers):** show the work being used, never a page scrolled down and back up.
+- **How they were made:**
+  - puppeteer-core with a CDP screencast, scripts in the session scratchpad.
+  - `encode.sh` must read each still frame at 600 fps (`option framerate 600`). Without it the concat input stamps frames in 1/25 s steps, and fast motion stutters. Every clip was re-encoded with the fix.
+
+### Privacy rules for recordings and copy
+
+- Her email address must never be readable in a published frame. The journey clips had it in 427 frames after a page change, so the address was blurred in each frame and every clip and poster was re-scanned with text recognition until it found no readable address. Re-scan any new clip the same way.
+- Never publish Orella MRR, tenant or subscriber figures, GHS projections, unpublished Gwen digest figures, attendee or customer names, test accounts or Vocyx test personas.
+- Orella is not live. Cold Recall is "In use". Kepha is dropped.
+
+### Live data created while recording (19 Nov 2026)
+
+- **Vocyx, her real account:**
+  - A sales profile describing Orella, filled by hand from orellahub.com's public pricing and customer types.
+  - Four generated buyer types.
+  - One graded call against "Yaw Boateng". It cost 4 paid Gemini requests, which she approved.
+  - The debrief scores the scripted call 15/100, and the caption says it's a scripted test call.
+- **Orella, test tenant `hubtel-test`:**
+  - Four test companies: Adwoa's Bakery, Kofi's Kitchen and two Esi's Salon entries. They stay because the events table is append-only.
+  - The temporary plan, consent row and sending identity were removed (backup in the Orella project's `.backup-1795124951583`). The tenant is back on `hubtel_uat` and can't send.
+- **Orella product gap she hasn't decided on:** a client added through "Add client" never gets email consent, so journeys can't email hand-added clients.
+
+### Open
+
+- The audit flags 9 to 10 text sizes on the homepage against a winners' median of 7. Consolidate the scale.
+- The nav has no background, so content scrolls under it, site-wide. Offered as a fix, not yet answered.
+- The portfolio page redesign (she'll brief it), which will use the clips kept above.
+- Whether to replace the zoom-crop with a magnified inset over the full recording, if she still dislikes the cropping during steps.
+- Commit, merge into the live homepage and deploy: only when she asks.
+
+### Gotchas
+
+- macOS treats `Directed.tsx` and `directed.ts` as the same file, which broke imports. That's why the behaviour module is `direct.ts`.
+- The page's CSP blocks injected scripts, so the Awwwards audit runs through puppeteer with `setBypassCSP(true)`.
+- Waiting for `networkidle` times out on this page while videos stream. Wait for `load`.
+- `.root a { color: inherit }` in `home.module.css` outranks a single class. Gradient-filled link text needs two classes (e.g. `.name .nameLink`).
+
+---
+
+## Current State (2026-10-28) - previous handoff
 
 Handoff for any agent picking up the portfolio. Everything below this section is the older change log. Open tasks live in `TODO.md`.
 

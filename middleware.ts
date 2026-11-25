@@ -125,6 +125,11 @@ export function middleware(request: NextRequest) {
       const isDev = process.env.NODE_ENV === 'development'
       const gtmDomains = 'https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://analytics.google.com'
       const recaptchaDomains = 'https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/'
+      // Where GA4 sends its hits, as Google documents it for Analytics without ads features
+      // (developers.google.com/tag-platform/security/guides/csp): regional hosts such as
+      // region1.google-analytics.com, and www.google.com/g/collect when the first host fails.
+      // Connections only; scripts still load from the exact hosts above.
+      const analyticsConnect = 'https://*.google-analytics.com https://*.google.com'
 
       // NOTE: deliberately NOT using 'strict-dynamic' here. It requires the
       // browser to trace script injection back through a synchronous call
@@ -151,8 +156,8 @@ export function middleware(request: NextRequest) {
       // 'default' policy registered in layout.tsx still governs any script
       // that doesn't request a specific policy.
       const cspHeader = isDev
-        ? `default-src 'self' data:; script-src ${scriptSrc} ${gtmDomains} ${recaptchaDomains}; frame-src 'self' https://www.googletagmanager.com https://www.google.com/recaptcha/ https://recaptcha.google.com/; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' ${gtmDomains} https://www.google.com/recaptcha/; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; require-trusted-types-for 'script';`
-        : `default-src 'self' data:; script-src ${scriptSrc} ${gtmDomains} ${recaptchaDomains} https://static.cloudflareinsights.com; frame-src 'self' https://www.googletagmanager.com https://www.google.com/recaptcha/ https://recaptcha.google.com/; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' ${gtmDomains} https://static.cloudflareinsights.com https://www.google.com/recaptcha/; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; require-trusted-types-for 'script';`
+        ? `default-src 'self' data:; script-src ${scriptSrc} ${gtmDomains} ${recaptchaDomains}; frame-src 'self' https://www.googletagmanager.com https://www.google.com/recaptcha/ https://recaptcha.google.com/; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' ${gtmDomains} ${analyticsConnect}; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; require-trusted-types-for 'script';`
+        : `default-src 'self' data:; script-src ${scriptSrc} ${gtmDomains} ${recaptchaDomains} https://static.cloudflareinsights.com; frame-src 'self' https://www.googletagmanager.com https://www.google.com/recaptcha/ https://recaptcha.google.com/; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' ${gtmDomains} https://static.cloudflareinsights.com ${analyticsConnect}; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; require-trusted-types-for 'script';`
 
       response.headers.set('Content-Security-Policy', cspHeader)
     }

@@ -1,5 +1,5 @@
-import * as nodemailer from 'nodemailer'
-import type { Transporter } from 'nodemailer'
+import { Resend } from 'resend'
+import { notificationEmail, confirmationEmail, CONFIRMATION_SUBJECT } from './contact-email'
 
 // Types for email queue system
 export interface ContactFormData {
@@ -18,6 +18,9 @@ interface EmailJob {
   attempts: number
   createdAt: Date
   scheduledFor: Date
+  // Which of the two emails have gone out. A retry sends only what is still missing, so a
+  // flaky mail server never makes Jacqueline or the sender get the same email twice.
+  sent: { notification: boolean; confirmation: boolean }
 }
 
 export type ContactSubmissionStatus = 
@@ -33,29 +36,21 @@ class EmailQueue {
   private static instance: EmailQueue
   private jobs: Map<string, EmailJob> = new Map()
   private processing = false
-  private readonly MAX_ATTEMPTS = 3
-  private readonly RETRY_DELAYS = [1000, 5000, 15000] // 1s, 5s, 15s
-  private transporter: Transporter
+  // Each email gets five tries over about a minute (a network blip or a Resend rate limit)
+  private readonly MAX_ATTEMPTS = 5
+  private readonly RETRY_DELAYS = [2000, 5000, 15000, 30000] // 2s, 5s, 15s, 30s
+  // Resend sends both emails, from the verified jacquelineamoako.com domain (DKIM-signed, so
+  // the domain's strict DMARC passes). No key, no sending: the route fails loudly instead.
+  private resend: Resend
+  private from: string
 
   private constructor() {
-    // Initialize SMTP transporter with optimized settings
-    this.transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-      },
-      pool: true,
-      maxConnections: parseInt(process.env.SMTP_POOL_MAX_CONNECTIONS || '5'),
-      maxMessages: parseInt(process.env.SMTP_POOL_MAX_MESSAGES || '100'),
-      connectionTimeout: parseInt(process.env.SMTP_CONNECTION_TIMEOUT || '10000'),
-      greetingTimeout: parseInt(process.env.SMTP_GREETING_TIMEOUT || '10000'),
-      socketTimeout: parseInt(process.env.SMTP_SOCKET_TIMEOUT || '30000'),
-      rateDelta: parseInt(process.env.SMTP_RATE_DELTA || '1000'),
-      rateLimit: parseInt(process.env.SMTP_RATE_LIMIT || '3'),
-    })
+    const key = process.env.RESEND_API_KEY
+    const from = process.env.EMAIL_FROM
+    if (!key) throw new Error('RESEND_API_KEY is not set')
+    if (!from || !from.endsWith('@jacquelineamoako.com')) throw new Error('EMAIL_FROM must be an address on jacquelineamoako.com, the domain verified in Resend')
+    this.resend = new Resend(key)
+    this.from = from
   }
 
   static getInstance(): EmailQueue {
@@ -71,7 +66,8 @@ class EmailQueue {
       data,
       attempts: 0,
       createdAt: new Date(),
-      scheduledFor: new Date()
+      scheduledFor: new Date(),
+      sent: { notification: false, confirmation: false },
     }
 
     this.jobs.set(submissionId, job)
@@ -122,18 +118,16 @@ class EmailQueue {
       // Update audit log
       await this.logContactSubmission(job.id, job.data, 'processing_email')
 
-      // Send emails with timeout - process in parallel for speed
-      const emailResults = await Promise.allSettled([
-        this.sendNotificationEmail(job.data),
-        this.sendConfirmationEmail(job.data)
+      // Send whichever emails have not gone out yet, in parallel
+      const [notificationResult, confirmationResult] = await Promise.allSettled([
+        job.sent.notification ? Promise.resolve() : this.sendNotificationEmail(job),
+        job.sent.confirmation ? Promise.resolve() : this.sendConfirmationEmail(job),
       ])
-
-      // Check results
-      const notificationResult = emailResults[0]
-      const confirmationResult = emailResults[1]
 
       const notificationSuccess = notificationResult.status === 'fulfilled'
       const confirmationSuccess = confirmationResult.status === 'fulfilled'
+      job.sent.notification = notificationSuccess
+      job.sent.confirmation = confirmationSuccess
 
       if (notificationSuccess && confirmationSuccess) {
         // Complete success - remove job and log
@@ -181,395 +175,37 @@ class EmailQueue {
     }
   }
 
-  private async sendNotificationEmail(data: ContactFormData): Promise<void> {
-    const mailOptions = {
-      from: `"${process.env.EMAIL_FROM_NAME || 'Portfolio Contact'}" <${process.env.EMAIL_FROM || process.env.SMTP_USER}>`,
+  private async sendNotificationEmail(job: EmailJob): Promise<void> {
+    const { data } = job
+    await this.send(`${job.id}-notification`, {
+      from: `${process.env.EMAIL_FROM_NAME || 'Jacqueline Amoako'} <${this.from}>`,
       to: process.env.EMAIL_TO || 'hello@jacquelineamoako.com',
       replyTo: data.email,
       subject: `${process.env.EMAIL_SUBJECT_PREFIX || '[Portfolio Contact]'} ${data.subject}`,
-      text: `Name: ${data.name}\nEmail: ${data.email}\nOrganization: ${data.organization}\nService: ${data.service}\nSubject: ${data.subject}\n\nMessage:\n${data.message}`,
-      html: this.generateNotificationEmailHTML(data)
-    }
-
-    await this.sendMailWithTimeout(mailOptions, 30000) // 30s timeout for background
+      ...notificationEmail(data),
+    })
   }
 
-  private async sendConfirmationEmail(data: ContactFormData): Promise<void> {
+  private async sendConfirmationEmail(job: EmailJob): Promise<void> {
     if (process.env.SEND_CONFIRMATION_TO_SENDER !== 'true') {
       return // Skip if disabled
     }
-
-    const mailOptions = {
-      from: `"${process.env.EMAIL_FROM_NAME || 'Jacqueline Amoako'}" <${process.env.EMAIL_FROM || process.env.SMTP_USER}>`,
-      to: data.email,
-      subject: 'Thank you for your message',
-      text: `Dear ${data.name},\n\nThank you for reaching out about ${data.service}! I've received your inquiry and will get back to you within 24 hours.\n\nBest regards,\nJacqueline Amoako`,
-      html: this.generateConfirmationEmailHTML(data)
-    }
-
-    await this.sendMailWithTimeout(mailOptions, 30000) // 30s timeout for background
+    await this.send(`${job.id}-confirmation`, {
+      from: `${process.env.EMAIL_FROM_NAME || 'Jacqueline Amoako'} <${this.from}>`,
+      to: job.data.email,
+      replyTo: this.from,
+      subject: CONFIRMATION_SUBJECT,
+      ...confirmationEmail(job.data),
+    })
   }
 
-  private async sendMailWithTimeout(mailOptions: Record<string, unknown>, timeoutMs: number): Promise<unknown> {
-    return Promise.race([
-      this.transporter.sendMail(mailOptions),
-      new Promise((_, reject) => 
-        setTimeout(() => reject(new Error(`Email sending timed out after ${timeoutMs}ms`)), timeoutMs)
-      )
-    ])
-  }
-
-  private generateNotificationEmailHTML(data: ContactFormData): string {
-    const sanitize = (text: string) => text
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#x27;')
-
-    return `
-      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-      <html xmlns="http://www.w3.org/1999/xhtml">
-        <head>
-          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <meta name="color-scheme" content="light dark" />
-          <meta name="supported-color-schemes" content="light dark" />
-          <title>New Contact Inquiry</title>
-          <!--[if mso]>
-          <noscript>
-            <xml>
-              <o:OfficeDocumentSettings>
-                <o:PixelsPerInch>96</o:PixelsPerInch>
-              </o:OfficeDocumentSettings>
-            </xml>
-          </noscript>
-          <![endif]-->
-          <style type="text/css">
-            @media (prefers-color-scheme: dark) {
-              .dark-mode-bg { background-color: #1a1a1a !important; }
-              .dark-mode-text { color: #ffffff !important; }
-              .dark-mode-text-secondary { color: #b3b3b3 !important; }
-              .dark-mode-border { border-color: #333333 !important; }
-              .dark-mode-card { background-color: #2a2a2a !important; }
-            }
-            @media only screen and (max-width: 600px) {
-              .mobile-padding { padding: 60px 20px !important; }
-              .mobile-text { font-size: 24px !important; }
-            }
-          </style>
-        </head>
-        <body style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background-color: #ffffff;" class="dark-mode-bg">
-          <!--[if mso]>
-          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-            <tr>
-              <td>
-          <![endif]-->
-          
-          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #ffffff;" class="dark-mode-bg">
-            <tr>
-              <td align="center" style="padding: 0;">
-                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; margin: 0 auto;">
-                  <tr>
-                    <td style="padding: 120px 60px; text-align: center;" class="mobile-padding">
-                      
-                      <!-- Header Section -->
-                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                        <tr>
-                          <td style="padding-bottom: 80px; border-bottom: 1px solid #f5f5f5;" class="dark-mode-border">
-                            <h1 style="margin: 0 0 20px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 300; font-size: 32px; line-height: 1.2; letter-spacing: 0.05em; color: #000000; text-align: center;" class="mobile-text dark-mode-text">
-                              New Contact Inquiry
-                            </h1>
-                            <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 300; font-size: 18px; color: #666666; letter-spacing: 0.01em;" class="dark-mode-text-secondary">
-                              Received ${new Date().toLocaleString()}
-                            </p>
-                          </td>
-                        </tr>
-                      </table>
-                      
-                      <!-- Contact Information Section -->
-                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: 80px 0;">
-                        <tr>
-                          <td style="text-align: left;">
-                            <h2 style="margin: 0 0 40px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 22px; line-height: 1.3; letter-spacing: 0.02em; color: #000000;" class="dark-mode-text">
-                              Contact Information
-                            </h2>
-                            
-                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #fafafa; border-radius: 12px;" class="dark-mode-card">
-                              <tr>
-                                <td style="padding: 60px 50px;">
-                                  
-                                  <!-- Name -->
-                                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                    <tr>
-                                      <td style="padding-bottom: 25px;">
-                                        <p style="margin: 0 0 8px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 17px; color: #666666; text-transform: uppercase; letter-spacing: 0.1em;" class="dark-mode-text-secondary">
-                                          Name
-                                        </p>
-                                        <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 19px; color: #000000; line-height: 1.4;" class="dark-mode-text">
-                                          ${sanitize(data.name)}
-                                        </p>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td style="padding-bottom: 25px;">
-                                        <p style="margin: 0 0 8px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 17px; color: #666666; text-transform: uppercase; letter-spacing: 0.1em;" class="dark-mode-text-secondary">
-                                          Email
-                                        </p>
-                                        <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 19px; color: #000000; line-height: 1.4;" class="dark-mode-text">
-                                          <a href="mailto:${sanitize(data.email)}" style="color: #000000; text-decoration: none;" class="dark-mode-text">${sanitize(data.email)}</a>
-                                        </p>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td style="padding-bottom: 25px;">
-                                        <p style="margin: 0 0 8px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 17px; color: #666666; text-transform: uppercase; letter-spacing: 0.1em;" class="dark-mode-text-secondary">
-                                          Organization
-                                        </p>
-                                        <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 19px; color: #000000; line-height: 1.4;" class="dark-mode-text">
-                                          ${sanitize(data.organization)}
-                                        </p>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td style="padding-bottom: 25px;">
-                                        <p style="margin: 0 0 8px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 17px; color: #666666; text-transform: uppercase; letter-spacing: 0.1em;" class="dark-mode-text-secondary">
-                                          Service Interest
-                                        </p>
-                                        <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 19px; color: #000000; line-height: 1.4;" class="dark-mode-text">
-                                          ${sanitize(data.service)}
-                                        </p>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td style="padding-bottom: 0;">
-                                        <p style="margin: 0 0 8px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 17px; color: #666666; text-transform: uppercase; letter-spacing: 0.1em;" class="dark-mode-text-secondary">
-                                          Subject
-                                        </p>
-                                        <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 19px; color: #000000; line-height: 1.4;" class="dark-mode-text">
-                                          ${sanitize(data.subject)}
-                                        </p>
-                                      </td>
-                                    </tr>
-                                  </table>
-                                  
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                      </table>
-                      
-                      <!-- Message Section -->
-                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom: 80px;">
-                        <tr>
-                          <td style="text-align: left;">
-                            <h2 style="margin: 0 0 30px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 22px; line-height: 1.3; letter-spacing: 0.02em; color: #000000;" class="dark-mode-text">
-                              Message
-                            </h2>
-                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #ffffff; border: 1px solid #f0f0f0; border-radius: 8px;" class="dark-mode-card dark-mode-border">
-                              <tr>
-                                <td style="padding: 50px;">
-                                  <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 18px; line-height: 1.7; color: #000000; white-space: pre-wrap;" class="dark-mode-text">
-                                    ${sanitize(data.message)}
-                                  </p>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                      </table>
-                      
-                      <!-- Footer -->
-                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                        <tr>
-                          <td style="border-top: 1px solid #f0f0f0; padding-top: 50px; text-align: center;" class="dark-mode-border">
-                            <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 300; font-size: 16px; line-height: 1.6; color: #999999;" class="dark-mode-text-secondary">
-                              Generated from your portfolio contact form
-                              ${data.userIp ? `<br>Sender IP: ${data.userIp}` : ''}
-                            </p>
-                          </td>
-                        </tr>
-                      </table>
-                      
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-          
-          <!--[if mso]>
-              </td>
-            </tr>
-          </table>
-          <![endif]-->
-        </body>
-      </html>
-    `
-  }
-
-  private generateConfirmationEmailHTML(data: ContactFormData): string {
-    const sanitize = (text: string) => text
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-
-    return `
-      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-      <html xmlns="http://www.w3.org/1999/xhtml">
-        <head>
-          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <meta name="color-scheme" content="light dark" />
-          <meta name="supported-color-schemes" content="light dark" />
-          <title>Thank you for your message</title>
-          <!--[if mso]>
-          <noscript>
-            <xml>
-              <o:OfficeDocumentSettings>
-                <o:PixelsPerInch>96</o:PixelsPerInch>
-              </o:OfficeDocumentSettings>
-            </xml>
-          </noscript>
-          <![endif]-->
-          <style type="text/css">
-            @media (prefers-color-scheme: dark) {
-              .dark-mode-bg { background-color: #1a1a1a !important; }
-              .dark-mode-text { color: #ffffff !important; }
-              .dark-mode-text-secondary { color: #b3b3b3 !important; }
-              .dark-mode-border { border-color: #333333 !important; }
-              .dark-mode-card { background-color: #2a2a2a !important; }
-            }
-            @media only screen and (max-width: 600px) {
-              .mobile-padding { padding: 60px 20px !important; }
-              .mobile-text { font-size: 28px !important; }
-            }
-          </style>
-        </head>
-        <body style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background-color: #ffffff;" class="dark-mode-bg">
-          <!--[if mso]>
-          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-            <tr>
-              <td>
-          <![endif]-->
-          
-          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #ffffff;" class="dark-mode-bg">
-            <tr>
-              <td align="center" style="padding: 0;">
-                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; margin: 0 auto;">
-                  <tr>
-                    <td style="padding: 120px 60px; text-align: center;" class="mobile-padding">
-                      
-                      <!-- Header Section -->
-                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                        <tr>
-                          <td style="padding-bottom: 80px;">
-                            <h1 style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 300; font-size: 36px; line-height: 1.2; letter-spacing: 0.08em; color: #000000; text-align: center;" class="mobile-text dark-mode-text">
-                              Thank You For Your Request
-                            </h1>
-                            <div style="margin-top: 50px;">
-                              <p style="margin: 0 0 25px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 300; font-size: 20px; line-height: 1.6; color: #000000; letter-spacing: 0.02em;" class="dark-mode-text">
-                                Hi ${sanitize(data.name)}, I've received your inquiry about <span style="font-weight: 500;">${sanitize(data.service)}</span> and appreciate you reaching out.
-                              </p>
-                              <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 300; font-size: 22px; line-height: 1.6; color: #666666; letter-spacing: 0.01em;" class="dark-mode-text-secondary">
-                                I'll review your message and get back to you within 24 hours.
-                              </p>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                      
-                      <!-- Inquiry Summary Card -->
-                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom: 80px;">
-                        <tr>
-                          <td style="background-color: #fafafa; padding: 60px 50px; border-radius: 12px;" class="dark-mode-card">
-                            <h2 style="margin: 0 0 35px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.15em; text-align: center;" class="dark-mode-text-secondary">
-                              Your Inquiry
-                            </h2>
-                            
-                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                              <tr>
-                                <td style="padding-bottom: 25px;">
-                                  <p style="margin: 0 0 8px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 17px; color: #666666; text-transform: uppercase; letter-spacing: 0.1em;" class="dark-mode-text-secondary">
-                                    Subject
-                                  </p>
-                                  <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 19px; color: #000000; line-height: 1.4;" class="dark-mode-text">
-                                    ${sanitize(data.subject)}
-                                  </p>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="padding-bottom: 25px;">
-                                  <p style="margin: 0 0 8px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 17px; color: #666666; text-transform: uppercase; letter-spacing: 0.1em;" class="dark-mode-text-secondary">
-                                    Service
-                                  </p>
-                                  <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 19px; color: #000000; line-height: 1.4;" class="dark-mode-text">
-                                    ${sanitize(data.service)}
-                                  </p>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="padding-bottom: 0;">
-                                  <p style="margin: 0 0 8px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 17px; color: #666666; text-transform: uppercase; letter-spacing: 0.1em;" class="dark-mode-text-secondary">
-                                    Submitted
-                                  </p>
-                                  <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 19px; color: #000000; line-height: 1.4;" class="dark-mode-text">
-                                    ${new Date().toLocaleString()}
-                                  </p>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                      </table>
-                      
-                      <!-- Signature Section -->
-                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                        <tr>
-                          <td style="text-align: center; padding-bottom: 80px;">
-                            <p style="margin: 0 0 12px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 300; font-size: 18px; line-height: 1.5; color: #666666; letter-spacing: 0.01em;" class="dark-mode-text-secondary">
-                              Best regards,
-                            </p>
-                            <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 20px; line-height: 1.3; letter-spacing: 0.03em; color: #000000;" class="dark-mode-text">
-                              Jacqueline
-                            </p>
-                          </td>
-                        </tr>
-                      </table>
-                      
-                      <!-- Contact Information -->
-                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                        <tr>
-                          <td style="border-top: 1px solid #f0f0f0; padding-top: 60px; text-align: center;" class="dark-mode-border">
-                            <p style="margin: 0 0 30px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 300; font-size: 22px; line-height: 1.5; color: #666666; letter-spacing: 0.01em;" class="dark-mode-text-secondary">
-                              Feel free to reach out directly if you have any questions:
-                            </p>
-                            <p style="margin: 0 0 15px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 18px; line-height: 1.4; color: #000000;" class="dark-mode-text">
-                              <a href="mailto:hello@jacquelineamoako.com" style="color: #000000; text-decoration: none; letter-spacing: 0.01em;" class="dark-mode-text">hello@jacquelineamoako.com</a>
-                            </p>
-                            <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 300; font-size: 20px; line-height: 1.4; color: #999999;" class="dark-mode-text-secondary">
-                              Portfolio: <a href="https://jacquelineamoako.com" style="color: #666666; text-decoration: none; letter-spacing: 0.01em;" class="dark-mode-text-secondary">jacquelineamoako.com</a>
-                            </p>
-                          </td>
-                        </tr>
-                      </table>
-                      
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-          
-          <!--[if mso]>
-              </td>
-            </tr>
-          </table>
-          <![endif]-->
-        </body>
-      </html>
-    `
+  // One email through Resend. The idempotency key (submission plus which email) means a retry
+  // after a lost response can never deliver the same email twice. Resend reports failure in
+  // `error` instead of throwing, so it is thrown here for the queue's retry to catch.
+  private async send(idempotencyKey: string, email: { from: string; to: string; replyTo: string; subject: string; html: string; text: string }): Promise<void> {
+    const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Resend did not answer within 30s')), 30000))
+    const { error } = await Promise.race([this.resend.emails.send(email, { idempotencyKey }), timeout])
+    if (error) throw new Error(`Resend ${error.name}: ${error.message}`)
   }
 
   private async notifyAdminOfEmailFailure(submissionId: string, data: ContactFormData, error: Error | unknown): Promise<void> {

@@ -12,8 +12,6 @@ const websiteImages: Record<string, string> = {
   'girl-code-africa': '/images/girlcode.png',
   'eden-heights': '/images/eden-heights.png',
   'landmark-homes': '/images/landmark-homes.png',
-  'ghana-optometric-association': '/images/ghana-optometric- association-main.png',
-  'twist-nightclub': '/images/twist-night-club.png',
   'command-space': '/images/command-space.png',
   'anabs': '/images/anabs.png',
   'kline-designs': '/images/klinedesign.png',

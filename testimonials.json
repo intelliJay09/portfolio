@@ -3,8 +3,8 @@
     {
       "id": 1,
       "clientName": "Gwen Addo",
-      "clientInfo": "Business Strategist",
-      "quote": "Jacqueline has a remarkable ability to translate a personal brand into a compelling digital experience. The website she built for me is not only professional and polished but also strategically designed to convert visitors into clients. It has become the cornerstone of my business's online presence."
+      "clientInfo": "Leadership coach and author",
+      "quote": "She understood my brand straight away and made a website that feels like me. It’s polished, and it’s built to turn visitors into clients. Everything my business does online now starts there."
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "id": 3,
       "clientName": "Tyrone",
       "clientInfo": "CEO of Command Space",
-      "quote": "As a digital agency, our own website has to be flawless—it's our ultimate business card. Jacqueline understood this perfectly and built a company website for us that is sleek, functional, and clearly showcases our expertise. We couldn't be happier with how she represented our brand."
+      "quote": "We’re an agency, so our own website is our business card. It can’t have flaws. Jacqueline got that from the start. The site is clean, it works, and it shows what we can do. We couldn’t be happier with how she represented us."
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "id": 6,
       "clientName": "Dr. Emmanuel Kotia",
       "clientInfo": "",
-      "quote": "I required a website that would serve as a dignified and comprehensive archive for my career and publications. The level of professionalism and attention to detail was exceptional. Jacqueline delivered a platform that is impeccably organized, highly professional, and perfectly befitting of my service record."
+      "quote": "I needed a proper record of my career and my publications, one that would do them justice. Jacqueline’s attention to detail was exceptional. Everything is carefully organised, and the site does justice to my years of service."
     },
     {
       "id": 7,
@@ -64,13 +64,19 @@
       "id": 11,
       "clientName": "Curtis",
       "clientInfo": "Eleven Eleven",
-      "quote": "We develop luxury experiences, and we needed a website that reflected that same standard of quality. Jacqueline delivered precisely that. She built a digital platform for Eleven Eleven that is elegant, immersive, and perfectly communicates the exclusivity of our resort. It has been invaluable in attracting our target clientele."
+      "quote": "Everything we build at Eleven Eleven is about luxury, so the website had to match. It does. It’s elegant, it draws you into the resort, and it shows how exclusive the place is. It’s helped us reach exactly the clients we want."
     },
     {
       "id": 12,
       "clientName": "Boss J.",
       "clientInfo": "Anabs Ghana",
-      "quote": "For a high-rise development like ours, projecting an image of prestige and reliability is paramount. Jacqueline was tasked with building our digital presence, and her work has been foundational to our success. The quality of the website and branding she delivered instills immediate confidence in potential buyers and investors."
+      "quote": "In our business, people need to see prestige and know they can rely on you. Jacqueline built our whole online presence, and it’s been a big part of our success. Buyers and investors trust what they see the moment they land on it."
+    },
+    {
+      "id": 13,
+      "clientName": "Fredericka Doku",
+      "clientInfo": "Registered dietitian",
+      "quote": "I showed the website to my professor here in the US and he was wowed. Overall, everybody is wowed. You have done well. Congratulations. Thank you so much."
     }
   ]
 }

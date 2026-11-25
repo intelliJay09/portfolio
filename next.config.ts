@@ -60,7 +60,10 @@ const nextConfig: NextConfig = {
         chunks: 'all',
         cacheGroups: {
           vendor: {
-            test: /[\\/]node_modules[\\/]/,
+            // CSS stays out: a CSS module in this JS group (next/font's generated
+            // stylesheet, for one) made the app router load vendors.css as a <script>
+            test: (module: { resource?: string; type?: string }) =>
+              /[\\/]node_modules[\\/]/.test(module.resource || '') && !String(module.type).startsWith('css'),
             name: 'vendors',
             chunks: 'all',
           },
@@ -111,7 +114,7 @@ const nextConfig: NextConfig = {
   ],
   // Case studies that were removed from the portfolio keep their old links alive
   async redirects() {
-    return ['goa-conference', 'qualivex-solutions', 'optimum-property-solutions', 'imagebloom-by-saida', 'rosemond-prempeh', 'royal-itech', 'eddy'].map((slug) => ({
+    return ['goa-conference', 'qualivex-solutions', 'optimum-property-solutions', 'imagebloom-by-saida', 'rosemond-prempeh', 'royal-itech', 'eddy', 'ghana-optometric-association', 'twist-nightclub'].map((slug) => ({
       source: `/portfolio/${slug}`,
       destination: '/portfolio',
       permanent: true,

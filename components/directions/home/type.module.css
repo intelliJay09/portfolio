@@ -1,0 +1,23 @@
+/* The homepage's type voices. Sections compose these instead of restyling them.
+
+   Shout   Archivo 125% caps, set only on content that is the picture itself: her name, the
+           sentence in "What I do", the work names, "Say hello". Defined in each place it is used.
+   Voice   Archivo 100%, sentence case: statements, headlines and the question she asks.
+   Label   IBM Plex Mono caps: chapter marks and captions.
+   A heading is a label. The big type is always the work. */
+
+.label {
+  font-family: var(--h-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.voice {
+  font-family: var(--h-sans); font-weight: 500; font-stretch: 100%; letter-spacing: -0.025em; line-height: 1.08;
+  text-wrap: balance;
+}
+
+/* The one size for statements that carry a section along */
+.voiceM {
+  composes: voice;
+  font-size: clamp(22px, 2.2vw, 32px); line-height: 1.15;
+}

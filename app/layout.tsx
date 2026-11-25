@@ -20,6 +20,8 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
+  // The old pages' fonts: not preloaded, so pages that never use them (the redesign) never fetch them
+  preload: false,
 })
 
 const satoshi = localFont({
@@ -47,6 +49,7 @@ const satoshi = localFont({
   ],
   variable: '--font-satoshi',
   display: 'swap',
+  preload: false,
   fallback: ['system-ui', 'sans-serif'],
 })
 

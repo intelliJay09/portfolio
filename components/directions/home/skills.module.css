@@ -1,0 +1,58 @@
+/* "What I do": the sentence alone, centred and held in view (position: sticky, never a pin)
+   across a short run of scroll, so its phrases can fill one after another; then the three roles
+   under it as links. Motion lives in SkillsMotion. */
+
+/* The section starts one screen early, under the opening scene's last screen. The scene's burst
+   finishes exactly as this section's sentence reaches the middle and holds, so the sentence rises
+   through the lifting ink and no empty screen sits between the two. */
+.root { position: relative; height: 230svh; margin-top: -100svh; }
+.hold {
+  position: sticky; top: 0; height: 100svh; box-sizing: border-box;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 88px var(--gut) 6vh; text-align: center;
+}
+.kicker { margin: 0 0 28px; font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+.sentence {
+  margin: 0; max-width: 17ch;
+  font-family: var(--h-sans); font-weight: 620; font-stretch: 125%; text-transform: uppercase;
+  font-size: clamp(36px, 5.4vw, 100px); line-height: 1; letter-spacing: -0.01em; text-wrap: balance;
+}
+.sentence .phrase {
+  --fill: 0%;
+  /* Ink sweeps across each line of the phrase as you scroll */
+  background: linear-gradient(90deg, var(--ink) var(--fill), rgb(22 22 20 / 0.18) var(--fill));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  text-decoration: none;
+}
+/* Pointing at a role (or the phrase itself), or having picked it, inks its phrase */
+.sentence .phrase[data-hot], .sentence .phrase[data-on] { --fill: 100% !important; }
+.sentence .phrase:focus-visible { outline: 2px solid var(--signal); outline-offset: 6px; }
+
+.paths { margin-top: 7vh; }
+.paths ol { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 40px; margin: 0; padding: 0; list-style: none; }
+.path {
+  display: inline-flex; align-items: baseline; gap: 10px; padding: 10px 0;
+  font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink);
+  transition: color 0.35s var(--ease);
+}
+.num { color: var(--signal-text); }
+@media (hover: hover) and (pointer: fine) { .path:hover { color: var(--signal-text); } }
+.path:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
+.path[aria-current='true'] { color: var(--signal-text); }
+.hint { margin: 18px 0 0; color: var(--ink-3); }
+
+@media (max-width: 760px) {
+  .root { height: 190svh; }
+  .hold { padding-top: 76px; }
+  .sentence { font-size: clamp(30px, 9vw, 44px); line-height: 1.04; }
+  .paths { margin-top: 5vh; }
+  .paths ol { flex-direction: column; align-items: center; gap: 2px; }
+}
+
+/* Reduced motion: no held scroll; the sentence is fully inked and simply sits on the page */
+@media (prefers-reduced-motion: reduce) {
+  .root { height: auto; margin-top: 0; }
+  .hold { position: static; height: auto; min-height: 100svh; }
+  .sentence .phrase { --fill: 100% !important; }
+}

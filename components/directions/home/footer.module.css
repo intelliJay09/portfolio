@@ -1,0 +1,22 @@
+/* The closing ground every page in the redesign ends on: "Say hello" and the ways to reach her.
+   It starts a pixel early: two sections end and begin on a fractional pixel, and without the
+   overlap a hairline of the page ground shows between them. */
+
+.footer { margin-top: -1px; padding: calc(14vh + 1px) var(--gut) 5vh; }
+.kicker { composes: label from './type.module.css'; margin: 0; }
+.hello {
+  display: inline-block; margin-top: 16px;
+  font-weight: 620; font-stretch: 125%; text-transform: uppercase;
+  font-size: clamp(64px, 13.4vw, 250px); line-height: 0.84; letter-spacing: -0.01em;
+  transition: color 0.4s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) { .hello:hover { color: var(--signal); } }
+.row { display: flex; flex-wrap: wrap; gap: 14px 32px; margin-top: 12vh; font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+.row a { display: inline-block; padding: 8px 0; }
+.row span { padding: 8px 0; color: var(--ink-3); margin-left: auto; }
+
+@media (max-width: 760px) {
+  /* The closing wordmark is the phone's big type: "HELLO" is 4.1em wide, so 21vw fills the line */
+  .hello { font-size: 21vw; }
+  .row span { margin-left: 0; }
+}

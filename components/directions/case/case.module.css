@@ -1,0 +1,197 @@
+/* A case study on the redesign's ground. Three voices, as everywhere in it: shout (the name, the
+   results, the next piece), voice (each section's statement, the quote), label (Plex Mono). A
+   section's part ("Build · the website") is a label; its big type is what it says. */
+
+.page { position: relative; }
+
+/* ================= What it is ================= */
+.open { padding: calc(88px + 14vh) var(--gut) 8vh; }
+/* Arriving: the portfolio opening's rise, one line after another. The name only settles (no fade):
+   it is often the largest thing in the first view, and a fade would hold back its first paint */
+@media (prefers-reduced-motion: no-preference) {
+  .open > * { animation: rise 1.1s var(--ease) both; }
+  .open > :nth-child(2) { animation-name: settle; animation-delay: 0.06s; }
+  .open > :nth-child(3) { animation-delay: 0.16s; }
+  .open > :nth-child(4) { animation-delay: 0.24s; }
+  .open > :nth-child(5) { animation-delay: 0.32s; }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(36px); } }
+@keyframes settle { from { transform: translateY(0.14em); } }
+.kicker { composes: label from '../home/type.module.css'; margin: 0; }
+.back { color: var(--ink); background: linear-gradient(currentColor, currentColor) 0 90% / 100% 1px no-repeat; }
+.title {
+  margin: 4vh 0 0; font-family: var(--h-sans); font-weight: 620; font-stretch: 125%; text-transform: uppercase;
+  font-size: clamp(52px, 10.4vw, 200px); line-height: 0.86; letter-spacing: -0.015em; text-wrap: balance;
+}
+.marks {
+  display: flex; gap: 14px; margin: 3.4vh 0 0;
+  font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-4);
+}
+.marks [data-lit] { color: var(--ink); }
+.line {
+  composes: voice from '../home/type.module.css';
+  margin: 5vh 0 0; max-width: 26ch; font-size: clamp(24px, 2.6vw, 40px); line-height: 1.12;
+}
+.facts {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 24px 4vw;
+  margin: 9vh 0 0; max-width: 1100px;
+}
+.facts dt { font-family: var(--h-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+.facts dd { margin: 8px 0 0; font-size: 17px; line-height: 1.45; }
+/* Links end in an arrow, which is the cue; no underline. Pointing at one shifts its colour. */
+.u { display: inline-block; padding: 4px 0; white-space: nowrap; transition: color 0.35s var(--ease); }
+@media (hover: hover) and (pointer: fine) { .u:hover { color: var(--signal-text); } .back:hover { background-size: 0 1px; background-position: 100% 90%; } }
+.back { transition: background-size 0.45s var(--ease); }
+
+/* The site in use, wide, with no device frame */
+.page .cover {
+  margin: 0 var(--gut); overflow: hidden; background: var(--paper-2);
+  box-shadow: 0 1px 2px rgb(22 22 20 / 0.06), 0 40px 80px -40px rgb(22 22 20 / 0.35);
+}
+.cover img { width: 100%; height: auto; }
+/* The directed recording brings its own frame, shadow and player */
+.page .coverDirected { margin: 0 var(--gut); }
+
+/* ================= Sections ================= */
+.section { padding: 18vh var(--gut) 0; }
+.chapter { margin-bottom: 7vh; }
+.chapterPart { composes: label from '../home/type.module.css'; margin: 0 0 3vh; color: var(--ink); }
+.chapterN { margin-right: 14px; color: var(--signal-text); }
+.statement {
+  composes: voice from '../home/type.module.css';
+  margin: 0; max-width: 21ch; font-size: clamp(32px, 4.2vw, 68px); line-height: 1.04;
+}
+.columns { display: grid; grid-template-columns: repeat(2, minmax(0, 40ch)); gap: 2.2em 5vw; color: var(--ink-2); }
+.columns p { margin: 0; }
+.columns + .columns, .table + .columns { margin-top: 6vh; }
+
+/* Build: the words on the left, the site on a phone on the right, cut to its first screen.
+   Both end on the same line, so neither leaves a gap under it. */
+.buildGrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 24vw); gap: 6vw; align-items: end; }
+.buildWords .chapter { margin-bottom: 6vh; }
+.buildText {
+  composes: voice from '../home/type.module.css';
+  margin: 0; max-width: 30ch; font-size: clamp(22px, 2vw, 32px); line-height: 1.2; color: var(--ink-2);
+}
+.page .phone {
+  margin: 0; overflow: hidden; background: var(--paper-2); aspect-ratio: 4 / 5;
+  box-shadow: 0 1px 2px rgb(22 22 20 / 0.06), 0 40px 80px -40px rgb(22 22 20 / 0.35);
+}
+.page .phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+/* Fix: the finding, as a table that reads like a sentence of numbers */
+.table { width: 100%; max-width: 980px; margin-top: 8vh; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.table caption { font-family: var(--h-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); caption-side: bottom; text-align: left; padding-top: 18px; }
+.table th, .table td { padding: 18px 16px 18px 0; text-align: left; font-weight: 400; vertical-align: baseline; }
+.table thead th { font-family: var(--h-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); padding-bottom: 14px; }
+.table tbody tr { box-shadow: inset 0 1px 0 var(--line); }
+.table tbody th { color: var(--ink); }
+.table td { color: var(--ink-2); }
+.rate { display: flex; align-items: center; gap: 16px; color: var(--ink) !important; }
+.bar { display: inline-block; width: min(180px, 16vw); height: 8px; background: rgb(22 22 20 / 0.08); }
+.bar > span { display: block; height: 100%; background: var(--signal); }
+
+.incidents { margin-top: 14vh; }
+.subLabel { composes: label from '../home/type.module.css'; margin: 0 0 3vh; color: var(--ink); }
+.caseList { margin: 0; padding: 0; list-style: none; max-width: 1100px; }
+.case { box-shadow: inset 0 1px 0 var(--line); }
+.caseList li:last-child .case { box-shadow: inset 0 1px 0 var(--line), inset 0 -1px 0 var(--line); }
+.summary {
+  display: grid; grid-template-columns: 96px minmax(0, 1fr) 24px; gap: 20px; align-items: baseline;
+  padding: 3.2vh 0; cursor: pointer; list-style: none;
+}
+.summary::-webkit-details-marker { display: none; }
+.summary:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
+.caseNum { composes: label from '../home/type.module.css'; color: var(--signal-text); }
+.caseTitle { composes: voice from '../home/type.module.css'; font-size: clamp(22px, 2.3vw, 36px); }
+.plus { position: relative; width: 16px; height: 16px; justify-self: end; }
+.plus::before, .plus::after { content: ''; position: absolute; left: 0; top: 50%; width: 16px; height: 1.5px; background: var(--ink); transition: transform 0.45s var(--ease); }
+.plus::after { transform: rotate(90deg); }
+.case[open] .plus::after { transform: rotate(0deg); }
+.caseRows { display: grid; gap: 18px; margin: 0 0 4vh; padding-left: 116px; max-width: 900px; }
+.caseRows div { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 20px; }
+.caseRows dt { font-family: var(--h-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); padding-top: 4px; }
+.caseRows dd { margin: 0; color: var(--ink-2); }
+
+/* What came of it: the numbers are the headlines */
+.results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9vh 5vw; margin: 0; padding: 0; list-style: none; max-width: 1240px; }
+/* One result fills the width: the figure as big as the page allows, its meaning at the right under it */
+.results[data-count='1'] { grid-template-columns: minmax(0, 1fr); max-width: none; }
+.results[data-count='1'] li { gap: 3vh; }
+.results[data-count='1'] .value { font-size: min(20.5vw, 400px); line-height: 0.84; }
+.results[data-count='1'] .valueLabel { justify-self: end; max-width: 34ch; font-size: clamp(17px, 1.5vw, 22px); line-height: 1.4; }
+.results li { display: grid; gap: 16px; align-content: start; }
+.value {
+  font-family: var(--h-sans); font-weight: 620; font-stretch: 125%; text-transform: uppercase;
+  /* "GHS 67,400" is the widest at about 8.6em, and it must fit half the page */
+  font-size: clamp(44px, 4.9vw, 112px); line-height: 0.9; letter-spacing: -0.02em; white-space: nowrap;
+}
+.valueLabel { max-width: 30ch; color: var(--ink-2); }
+.source { composes: label from '../home/type.module.css'; margin: 7vh 0 0; }
+
+/* Still open */
+.openList { display: grid; grid-template-columns: repeat(2, minmax(0, 40ch)); gap: 5vh 5vw; margin: 0; padding: 0; list-style: none; }
+.openTitle { composes: voice from '../home/type.module.css'; margin: 0 0 14px; font-size: clamp(20px, 1.8vw, 26px); }
+.openList p { margin: 0; color: var(--ink-2); }
+
+/* In their words: who said it on the left, what they said across the rest of the page */
+.page .quote {
+  margin: 0; padding: 22vh var(--gut) 0;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.3fr); grid-template-areas: 'cite quote'; column-gap: 5vw;
+}
+.quote blockquote { grid-area: quote; margin: 0; }
+.quoteText {
+  composes: voice from '../home/type.module.css';
+  margin: 0; font-size: clamp(28px, 3.5vw, 60px); line-height: 1.1;
+}
+.cite { composes: label from '../home/type.module.css'; grid-area: cite; padding-top: 1.2em; color: var(--ink); }
+.cite span { color: var(--ink-3); }
+
+/* The next piece: its name is the way on */
+.next { padding: 24vh var(--gut) 18vh; }
+.nextName {
+  display: inline-block; margin-top: 3vh;
+  font-family: var(--h-sans); font-weight: 620; font-stretch: 125%; text-transform: uppercase;
+  font-size: clamp(44px, 8.6vw, 164px); line-height: 0.88; letter-spacing: -0.015em;
+  transition: color 0.4s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) { .nextName:hover { color: var(--signal-text); } }
+
+/* ================= Phone ================= */
+@media (max-width: 760px) {
+  .open { padding: calc(76px + 8vh) var(--gut) 6vh; }
+  /* Archivo at 125% caps is about 0.95em a letter: the longest word always fits the line */
+  .title { font-size: min(13.4vw, calc((100vw - 2 * var(--gut)) / (var(--fit, 6) * 0.95))); }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 6vh; }
+  .section { padding-top: 13vh; }
+  .chapter { margin-bottom: 5vh; }
+  .statement { font-size: clamp(28px, 8.4vw, 40px); }
+  .columns, .openList { grid-template-columns: minmax(0, 1fr); }
+  .buildGrid { grid-template-columns: minmax(0, 1fr); gap: 6vh; }
+  .page .phone { width: 72vw; }
+  .buildText { font-size: 22px; }
+  .table thead { display: none; }
+  .table tr { display: grid; grid-template-columns: 1fr auto; padding: 14px 0; }
+  .table th, .table td { padding: 2px 0; }
+  .table td:not(.rate) { display: none; }
+  .bar { width: 22vw; }
+  .summary { grid-template-columns: minmax(0, 1fr) 20px; gap: 8px 14px; }
+  .caseNum { grid-column: 1 / -1; }
+  .caseRows { padding-left: 0; }
+  .caseRows div { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .results { grid-template-columns: minmax(0, 1fr); gap: 6vh; }
+  .value { font-size: 14vw; white-space: normal; }
+  .page .quote { padding-top: 15vh; grid-template-columns: minmax(0, 1fr); grid-template-areas: 'quote' 'cite'; row-gap: 4vh; }
+  .cite { padding-top: 0; }
+  .results[data-count='1'] .valueLabel { justify-self: start; }
+  .next { padding: 16vh var(--gut) 12vh; }
+  .nextName { font-size: 12vw; }
+}
+
+/* What I built: a short numbered list under the words, in the body size */
+.builtLabel { composes: label from '../home/type.module.css'; margin: 6vh 0 2vh; color: var(--ink); }
+.built { margin: 0; padding: 0; list-style: none; max-width: 46ch; }
+.built li { display: grid; grid-template-columns: 44px minmax(0, 1fr); padding: 14px 0; box-shadow: inset 0 1px 0 var(--line); }
+.built li:last-child { box-shadow: inset 0 1px 0 var(--line), inset 0 -1px 0 var(--line); }
+.builtN { font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--signal-text); padding-top: 4px; }
+.nowrap { white-space: nowrap; }

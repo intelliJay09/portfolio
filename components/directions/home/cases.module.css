@@ -1,0 +1,59 @@
+/* "Fix what breaks": three incident headlines in the statement voice, set large, separated by
+   space, not rules. Each opens (native <details>) to its write-up; where the browser can animate
+   it (Chrome 131+ ::details-content), the write-up unfolds, elsewhere it simply opens. */
+
+.root { position: relative; padding: 22vh var(--gut) 0; }
+.chapter { margin-bottom: 8vh; }
+.bridge { composes: voiceM from './type.module.css'; margin: 0 0 14vh; max-width: 26ch; }
+
+.list { display: grid; gap: 10vh; margin: 0; padding: 0; list-style: none; }
+.case { interpolate-size: allow-keywords; }
+.case::details-content {
+  block-size: 0; overflow: clip;
+  transition: block-size 0.6s var(--ease), content-visibility 0.6s allow-discrete;
+}
+.case[open]::details-content { block-size: auto; }
+
+.summary {
+  display: grid; grid-template-columns: 6.5em minmax(0, 1fr) 36px; gap: 2vw; align-items: baseline;
+  list-style: none; cursor: pointer; padding: 6px 0;
+}
+.summary::-webkit-details-marker { display: none; }
+.summary:focus-visible { outline: 2px solid var(--signal); outline-offset: 6px; }
+.num { composes: label from './type.module.css'; color: var(--signal-text); }
+.caseTitle {
+  composes: voice from './type.module.css';
+  font-size: clamp(34px, 5.6vw, 92px); line-height: 1; letter-spacing: -0.035em; max-width: 24ch;
+  transition: color 0.4s var(--ease);
+}
+.word { display: inline-block; }
+@media (hover: hover) and (pointer: fine) { .summary:hover .caseTitle { color: var(--ink-2); } }
+/* A plus that turns to a cross when open */
+.mark { position: relative; width: 28px; height: 28px; align-self: center; transition: transform 0.5s var(--ease); }
+.mark::before, .mark::after { content: ''; position: absolute; left: 50%; top: 50%; background: var(--ink); transform: translate(-50%, -50%); }
+.mark::before { width: 28px; height: 2px; }
+.mark::after { width: 2px; height: 28px; }
+.case[open] .mark { transform: rotate(45deg); }
+
+.rows { display: grid; gap: 14px; margin: 0; padding: 4vh 0 2vh calc(6.5em + 2vw); }
+.rows div { display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 16px; }
+.rowKey { composes: label from './type.module.css'; padding-top: 4px; letter-spacing: 0.08em; }
+.rows dd { margin: 0; max-width: 58ch; color: var(--ink-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .case::details-content { transition: none; }
+  .mark { transition: none; }
+}
+@media (max-width: 760px) {
+  .root { padding-top: 14vh; }
+  .chapter { margin-bottom: 6vh; }
+  .bridge { margin-bottom: 9vh; }
+  .list { gap: 7vh; }
+  .summary { grid-template-columns: minmax(0, 1fr) 24px; gap: 10px 16px; }
+  .num { grid-column: 1 / -1; }
+  .mark { width: 22px; height: 22px; }
+  .mark::before { width: 22px; }
+  .mark::after { height: 22px; }
+  .rows { padding-left: 0; }
+  .rows div { grid-template-columns: 1fr; gap: 4px; }
+}

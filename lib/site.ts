@@ -70,9 +70,9 @@ export const PAGES = {
       'Lifecycle and growth marketer and frontend developer in Accra. I started in customer success, and I build both the website and the automation behind it.',
   },
   portfolio: {
-    title: 'Work',
+    title: 'Portfolio',
     description:
-      'Websites, CRM and customer-journey automation I have built for clients in Ghana, including one client’s whole lifecycle from sign-up to win-back.',
+      'Websites, apps and CRMs I’ve built, the customer journeys I’ve automated for clients, and the times I fixed what broke.',
   },
   contact: {
     title: 'Contact',

@@ -1,0 +1,111 @@
+/* Run the journey, on ink. Default: the stages as a list, each with its emails in a row under it.
+   Live (desktop with motion, data-live from CaseMotion): the rail and its pulse on the left, the
+   stage on the right held in view (position: sticky, not a pin), showing the emails of the stage
+   at the middle of the screen. */
+
+.root { margin-top: 18vh; padding: 18vh var(--gut) 18vh; }
+.head { max-width: 1100px; }
+.part { composes: label from '../home/type.module.css'; margin: 0 0 3vh; color: var(--ink); }
+.n { margin-right: 14px; color: var(--signal-text); }
+.statement {
+  composes: voice from '../home/type.module.css';
+  margin: 0; max-width: 21ch; font-size: clamp(32px, 4.2vw, 68px); line-height: 1.04;
+}
+.intro { margin: 5vh 0 0; max-width: 46ch; color: var(--ink-2); }
+
+.body { margin-top: 12vh; }
+.rail { position: relative; }
+.stages { margin: 0; padding: 0; list-style: none; }
+
+/* The rail and its pulse, on the left edge of the stages */
+.track { position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--ink-4); }
+.fill { position: absolute; inset: 0; background: var(--signal); transform-origin: top; }
+
+.stage { position: relative; padding: 0 0 12vh 44px; }
+.dot {
+  position: absolute; left: -5px; top: 4px; width: 11px; height: 11px; border-radius: 50%;
+  background: var(--ink-ground); box-shadow: inset 0 0 0 1.5px var(--ink-3);
+  transition: background-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.stage[data-lit] .dot { background: var(--signal); box-shadow: inset 0 0 0 1.5px var(--signal); }
+.stageNum { composes: label from '../home/type.module.css'; margin: 0; }
+.stageName {
+  composes: voice from '../home/type.module.css';
+  margin: 14px 0 0; font-size: clamp(26px, 2.6vw, 42px); line-height: 1.08;
+}
+.rows { display: grid; gap: 16px; margin: 4vh 0 0; max-width: 560px; }
+.rows div { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 20px; }
+.rows dt { font-family: var(--h-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); padding-top: 4px; }
+.rows dd { margin: 0; color: var(--ink-2); }
+.result {
+  composes: voice from '../home/type.module.css';
+  margin: 4vh 0 0; max-width: 28ch; font-size: clamp(20px, 1.7vw, 26px); line-height: 1.25; color: var(--ink);
+}
+
+/* An email as sent, with when it goes and its subject */
+.mail { margin: 0; }
+.mailImg { overflow: hidden; background: var(--paper-2); }
+.mailImg img { width: 100%; height: auto; }
+.mailCap { display: grid; gap: 6px; margin-top: 14px; }
+.mailWhen { composes: label from '../home/type.module.css'; color: var(--signal-text); }
+.mailSubject { font-size: 15px; line-height: 1.4; }
+
+/* In the list: the stage's emails in a row that scrolls sideways, each cut at a readable height */
+.inline { display: flex; gap: 18px; margin: 5vh calc(-1 * var(--gut)) 0 0; padding-right: var(--gut); overflow-x: auto; scroll-snap-type: x mandatory; }
+.inline .mail { flex: 0 0 min(72vw, 330px); scroll-snap-align: start; }
+.inline .mailImg { max-height: 62svh; -webkit-mask-image: linear-gradient(#000 80%, transparent); mask-image: linear-gradient(#000 80%, transparent); }
+
+.kept { margin: 3vh 0 0; padding: 0; list-style: none; display: grid; gap: 8px; max-width: 620px; font-size: 15px; color: var(--ink-2); }
+.keptNote { color: var(--ink-3); }
+
+.viewer { display: none; }
+.beyond { margin: 4vh 0 0; max-width: 52ch; color: var(--ink-2); }
+
+/* ================= Live ================= */
+.root[data-live] .body { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr); column-gap: 5vw; }
+.root[data-live] .inline { display: none; }
+/* Each stage gives its emails room: about half a screen of scroll each */
+.root[data-live] .stage { min-height: calc(30svh + var(--emails) * 45svh); padding-bottom: 0; }
+.root[data-live] .stage:last-child { min-height: 50svh; }
+.root[data-live] .stageName { color: var(--ink-3); transition: color 0.5s var(--ease); }
+.root[data-live] .stage[data-lit] .stageName { color: var(--ink); }
+
+.root[data-live] .viewer { display: block; }
+.screen { position: sticky; top: 12svh; height: 76svh; }
+.slide { display: none; position: absolute; inset: 0; flex-direction: column; }
+.slide[data-prev] { display: flex; z-index: 1; }
+.slide[data-on] { display: flex; z-index: 2; animation: wipe 0.8s var(--ease) both; background: var(--ink-ground); }
+@keyframes wipe { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+.slideLabel { composes: label from '../home/type.module.css'; margin: 0; }
+/* An email at size: when it goes and its subject above, the email itself below, read from the top */
+.slideHead { display: grid; gap: 10px; margin-bottom: 3vh; }
+.slideSubject { composes: voice from '../home/type.module.css'; margin: 0; max-width: 26ch; font-size: clamp(22px, 1.9vw, 30px); line-height: 1.15; }
+.slideImg {
+  flex: 1; min-height: 0; overflow: hidden; background: var(--paper-2);
+  -webkit-mask-image: linear-gradient(#000 84%, transparent); mask-image: linear-gradient(#000 84%, transparent);
+}
+.slideImg img { width: 100%; height: auto; }
+/* A stage with no email to show says why, in the statement voice */
+.slideText { justify-content: center; gap: 3vh; }
+.slideText:has(.slideSite) { justify-content: flex-start; }
+.slideResult {
+  composes: voice from '../home/type.module.css';
+  margin: 0; max-width: 16ch; font-size: clamp(36px, 3.8vw, 64px); line-height: 1.04;
+}
+.slideKept { display: grid; gap: 3vh; margin: 0; padding: 0; list-style: none; }
+.slideKept li { font-family: var(--h-sans); font-weight: 500; font-stretch: 100%; letter-spacing: -0.025em; display: grid; gap: 10px; max-width: 22ch; font-size: clamp(26px, 2.6vw, 42px); line-height: 1.08; }
+.slideNote { composes: label from '../home/type.module.css'; margin: 0; }
+
+@media (max-width: 760px) {
+  .root { margin-top: 13vh; padding: 13vh var(--gut); }
+  .body { margin-top: 8vh; }
+  .stage { padding-left: 28px; }
+  .rows div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+}
+
+/* A step that happens on the site shows the site, under its label */
+.slideSite { overflow: hidden; background: var(--paper-2); box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.6); }
+.slideSite img { width: 100%; height: auto; }
+.root .inlineScreen { margin: 5vh 0 0; max-width: 560px; overflow: hidden; background: var(--paper-2); }
+.inlineScreen img { width: 100%; height: auto; }
+.root[data-live] .inlineScreen { display: none; }

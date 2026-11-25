@@ -1,0 +1,22 @@
+/* The form's landing screens. The sentence is the page; the ways on are the next-largest thing. */
+
+.page { min-height: 86svh; padding: calc(88px + 16vh) var(--gut) 18vh; }
+.kicker { composes: label from '../home/type.module.css'; margin: 0; }
+.title {
+  composes: voice from '../home/type.module.css';
+  margin: 4vh 0 0; font-size: clamp(44px, 7vw, 128px); line-height: 0.96; letter-spacing: -0.04em;
+}
+.line { margin: 5vh 0 0; max-width: 44ch; font-size: clamp(17px, 1.35vw, 20px); color: var(--ink-2); }
+.ways { display: flex; flex-wrap: wrap; gap: 2vh 5vw; margin: 10vh 0 0; padding: 0; list-style: none; }
+.way {
+  display: inline-block; padding: 6px 0;
+  font-family: var(--h-sans); font-weight: 500; font-size: clamp(22px, 2.2vw, 34px); letter-spacing: -0.02em;
+  transition: color 0.35s var(--ease); overflow-wrap: anywhere;
+}
+@media (hover: hover) and (pointer: fine) { .way:hover { color: var(--signal-text); } }
+
+@media (max-width: 760px) {
+  .page { padding: calc(76px + 10vh) var(--gut) 12vh; }
+  .title { font-size: clamp(40px, 12vw, 60px); }
+  .ways { flex-direction: column; margin-top: 7vh; }
+}

@@ -1,0 +1,5 @@
+.chapter { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 32px; }
+.title { composes: label from './type.module.css'; margin: 0; color: var(--ink); }
+.role { composes: label from './type.module.css'; margin: 0; }
+.n { margin-right: 14px; color: var(--signal-text); }
+.pick { color: var(--signal-text); }

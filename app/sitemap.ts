@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import content from '../content.json'
+import { caseStudySlugs } from '../lib/case-studies'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://jacquelineamoako.com'
@@ -33,10 +33,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Case study pages: content.json is the one source, only projects flagged caseStudy have a page
-  const portfolioProjects = content.portfolio.projects
-    .filter((p) => 'caseStudy' in p && p.caseStudy)
-    .map((p) => p.slug)
+  // Case study pages: lib/case-studies.ts is the one source, the same list the pages render from
+  const portfolioProjects = caseStudySlugs()
 
   const portfolioPages = portfolioProjects.map((slug) => ({
     url: `${baseUrl}/portfolio/${slug}`,

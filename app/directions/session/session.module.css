@@ -1,0 +1,206 @@
+/* Direction C, "Live session". A bright working page where her cursor is the only colour.
+   Display and text: Bricolage Grotesque (optical size follows the type size).
+   Labels: DM Mono. Accent: cobalt, used only for her cursor and what it touches. */
+
+.root {
+  --paper: #f5f4f0;
+  --ink: #121212;
+  --ink-2: rgb(18 18 18 / 0.7);
+  --ink-3: rgb(18 18 18 / 0.52);
+  --cobalt: #2a44f5;
+  --gut: max(16px, 4vw);
+  --ease: cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--s-sans), system-ui, sans-serif;
+  font-optical-sizing: auto;
+  font-size: 17px;
+  line-height: 1.5;
+}
+.root ::selection { background: var(--cobalt); color: #fff; }
+.root a { color: inherit; text-decoration: none; }
+.root a:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 4px; border-radius: 2px; }
+.root figure { margin: 0; }
+.root img { display: block; width: 100%; height: auto; }
+
+.skip { position: absolute; left: var(--gut); top: -60px; z-index: 100; padding: 10px 14px; background: var(--ink); color: var(--paper) !important; }
+.skip:focus { top: 16px; }
+
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 60;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px var(--gut);
+  font-size: 15px; font-weight: 500;
+  color: #fff; mix-blend-mode: difference;
+}
+.nav ul { display: flex; gap: 26px; margin: 0; padding: 0; list-style: none; }
+.nav a { display: inline-block; padding: 10px 0; }
+@media (hover: hover) and (pointer: fine) {
+  .nav a { background: linear-gradient(currentColor, currentColor) 0 82% / 0 1.5px no-repeat; transition: background-size 0.45s var(--ease); }
+  .nav a:hover { background-size: 100% 1.5px; }
+}
+
+/* ---------- Her cursor ---------- */
+.cursor {
+  position: absolute; left: 0; top: 0; z-index: 40; pointer-events: none;
+  display: block; will-change: transform;
+}
+.cursor svg { display: block; filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.2)); }
+.cursor path { fill: var(--cobalt); stroke: #fff; stroke-width: 1.6; stroke-linejoin: round; }
+.cursorLabel {
+  position: absolute; left: 16px; top: 22px;
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+  padding: 4px 11px 4px 4px; border-radius: 999px;
+  background: var(--cobalt); color: #fff;
+  font-family: var(--s-mono); font-size: 12px; line-height: 1;
+}
+.cursorLabel img { width: 20px !important; height: 20px !important; border-radius: 50%; object-fit: cover; }
+.heroCursor { opacity: 0; visibility: hidden; }
+.stageCursor { opacity: 0; visibility: hidden; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; min-height: 100vh; min-height: 100svh;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.62fr); align-items: end;
+  padding: 0 var(--gut); overflow: hidden;
+}
+.heroText { align-self: center; padding-top: 10vh; position: relative; z-index: 2; }
+.h1 {
+  margin: 0; font-family: var(--s-sans); font-weight: 640; font-variation-settings: 'wdth' 92;
+  font-size: clamp(60px, 10.4vw, 200px); line-height: 0.86; letter-spacing: -0.045em;
+}
+.h1 span { display: block; }
+.line { max-width: 27ch; margin: 5vh 0 0; font-size: clamp(22px, 2.15vw, 34px); line-height: 1.22; letter-spacing: -0.01em; }
+.markWord {
+  --mark: 0;
+  background: linear-gradient(var(--cobalt), var(--cobalt)) 0 96% / calc(var(--mark) * 100%) 2px no-repeat;
+}
+.meta { margin: 4vh 0 0; font-family: var(--s-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--ink-3); }
+.portrait { align-self: end; justify-self: end; width: min(34vw, 560px); margin-right: 1vw; }
+.portrait img { filter: grayscale(1) contrast(1.04); }
+.cue {
+  position: absolute; left: var(--gut); bottom: 4vh; margin: 0;
+  font-family: var(--s-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--ink-2);
+}
+
+/* ---------- The session ---------- */
+.session { position: relative; height: 560vh; }
+.stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.site {
+  position: absolute; left: 38%; top: 12%; width: 55%; height: 76%;
+  overflow: hidden; border-radius: 14px; background: #1a1612;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.08), 0 50px 100px rgb(0 0 0 / 0.14);
+}
+.siteScroll { will-change: transform; }
+.mail {
+  position: absolute; right: 4%; width: 27%; opacity: 0; visibility: hidden;
+  border-radius: 10px; overflow: hidden; box-shadow: 0 30px 70px rgb(0 0 0 / 0.16);
+}
+.mailOne { top: 10%; }
+.mailTwo { top: 50%; right: 9%; }
+
+.dots { position: absolute; left: 38%; right: 7%; top: 34%; opacity: 0; visibility: hidden; }
+.dots ol { position: relative; display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 0.9vw; margin: 0; padding: 0; list-style: none; }
+.dots li {
+  --sent: 0;
+  aspect-ratio: 1; border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--cobalt) calc(30% + var(--sent) * 70%), var(--ink-3));
+  background: color-mix(in srgb, var(--cobalt) calc(var(--sent) * 100%), transparent);
+}
+.marquee {
+  position: absolute; left: -2%; top: -14%; width: 104%; height: 128%; z-index: 1;
+  border: 1px solid var(--cobalt); background: rgb(42 68 245 / 0.08);
+}
+.dotsCount { margin: 4vh 0 0; font-family: var(--s-mono); font-size: 14px; color: var(--ink-2); }
+
+.captions { position: absolute; left: var(--gut); bottom: 12vh; width: min(29vw, 460px); z-index: 30; }
+.caption { position: absolute; left: 0; bottom: 0; width: 100%; opacity: 0; visibility: hidden; }
+.capLabel { margin: 0; font-family: var(--s-mono); font-size: 12px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cobalt); }
+.capTitle { margin: 12px 0 0; font-family: var(--s-sans); font-weight: 640; font-size: clamp(30px, 3.2vw, 54px); line-height: 0.98; letter-spacing: -0.03em; }
+.capBody { margin: 14px 0 0; color: var(--ink-2); max-width: 40ch; }
+.capLinks { display: flex; gap: 22px; margin: 16px 0 0; font-family: var(--s-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+.capLinks a { display: inline-block; padding: 6px 0; background: linear-gradient(currentColor, currentColor) 0 88% / 100% 1px no-repeat; }
+.counter { margin: 18px 0 0; font-size: clamp(30px, 3.2vw, 54px); font-weight: 640; letter-spacing: -0.03em; color: var(--cobalt); }
+
+/* Captions sit on the paper beside the site, so the site steps up while one shows */
+.stage .site { transition: none; }
+
+.ripple {
+  position: absolute; left: 0; top: 0; width: 44px; height: 44px; margin: -22px 0 0 -22px; z-index: 39;
+  border-radius: 50%; border: 2px solid var(--cobalt); opacity: 0; visibility: hidden; pointer-events: none;
+}
+
+/* ---------- More work ---------- */
+.work { padding: 24vh 0 0; overflow: hidden; }
+.h2 {
+  margin: 0 var(--gut); font-family: var(--s-sans); font-weight: 640;
+  font-size: clamp(48px, 7vw, 132px); line-height: 0.9; letter-spacing: -0.04em;
+}
+.rowWrap { margin-top: 10vh; }
+.row { display: flex; gap: 2.4vw; margin: 0; padding: 0 var(--gut); list-style: none; width: max-content; will-change: transform; }
+.row li { width: 19vw; }
+.row a { display: block; }
+.shot { display: block; border-radius: 22px; overflow: hidden; }
+.shot img { transition: transform 0.9s var(--ease); }
+@media (hover: hover) and (pointer: fine) { .row a:hover .shot img { transform: scale(1.04); } }
+.shotName { display: block; margin-top: 16px; font-weight: 600; font-size: 22px; letter-spacing: -0.02em; }
+.shotLine { display: block; margin-top: 4px; color: var(--ink-3); font-size: 15px; }
+
+/* ---------- Teaching ---------- */
+.teach { display: grid; grid-template-columns: minmax(0, 60fr) minmax(0, 32fr); gap: 5vw; align-items: end; padding: 26vh var(--gut) 0; }
+.teachImage { border-radius: 14px; overflow: hidden; }
+.teachText p { margin: 16px 0 0; font-size: clamp(22px, 2vw, 30px); line-height: 1.22; letter-spacing: -0.01em; }
+
+/* ---------- Footer ---------- */
+.footer { padding: 28vh var(--gut) 5vh; }
+.helloWrap { position: relative; width: fit-content; }
+.hello {
+  display: inline-block; margin-top: 14px; font-weight: 640;
+  font-size: clamp(80px, 15vw, 290px); line-height: 0.84; letter-spacing: -0.055em;
+  transition: color 0.4s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) { .hello:hover { color: var(--cobalt); } }
+.footCursor { left: auto; top: auto; right: -40px; bottom: -10px; opacity: 0; visibility: hidden; }
+.footRow { display: flex; flex-wrap: wrap; gap: 12px 30px; margin-top: 12vh; font-size: 15px; }
+.footRow a { display: inline-block; padding: 8px 0; }
+.footRow span { padding: 8px 0; color: var(--ink-3); margin-left: auto; }
+
+/* ---------- Phone ---------- */
+@media (max-width: 760px) {
+  .nav { font-size: 14px; }
+  .nav ul { gap: 16px; }
+  .mark { max-width: 9ch; line-height: 1.15; }
+  .hero { grid-template-columns: 1fr; align-items: start; }
+  .heroText { padding-top: 16vh; }
+  .h1 { font-size: clamp(52px, 16vw, 96px); }
+  .line { font-size: 21px; }
+  .portrait { position: absolute; right: -4vw; bottom: 0; width: 48vw; z-index: 1; }
+  .heroText { z-index: 2; }
+  .meta { max-width: 50vw; }
+  .site { left: 4%; top: 16%; width: 92%; height: 50%; border-radius: 12px; }
+  .mail { width: 62%; right: 4%; }
+  .mailOne { top: 30%; }
+  .mailTwo { top: 50%; right: 8%; }
+  .dots { top: 30%; left: 4%; right: 4%; }
+  .dots ol { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+  .captions { left: var(--gut); right: var(--gut); width: auto; bottom: 4vh; }
+  .capBody { font-size: 15px; }
+  .row li { width: 56vw; }
+  .teach { grid-template-columns: 1fr; gap: 24px; }
+  .footRow span { margin-left: 0; }
+  .footCursor { right: 0; bottom: -46px; }
+}
+
+/* ---------- Reduced motion: three plain panels, no cursor ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cursor, .ripple, .marquee { display: none; }
+  .session { height: auto; }
+  .stage { position: relative; height: auto; overflow: visible; display: grid; gap: 8vh; padding: 12vh var(--gut); }
+  .site { position: relative; inset: auto; width: 100%; height: 70vh; }
+  .mail { position: relative; inset: auto; width: min(560px, 100%); opacity: 1; visibility: visible; }
+  .dots { position: relative; inset: auto; opacity: 1; visibility: visible; }
+  .dots li { --sent: 1; }
+  .captions { position: relative; inset: auto; width: auto; display: grid; gap: 8vh; }
+  .caption { position: relative; opacity: 1; visibility: visible; }
+}

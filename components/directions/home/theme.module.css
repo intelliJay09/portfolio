@@ -1,0 +1,63 @@
+/* The redesign's ground, shared by every page built in it (the homepage, the portfolio).
+   Ink for the portrait and the closing chapter, paper for everything else, one signal colour that
+   only marks the next step. Display: Archivo at 125% width, in caps. Text: Archivo 400.
+   Labels: IBM Plex Mono. A page's root class composes .theme. */
+
+.theme {
+  --ink-ground: #121210;
+  --bone: #ece9e2;
+  --bone-2: rgb(236 233 226 / 0.72);
+  --bone-3: rgb(236 233 226 / 0.56);
+  --paper: #ecebe6;
+  --paper-2: #f6f5f1;
+  --ink: #161614;
+  --ink-2: rgb(22 22 20 / 0.7);
+  /* Small labels and captions: 62% is the lightest that clears 4.5:1 on both papers (4.75 and 4.91) */
+  --ink-3: rgb(22 22 20 / 0.62);
+  --ink-4: rgb(22 22 20 / 0.28);
+  --line: rgb(22 22 20 / 0.32);
+  --signal: #f2471a;
+  /* The same hue, deeper, for small text on paper: #f2471a is 3.1:1 there (graphics only), this is 4.7:1 */
+  --signal-text: #c23006;
+  --gut: max(16px, 4vw);
+  --ease: cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--h-sans), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+}
+.theme ::selection { background: var(--signal); color: var(--paper-2); }
+.theme a { color: inherit; text-decoration: none; }
+.theme a:focus-visible, .theme button:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
+/* A link's arrow (shared/Arrow) leans the way it points while the link is pointed at or focused:
+   → forward, ↗ up and out. In em, so it moves in proportion at any size, from a label to "Portfolio →" */
+.theme [data-arrow] { display: inline-block; transition: transform 0.45s var(--ease); }
+@media (hover: hover) and (pointer: fine) {
+  .theme a:hover [data-arrow='on'] { transform: translateX(0.22em); }
+  .theme a:hover [data-arrow='out'] { transform: translate(0.14em, -0.14em); }
+}
+.theme a:focus-visible [data-arrow='on'] { transform: translateX(0.22em); }
+.theme a:focus-visible [data-arrow='out'] { transform: translate(0.14em, -0.14em); }
+@media (prefers-reduced-motion: reduce) { .theme [data-arrow] { transition: none; } }
+.theme figure { margin: 0; }
+/* A Build/Run/Fix mark that doesn't apply is drawn faint as decoration, not text: screen readers
+   hear only the marks that apply, and the faint word isn't held to text contrast (WCAG 1.4.3) */
+.theme [data-mark]::before { content: attr(data-mark); }
+.theme img, .theme video { display: block; width: 100%; height: auto; }
+
+/* The ink ground. A section with data-tone="ink" flips the tokens, so everything inside it
+   (the recording player, the field, the links) reads on dark without restyling. */
+.theme [data-tone='ink'] {
+  --ink: var(--bone); --ink-2: var(--bone-2); --ink-3: var(--bone-3); --ink-4: rgb(236 233 226 / 0.28);
+  --line: rgb(236 233 226 / 0.32); --paper: var(--ink-ground); --paper-2: var(--ink-ground);
+  --signal-text: var(--signal); /* 5.1:1 on the ink */
+  background: var(--ink-ground); color: var(--ink);
+}
+
+.skip { position: absolute; left: var(--gut); top: -60px; z-index: 100; padding: 10px 14px; background: var(--ink); color: var(--paper) !important; }
+.skip:focus { top: 16px; }
+
+/* Visually hidden, still read aloud */
+.sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

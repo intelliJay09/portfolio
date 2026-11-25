@@ -1,0 +1,42 @@
+/* A piece's media. In a row it sits in the flow at its own shape; on the stage it fills one
+   16:10 frame (the stage sets the frame's size). Which lens is visible is the register's job. */
+
+.frame { position: relative; overflow: hidden; background: var(--paper-2); }
+.img, .video { width: 100%; height: auto; }
+
+/* A site: its desktop homepage, and on a phone its phone homepage, cut at the fold */
+.phone { display: none; }
+@media (max-width: 760px) {
+  .frame[data-where='row'] .desk { display: none; }
+  .frame[data-where='row'] .phone { display: block; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; }
+}
+
+/* A phone recording stands in the middle of an ink ground */
+.tall { display: flex; justify-content: center; background: var(--ink-ground); padding: 32px 0; }
+.tall .video { width: auto; height: min(70svh, 560px); }
+
+/* The emails a journey sends, side by side, read from the top */
+.emails {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 3%;
+  align-items: start; padding: 5% 6% 0; aspect-ratio: 16 / 10; box-sizing: border-box;
+}
+.email { box-shadow: 0 1px 2px rgb(22 22 20 / 0.08), 0 18px 40px -18px rgb(22 22 20 / 0.28); }
+
+/* The incidents, on ink */
+.cases { display: flex; align-items: center; padding: 6% 7%; box-sizing: border-box; aspect-ratio: 16 / 10; }
+.caseList { display: grid; gap: 2.4em; margin: 0; padding: 0; list-style: none; }
+.caseList li { display: grid; gap: 8px; }
+.caseNum { composes: label from '../home/type.module.css'; color: var(--signal-text); }
+.caseTitle { composes: voice from '../home/type.module.css'; font-size: clamp(20px, 2vw, 30px); max-width: 24ch; }
+
+/* On the stage everything fills the frame */
+.frame[data-where='stage'] { position: absolute; inset: 0; aspect-ratio: auto; }
+.frame[data-where='stage'] .img, .frame[data-where='stage']:not(.tall) .video { height: 100%; object-fit: cover; object-position: top; }
+.frame[data-where='stage'].tall .video { height: 100%; }
+
+@media (max-width: 760px) {
+  .emails { aspect-ratio: 4 / 5; padding: 8% 6% 0; }
+  .emails .email:nth-child(n + 3) { display: none; }
+  .cases { aspect-ratio: auto; padding: 36px 22px; }
+  .caseTitle { font-size: 21px; }
+}

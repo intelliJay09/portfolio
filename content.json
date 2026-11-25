@@ -16,89 +16,6 @@
       "你好"
     ]
   },
-  "about": {
-    "mission": {
-      "intro": "As the sole female developer in the GIZ and GEA \"Digitalize for Jobs\" program, I trained more than 100 women entrepreneurs across Ghana in the digital skills their businesses needed.",
-      "points": [
-        "Trained more than 100 women entrepreneurs across Ghana in the digital skills their businesses needed",
-        "Taught websites, social media and digital literacy through hands-on training sessions"
-      ],
-      "conclusion": "That experience shaped how I work. Technology only matters if the person using it can run their business with it, so I build for the person on the other side of the screen."
-    },
-    "whyPartnerWithMe": {
-      "title": "How I Work",
-      "differentiators": [
-        {
-          "title": "I Start With The Customer",
-          "description": "I started in customer success, and I still plan every message from the customer's side of the screen before I open a tool."
-        },
-        {
-          "title": "Every Stage Is Its Own Problem",
-          "description": "Sign-up, payment, onboarding, the day itself, the days after, win-back. Each one has its own timing and its own message."
-        },
-        {
-          "title": "Messages That Wait For A Real Moment",
-          "description": "Every sequence checks before it sends, so someone who has already paid or booked never gets the email that no longer applies."
-        },
-        {
-          "title": "I Build The Product Fix Myself",
-          "description": "I am also a frontend developer, so when the fix belongs in the product and not the inbox, I can ship it."
-        }
-      ]
-    },
-    "idealClient": {
-      "title": "Where I Have Worked",
-      "intro": "Customer-facing and technical roles, in Accra and remote.",
-      "criteria": [
-        {
-          "characteristic": "Zera | Automated Revenue Systems",
-          "description": "Lifecycle Marketing & CRM Automation Lead (Founder), September 2024 to now. I run customer lifecycle, CRM and automation for clients."
-        },
-        {
-          "characteristic": "Command Space",
-          "description": "Frontend Developer, July 2024 to now. Remote, on an eight-person team."
-        },
-        {
-          "characteristic": "Royal i-tech",
-          "description": "Web Developer, August 2022 to May 2024."
-        },
-        {
-          "characteristic": "BLUETOWN",
-          "description": "Customer Success Manager, November 2020 to January 2022. I owned accounts from the first conversation through to conversion, at 90% customer satisfaction."
-        }
-      ],
-      "notIdealFor": {
-        "title": "Before That",
-        "criteria": [
-          "DerkOnline: Frontend Developer, freelance, April 2019 to September 2024",
-          "miLife Insurance: Customer Service Specialist, October 2019 to October 2020",
-          "WopeDigital: Customer Support Specialist, internship, January to March 2019"
-        ]
-      }
-    },
-    "uniqueApproach": {
-      "title": "What It Has Produced",
-      "philosophy": "A few results, each one from real client work.",
-      "principles": [
-        {
-          "principle": "240% More Qualified Leads",
-          "explanation": "A lead-capture and nurture pipeline for one client."
-        },
-        {
-          "principle": "35% Higher Customer Lifetime Value",
-          "explanation": "Lifecycle automation for a logistics company."
-        },
-        {
-          "principle": "9 Of 114 Came Back",
-          "explanation": "Five emails to past attendees of a leadership programme brought nine of them back as paying customers, worth GHS 14,050."
-        },
-        {
-          "principle": "1,695 Emails, None Sent By Hand",
-          "explanation": "One client's whole customer journey, from sign-up to win-back, running on its own for 194 people."
-        }
-      ]
-    }
-  },
   "portfolio": {
     "headline": "Selected work",
     "intro": "Websites, CRM and customer-journey automation for clients in Ghana. Start with Gwen Addo: her whole customer journey, from the first sign-up to the next cohort.",
@@ -188,26 +105,6 @@
         "category": "Websites",
         "strategicCategory": "Real Estate Development",
         "strategicFilter": "Premium Lead Generation",
-        "stack": ["WordPress"]
-      },
-      {
-        "slug": "ghana-optometric-association",
-        "caseStudy": true,
-        "title": "Ghana Optometric Association",
-        "short_description": "Professional association portal with member management",
-        "category": "Websites",
-        "strategicCategory": "Professional Association",
-        "strategicFilter": "Premium Brand Authority",
-        "stack": ["WordPress"]
-      },
-      {
-        "slug": "twist-nightclub",
-        "caseStudy": true,
-        "title": "Twist Night Club",
-        "short_description": "Dynamic entertainment venue with events calendar",
-        "category": "Websites",
-        "strategicCategory": "Nightlife & Entertainment",
-        "strategicFilter": "Premium Brand Authority",
         "stack": ["WordPress"]
       },
       {

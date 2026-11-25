@@ -1,55 +1,48 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import CaseStudy from '../../../components/case-study/CaseStudy'
-import LegacyCaseStudy from '../../../components/case-study/LegacyCaseStudy'
+import Shell from '../../../components/directions/home/Shell'
+import Study from '../../../components/directions/case/CaseStudyPage'
 import { getCaseStudy } from '../../../lib/case-studies'
-import content from '../../../content.json'
 
 type Params = { params: Promise<{ slug: string }> }
 
-// content.json is the one source keyed by slug; only projects flagged caseStudy have a page
-const getLegacyProject = (slug: string) =>
-  content.portfolio.projects.find((p) => p.slug === slug && 'caseStudy' in p && p.caseStudy)
-
+// Every case study lives in lib/case-studies.ts. A slug without one is a 404.
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params
   const study = getCaseStudy(slug)
+  if (!study) return {}
   const url = `https://jacquelineamoako.com/portfolio/${slug}`
+  // The deep studies have a made-to-size share card; the website studies share the site's own homepage
+  const og = study.ogImage === study.cover.src
+    ? { url: study.ogImage, width: study.cover.width, height: study.cover.height }
+    : { url: study.ogImage, width: 1200, height: 630 }
 
-  if (study) {
-    return {
-      // The portfolio layout sets a plain title, which drops the root template, so the suffix is explicit
-      title: { absolute: `${study.metaTitle} | Jacqueline Amoako` },
+  return {
+    // The portfolio layout sets a plain title, which drops the root template, so the suffix is explicit
+    title: { absolute: `${study.metaTitle} | Jacqueline Amoako` },
+    description: study.metaDescription,
+    alternates: { canonical: url },
+    openGraph: {
+      title: study.metaTitle,
       description: study.metaDescription,
-      alternates: { canonical: url },
-      openGraph: {
-        title: study.metaTitle,
-        description: study.metaDescription,
-        url,
-        type: 'article',
-        images: [{ url: study.ogImage, width: 1200, height: 630, alt: `${study.title} case study` }],
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: study.metaTitle,
-        description: study.metaDescription,
-        images: [study.ogImage],
-      },
-    }
+      url,
+      type: 'article',
+      images: [{ ...og, alt: `${study.title} case study` }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: study.metaTitle,
+      description: study.metaDescription,
+      images: [study.ogImage],
+    },
   }
-
-  const project = getLegacyProject(slug)
-  return project
-    ? { title: { absolute: `${project.title} | Jacqueline Amoako` }, alternates: { canonical: url } }
-    : {}
 }
 
 export default async function CaseStudyPage({ params }: Params) {
   const { slug } = await params
   const study = getCaseStudy(slug)
-  if (study) return <CaseStudy study={study} />
-  // notFound() must run here on the server: called from the client component it renders
-  // Next's bare error shell, which has no Trusted Types policy, and the CSP then crashes the page
-  if (!getLegacyProject(slug)) notFound()
-  return <LegacyCaseStudy />
+  // notFound() must run here on the server: called from a client component it renders Next's bare
+  // error shell, which has no Trusted Types policy, and the CSP then crashes the page
+  if (!study) notFound()
+  return <Shell><Study study={study} /></Shell>
 }

@@ -1,0 +1,51 @@
+/* A directed recording: a frame (holds the shadow), a lens (clips, and is what a stage wipes),
+   the recording inside it (which the camera moves), then the player: a rail with a mark for each
+   step, play/pause, the clock and the caption. Used by Featured work and the lifecycle section. */
+
+.screen { --player-h: 82px; } /* rail plus up to two lines of caption */
+.frame { position: relative; aspect-ratio: 16 / 10; box-shadow: 0 40px 90px -50px rgb(22 22 20 / 0.55); }
+.lens { position: absolute; inset: 0; overflow: hidden; background: var(--paper); }
+.video, .still {
+  position: absolute; inset: 0; width: 100% !important; height: 100% !important;
+  object-fit: cover; object-position: top center;
+}
+.video { transform-origin: 0 0; will-change: transform; opacity: 0; transition: opacity 0.4s ease; }
+/* The video covers the still once it has started (direct.ts marks it) */
+.video[data-playing] { opacity: 1; }
+
+.player { padding-top: 10px; }
+.rail { position: relative; height: 24px; }
+.rail::before, .rail::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; pointer-events: none; }
+.rail::before { height: 1px; background: var(--line); }
+.rail::after { height: 2px; margin-top: -0.5px; background: var(--ink); transform: scaleX(var(--p)); transform-origin: 0 50%; }
+.step {
+  position: absolute; top: 0; z-index: 1; width: 24px; height: 24px; margin-left: -12px; padding: 0;
+  border: 0; background: none; cursor: pointer;
+}
+.step::before {
+  content: ''; position: absolute; left: 50%; top: 50%; width: 1px; height: 9px; transform: translate(-50%, -50%);
+  background: var(--ink-3); transition: height 0.3s var(--ease), background-color 0.3s var(--ease);
+}
+.step:first-child { margin-left: 0; }
+.step:first-child::before { left: 0.5px; }
+@media (hover: hover) and (pointer: fine) { .step:hover::before { height: 17px; background: var(--ink); } }
+.step:focus-visible { outline: 2px solid var(--signal); outline-offset: -4px; }
+.step:focus-visible::before { height: 17px; background: var(--ink); }
+
+.controls { display: flex; gap: 22px; align-items: baseline; min-width: 0; }
+.toggle {
+  flex: none; min-height: 24px; padding: 4px 0; border: 0; cursor: pointer; color: var(--ink);
+  font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  background: linear-gradient(currentColor, currentColor) 0 92% / 100% 1px no-repeat;
+}
+.toggle:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
+.cue {
+  margin: 0; display: flex; gap: 14px; align-items: baseline; min-width: 0;
+  font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
+}
+.cueTime { color: var(--signal-text); font-variant-numeric: tabular-nums; flex: none; }
+.cueTime::before { content: ''; display: inline-block; width: 6px; height: 6px; margin: 0 10px 1px 0; border-radius: 50%; background: currentColor; }
+
+@media (max-width: 760px) {
+  .controls { gap: 16px; }
+}

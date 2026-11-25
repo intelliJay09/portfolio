@@ -1,0 +1,89 @@
+/* Build the software.
+   Default (no JS, reduced motion, below 1024px): a chapter mark, then a plain list, each piece its
+   name, its directed recording (Directed.tsx), then its details.
+   Stage (desktop with motion, set by FeaturedMotion as data-live): the chapter mark, the three
+   names in one line across the top, one screen under them, the details below, all held in view
+   (position: sticky) while the track scrolls past, so each piece takes one screen's worth of scroll.
+   There is no section heading above the stage: the names are the headlines. */
+
+.root { position: relative; padding-top: 14vh; }
+.root[data-live] { padding-top: 0; }
+
+.track { position: relative; padding: 0 var(--gut); }
+.stage { display: grid; gap: 14vh; }
+.chapter { margin-bottom: -6vh; }
+.piece { display: grid; gap: 22px; scroll-margin-top: 80px; }
+
+.meta {
+  composes: label from './type.module.css';
+  margin: 0 0 10px;
+}
+.name {
+  margin: 0; font-family: var(--h-sans); font-weight: 620; font-stretch: 125%; text-transform: uppercase;
+  font-size: clamp(44px, 7vw, 112px); line-height: 0.9; letter-spacing: -0.01em;
+}
+.name .nameLink { display: inline-block; text-decoration: none; white-space: nowrap; color: var(--ink); }
+.nameLink:focus-visible { outline: 2px solid var(--signal); outline-offset: 6px; }
+
+.body { display: grid; grid-template-columns: minmax(0, 46ch) auto; justify-content: space-between; gap: 4vw; align-items: end; }
+.line { margin: 0; color: var(--ink); }
+.detail { display: grid; gap: 8px; justify-items: end; text-align: right; }
+.stack { margin: 0; font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.links { display: flex; flex-wrap: wrap; gap: 22px; margin: 0; font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+/* Links end in an arrow, which is the cue; no underline. Pointing at one shifts its colour. */
+.links a { display: inline-block; padding: 8px 0; color: var(--ink); transition: color 0.35s var(--ease); }
+@media (hover: hover) and (pointer: fine) { .links a:hover { color: var(--signal-text); } }
+
+/* The way out to everything else, in the statement voice, at the right edge under the last name */
+.all { margin: 0; padding: 12vh var(--gut) 14vh; text-align: right; }
+.allLink {
+  composes: voiceM from './type.module.css';
+  display: inline-block; padding-bottom: 4px;
+  transition: color 0.4s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) { .allLink:hover { color: var(--signal); } }
+
+/* Stage. Pieces become one grid: the chapter mark across row 1, the names across row 2, the three
+   screens stacked in row 3, the three detail blocks stacked in row 4. The track is one screen of
+   scroll per piece. */
+.root[data-live] .track { height: 300svh; }
+.root[data-live] .stage {
+  position: sticky; top: 0; height: 100svh; box-sizing: border-box;
+  padding: 88px 0 4.5vh;
+  grid-template-columns: repeat(3, auto); grid-template-rows: auto auto minmax(0, 1fr) auto;
+  justify-content: space-between; column-gap: 3vw; row-gap: 2.4vh;
+}
+.root[data-live] .chapter { grid-row: 1; grid-column: 1 / -1; margin-bottom: 1.6vh; }
+.root[data-live] .piece { display: contents; }
+.root[data-live] .head { grid-row: 2; }
+.root[data-live] .piece:nth-child(2) .head { grid-column: 1; }
+.root[data-live] .piece:nth-child(3) .head { grid-column: 2; justify-self: center; text-align: center; }
+.root[data-live] .piece:nth-child(4) .head { grid-column: 3; justify-self: end; text-align: right; }
+/* The three names (17.6em together, measured) always fit one line across the stage, gaps and a
+   small margin included */
+.root[data-live] .name { font-size: min(84px, calc((100vw - 2 * var(--gut) - 6vw) / 19.2)); }
+/* The screen takes all the height its row gives it; the frame and the player share one width */
+.root[data-live] .screen {
+  grid-row: 3; grid-column: 1 / -1; container-type: size;
+  display: flex; flex-direction: column; align-items: center;
+  pointer-events: none; /* the three screens overlap; only the visible player takes clicks */
+}
+.root[data-live] [data-player] { pointer-events: auto; }
+.root[data-live] [data-frame],
+.root[data-live] [data-player] { width: min(100cqw, calc((100cqh - var(--player-h)) * 1.6)); flex: none; }
+.root[data-live] .piece + .piece [data-lens] { clip-path: inset(100% 0 0 0); }
+/* The three frames sit exactly on top of each other: one shadow, not three stacked into bands */
+.root[data-live] .piece + .piece [data-frame] { box-shadow: none; }
+.root[data-live] .body { grid-row: 4; grid-column: 1 / -1; }
+.root[data-live] .piece + .piece .body,
+.root[data-live] .piece + .piece [data-player] { opacity: 0; visibility: hidden; }
+
+/* Phone: the list, tighter */
+@media (max-width: 760px) {
+  .root { padding-top: 12vh; }
+  .stage { gap: 10vh; }
+  .name { font-size: 11vw; }
+  .body { grid-template-columns: 1fr; gap: 14px; }
+  .detail { justify-items: start; text-align: left; }
+  .all { padding: 8vh var(--gut) 12vh; text-align: left; }
+}

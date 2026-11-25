@@ -5,6 +5,8 @@
 // first-booking date come from the live site and the build records. Slugs without an entry here still render
 // through the legacy template.
 
+import { testimonial, type Testimonial } from './testimonials'
+
 export interface CaseStudyImage {
   src: string
   alt: string
@@ -15,6 +17,8 @@ export interface CaseStudyImage {
 export interface StageEmail extends CaseStudyImage {
   subject: string
   sentAt: string
+  /** Carries a real entry ticket (QR code, reference) or a team member's number: listed by subject, never shown */
+  private?: boolean
 }
 
 export interface JourneyStage {
@@ -25,6 +29,8 @@ export interface JourneyStage {
   stops?: string
   result?: string
   emails: StageEmail[]
+  /** A step that happens on the site: the site's own screen for it, captured live */
+  screen?: CaseStudyImage
 }
 
 export interface CaseStudy {
@@ -38,8 +44,12 @@ export interface CaseStudy {
   facts: { label: string; value: string }[]
   liveUrl?: string
   cover: CaseStudyImage
-  situation: { heading: string; body: string[] }
-  journey: { heading: string; intro: string; stages: JourneyStage[]; beyond?: string }
+  /** The site in use, played in place of the cover where motion is welcome (public/directions/rec) */
+  rec?: { name: string; width: number; height: number; label: string }
+  /** Her three support incidents (Cases on the homepage) belong to this study */
+  incidents?: boolean
+  situation?: { heading: string; body: string[] }
+  journey?: { heading: string; intro: string; stages: JourneyStage[]; beyond?: string }
   // Only studies with a measured finding or open work carry these sections
   finding?: {
     heading: string
@@ -47,10 +57,10 @@ export interface CaseStudy {
     table: { caption: string; headers: string[]; rows: string[][] }
     response: string[]
   }
-  results: { heading: string; items: { value: string; label: string }[]; source: string }
+  results?: { heading: string; items: { value: string; label: string }[]; source: string }
   open?: { heading: string; items: { title: string; body: string }[] }
-  site: { heading: string; body: string; images: CaseStudyImage[] }
-  testimonial?: { quote: string; name: string; role: string }
+  site: { heading: string; body: string; images: CaseStudyImage[]; built?: string[] }
+  testimonial?: Testimonial
 }
 
 const gwenEmail = (name: string, height: number, subject: string, sentAt: string): StageEmail => ({
@@ -68,7 +78,7 @@ const gwenAddo: CaseStudy = {
   line: 'Her whole customer journey, from the first sign-up to the next cohort.',
   metaTitle: 'Gwen Addo: customer lifecycle, CRM and website',
   metaDescription:
-    'How I mapped and automated the customer journey for a leadership-training business in Accra: 1,695 emails to 194 people with none sent by hand, and 9 of 114 past attendees back for another cohort.',
+    'How I mapped and automated the customer journey for a leadership-training business in Accra: 1,695 emails to 194 people with none sent by hand, and nine past attendees back for the next cohort.',
   ogImage: '/images/case-studies/gwen-addo/og.jpg',
   facts: [
     { label: 'Client', value: 'Gwen Addo, leadership coach and author' },
@@ -82,6 +92,8 @@ const gwenAddo: CaseStudy = {
     width: 2880,
     height: 1800,
   },
+  rec: { name: 'gwen-new-demo', width: 1440, height: 900, label: 'Gwen Addo’s website in use: her programmes, then a strategy session application' },
+  incidents: true,
   situation: {
     heading: 'Every follow-up depended on someone remembering to send it',
     body: [
@@ -115,8 +127,8 @@ const gwenAddo: CaseStudy = {
           'A confirmation with a QR entry ticket straight away, the faculty two days later, a countdown a week out, everything they need at 6pm the evening before, and a reminder two hours before doors open.',
         stops: 'Stages already in the past are skipped, so someone who pays the night before gets their entry pass at once.',
         emails: [
-          gwenEmail('payment-confirmation', 2242, 'Your seat at The Character Advantage is confirmed', 'On payment'),
-          gwenEmail('event-morning', 1652, 'Today is the day', '2 hours before start'),
+          { ...gwenEmail('payment-confirmation', 2242, 'Your seat at The Character Advantage is confirmed', 'On payment'), private: true },
+          { ...gwenEmail('event-morning', 1652, 'Today is the day', '2 hours before start'), private: true },
         ],
       },
       {
@@ -148,7 +160,7 @@ const gwenAddo: CaseStudy = {
         says:
           'An invitation back, the reason this cohort matters six days later, and a last call three days before registration closes. Anyone who doesn’t return is offered a paid one-on-one when it closes, with one follow-up five days later.',
         stops: 'The moment they register again or book.',
-        result: '565 emails to 114 past attendees. 9 came back and paid again because someone finally asked, worth GHS 14,050.',
+        result: 'Nine past attendees came back and paid GHS 14,050 for the next cohort. Three of them got these emails and registered after they started. Registration was about 5% whether or not someone got them, so I can’t say the emails caused it.',
         emails: [
           gwenEmail('alumni-invite', 1683, 'Come back to the room for The Character Advantage', 'When the cohort opens'),
           gwenEmail('alumni-why', 1633, 'Why The Character Advantage, and why now', '6 days later'),
@@ -196,7 +208,7 @@ const gwenAddo: CaseStudy = {
     heading: 'What one cohort looked like',
     items: [
       { value: '1,695', label: 'emails to 194 people, none sent by hand' },
-      { value: '9 of 114', label: 'past attendees came back, worth GHS 14,050' },
+      { value: '9', label: 'past attendees came back for the next cohort, worth GHS 14,050' },
       { value: 'GHS 67,400', label: 'across five payment channels, no mismatches' },
       { value: '70%', label: 'of payments arrived outside office hours, none missed' },
     ],
@@ -217,7 +229,7 @@ const gwenAddo: CaseStudy = {
   },
   site: {
     heading: 'The website came first',
-    body: 'I built her first site in 2025 and I’m now rebuilding it in Next.js. It’s the front door to everything above: the masterclass, her book, strategy sessions and speaking.',
+    body: 'I built her website in Next.js. It’s the front door to everything above: the masterclass, her book, strategy sessions and speaking.',
     images: [
       {
         src: '/images/case-studies/gwen-addo/site-rebuild-home-mobile.webp',
@@ -227,12 +239,7 @@ const gwenAddo: CaseStudy = {
       },
     ],
   },
-  testimonial: {
-    quote:
-      'Jacqueline has a remarkable ability to translate a personal brand into a compelling digital experience. The website she built for me is not only professional and polished but also strategically designed to convert visitors into clients. It has become the cornerstone of my business’s online presence.',
-    name: 'Gwen Addo',
-    role: 'Leadership coach and author',
-  },
+  testimonial: testimonial(1),
 }
 
 const finest = (name: string, height: number, subject: string, sentAt: string): StageEmail => ({
@@ -264,6 +271,7 @@ const finestDietitian: CaseStudy = {
     width: 1440,
     height: 900,
   },
+  rec: { name: 'finest-dietitian-demo', width: 1440, height: 900, label: 'Finest Dietitian’s website in use: the BMI calculator, then booking a consultation' },
   situation: {
     heading: 'A booking that happens on WhatsApp is a patient she can’t email again',
     body: [
@@ -282,6 +290,7 @@ const finestDietitian: CaseStudy = {
         when: 'The first visit',
         says: 'A site built to earn trust before it asks for anything.',
         emails: [],
+        screen: { src: '/images/case-studies/finest-dietitian/site-home.webp', alt: 'The Finest Dietitian homepage', width: 1440, height: 900 },
       },
       {
         id: 'pick',
@@ -289,6 +298,7 @@ const finestDietitian: CaseStudy = {
         when: 'Before booking',
         says: 'They choose a consultation, then a time from her live calendar.',
         emails: [],
+        screen: { src: '/images/case-studies/finest-dietitian/site-book.webp', alt: 'The booking page: a general consultation, online, with the times open on her calendar', width: 1440, height: 900 },
       },
       {
         id: 'pay',
@@ -296,6 +306,7 @@ const finestDietitian: CaseStudy = {
         when: 'At checkout',
         says: 'Payment is on Paystack, by mobile money or card.',
         emails: [],
+        screen: { src: '/images/case-studies/finest-dietitian/site-checkout.webp', alt: 'The checkout step: the patient’s details, the booking summary and “Pay GH₵600 and book”', width: 1440, height: 900 },
       },
       {
         id: 'booked',
@@ -332,18 +343,259 @@ const finestDietitian: CaseStudy = {
       },
     ],
   },
-  testimonial: {
-    quote:
-      'I showed the website to my professor here in the US and he was wowed. Overall, everybody is wowed. You have done well. Congratulations. Thank you so much.',
-    name: 'Fredericka Doku',
-    role: 'Registered dietitian',
-  },
+  testimonial: testimonial(13),
 }
 
-const caseStudies: Record<string, CaseStudy> = {
-  [gwenAddo.slug]: gwenAddo,
-  [finestDietitian.slug]: finestDietitian,
+// The website studies: the site, what was built, and the client's words. Only what was built is
+// claimed, and every feature listed was checked on the live site on 25 Nov 2026. These builds
+// have no measured results, so none are given. Old claims that the sites don't bear out were
+// dropped: Anabs' virtual tours and "trust indicators", Eleven Eleven's booking engine and video
+// backgrounds (it sells units; it doesn't take stays), Landmark Homes' galleries and availability
+// status, and Dr. Kotia's "CMS he manages himself". Captures are each live site's own homepage
+// (public/directions/work, 19 Nov 2026); each site's recording (public/directions/rec, 25 Nov 2026) shows it
+// in use, moving forward only. Years are from the previous case studies.
+function siteStudy(o: {
+  slug: string
+  title: string
+  line: string
+  metaTitle: string
+  metaDescription: string
+  client: string
+  role?: string
+  year: string
+  stack: string
+  liveUrl: string
+  capture: string
+  heroAlt: string
+  heading: string
+  body: string
+  built: string[]
+  rec?: CaseStudy['rec']
+  quote?: number
+}): CaseStudy {
+  const desk = `/directions/work/${o.capture}-desk.webp`
+  return {
+    slug: o.slug,
+    title: o.title,
+    line: o.line,
+    metaTitle: o.metaTitle,
+    metaDescription: o.metaDescription,
+    ogImage: desk,
+    facts: [
+      { label: 'Client', value: o.client },
+      { label: 'My role', value: o.role ?? 'I built the website' },
+      { label: o.year.includes('now') ? 'Timeline' : 'Year', value: o.year },
+      { label: 'Built with', value: o.stack },
+    ],
+    liveUrl: o.liveUrl,
+    cover: { src: desk, alt: o.heroAlt, width: 2880, height: 1800 },
+    rec: o.rec,
+    site: {
+      heading: o.heading,
+      body: o.body,
+      built: o.built,
+      images: [{ src: `/directions/work/${o.capture}-phone.webp`, alt: `The ${o.title} homepage on a phone`, width: 1170, height: 2532 }],
+    },
+    testimonial: o.quote ? testimonial(o.quote) : undefined,
+  }
 }
+
+const SITES: CaseStudy[] = [
+  siteStudy({
+    slug: 'command-space',
+    title: 'Command Space',
+    line: 'The website for Command Space, a digital marketing agency in the US, the UK and Ghana.',
+    metaTitle: 'Command Space: the agency’s Next.js website',
+    metaDescription:
+      'The Next.js website for Command Space, a digital marketing agency in the US, UK and Ghana, with a page for each of its ten services and a brief form on the homepage.',
+    client: 'Command Space, digital marketing agency',
+    role: 'I built the site and keep it running',
+    year: '2024 to now',
+    stack: 'Next.js',
+    liveUrl: 'https://command-space.com',
+    capture: 'command-space',
+    heroAlt: 'The Command Space homepage: “We grow your business, and track every result.”',
+    rec: { name: 'command-space-demo', width: 1440, height: 900, label: 'The Command Space website in use: a goal typed into the homepage brief, then the ten services' },
+    heading: 'Every service gets its own page',
+    body: 'The site presents the agency’s ten services and takes project briefs straight from the homepage.',
+    built: [
+      'A separate page for each of its ten services',
+      'A short brief form on the homepage',
+      'A Work section and a client logo strip',
+    ],
+    quote: 3,
+  }),
+  siteStudy({
+    slug: 'anabs',
+    title: 'Anabs',
+    line: 'The website for Anabs, a residential tower in North Dzorwulu, Accra.',
+    metaTitle: 'Anabs: the website for a residential tower in Accra',
+    metaDescription:
+      'The WordPress website for Anabs, a residential tower in North Dzorwulu, Accra: a page for each residence with its floor plans and pricing, the payment terms, and a form to reserve a unit.',
+    client: 'Anabs Limited',
+    year: '2025',
+    stack: 'WordPress',
+    liveUrl: 'https://anabsgh.com',
+    capture: 'anabs',
+    heroAlt: 'The Anabs homepage: “Redefining Luxury Living in Accra.”',
+    rec: { name: 'anabs-demo', width: 1440, height: 900, label: 'The Anabs website in use: from the homepage into the two-bedroom residence, its floor plan and its pricing list' },
+    heading: 'A buyer can see the units, the prices and the terms before they call',
+    body: 'The site takes a buyer from the tower to the residence that suits them, then on to reserving it.',
+    built: [
+      'A page for each residence, with its floor plans, pricing and gallery',
+      'A form to reserve a unit',
+      'The payment terms, for cash and mortgage buyers',
+      'A brochure to download',
+    ],
+    quote: 12,
+  }),
+  siteStudy({
+    slug: 'eleven-eleven-ghana',
+    title: 'Eleven Eleven',
+    line: 'The website for Eleven Eleven, a beachfront resort in Ghana where you can buy an apartment, a villa or a penthouse.',
+    metaTitle: 'Eleven Eleven: the website for a beachfront resort in Ghana',
+    metaDescription:
+      'The WordPress website for Eleven Eleven, a beachfront resort in Ghana: every unit with its starting price, life at the resort, and what owners get as investors.',
+    client: 'Eleven Eleven Ghana',
+    year: '2024',
+    stack: 'WordPress',
+    liveUrl: 'https://www.11-11ghana.com',
+    capture: 'eleven-eleven',
+    heroAlt: 'The Eleven Eleven homepage: “Follow Your Desire.”',
+    rec: { name: 'eleven-eleven-demo', width: 1440, height: 900, label: 'The Eleven Eleven website in use: the homepage film, the unit types and prices, then the Units page' },
+    heading: 'Every unit shows its starting price',
+    body: 'The site sells the resort and the investment together: the units, life at the resort, and what owners get back.',
+    built: [
+      'A Units page with every unit type and its starting price, each with an enquiry form',
+      'The Experience page, on the amenities and the dining',
+      'An Investor Luxury Perks page for buyers who want to rent their unit out',
+      'The founders’ story and a contact form',
+    ],
+    quote: 11,
+  }),
+  siteStudy({
+    slug: 'girl-code-africa',
+    title: 'GirlCode Africa',
+    line: 'The website for GirlCode Africa, a non-profit teaching girls and young women across Africa to code.',
+    metaTitle: 'GirlCode Africa: the website for a coding non-profit',
+    metaDescription:
+      'The WordPress website for GirlCode Africa, a non-profit teaching girls and young women to code: the courses, a form to register a child, and ways to donate.',
+    client: 'GirlCode Africa, a non-profit',
+    year: '2025',
+    stack: 'WordPress',
+    liveUrl: 'https://www.girlcodeafrica.org',
+    capture: 'girlcode',
+    heroAlt: 'The GirlCode Africa homepage: “Building The Next Generation of Geniuses.”',
+    rec: { name: 'girlcode-demo', width: 1440, height: 900, label: 'The GirlCode Africa website in use: a parent starts the course registration form, then the donation options' },
+    heading: 'Parents can register a child for a course on the site',
+    body: 'The site explains what GirlCode does, lists the courses and makes it easy to sign up, give or get in touch.',
+    built: [
+      'The courses, with a form for parents to register a child',
+      'A Get Involved page for donations, by GoFundMe, Paystack or mobile money',
+      'The aims, the objectives and the board',
+      'A help page on how signing up works, and a contact form',
+    ],
+  }),
+  siteStudy({
+    slug: 'eden-heights',
+    title: 'Eden Heights',
+    line: 'The website for Eden Heights, an apartment development in West Hills, Accra.',
+    metaTitle: 'Eden Heights: the website for an apartment development in Accra',
+    metaDescription:
+      'The WordPress website for Eden Heights in Accra: a virtual tour of the whole site and a page for each of its six apartment types, with the starting price and floor plan.',
+    client: 'Eden Heights',
+    year: '2025',
+    stack: 'WordPress',
+    liveUrl: 'https://edenheights.com.gh',
+    capture: 'eden-heights',
+    heroAlt: 'The Eden Heights homepage: “The Height of Modern Living.”',
+    rec: { name: 'eden-heights-demo', width: 1440, height: 900, label: 'The Eden Heights website in use: the virtual tour, the available units, then the two-bedroom price and floor plan' },
+    heading: 'Every apartment has its price and floor plan on the page',
+    body: 'A buyer can walk the whole development in a virtual tour, then compare the six apartment types.',
+    built: [
+      'A page for each of the six apartment types, with its starting price and floor plan',
+      'A virtual tour of the whole site',
+      'The amenities, the rentals and the facilities management',
+      'Enquiry forms on every page',
+    ],
+  }),
+  siteStudy({
+    slug: 'landmark-homes',
+    title: 'Landmark Homes',
+    line: 'The website for Landmark Homes, a residential developer in Accra.',
+    metaTitle: 'Landmark Homes: the website for a residential developer in Accra',
+    metaDescription:
+      'The WordPress website for Landmark Homes: a page for each of its three developments and each apartment type, from studios to penthouses.',
+    client: 'Landmark Homes',
+    year: '2025',
+    stack: 'WordPress',
+    liveUrl: 'https://landmarkhomesgh.com',
+    capture: 'landmark-homes',
+    heroAlt: 'The Landmark Homes homepage: “The Life You’ve Earned.”',
+    rec: { name: 'landmark-homes-demo', width: 1440, height: 900, label: 'The Landmark Homes website in use: the homepage, its three developments, then the Deiterra page' },
+    heading: 'Each development and each apartment type has its own page',
+    body: 'The site introduces the developer, then takes a buyer from a development to the apartment that suits them.',
+    built: [
+      'A page for each of its three developments: Deiterra, Sapphire and The Madison',
+      'A page for each apartment type, from studios to the penthouses',
+      'The company’s story, its board and its management team',
+    ],
+  }),
+  siteStudy({
+    slug: 'kline-designs',
+    title: 'K_Line Designs',
+    line: 'The website for K_Line Designs, an architecture and interior design firm in Accra.',
+    metaTitle: 'K_Line Designs: the website for an architecture firm in Accra',
+    metaDescription:
+      'The WordPress website for K_Line Designs, an architecture and interior design firm in Accra: its services, its process and its projects across Africa and the US.',
+    client: 'K_Line Designs LTD',
+    year: '2025',
+    stack: 'WordPress',
+    liveUrl: 'https://klinedesignltd.com',
+    capture: 'kline',
+    heroAlt: 'The K_Line Designs homepage: “DesignScape.”',
+    rec: { name: 'kline-demo', width: 1440, height: 900, label: 'The K_Line Designs website in use: the services, the four-step process, then the projects' },
+    heading: 'The firm’s process runs from first concept to the building site',
+    body: 'The site sets out what the firm does and how it works, then shows the projects.',
+    built: [
+      'The services, from architecture and interiors to renovation',
+      'The four-step process, from concept to construction oversight',
+      'A projects page, with work in Accra, Togo, Abidjan and the US',
+      'The team and a contact form',
+    ],
+  }),
+  siteStudy({
+    slug: 'emmanuel-kotia',
+    title: 'Dr. Emmanuel Kotia',
+    line: 'The website for Dr Emmanuel Kotia, with his career, his publications and his service in one place.',
+    metaTitle: 'Dr. Emmanuel Kotia: a website for his career and publications',
+    metaDescription:
+      'The WordPress website for Dr Emmanuel Kotia: his education, his publications, his service in pictures, and his news and articles.',
+    client: 'Dr Emmanuel Kotia',
+    year: '2023',
+    stack: 'WordPress',
+    liveUrl: 'https://www.emmakotia.org',
+    capture: 'emma-kotia',
+    heroAlt: 'The homepage of Dr Emmanuel Wekem Kotia’s website',
+    rec: { name: 'emma-kotia-demo', width: 1440, height: 900, label: 'Dr Emmanuel Kotia’s website in use: his education, publications, service in pictures, and news' },
+    heading: 'His whole career fits on one page',
+    body: 'The site gathers his education, his publications and his service in one place.',
+    built: [
+      'His background, education and publications, on one page',
+      'His service in pictures',
+      'His news and articles',
+      'Ways to reach him by email or WhatsApp',
+    ],
+    quote: 6,
+  }),
+]
+
+const caseStudies: Record<string, CaseStudy> = Object.fromEntries(
+  [gwenAddo, finestDietitian, ...SITES].map((study) => [study.slug, study]),
+)
+
+/** Every case study's slug, for the sitemap */
+export const caseStudySlugs = (): string[] => Object.keys(caseStudies)
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {
   return caseStudies[slug]

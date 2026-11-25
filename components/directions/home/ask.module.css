@@ -1,0 +1,142 @@
+/* "What do you need?", on the ink ground. Two columns on a desktop so the answer is in view while
+   you type: the question and the line it is answered on at the left, the three lanes at the right.
+   A lane is a rail like the journeys': a dot, a line, and a pulse that runs it when the problem
+   lives there. */
+
+.ask { margin-top: 4vh; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 6vw; align-items: start; }
+.sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.label { composes: label from './type.module.css'; display: block; }
+
+/* The question and the line it is answered on share one voice, so they read as a dialogue */
+.question {
+  composes: voice from './type.module.css';
+  margin: 0; font-size: clamp(44px, 6.4vw, 108px); line-height: 0.96; letter-spacing: -0.04em; color: var(--ink);
+}
+.question label { cursor: text; }
+/* The field reserves two lines, so an example that wraps does not push the list from under the
+   pointer, and its text sits on the line: it is anchored to the bottom and grows upward */
+.field {
+  position: relative; display: flex; align-items: flex-end; margin-top: 3.4vh; min-height: calc(2.1em + 18px);
+  border-bottom: 2px solid var(--ink);
+  font-size: clamp(28px, 3.6vw, 60px);
+  transition: border-color 0.4s var(--ease);
+}
+/* Focus thickens the line instead of colouring it */
+.field:focus-within { box-shadow: 0 2px 0 0 var(--ink); }
+.input, .ghost {
+  font-family: var(--h-sans); font-weight: 500; font-stretch: 100%; font-size: inherit; line-height: 1.05; letter-spacing: -0.035em;
+}
+.input {
+  display: block; flex: 1; width: 100%; min-width: 0; padding: 6px 0 9px;
+  border: 0; outline: 0; background: transparent; color: var(--ink);
+  resize: none; field-sizing: content; max-height: 5.2em; overflow-y: auto;
+}
+.input::placeholder { color: var(--ink-4); }
+/* The site's global textarea focus box would sit over the line; the line itself turns orange on focus */
+.field .input:focus-visible { outline: none; box-shadow: none; }
+/* While idle the field types through the examples itself */
+/* Anchored to the line like the real text, and free to wrap, so a long example is never cut off */
+.ghost { position: absolute; left: 0; right: 0; bottom: 9px; pointer-events: none; color: var(--ink-4); }
+.caret { display: inline-block; width: 0.06em; height: 0.9em; margin-left: 0.08em; vertical-align: -0.08em; background: var(--signal); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.private { max-width: 60ch; margin: 14px 0 0; font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--ink-3); }
+
+/* The examples: lines to click, which type themselves into the field */
+.examples { display: grid; gap: 12px; margin-top: 7vh; }
+.examples ul { margin: 0; padding: 0; list-style: none; }
+.example {
+  composes: voiceM from './type.module.css';
+  display: flex; align-items: baseline; gap: 14px; width: fit-content; max-width: 100%; padding: 7px 0;
+  border: 0; background: none; cursor: pointer; text-align: left; color: var(--ink-3);
+  transition: color 0.35s var(--ease);
+}
+.example::before {
+  content: ''; flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--ink-4); transform: translateY(-1px);
+  transition: background-color 0.35s var(--ease), transform 0.5s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .example:hover { color: var(--ink); }
+  .example:hover::before { background: var(--signal); transform: translateY(-1px) scale(1.5); }
+}
+.example[data-on] { color: var(--ink); }
+.example[data-on]::before { background: var(--signal); }
+.example:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
+
+/* The lanes */
+.answers { position: relative; }
+.lanes { margin: 0; padding: 0; list-style: none; }
+.lane { position: relative; container-type: inline-size; padding: 34px 0 40px; }
+.lane::before, .lane::after { content: ''; position: absolute; left: 5.5px; right: 0; pointer-events: none; }
+.lane::before { top: 5px; height: 1px; background: var(--line); }
+/* The line fills in behind the pulse */
+.lane::after { top: 4.5px; height: 2px; background: var(--ink); transform: scaleX(0); transform-origin: 0 50%; transition: transform 1.1s var(--ease); }
+.lane[data-lit]::after { transform: scaleX(1); }
+.dot {
+  position: absolute; left: 0; top: 0; width: 11px; height: 11px; border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--ink-3); transition: background-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.lane[data-lit] .dot { background: var(--ink); box-shadow: none; }
+.pulse {
+  position: absolute; left: -3px; top: -3px; width: 17px; height: 17px; border-radius: 50%; pointer-events: none; opacity: 0;
+  background: var(--signal); box-shadow: 0 0 0 7px rgb(242 71 26 / 0.2);
+}
+.lane[data-lit] .pulse { animation: run 1.3s var(--ease) both; }
+@keyframes run {
+  0% { opacity: 1; transform: translateX(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(calc(100cqw - 12px)); }
+}
+.name {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin: 0;
+  font-family: var(--h-sans); font-weight: 620; font-stretch: 125%; text-transform: uppercase;
+  font-size: clamp(20px, 1.9vw, 30px); line-height: 1.08; letter-spacing: -0.005em; color: var(--ink-3);
+  transition: color 0.6s var(--ease);
+}
+.lane[data-lit] .name { color: var(--ink); }
+.tag { composes: label from './type.module.css'; color: var(--signal-text); }
+
+/* The answer opens under the lit lane */
+.reveal { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.9s var(--ease); }
+.lane[data-primary] .reveal { grid-template-rows: 1fr; }
+.reveal > div { min-height: 0; overflow: hidden; }
+.answer { padding-top: 26px; animation: rise 0.9s var(--ease) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.heading {
+  composes: voice from './type.module.css';
+  margin: 0; max-width: 20ch; font-size: clamp(24px, 2.3vw, 36px); line-height: 1.08; letter-spacing: -0.03em;
+}
+.body { margin: 14px 0 0; max-width: 46ch; color: var(--ink-2); }
+.also { margin: 12px 0 0; color: var(--ink); }
+.proof { display: grid; gap: 6px; max-width: 46ch; margin: 24px 0 0; }
+.proofLink {
+  width: fit-content; padding: 4px 0; color: var(--ink);
+  font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  background: linear-gradient(currentColor, currentColor) 0 90% / 100% 1px no-repeat;
+}
+.send {
+  display: inline-block; width: fit-content; margin-top: 28px; padding: 16px 30px; border-radius: 2px;
+  background: var(--ink); color: var(--paper-2) !important;
+  font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: background 0.3s var(--ease);
+}
+.send:focus-visible, .proofLink:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
+/* No colour on hover: the button stays bone and the arrow moves */
+.send > span { display: inline-block; margin-left: 0.8em; transition: transform 0.4s var(--ease); }
+@media (hover: hover) and (pointer: fine) { .send:hover > span { transform: translateX(5px); } }
+
+/* Text that places nowhere: no lane, but the same answer, under a line of its own */
+.other { position: relative; margin-top: 4vh; padding-top: 34px; }
+.other::before { content: ''; position: absolute; left: 0; right: 0; top: 5px; height: 1px; background: var(--line); }
+
+@media (max-width: 1023px) {
+  .ask { grid-template-columns: 1fr; row-gap: 8vh; }
+}
+@media (max-width: 760px) {
+  .field { font-size: 28px; }
+  .examples { margin-top: 5vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lane::after, .reveal, .dot, .name { transition: none; }
+  .answer, .lane[data-lit] .pulse { animation: none; }
+}
