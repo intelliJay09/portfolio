@@ -103,7 +103,7 @@ export default function ContactForm({ initialMessage, initialAbout }: { initialM
 
       <div className={s.field}>
         <label htmlFor="c-message" className={s.legend}>Your message</label>
-        {carried && <p className={s.carried}>Carried over from the homepage. Change anything you like.</p>}
+        {carried && <p className={s.carried}>Filled in for you. Change anything you like.</p>}
         <textarea id="c-message" name="message" value={f.message} onChange={set} required maxLength={5000} rows={4} className={`${s.input} ${s.message}`} />
       </div>
 

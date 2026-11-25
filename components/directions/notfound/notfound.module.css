@@ -1,0 +1,47 @@
+/* The 404: an ink opening the height of the screen, the field of squares behind, the words over a
+   soft ink fade (left on a wide screen, the lower part on a phone) so they always read on ink. */
+
+.hero {
+  position: relative; overflow: hidden; min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: calc(88px + 8vh) var(--gut) 10vh;
+  background: var(--ink-ground); color: var(--ink);
+}
+.field { position: absolute; left: 0; top: 0; width: 100%; display: block; } /* height set to whole rows by MissingField */
+/* The fade the words sit on */
+.hero::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgb(18 18 16 / 0.96) 0%, rgb(18 18 16 / 0.9) 34%, rgb(18 18 16 / 0) 62%),
+    linear-gradient(0deg, rgb(18 18 16 / 0.85) 0%, rgb(18 18 16 / 0) 45%);
+}
+.words { position: relative; z-index: 1; max-width: 860px; }
+
+.kicker { composes: kicker from '../contact/outcome.module.css'; }
+.title { composes: title from '../contact/outcome.module.css'; }
+.word { display: inline-block; }
+
+.rows { display: grid; gap: 3.4vh; margin: 7vh 0 0; padding: 0; }
+.rows > div { display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 16px; align-items: baseline; }
+.rowKey { composes: label from '../home/type.module.css'; letter-spacing: 0.08em; }
+.rows dd { margin: 0; max-width: 46ch; font-size: clamp(17px, 1.35vw, 20px); color: var(--ink-2); }
+
+.ways { composes: ways from '../contact/outcome.module.css'; margin: 0; }
+.way { composes: way from '../contact/outcome.module.css'; }
+.rows .way { color: var(--ink); } /* outranks the theme's "a { color: inherit }" inside the row text */
+@media (hover: hover) and (pointer: fine) { .rows .way:hover { color: var(--signal-text); } }
+.report {
+  display: inline-block; margin-top: 3vh; padding: 6px 0;
+  font-family: var(--h-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink);
+  transition: color 0.35s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) { .report:hover { color: var(--signal-text); } }
+.caption { composes: label from '../home/type.module.css'; margin: 7vh 0 0; max-width: 46ch; line-height: 1.6; letter-spacing: 0.08em; }
+
+@media (max-width: 760px) {
+  .hero { padding: calc(76px + 30vh) var(--gut) 8vh; }
+  .hero::after { background: linear-gradient(0deg, rgb(18 18 16 / 0.97) 0%, rgb(18 18 16 / 0.92) 58%, rgb(18 18 16 / 0) 82%); }
+  .rows > div { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .ways { flex-direction: column; gap: 1vh; }
+  .caption { margin-top: 5vh; }
+}

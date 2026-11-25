@@ -68,11 +68,13 @@ export default function SiteNav({ zone = 1, ground = 'scene' }: { zone?: number;
     let last = window.scrollY
     let raf = 0
     const set = (state: string) => { if (el.dataset.state !== state) el.dataset.state = state }
-    // The ground under the header (a section with data-tone="ink" is dark), so the backdrop matches it
+    // The ground under the header (a section with data-tone="ink" is dark), so the backdrop matches it.
+    // Kept as data-under, not data-tone: the theme gives anything with data-tone="ink" an ink
+    // background, which would cover whatever the header sits over
     const tone = () => {
       const under = document.elementsFromPoint(window.innerWidth / 2, 2).find((n) => !el.contains(n))
       const next = under?.closest<HTMLElement>('[data-tone]')?.dataset.tone ?? 'paper'
-      if (el.dataset.tone !== next) el.dataset.tone = next
+      if (el.dataset.under !== next) el.dataset.under = next
     }
     const update = () => {
       raf = 0

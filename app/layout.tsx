@@ -14,6 +14,7 @@ import {
 } from '../lib/schema-markup'
 import { SITE } from '../lib/site'
 import '../globals.css'
+import { installTrustedTypesPolicy } from '../lib/trusted-types'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -205,17 +206,8 @@ export default async function RootLayout({
           }}
         />
 
-        {/*
-          Trusted Types default policy — must run before GTM or any other
-          script that touches .src/.innerHTML. Named 'default' so the browser
-          routes ALL unguarded Trusted Types sinks (including Next.js's own
-          chunk loader and GTM's dynamic script injection) through it
-          automatically. createScriptURL is a real allowlist (same-origin +
-          GTM/GA only); createHTML/createScript stay pass-through because GTM's
-          Custom HTML tag type needs it and its contents aren't controlled by
-          this codebase — the createScriptURL allowlist is what actually
-          constrains what code can load.
-        */}
+        {/* Trusted Types default policy, before GTM or any script that touches .src or .innerHTML
+            (the rules and why it is installed twice: lib/trusted-types.ts) */}
         <script
           id="trusted-types-policy"
           nonce={nonce}
@@ -223,43 +215,7 @@ export default async function RootLayout({
           // them leaking), so the client always reads "" here. That difference is
           // expected; the CSP check already happened on the server-rendered value.
           suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                if (window.trustedTypes && window.trustedTypes.createPolicy) {
-                  try {
-                    window.trustedTypes.createPolicy('default', {
-                      createScriptURL: function(url) {
-                        // Same-origin relative/absolute path (Next.js's own
-                        // chunk loader passes paths like "/_next/static/...",
-                        // not full URLs).
-                        if (url.charAt(0) === '/' && url.charAt(1) !== '/') return url;
-                        var allowed = [
-                          window.location.origin + '/',
-                          'https://www.googletagmanager.com/',
-                          'https://www.google-analytics.com/',
-                          'https://ssl.google-analytics.com/',
-                          // reCAPTCHA v3 on the contact form; mirrors the CSP's script-src
-                          'https://www.google.com/recaptcha/',
-                          'https://www.gstatic.com/recaptcha/',
-                          // Cloudflare's analytics beacon, allowed by the production CSP
-                          'https://static.cloudflareinsights.com/'
-                        ];
-                        for (var i = 0; i < allowed.length; i++) {
-                          if (url.indexOf(allowed[i]) === 0) return url;
-                        }
-                        throw new Error('Blocked untrusted script URL: ' + url);
-                      },
-                      createHTML: function(html) { return html; },
-                      createScript: function(script) { return script; }
-                    });
-                  } catch (e) {
-                    // Policy named 'default' already exists — ignore.
-                  }
-                }
-              })();
-            `,
-          }}
+          dangerouslySetInnerHTML={{ __html: `(${installTrustedTypesPolicy.toString()})();` }}
         />
 
         {/* Performance Optimizations */}

@@ -10,7 +10,8 @@ type Params = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params
   const study = getCaseStudy(slug)
-  if (!study) return {}
+  // No such case study: the page shows the site's 404, so the head says so too (not the portfolio's)
+  if (!study) return { title: { absolute: 'Page not found | Jacqueline Amoako' }, robots: { index: false, follow: true } }
   const url = `https://jacquelineamoako.com/portfolio/${slug}`
   // The deep studies have a made-to-size share card; the website studies share the site's own homepage
   const og = study.ogImage === study.cover.src

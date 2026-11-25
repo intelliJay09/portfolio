@@ -11,6 +11,8 @@
   transition: transform 0.6s var(--ease), background-color 0.4s var(--ease);
 }
 .nav[data-state='top'][data-ground='paper']:not([data-open]) { mix-blend-mode: normal; color: var(--ink); }
+/* An inner page that opens on ink (the 404): the header reads in bone there */
+.nav[data-state='top'][data-ground='paper'][data-under='ink']:not([data-open]) { color: var(--bone); }
 .nav[data-state='hidden'] { transform: translateY(-100%); }
 .nav[data-state='solid'] {
   mix-blend-mode: normal; color: var(--ink);
@@ -18,7 +20,7 @@
   -webkit-backdrop-filter: blur(14px) saturate(1.1); backdrop-filter: blur(14px) saturate(1.1);
 }
 /* Over an ink section the backdrop is ink and the type is bone */
-.nav[data-state='solid'][data-tone='ink'] { color: var(--bone); background-color: rgb(18 18 16 / 0.9); }
+.nav[data-state='solid'][data-under='ink'] { color: var(--bone); background-color: rgb(18 18 16 / 0.9); }
 /* Menu open: the header sits on the ink menu in bone, whatever state it was in */
 .nav[data-open] {
   transform: none; mix-blend-mode: normal; color: var(--bone); background-color: transparent;
