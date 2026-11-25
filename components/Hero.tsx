@@ -143,14 +143,16 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Role, then the plain sentence a recruiter should leave with */}
+            {/* Disciplines, then the plain sentence a recruiter should leave with */}
             <div
               ref={titleRef}
             >
               <div className="text-left md:text-left">
-                <p className="text-text-primary font-satoshi font-normal text-base sm:text-lg md:text-xl lg:text-2xl leading-tight tracking-wide">
-                  {SITE.role}
-                </p>
+                <ul className="text-text-primary font-satoshi font-normal text-base sm:text-lg md:text-xl lg:text-2xl leading-tight tracking-wide">
+                  {SITE.disciplines.map((discipline) => (
+                    <li key={discipline}>{discipline}</li>
+                  ))}
+                </ul>
                 <p className="mt-2 max-w-[22ch] text-text-secondary font-satoshi font-normal text-sm sm:text-base leading-snug">
                   {SITE.tagline}
                 </p>

@@ -7,7 +7,7 @@
 // Image file mappings for website projects
 const websiteImages: Record<string, string> = {
   'eleven-eleven-ghana': '/images/eleven-eleven.png',
-  'gwen-addo': '/images/gwen-addo.png', 
+  'gwen-addo': '/images/case-studies/gwen-addo/site-rebuild-home.webp',
   'emmanuel-kotia': '/images/emma-kotia.png',
   'girl-code-africa': '/images/girlcode.png',
   'eden-heights': '/images/eden-heights.png',

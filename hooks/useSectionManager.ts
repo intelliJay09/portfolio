@@ -2,15 +2,6 @@
 
 import { useRef, useEffect, useState } from 'react'
 
-interface SectionManagerConfig {
-  id: string
-  minHeight?: 'screen' | 'auto'
-  spacing?: {
-    top?: number
-    bottom?: number
-  }
-}
-
 interface SectionManager {
   sectionRef: React.RefObject<HTMLElement | null>
   isVisible: boolean
@@ -20,8 +11,7 @@ interface SectionManager {
  * Section layout manager
  * Provides basic section management functionality
  */
-export function useSectionManager(config: SectionManagerConfig): SectionManager {
-  const { id } = config
+export function useSectionManager(): SectionManager {
   const sectionRef = useRef<HTMLElement | null>(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -37,13 +27,14 @@ export function useSectionManager(config: SectionManagerConfig): SectionManager 
       }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+    const section = sectionRef.current
+    if (section) {
+      observer.observe(section)
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+      if (section) {
+        observer.unobserve(section)
       }
     }
   }, [])

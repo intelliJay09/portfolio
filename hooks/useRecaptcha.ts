@@ -2,9 +2,14 @@
 
 import { useEffect, useState, useCallback } from 'react'
 
+interface Grecaptcha {
+  ready?: (callback: () => void) => void
+  execute?: (siteKey: string, options: { action: string }) => Promise<string>
+}
+
 declare global {
   interface Window {
-    grecaptcha: any
+    grecaptcha?: Grecaptcha
     onRecaptchaLoadCallback: () => void
   }
 }
@@ -54,7 +59,7 @@ export function useRecaptcha(enabled: boolean = true) {
   }, [enabled, siteKey])
 
   const executeRecaptcha = useCallback(async (action: string = 'submit'): Promise<string | null> => {
-    if (!isReady || !window.grecaptcha) {
+    if (!isReady || !window.grecaptcha?.execute) {
       console.warn('reCAPTCHA not ready')
       return null
     }

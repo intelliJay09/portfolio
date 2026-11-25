@@ -1,13 +1,20 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import InitialPreloader from '../components/InitialPreloader'
 import Navigation from '../components/Navigation'
 import Hero from '../components/Hero'
-import FeaturedProjects from '../components/FeaturedProjects'
-import DesignPhilosophy from '../components/DesignPhilosophy'
-import TeachingTeaser from '../components/TeachingTeaser'
-import Footer from '../components/Footer'
+
+// Below-the-fold sections: code-split out of the initial bundle so the
+// browser isn't parsing/executing their JS (GSAP timelines, scroll triggers,
+// etc.) before the above-the-fold Hero is interactive. Still server-rendered
+// (no ssr:false) so content, SEO, and CLS are unaffected — only the JS
+// execution is deferred into separate chunks.
+const FeaturedProjects = dynamic(() => import('../components/FeaturedProjects'))
+const DesignPhilosophy = dynamic(() => import('../components/DesignPhilosophy'))
+const TeachingTeaser = dynamic(() => import('../components/TeachingTeaser'))
+const Footer = dynamic(() => import('../components/Footer'))
 
 export default function Home() {
   const [preloaderComplete, setPreloaderComplete] = useState(false)

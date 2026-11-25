@@ -3,7 +3,6 @@ import { headers } from 'next/headers'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import ClientLenisProvider from '../components/ClientLenisProvider'
-import ImageProtection from '../components/ImageProtection'
 import NgrokSetup from '../components/NgrokSetup'
 import { WebVitalsReporter } from '../components/WebVitals'
 import { ThemeProvider } from '../contexts/ThemeProvider'
@@ -75,7 +74,7 @@ if (!siteUrl && process.env.NODE_ENV === 'production') {
 export const metadata: Metadata = {
   ...(siteUrl && { metadataBase: new URL(siteUrl) }),
   title: {
-    default: `${SITE.name} | ${SITE.role}`,
+    default: `${SITE.name} | ${SITE.headline}`,
     template: `%s | ${SITE.name}`
   },
   description: SITE.description,
@@ -105,7 +104,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: `${SITE.name} | ${SITE.role}`,
+    title: `${SITE.name} | ${SITE.headline}`,
   },
   verification: {
     google: 'VXFIG8ay39DeBrq215zuCJtO0i0Z6wy6pRWr6uQom38',
@@ -121,13 +120,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: SITE.url,
     siteName: SITE.name,
-    title: `${SITE.name} | ${SITE.role}`,
+    title: `${SITE.name} | ${SITE.headline}`,
     description: SITE.description,
     images: [{ ...SITE.ogImage, type: 'image/png' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE.name} | ${SITE.role}`,
+    title: `${SITE.name} | ${SITE.headline}`,
     description: SITE.description,
     images: [{ ...SITE.ogImage }],
   },
@@ -423,7 +422,6 @@ export default async function RootLayout({
           enableTransitions={true}
         >
           <NgrokSetup />
-          <ImageProtection />
           <ClientLenisProvider>
             {children}
           </ClientLenisProvider>

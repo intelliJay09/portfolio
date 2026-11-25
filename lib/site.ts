@@ -9,17 +9,21 @@ export const SITE = {
   name: 'Jacqueline Amoako',
   legalName: 'Jacqueline Frempomah Amoako',
   role: 'Lifecycle & Growth Marketer',
+  // All three disciplines in about 60 characters, for page titles and share cards that cut off
+  headline: 'Lifecycle Marketing, Support & Frontend',
+  // The three things she is hired for, in the order the hero shows them
+  disciplines: ['Lifecycle & Growth Marketing', 'Technical Support', 'Frontend Development'],
   // The plain sentence a recruiter should be able to repeat after five seconds
   tagline: 'I build websites and automate customer journeys.',
   description:
-    'Lifecycle and growth marketer in Accra. I build the website and the email and WhatsApp automation that bring customers in and keep them coming back.',
+    'Lifecycle marketing, technical support and frontend development from Accra. I build the sites and the email and WhatsApp automation that bring customers in and keep them coming back.',
   email: 'hello@jacquelineamoako.com',
   location: { city: 'Accra', country: 'Ghana' },
   ogImage: {
     url: 'https://jacquelineamoako.com/images/jacqueline-amoako-og-image.png',
     width: 3000,
     height: 1575,
-    alt: 'Jacqueline Amoako, lifecycle and growth marketer',
+    alt: 'Jacqueline Amoako, lifecycle marketing, technical support and frontend development',
   },
   sameAs: [
     'https://linkedin.com/in/jacqueline-frempomah-amoako',

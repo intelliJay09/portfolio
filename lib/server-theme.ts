@@ -5,6 +5,7 @@
  */
 
 import { cookies } from 'next/headers'
+import { unstable_rethrow } from 'next/navigation'
 import { type Theme, validateThemeWithLogging, THEME_COOKIE_CONFIG } from './theme-security'
 
 /**
@@ -130,6 +131,9 @@ export async function detectServerTheme(): Promise<{
       }
     }
   } catch (error) {
+    // Next signals "this route needs a request" through an error. Swallowing it is what
+    // logged "Dynamic server usage" at build time, so let framework errors through.
+    unstable_rethrow(error)
     console.warn('Server theme detection error:', error)
   }
   
